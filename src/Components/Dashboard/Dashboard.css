@@ -5,4 +5,8 @@
 }
 .Dashboard .body {
   display: flex;
+}
+.Dashboard .body .otherBar {
+  flex: 4;
+  background-color: aqua;
 }/*# sourceMappingURL=Dashboard.css.map */

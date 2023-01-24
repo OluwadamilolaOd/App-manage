@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../Navigation/Navbar/Navbar'
+import Sidebar from '../Navigation/Sidebar/Sidebar'
 import './Dashboard.css'
 
 function Dashboard() {
@@ -7,7 +8,7 @@ function Dashboard() {
     <div className='Dashboard'>
         <Navbar />
         <div className="body">
-            <div className="sideBar">b</div>
+            <Sidebar/>
             <div className="otherBar">c</div>
         </div>
       

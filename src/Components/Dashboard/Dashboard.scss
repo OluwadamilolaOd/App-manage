@@ -5,5 +5,10 @@
 
     .body {
         display: flex;
+
+        .otherBar {
+            flex: 4;
+            background-color: aqua;
+        }
     }
 }
