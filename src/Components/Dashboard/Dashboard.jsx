@@ -1,13 +1,14 @@
 import React from 'react'
+import Navbar from '../Navigation/Navbar/Navbar'
 import './Dashboard.css'
 
 function Dashboard() {
   return (
     <div className='Dashboard'>
-        <div className="navBar"></div>
+        <Navbar />
         <div className="body">
-            <div className="sideBar"></div>
-            <div className="otherBar"></div>
+            <div className="sideBar">b</div>
+            <div className="otherBar">c</div>
         </div>
       
     </div>
