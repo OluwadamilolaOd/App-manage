@@ -1,0 +1,25 @@
+.landingPage {
+  font-family: "Poppins", sans-serif;
+  background: #FFFFFF;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.landingPage .page {
+  display: flex;
+  height: 97%;
+  width: 97%;
+  justify-content: center;
+}
+
+.footerPage {
+  height: 10hv;
+}
+.footerPage h3 {
+  font-weight: 400;
+  font-size: 13px;
+  justify-content: center;
+  padding-left: 20rem;
+  padding-bottom: 2rem;
+}/*# sourceMappingURL=LandingPage.css.map */
