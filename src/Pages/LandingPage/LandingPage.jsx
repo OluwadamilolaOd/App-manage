@@ -1,6 +1,4 @@
 import React from 'react'
-import Login from '../../Components/Login/Login'
-import LoginImg from '../../Components/LoginImg/LoginImg'
 import './LandingPage.css'
 import Undraw from '../../img/undraw.png'
 
