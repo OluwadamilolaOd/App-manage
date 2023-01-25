@@ -13,6 +13,7 @@ function Dashboard(props) {
             <main className="otherBar">
               {props.children}
             </main>
+            
         </div>
       
     </div>

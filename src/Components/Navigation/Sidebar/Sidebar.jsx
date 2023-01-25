@@ -8,24 +8,24 @@ import { useNavigate } from 'react-router-dom';
 function Sidebar() {
 
   const [selected, setSelected] = useState(0)
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleData = (index)=> {
-    setSelected(index)
-    if (index===0) {
-        navigate('/', { replace: true });
-        console.log('Homepage')
-    }
-    else if (index===1) {
-        navigate('/user', { replace: true });
-        console.log('User')
-    }
-    else {
-        navigate('/organizations', { replace: true });
-        console.log('Organization')
-    }
-    console.log(index)
-  }
+  // const handleData = (index)=> {
+  //   setSelected(index)
+  //   if (index===0) {
+  //       navigate('/', { replace: true });
+  //       console.log('Homepage')
+  //   }
+  //   else if (index===1) {
+  //       navigate('/user', { replace: true });
+  //       console.log('User')
+  //   }
+  //   else {
+  //       navigate('/organizations', { replace: true });
+  //       console.log('Organization')
+  //   }
+  //   console.log(index)
+  // }
 
 
   return (
@@ -35,8 +35,8 @@ function Sidebar() {
             return(
               <div className={selected===index?'menuItem active': 'menuItem' }
                 key={index}
-                onClick={()=>
-                handleData(index)}
+                onClick={()=> setSelected(index)}
+                // handleData(index)}
               >
                   <item.icon  className='icon'/>
                   <span>

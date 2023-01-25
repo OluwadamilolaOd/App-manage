@@ -1,25 +1,67 @@
 .landingPage {
   font-family: "Poppins", sans-serif;
-  background: #FFFFFF;
-  height: 100vh;
-  display: grid;
-  align-items: center;
+  background-color: #FFFFFF;
+  color: black;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .landingPage .page {
   display: flex;
-  height: 97%;
-  width: 97%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+}
+.landingPage .page .formPage {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: "Poppins", sans-serif;
   justify-content: center;
+  margin-left: 100px;
 }
-
-.footerPage {
-  height: 10hv;
+.landingPage .page .formPage h1 {
+  color: #1363DF;
+  font-weight: 700;
 }
-.footerPage h3 {
+.landingPage .page .formPage label {
+  height: 2px;
+  width: 231px;
+  color: #1F1F1F;
+  font-weight: 400;
+  line-height: 24px;
+}
+.landingPage .page .formPage input {
+  box-sizing: border-box;
+  height: 35px;
+  width: 400px;
+  border: 1px solid #C4C4C4;
+}
+.landingPage .page .formPage button {
+  width: 400px;
+  height: 35px;
+  background-color: #1363DF;
+  border: 1px solid #1363DF;
+  border-radius: 8px;
+  margin-top: 20px;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+.landingPage .page .imgPage {
+  margin-top: 10px;
+  margin-left: 100px;
+}
+.landingPage .page .imgPage img {
+  width: 80%;
+  height: 80%;
+}
+.landingPage .page:last-child {
+  align-items: flex-end;
+  position: absolute;
+}
+.landingPage .page:last-child h3 {
   font-weight: 400;
   font-size: 13px;
-  justify-content: center;
-  padding-left: 20rem;
-  padding-bottom: 2rem;
 }/*# sourceMappingURL=LandingPage.css.map */
