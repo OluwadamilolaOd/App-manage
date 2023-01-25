@@ -10,16 +10,14 @@ import LandingPage from './Pages/LandingPage/LandingPage';
 function App() {
   return (
     <div className="App">
-      {/* <Dashboard /> */}
-      <LandingPage />
-
-      {/* <Dashboard>
+      {/* <LandingPage /> */}
+      <Dashboard >
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/user' element={<User />} />
           <Route path='/organization' element={<Organizations />} />
         </Routes>
-      </Dashboard> */}
+        </Dashboard>
     </div>
   );
 }
