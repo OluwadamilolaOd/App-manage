@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Router from '../router/Router'
+
 const Layout = () => {
   return (
     <div className='layout'>
@@ -13,7 +14,7 @@ const Layout = () => {
         <Sidebar />
 
         <div className="content">
-          <Router />
+          <Router/>
         </div>
       </div>
     </div>
