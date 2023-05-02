@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import License from '../pages/License'
 import Organizations from '../pages/Organizations'
 import OrganizationProfile from '../components/OrganizationProfile'
+import EditOrganization from '../components/EditOrganization'
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
         <Route path='license' element={<License/>} />
         <Route path='organizations' element={<Organizations/>} />
         <Route path='organizationProfile' element = {<OrganizationProfile/>}/>
+        <Route path='editorganization' element = {<EditOrganization/>}/>
       </Routes>
   )
 }
