@@ -5,7 +5,7 @@ import Banner from "./Banner";
 const EditOrganization = () => {
   return (
     <div>
-      <Banner title={"Edit Organization"}/>
+      <Banner title={"Edit Organization"} btnClassname={"btnwhite"} btntitle={"Edit Button"} />
       <form className="formcontainer">
         <div className="company">
           <label>Company Name</label>

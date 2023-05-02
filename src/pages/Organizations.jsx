@@ -13,9 +13,7 @@ const Organizations = () => {
   }
   return (
     <div>
-      <Banner title={"Manage Organization"} />
-      <button onClick={handleOrgPro}>Click me</button>
-      
+      <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"}/>     
       <TableSheet />
     </div>
   )
