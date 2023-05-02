@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import Banner from '../components/Banner'
+import TableSheet from '../components/TableSheet';
 
 const Organizations = () => {
 
@@ -14,6 +15,8 @@ const Organizations = () => {
     <div>
       <Banner title={"Manage Organization"} />
       <button onClick={handleOrgPro}>Click me</button>
+      
+      <TableSheet />
     </div>
   )
 }
