@@ -1,0 +1,18 @@
+.banner {
+    padding: 20px;
+    background-color: var(--blue-color);
+    border-radius: 10px;
+    color: var(--white-color);
+}
+
+.wrapper {
+    display: flex;
+    height: 5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.maincontent {
+    display: flex;
+}
+

@@ -1,10 +1,16 @@
-import React from 'react'
+import Button from './Button'
+import './Styles/banner.css'
 
-const Banner = () => {
+const Banner = ({title}) => {
   return (
     <div className="banner">
         <div className="wrapper">
-            <h1>Manage Organisation</h1>
+         <div className="maincontent">
+         <img src="" alt="" />
+            <h1>{title}</h1>
+         </div>
+
+            <Button className={"btnwhite"} title={"Hello button"} />
         </div>
     </div>
   )
