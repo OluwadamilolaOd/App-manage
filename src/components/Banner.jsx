@@ -1,10 +1,8 @@
-import { useState } from 'react'
 import Button from './Button'
 import './Styles/banner.css'
 
-const Banner = ({title, btnClassname, btntitle, isbtn}) => {
+const Banner = ({title, btnClassname, btntitle, isbtn, btnEventHandler}) => {
 
-  //const {isbtn, usebtn} = useState(false)
   return (
     <div className="banner">
         <div className="wrapper">
@@ -12,7 +10,7 @@ const Banner = ({title, btnClassname, btntitle, isbtn}) => {
          <img src="" alt="" />
             <h1>{title}</h1>
          </div>
-          {isbtn ? <Button className={btnClassname} title={btntitle} /> : <></> }
+          {isbtn ? <Button className={btnClassname} title={btntitle} btnEventHandler={btnEventHandler} /> : <></> }
             
         </div>
     </div>
