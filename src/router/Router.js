@@ -16,7 +16,7 @@ const Router = () => {
         <Route path='home' element={<Home/>} />
         <Route path='license' element={<License/>} />
         <Route path='organizations' element={<Organizations/>} />
-        <Route path='organizationProfile' element = {<OrganizationProfile/>}/>
+        <Route path='organizationProfile/:id' element = {<OrganizationProfile/>}/>
         <Route path='editorganization' element = {<EditOrganization/>}/>
         <Route path='addorganization' element = {<AddOrganization/>}/>
 

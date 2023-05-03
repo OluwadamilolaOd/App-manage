@@ -16,7 +16,6 @@ const Organizations = () => {
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/>     
       <TableSheet sheetTable={organizationsData}/>
-      {/* <DataTable /> */}
     </div>
   )
 }
