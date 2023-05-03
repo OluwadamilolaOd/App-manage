@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import "./Styles/editorganization.css";
-import Banner from "./Banner";
+import "../../components/Styles/editorganization.css";
+import Banner from "../../components/Banner";
 
 const EditOrganization = () => {
 
