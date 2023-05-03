@@ -1,0 +1,13 @@
+.form_container {
+    background-color: var(--white-color);
+    margin-top: 2rem;
+    padding: 2rem;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.title-head {
+    color: var(--blue-color);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
