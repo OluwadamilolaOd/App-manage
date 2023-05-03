@@ -1,12 +1,13 @@
 .formcontainer {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-evenly; */
     background-color: var(--white-color);
     margin-top: 2rem;
     padding: 2rem;
     align-items: center;
     height: 60vh;
+    border-radius: 5px;
 }
 
 .forminput {
@@ -22,17 +23,16 @@
 }
 
 .input{
-  margin: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-label {
-    font-weight: bold;
-  }
   
   input {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 0.5rem;
+    margin-top: 0.5rem;
     font-size: 1rem;
     color: #444;
     width: 100%;
@@ -49,7 +49,7 @@ label {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    width: 50%;
+    width: 100%;
   }
   
   button[type="submit"]:hover {
