@@ -1,29 +1,68 @@
-import React from "react";
-import './Styles/editorganization.css'
+import React, {useState} from "react";
+import "./Styles/editorganization.css";
 import Banner from "./Banner";
 
 const EditOrganization = () => {
+
+  const [companyName, setCompanyName] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [location, setLocation] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+
   return (
     <div>
-      <Banner title={"Edit Organization"} btnClassname={"btnwhite"} btntitle={"Edit Button"} />
+      <Banner
+        title={"Edit Organization"}
+        btnClassname={"btnwhite"}
+        btntitle={"Edit Button"}
+      />
+
       <form className="formcontainer">
-        <div className="company">
-          <label>Company Name</label>
-          <input></input>
-        </div>
-        <div className="email">
-          <label>Email Address</label>
-          <input></input>
-        </div>
-        <div className="location">
-          <label>Location</label>
-          <input></input>
-        </div>
-        <div className="phoneNumber">
-          <label>Phone Number</label>
-          <input></input>
-        </div>
-        <button>Save</button>
+        <div className="forminput">
+        <div className="section">
+        
+      <div className="input">
+        <label htmlFor="company-name">Company Name:</label>
+        <input
+          type="text"
+          id="company-name"
+          value={companyName}
+          onChange={(event) => setCompanyName(event.target.value)}
+        />
+      </div>
+      <div className="input">
+        <label htmlFor="email-address">Email Address:</label>
+        <input
+          type="email"
+          id="email-address"
+          value={emailAddress}
+          onChange={(event) => setEmailAddress(event.target.value)}
+        />
+      </div>
+      </div>
+      <div className="section">
+      <div className="input">
+        <label htmlFor="location">Location:</label>
+        <input
+          type="text"
+          id="location"
+          value={location}
+          onChange={(event) => setLocation(event.target.value)}
+        />
+      </div>
+      <div className="input">
+        <label htmlFor="phone-number">Phone Number:</label>
+        <input
+          type="tel"
+          id="phone-number"
+          value={phoneNumber}
+          onChange={(event) => setPhoneNumber(event.target.value)}
+        />
+      </div>
+      </div>
+      </div>
+      <button type="submit">Submit</button>
       </form>
     </div>
   );
