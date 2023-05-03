@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import Banner from '../components/Banner'
 import TableSheet from '../components/TableSheet';
+import DataTable from '../components/DataTable';
 
 const Organizations = () => {
 
@@ -15,6 +16,7 @@ const Organizations = () => {
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"}/>     
       <TableSheet />
+      {/* <DataTable /> */}
     </div>
   )
 }
