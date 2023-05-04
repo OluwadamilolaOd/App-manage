@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { sideLinks } from '../assets/data/sideLinks'
 import './Styles/sidebar.css'
 
-const Sidebar = () => {
+const Sidebar = ({setOpenModal}) => {
+  
   return (
     <div className="sidebar">
       <div className="sidebar_content">
@@ -26,7 +27,9 @@ const Sidebar = () => {
         </div>
 
         <div className="sidebar_bottom">
-          <span>Logout</span>
+          <button onClick={()=>{
+            setOpenModal(true)
+          }}>Logout</button>
         </div>
       </div>
     </div>
