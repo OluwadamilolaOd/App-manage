@@ -18,7 +18,7 @@ thead th {
     text-align: center;
     color: var(--black-color);
 }
-tbody  tr {
+tbody tr {
     background-color: var(--body-bg);
     text-align: center;
 }

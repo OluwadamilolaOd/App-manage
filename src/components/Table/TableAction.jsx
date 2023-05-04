@@ -1,10 +1,10 @@
 import React from "react";
 import "./Styles/tablesheet.css";
 
-export default function DataTableAction({ actionTable }) {
+export default function TableAction({ actionTable }) {
   const { headers, data, actions } = actionTable;
   return (
-    <div>
+    <div className='tableData'>
       <table>
         <thead>
           <tr>

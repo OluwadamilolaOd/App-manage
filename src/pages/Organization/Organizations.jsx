@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import Banner from '../../components/Banner'
-import TableSheet from '../../components/TableSheet';
+import TableSheet from '../../components/Table/TableSheet';
 import { organizationsData } from '../../assets/data/organizationData';
 
 const Organizations = () => {

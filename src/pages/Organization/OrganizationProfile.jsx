@@ -1,5 +1,5 @@
 import React from 'react'
-import DataTableAction from '../../components/DataTableAction'
+import TableAction from '../../components/Table/TableAction'
 import { organizationProfileData } from '../../assets/data/organizationProfileData'
 
 const OrganizationProfile = () => {
@@ -10,7 +10,7 @@ const OrganizationProfile = () => {
         <div></div>
         <div></div>
         <div></div>
-        <DataTableAction actionTable={organizationProfileData}/>
+        <TableAction actionTable={organizationProfileData}/>
       </div>
     </div>
   )

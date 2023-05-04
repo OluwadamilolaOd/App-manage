@@ -10,7 +10,7 @@ export const organizationProfileData = {
   ],
   data: [
     {
-      id: 1,
+      // id: 1,
       license_name: "STAAS Desktop",
       band_type: "Band A",
       range: "1-100",
@@ -20,7 +20,7 @@ export const organizationProfileData = {
       action: "",
     },
     {
-      id: 2,
+      // id: 2,
       license_name: "STAAS Desktop",
       band_type: "Band A",
       range: "1-100",
@@ -30,7 +30,7 @@ export const organizationProfileData = {
       action: "",
     },
     {
-      id: 3,
+      // id: 3,
       license_name: "STAAS Desktop",
       band_type: "Band A",
       range: "1-100",
@@ -40,7 +40,7 @@ export const organizationProfileData = {
       action: "",
     },
     {
-      id: 4,
+      // id: 4,
       license_name: "STAAS Desktop",
       band_type: "Band A",
       range: "1-100",
@@ -50,7 +50,7 @@ export const organizationProfileData = {
       action: "",
     },
     {
-      id: 5,
+      // id: 5,
       license_name: "STAAS Desktop",
       band_type: "Band A",
       range: "1-100",
@@ -60,7 +60,7 @@ export const organizationProfileData = {
       action: "",
     },
     {
-      id: 6,
+      // id: 6,
       license_name: "STAAS Desktop",
       band_type: "Band A",
       range: "1-100",
