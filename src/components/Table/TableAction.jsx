@@ -19,6 +19,21 @@ export default function TableAction({ actionTable }) {
               {Object.entries(obj).map(([key, val], idx) => (
                 <td key={idx}>{val}</td>
               ))}
+
+              {actions.length !== 0 && (
+                <td style={{ cursor: "pointer" }}>
+                  <div>
+                    <a >Dropdown</a>
+                    <div class="dropdown-content">
+                      {actions.map((action, idx) => (
+                        <link key={idx} onClick={action.handler}>
+                          {action.name}
+                        </link>
+                      ))}
+                    </div>
+                  </div>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

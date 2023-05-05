@@ -30,7 +30,8 @@ export default function  TableSheet({sheetTable}) {
             <tr key={idx}>
               {Object.entries(obj).map(([key, val], idx) => (
                 <td key={idx}>
-                    <Link to={`/organizationProfile/${idx}`}>{val}</Link>
+                    {/* <Link to={`/organizationProfile/${idx}`}>{val}</Link> */}
+                    <Link to={`/licenseType/${idx}`}>{val}</Link>
                 </td>
               ))}
             </tr>
