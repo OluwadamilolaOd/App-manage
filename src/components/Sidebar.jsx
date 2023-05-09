@@ -17,7 +17,7 @@ const Sidebar = ({setOpenModal}) => {
                   to={item.path}
                   className={(sideClass) => 
                     sideClass.isActive ? "sidebar_active sidebar_link" : "sidebar_link"}>
-                    {/* <i className={item.icon}></i> */}
+                    <img src={item.icon} alt='' className={item.icon}></img>
                     {item.display}
                   </NavLink>
                 </li>

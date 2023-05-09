@@ -1,18 +1,20 @@
-
+import home from '../images/home-black.svg';
+import license from '../images/license-black.svg'
+import organization from '../images/organization-black.svg'
 export const sideLinks = [
     {
         path: "/home",
-        // icon: ,
+        icon: home,
         display: "Home",
     },
     {
         path: "/license",
-        // icon: ,
+        icon: license,
         display: "License",
     },
     {
         path: "/organizations",
-        // icon: ,
+        icon: organization,
         display: "Organizations",
     }
 

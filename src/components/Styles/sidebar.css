@@ -18,6 +18,9 @@
 .menu {
     height: 80%;
 }
+.sidebar_item {
+    padding-left: 1rem;
+}
 .sidebar_bottom {
     height: 20%;
 }
@@ -39,13 +42,16 @@
     flex-direction: column;
     color: var(--black-color);
 }
-.sidebar_link i {
+.sidebar_link img {
     color: var(--black-color);
+    fill: red;
+    height: 20px;
+    width: 20px;
 }
 .sidebar_active{
     color: var(--white-color);
     background: var(--blue-color);
-    padding: 6px;
+    padding: 15px;
 }
 .sidebar_bottom span:hover{
     color: var(--blue-color);

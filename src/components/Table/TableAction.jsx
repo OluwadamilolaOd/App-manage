@@ -20,10 +20,16 @@ export default function TableAction({ actionTable }) {
                 <td key={idx}>{val}</td>
               ))}
 
-              {actions.length !== 0 && (
+          {actions => (
+            <tr>
+              <td>...</td>
+            </tr>
+          )}
+
+              {/* {actions.length !== 0 && (
                 <td style={{ cursor: "pointer" }}>
                   <div>
-                    <a >Dropdown</a>
+                    <a >...</a>
                     <div class="dropdown-content">
                       {actions.map((action, idx) => (
                         <link key={idx} onClick={action.handler}>
@@ -33,7 +39,7 @@ export default function TableAction({ actionTable }) {
                     </div>
                   </div>
                 </td>
-              )}
+              )} */}
             </tr>
           ))}
         </tbody>
