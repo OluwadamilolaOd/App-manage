@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { sideLinks } from '../assets/data/sideLinks'
 import './Styles/sidebar.css'
+import Logout from '../assets/images/logoout-black.svg'
 
 const Sidebar = ({setOpenModal}) => {
   
@@ -17,7 +18,7 @@ const Sidebar = ({setOpenModal}) => {
                   to={item.path}
                   className={(sideClass) => 
                     sideClass.isActive ? "sidebar_active sidebar_link" : "sidebar_link"}>
-                    <img src={item.icon} alt='' className={item.icon}></img>
+                    <img src={item.icon} alt='' className='icon'></img>
                     {item.display}
                   </NavLink>
                 </li>
@@ -27,9 +28,12 @@ const Sidebar = ({setOpenModal}) => {
         </div>
 
         <div className="sidebar_bottom">
-          <button onClick={()=>{
+          <span onClick={()=>{
             setOpenModal(true)
-          }}>Logout</button>
+          }}>
+            <img src={Logout} alt="" />
+            Logout
+          </span>
         </div>
       </div>
     </div>
