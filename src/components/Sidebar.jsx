@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { sideLinks } from '../assets/data/sideLinks'
 import './Styles/sidebar.css'
@@ -17,7 +16,7 @@ const Sidebar = ({setOpenModal}) => {
                   to={item.path}
                   className={(sideClass) => 
                     sideClass.isActive ? "sidebar_active sidebar_link" : "sidebar_link"}>
-                    <img src={item.icon} alt='' className={item.icon}></img>
+                    <img src={item.icon} alt='' className='svg'></img>
                     {item.display}
                   </NavLink>
                 </li>

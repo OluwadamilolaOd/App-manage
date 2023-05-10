@@ -1,6 +1,9 @@
 import home from '../images/home-black.svg';
 import license from '../images/license-black.svg'
 import organization from '../images/organization-black.svg'
+
+
+
 export const sideLinks = [
     {
         path: "/home",
