@@ -38,11 +38,13 @@
     cursor: pointer;
     transition: 0.3s;
     padding: 15px;
+    color: var(--black-color);
+
 }
-.sidebar_bottom span {
+/* .sidebar_bottom span {
     color: var(--black-color);
     cursor: pointer;
-}
+} */
 .sidebar_bottom span:hover {
     color: var(--blue-color);
     cursor: pointer;

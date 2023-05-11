@@ -9,6 +9,7 @@ import Organizations from '../pages/Organization/Organizations'
 import OrganizationProfile from '../pages/Organization/OrganizationProfile'
 import EditOrganization from '../pages/Organization/EditOrganization'
 import AddOrganization from '../pages/Organization/AddOrganization'
+import LandingPage from '../pages/LandingPage'
 
 const Router = () => {
   return (
@@ -25,6 +26,7 @@ const Router = () => {
         <Route path='organizationProfile/:id' element = {<OrganizationProfile/>}/>
         <Route path='editorganization' element = {<EditOrganization/>}/>
         <Route path='addorganization' element = {<AddOrganization/>}/>
+        {/* <Route path='landingPage' element={<LandingPage/>}/> */}
       </Routes>
   )
 }
