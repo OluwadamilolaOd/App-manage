@@ -21,6 +21,13 @@
 .sidebar_item {
     padding-left: 1rem;
 }
+
+.sidebar_item:hover {
+    color: var(--white-color);
+    background: var(--blue-color);
+    padding: 15px;
+
+}
 .sidebar_bottom {
     height: 20%;
 }
