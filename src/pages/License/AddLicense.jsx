@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import '../../components/Styles/license.css'
 import Banner from "../../components/Banner";
 
 const AddLicense = () => {
-  const [companyName, setCompanyName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   return (
     <div>
       <Banner
@@ -12,24 +13,25 @@ const AddLicense = () => {
         btntitle={"Edit Button"}
       />
 
-      <form className="formcontainer">
-        <div className="forminput">
+      <form className="addLicenseContainer">
+        <div className="form">
             <div className="input">
-              <label htmlFor="company-name">Company Name:</label>
+              <label htmlFor="name">Name:</label>
               <input
                 type="text"
-                id="company-name"
-                value={companyName}
-                onChange={(event) => setCompanyName(event.target.value)}
+                id="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
               />
             </div>
             <div className="input">
-              <label htmlFor="phone-number">Phone Number:</label>
-              <input
+              <label htmlFor="Description">Description:</label>
+              <textarea
+                className="textareaSize"
                 type="tel"
-                id="phone-number"
-                value={phoneNumber}
-                onChange={(event) => setPhoneNumber(event.target.value)}
+                id="description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
               />
             </div>
         </div>

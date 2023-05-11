@@ -9,6 +9,10 @@ import Organizations from '../pages/Organization/Organizations'
 import OrganizationProfile from '../pages/Organization/OrganizationProfile'
 import EditOrganization from '../pages/Organization/EditOrganization'
 import AddOrganization from '../pages/Organization/AddOrganization'
+import EmailOrganization from '../pages/Organization/EmailOrganization'
+import DowngradeLicense from '../pages/License/DowngradeLicense'
+import UpgradeLicense from '../pages/License/UpgradeLicense'
+import SuccessModal from '../components/Modal/SuccessModal'
 
 const Router = () => {
   return (
@@ -22,9 +26,13 @@ const Router = () => {
         <Route path='addNewLicense' element = {<AddLicense/>}/>
         <Route path='addLicenseBand' element = {<AddLicenseBand/>}/>
         <Route path='organizations' element= {<Organizations/>} />
+        <Route path='emailorganization' element= {<EmailOrganization/>} />
         <Route path='organizationProfile/:id' element = {<OrganizationProfile/>}/>
         <Route path='editorganization' element = {<EditOrganization/>}/>
         <Route path='addorganization' element = {<AddOrganization/>}/>
+        <Route path='downgradelicense' element = {<DowngradeLicense/>}/>
+        <Route path='Upgradelicense' element = {<UpgradeLicense/>}/>
+        <Route path='license/successmodal' element = {<SuccessModal/>}/>
       </Routes>
   )
 }
