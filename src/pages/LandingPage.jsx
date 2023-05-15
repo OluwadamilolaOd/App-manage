@@ -1,8 +1,18 @@
 import React from "react";
+import { useMsal } from "@azure/msal-react";
+import { loginRequest } from "../Auth/authConfig";
 import "./Styles/landingPage.css";
 import Picture from "../assets/images/landing-page.png";
 
 const LandingPage = () => {
+  const { instance } = useMsal();
+
+  const handleLogin = () => {
+    instance.loginPopup({
+      loginRequest,
+      redirectUri: '/'
+  }).catch((error) => console.log(error));
+  }
   return (
     <div className="landingPage">
       <div className="img-page">
@@ -12,7 +22,7 @@ const LandingPage = () => {
         <div className="text-center">
           <h1 className="big-title"> Havis 360 Unified License Portal</h1>
           <div className="btn-page">
-            <button className="btn">Login</button>
+            <button className="btn" onClick={handleLogin}>Login</button>
           </div>
         </div>
         <div className="text-bottom">
