@@ -53,6 +53,7 @@
     cursor: pointer;
 } */
 .sidebar_bottom span:hover {
+    /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19); */
     color: var(--blue-color);
     cursor: pointer;
 }
@@ -67,7 +68,6 @@
     color: var(--black-color);
 }
 .sidebar_link img {
-    /* color: var(--blue-color); */
     height: 20px;
     width: 20px;
 }
@@ -76,3 +76,4 @@
     background: var(--blue-color);
     padding: 15px;
 }
+
