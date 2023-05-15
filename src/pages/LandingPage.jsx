@@ -29,7 +29,6 @@ const LandingPage = () => {
           <p>
             © Ha-Shem Limited 2022. All Rights Reserved. Powered by
             <a href="" className="text-link">
-              {" "}
               Havis 360
             </a>
           </p>

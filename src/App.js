@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AuthenticatedTemplate, UnauthenticatedTemplate} from '@azure/msal-react';
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal} from '@azure/msal-react';
 import "./App.css";
 import Layout from "./components/Layout";
 import Modal from "./components/Modal/Modal";
@@ -8,7 +8,14 @@ import LandingPage from "./pages/LandingPage";
 
 const MainContent = () => {
   const [openModal, setOpenModal] = useState(false);
-  var title = "Archive Organization";
+  const { instance } = useMsal();
+
+  const handleLogout = () => {
+    instance.logoutPopup({
+      account: instance.getActiveAccount(),
+      mainWindowRedirectUri: '/', // redirects the top level app after logout
+  });
+  }
   return (
     <div className="App">
       <AuthenticatedTemplate>
@@ -21,6 +28,7 @@ const MainContent = () => {
               btnAction={"Log out"}
               title={"Log out"}
               description={"Are you sure you want to Log out?"}
+              handleOnclickEvent={handleLogout}
             />
           )}
         </div>

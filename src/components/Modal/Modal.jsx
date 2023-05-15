@@ -1,5 +1,5 @@
 import '../Styles/modal.css'
-function Modal({ setOpenModal, image, btnAction, title, description }) {
+function Modal({ setOpenModal, image, btnAction, title, description, handleOnclickEvent }) {
   return (
     <div className="modal">
     <div onClick={()=>{setOpenModal(false)}} className="overlay"></div>
@@ -17,7 +17,7 @@ function Modal({ setOpenModal, image, btnAction, title, description }) {
         Cancel
       </button>
       </div>
-      <div className="modalButton"><button className="close-modal" onClick={()=>{setOpenModal(false)}}>
+      <div className="modalButton"><button className="close-modal" onClick={handleOnclickEvent}>
         {btnAction}
       </button></div>
       </div>
