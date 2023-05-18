@@ -30,6 +30,6 @@ export async function callMsGraph(accessToken) {
     };
  
     return fetch(graphConfig.graphImageEndpoint, options)
-        .then(response => response.json())
+        .then(response => response)
         .catch(error => console.log(error));
  }

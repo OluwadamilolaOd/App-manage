@@ -1,13 +1,29 @@
-import React, { useState } from 'react'
-import './Styles/tablesheet.css'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./Styles/tablesheet.css";
+import { Link } from "react-router-dom";
 
+export default function TableSheet({ headers, url, navigateTo }) {
+  const [data, setData] = useState([]);
 
-export default function  TableSheet({sheetTable}) {
-  const {headers, data} = sheetTable;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            let completeData = Object.values(data);
+            setData(completeData);
+          });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [url]);
 
   return (
-    <div className='tableData'>
+    <div className="tableData">
       <table>
         <thead>
           <tr>
@@ -17,20 +33,19 @@ export default function  TableSheet({sheetTable}) {
           </tr>
         </thead>
         <tbody>
-          {data.map((obj, idx) => (
-            <tr key={idx}>
-              {Object.entries(obj).map(([key, val], idx) => (
-                <td key={idx}>
-                    {/* <Link to={`/organizationProfile/${idx}`}>{val}</Link> */}
-                    <Link to={`/licenseType/${idx}`}>{val}</Link>
-                </td>
-              ))}
+          {data.map((obj) => (
+            <tr key={obj.id}>
+              {Object.entries(obj)
+                .filter(([key]) => key !== "id")
+                .map((val) => (
+                  <td key={obj.id}>
+                    <Link to={`${navigateTo}/${obj.id}`}>{val[1]}</Link>
+                  </td>
+                ))}
             </tr>
           ))}
-
         </tbody>
       </table>
     </div>
-  )
+  );
 }
-

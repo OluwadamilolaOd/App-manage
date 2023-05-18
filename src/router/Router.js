@@ -22,9 +22,9 @@ const Router = () => {
         />
         <Route path='home' element={<Home/>} />
         <Route path='license' element={<License/>} />
-        <Route path='licenseType/:id' element = {<LicenseType/>}/>
-        <Route path='addNewLicense' element = {<AddLicense/>}/>
-        <Route path='addLicenseBand' element = {<AddLicenseBand/>}/>
+        <Route path='license/licenseType/:id' element = {<LicenseType/>}/>
+        <Route path='license/addNewLicense' element = {<AddLicense/>}/>
+        <Route path='license/addLicenseBand' element = {<AddLicenseBand/>}/>
         <Route path='organizations' element= {<Organizations/>} />
         <Route path='emailorganization' element= {<EmailOrganization/>} />
         <Route path='organizationProfile/:id' element = {<OrganizationProfile/>}/>

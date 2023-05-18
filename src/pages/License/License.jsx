@@ -2,19 +2,21 @@ import React from 'react'
 import Banner from '../../components/Banner'
 import { useNavigate } from 'react-router-dom'
 import TableSheet from '../../components/Table/TableSheet';
-import { licenseData } from '../../assets/data/licenseData';
+import {baseUrl} from './../../Hook/baseurl';
 
 const License = () => {
 
   const navigate = useNavigate();
+  const url = `${baseUrl}/api/AppLicense`
+  const headers = ["Name","Description"]
 
   const handleEventClick = () => {
-    navigate("/addNewLicense")
+    navigate("addNewLicense")
   }
   return (
     <div>
       <Banner title={"Manage License"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add New License"} btnEventHandler={handleEventClick} />
-      <TableSheet sheetTable={licenseData}/>
+      <TableSheet headers={headers} url={url} navigateTo={"licenseType"} />
     </div>
   )
 }

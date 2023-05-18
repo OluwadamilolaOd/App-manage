@@ -1,12 +1,34 @@
 import React from "react";
 import "./Styles/tablesheet.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function TableAction({ actionTable }) {
+export default function TableAction({
+  headers,
+  url,
+  navigateTo,
+  action,
+  actionEvent,
+}) {
+  const [data, setData] = useState();
 
-  const { headers, data, actions } = actionTable;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.licenseTypes);
+            let completeData = Object.values(data);
+            setData(completeData);
+          });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [url]);
   return (
-    <div className='tableData'>
+    <div className="tableData">
       <table>
         <thead>
           <tr>
@@ -15,38 +37,7 @@ export default function TableAction({ actionTable }) {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {data.map((obj, idx) => (
-            <tr key={idx}>
-              {Object.entries(obj).map(([key, val], idx) => (
-                <td key={idx}>{val}</td>
-              ))}
-
-          {actions => (
-            <tr>
-              <td>...</td>
-            </tr>
-          )}
-
-              {/* {actions.length !== 0 && (
-                <td style={{ cursor: "pointer" }}>
-                  <div>
-                    <a >...</a>
-                    <div class="dropdown-content">
-                      {actions.map((action, idx) => (
-                        <link key={idx} onClick={action.handler}>
-                          {action.name}
-                        </link>
-                      ))}
-                    </div>
-                  </div>
-                </td>
-              )} */}
-            </tr>
-          ))}
-        </tbody>
       </table>
-
     </div>
   );
 }

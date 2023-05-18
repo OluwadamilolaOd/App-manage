@@ -5,6 +5,35 @@ import Banner from "../../components/Banner";
 const AddLicense = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [message, setMessage]= useState ("")
+
+
+  //Submit form function
+
+  let handleSubmitLicense = async (e) => {
+    e.preventDefault();
+    try {
+      let res = await fetch("https://localhost:7245/api/applicense", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          licenseName: name,
+          description: description,
+        }),
+      });
+      let resJson = await res.json();
+      if (res.status === 200) {
+        setName("");
+        setDescription("");
+        setMessage("User created successfully");
+      } else {
+        setMessage("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <Banner
@@ -35,7 +64,9 @@ const AddLicense = () => {
               />
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <button onClick={handleSubmitLicense} type="submit">Submit</button>
+
+        <div className="message">{message ? <p>{message}</p> : null}</div>
       </form>
     </div>
   );
