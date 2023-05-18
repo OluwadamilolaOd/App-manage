@@ -1,22 +1,29 @@
-import React, { useState } from 'react'
-import './Styles/tablesheet.css'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./Styles/tablesheet.css";
+import { Link } from "react-router-dom";
 
+export default function TableSheet({ headers, url, navigateTo }) {
+  const [data, setData] = useState([]);
 
-export default function  TableSheet({sheetTable}) {
-  const {headers, data} = sheetTable;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            let completeData = Object.values(data);
+            setData(completeData);
+          });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  //Pagination
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const recordsPerPage = 5;
-  // const lastIndex = currentPage * recordsPerPage;
-  // const firstIndex = lastIndex - recordsPerPage;
-  // const records = data.slice(firstIndex,lastIndex)
-  // const npage = Math.ceil(data.length / recordsPerPage)
-  // const numbers = [...Array(npage + 1).keys()].slice(1)
+    fetchData();
+  }, [url]);
 
   return (
-    <div className='tableData'>
+    <div className="tableData">
       <table>
         <thead>
           <tr>
@@ -26,50 +33,21 @@ export default function  TableSheet({sheetTable}) {
           </tr>
         </thead>
         <tbody>
-          {data.map((obj, idx) => (
-            <tr key={idx}>
-              {Object.entries(obj).map(([key, val], idx) => (
-                <td key={idx}>
-                    {/* <Link to={`/organizationProfile/${idx}`}>{val}</Link> */}
-                    <Link to={`/licenseType/${idx}`}>{val}</Link>
-                </td>
-              ))}
+          {data.map((obj) => (
+            <tr key={obj.id}>
+              {Object.entries(obj)
+                .filter(([key]) => key !== "id")
+                .map((val) => (
+                  <td key={obj.id}>
+                    <Link to={`${navigateTo}/${obj.id}`}>
+                      {val[1]}
+                    </Link>
+                  </td>
+                ))}
             </tr>
           ))}
-
         </tbody>
       </table>
-      {/* <nav>
-        <ul className='pagination'>
-          <li className='page-item'>
-            <a href="#" className='page-link' onClick={prePage}>Prev</a>
-          </li>
-          {
-            numbers.map((n, i) => (
-              <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}>
-                <a href="" className="page-item" 
-                onClick={()=> changeCPage(n)}>
-                  {n}
-                </a>
-              </li>
-            ))
-          }
-          <li className='page-item'>
-            <a href="#" className='page-link' onClick={nextPage}>Prev</a>
-          </li>
-        </ul>
-      </nav> */}
     </div>
-  )
-
-  function prePage() {
-
-  }
-  function changeCPage(id) {
-    
-  }
-  function nextPage() {
-    
-  }
+  );
 }
-

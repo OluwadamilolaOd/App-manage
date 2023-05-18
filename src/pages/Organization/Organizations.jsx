@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import Banner from '../../components/Banner'
+import Banner from '../../components/Banner';
+import { baseUrl } from '../../Hook/baseurl';
 import TableSheet from '../../components/Table/TableSheet';
-import { organizationsData } from '../../assets/data/organizationData';
 
 const Organizations = () => {
 
+  const url = `${baseUrl}/api/Organizations`
+  const headers = ["Company Name", "Email Address", "Phone Number", "Location"]
   const navigate = useNavigate();
 
   const handleEventClick = () => {
@@ -15,7 +17,7 @@ const Organizations = () => {
   return (
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/>     
-      <TableSheet sheetTable={organizationsData}/>
+      <TableSheet headers={headers} url={url} navigateTo={"/organizationProfile"}/>
     </div>
   )
 }

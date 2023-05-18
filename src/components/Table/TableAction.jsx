@@ -1,18 +1,27 @@
 import React from "react";
 import "./Styles/tablesheet.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function TableAction({ actionTable }) {
-  //pagination
-  //const [currentPage, setCurrentPage] = useState(1)
-  //const recordsPerPage = 5;
-  //const lastIndex = currentPage * recordsPerPage;
-  //const firstIndex = lastIndex - recordsPerPage;
-  // const data = Data.slice(firstIndex, lastIndex);
-  // const npage = Math.ceil(Data.length / recordsPerPage)
-  //const number = [...Array(npage + 1).keys()].slice(1)
+export default function TableAction({headers, url, navigateTo,action,actionEvent }) {
 
-  const { headers, data, actions } = actionTable;
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.licenseTypes)
+            let completeData = Object.values(data);
+            setData(completeData);
+          });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [url]);
   return (
     <div className='tableData'>
       <table>
@@ -23,58 +32,8 @@ export default function TableAction({ actionTable }) {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {data.map((obj, idx) => (
-            <tr key={idx}>
-              {Object.entries(obj).map(([key, val], idx) => (
-                <td key={idx}>{val}</td>
-              ))}
 
-          {actions => (
-            <tr>
-              <td>...</td>
-            </tr>
-          )}
-
-              {/* {actions.length !== 0 && (
-                <td style={{ cursor: "pointer" }}>
-                  <div>
-                    <a >...</a>
-                    <div class="dropdown-content">
-                      {actions.map((action, idx) => (
-                        <link key={idx} onClick={action.handler}>
-                          {action.name}
-                        </link>
-                      ))}
-                    </div>
-                  </div>
-                </td>
-              )} */}
-            </tr>
-          ))}
-        </tbody>
       </table>
-      {/* <nav>
-        <ul className="pagination">
-          <li className="page-item">
-            <a href="#" className="page-link" onClick={prePage}>
-              Prev
-            </a>
-          </li>
-          {
-            numbers.map((n, i) => (
-              <li className={`page-item $ {currentPage === n ? 'active' : ''}`} key={i}>
-                <a href="" className="page-item" onClick={changeCPage}>{n}</a>
-              </li>
-            ))
-          }
-          <li className="page-item">
-            <a href="#" className="page-link" onClick={nextPage}>
-              Next
-            </a>
-          </li>
-        </ul>
-      </nav> */}
     </div>
   );
 }
