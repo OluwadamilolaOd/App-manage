@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import '../../components/Styles/license.css'
 import Banner from "../../components/Banner";
+import { baseUrl } from "../../Hook/baseurl";
 
 const AddLicense = () => {
   const [name, setName] = useState("");
@@ -13,7 +14,7 @@ const AddLicense = () => {
   let handleSubmitLicense = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("https://localhost:7245/api/applicense", {
+      let res = await fetch(`${baseUrl}/api/applicense`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
