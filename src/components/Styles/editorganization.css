@@ -39,6 +39,10 @@
     width: 100%;
     box-sizing: border-box;
   }
+
+  .select {
+    padding-top: 0.5rem;
+  }
   
   button[type="submit"] {
     background-color: var(--blue-color);
