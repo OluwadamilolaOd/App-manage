@@ -3,6 +3,8 @@
     background-color: var(--blue-color);
     border-radius: 10px;
     color: var(--white-color);
+    position: sticky;
+    top: 6rem;
 }
 
 .wrapper {
@@ -14,5 +16,6 @@
 
 .maincontent {
     display: flex;
+    margin: 1.5rem;
 }
 

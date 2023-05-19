@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Banner from '../../components/Banner';
+import ArrowBack from '../../components/ArrowBack';
 
 const UpgradeLicense = () => {
 
@@ -7,6 +8,10 @@ const UpgradeLicense = () => {
     const [emailAddress, setEmailAddress] = useState("");
     const [location, setLocation] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+
+    const handleBackArrow = () => {
+
+    }
 
   return (
     <div>
@@ -16,6 +21,7 @@ const UpgradeLicense = () => {
         btntitle={"Edit Button"}
       />
       <form className="form_container">
+        <ArrowBack handleBackArrow = {handleBackArrow}/>
       <div className="title-head">
           <h2>Organization Name</h2>
         </div>

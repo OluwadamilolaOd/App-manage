@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../../components/Styles/license.css'
 import Banner from "../../components/Banner";
 import { baseUrl } from "../../Hook/baseurl";
+import ArrowBack from "../../components/ArrowBack";
 
 const AddLicense = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,10 @@ const AddLicense = () => {
 
 
   //Submit form function
+
+  const handleBackArrow = () => {
+
+  }
 
   let handleSubmitLicense = async (e) => {
     e.preventDefault();
@@ -44,6 +49,7 @@ const AddLicense = () => {
       />
 
       <form className="addLicenseContainer">
+      <ArrowBack handleBackArrow = {handleBackArrow}/>
         <div className="form">
             <div className="input">
               <label htmlFor="name">Name:</label>

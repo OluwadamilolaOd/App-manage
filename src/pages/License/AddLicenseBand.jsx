@@ -1,11 +1,17 @@
 import { useState } from "react";
 import Banner from "../../components/Banner";
+import ArrowBack from "../../components/ArrowBack";
 
 const AddLicenseBand = () => {
   const [companyName, setCompanyName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+    const handleBackArrow = () => {
+
+  }
+  
   return (
     <div>
       <div>
@@ -16,6 +22,7 @@ const AddLicenseBand = () => {
         />
 
         <form className="addlicensebandcontainer">
+          <ArrowBack handleBackArrow = {handleBackArrow} />
         <div className="input">
                 <label htmlFor="company-name">License Type:</label>
                 <input

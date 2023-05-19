@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../components/Styles/addorganization.css";
+import ArrowBack from "../../components/ArrowBack";
 
 const AddOrganization = () => {
   const [companyName, setCompanyName] = useState("");
@@ -7,10 +8,17 @@ const AddOrganization = () => {
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const handleBackArrow = () => {
+
+  }
+
   return (
     <div>
       <form className="form_container">
-        <div className="title-head"><h3>Organization Details</h3></div>
+        <ArrowBack handleBackArrow = {handleBackArrow}/>
+        <div className="title-head">
+          <h3>Organization Details</h3>
+        </div>
         <div className="forminput">
           <div className="section">
             <div>
