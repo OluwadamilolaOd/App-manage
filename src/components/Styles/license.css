@@ -31,3 +31,10 @@
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2.5rem;
 }
+
+.message {
+    margin: 1.5rem 0;
+    color: var(--blue-color);
+}
+
+

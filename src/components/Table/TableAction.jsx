@@ -25,7 +25,7 @@ export default function TableAction({headers, url, navigateTo,action,actionEvent
     fetchData();
   }, [url]);
   return (
-    <div className='tableData'>
+    <div className="tableData">
       <table>
         <thead>
           <tr>

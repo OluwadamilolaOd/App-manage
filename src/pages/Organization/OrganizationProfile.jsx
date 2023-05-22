@@ -1,11 +1,17 @@
 import React from 'react'
 import TableAction from '../../components/Table/TableAction'
 import { organizationProfileData } from '../../assets/data/organizationProfileData'
+import ArrowBack from '../../components/ArrowBack'
 
 const OrganizationProfile = () => {
+
+  const handleBackArrow = () => {
+
+  }
+  
   return (
     <div>
-      <div>Back Arrow</div>
+      <ArrowBack handleBackArrow = {handleBackArrow}/>
       <div>
         <div></div>
         <div></div>

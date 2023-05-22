@@ -39,9 +39,7 @@ export default function TableSheet({ headers, url, navigateTo }) {
                 .filter(([key]) => key !== "id")
                 .map((val) => (
                   <td key={obj.id}>
-                    <Link to={`${navigateTo}/${obj.id}`}>
-                      {val[1]}
-                    </Link>
+                    <Link to={`${navigateTo}/${obj.id}`}>{val[1]}</Link>
                   </td>
                 ))}
             </tr>

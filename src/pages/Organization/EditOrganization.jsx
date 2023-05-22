@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "../../components/Styles/editorganization.css";
 import Banner from "../../components/Banner";
+import ArrowBack from "../../components/ArrowBack";
 
 const EditOrganization = () => {
 
@@ -8,6 +9,10 @@ const EditOrganization = () => {
   const [emailAddress, setEmailAddress] = useState('');
   const [location, setLocation] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+
+  const handleBackArrow = () => {
+
+  }
 
 
   return (
@@ -19,6 +24,7 @@ const EditOrganization = () => {
       />
 
       <form className="formcontainer">
+        <ArrowBack handleBackArrow = {handleBackArrow}/>
         <div className="forminput">
         <div className="section">
         

@@ -1,10 +1,16 @@
 import {useState} from "react";
 import Banner from "../../components/Banner";
+import ArrowBack from "../../components/ArrowBack";
 
 const EmailOrganization = () => {
     const [emailAddress, setEmailAddress] = useState("");
     const [emailSubject, setEmailSubject] = useState("");
     const [description, setDescription] = useState("");
+
+    const handleBackArrow = () => {
+
+    }
+
   return (
     <div>
       <Banner
@@ -13,6 +19,7 @@ const EmailOrganization = () => {
         btntitle={"Edit Button"}
       />
       <form className="form_container">
+        <ArrowBack handleBackArrow = {handleBackArrow}/>
         <div className="form">
         <div className="forminput"> 
         <div className="input">

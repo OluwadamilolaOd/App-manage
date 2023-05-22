@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Banner from "../../components/Banner";
+import ArrowBack from "../../components/ArrowBack";
 
 const AddLicenseBand = () => {
   const paramsValue = useLocation();
+  const navigate = useNavigate();
   const options = [
     { value: "newLicenseType", label: "New License Type" },
     { value: "recurringLicenseType", label: "Recurring License Type" },
@@ -17,12 +19,17 @@ const AddLicenseBand = () => {
   const [message, setMessage] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(selectedOption);
-    console.log(selectedOption.value);
-    console.log(paramsValue.state.paramsValue[0]);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(selectedOption);
+  //   console.log(selectedOption.value);
+  //   console.log(paramsValue.state.paramsValue[0]);
+  // };
+
+  const handleBackArrow = () => {
+    navigate('/license');
+  }
+
 
   const licenseId = paramsValue.state.paramsValue[0]
   let url 
@@ -73,7 +80,16 @@ const AddLicenseBand = () => {
         />
 
         <form className="addlicensebandcontainer">
-
+          <ArrowBack handleBackArrow =  {handleBackArrow} />
+        {/* <div className="input">
+                <label htmlFor="company-name">License Type:</label>
+                <input
+                  type="text"
+                  id="company-name"
+                  value={companyName}
+                  onChange={(event) => setCompanyName(event.target.value)}
+                />
+              </div> */}
           <div className="forminput">
             <div className="section">
             <div className="input">
