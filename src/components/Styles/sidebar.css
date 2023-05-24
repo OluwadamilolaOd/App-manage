@@ -52,6 +52,13 @@
   color: var(--white-color);
   /* margin-right: calc(1rem - 2px); */
 }
+.sidebar_link {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 .sidebar_bottom:hover {
   color: var(--white-color);
   background: var(--blue-color);
