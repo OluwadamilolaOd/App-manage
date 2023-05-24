@@ -1,45 +1,48 @@
-import { NavLink } from 'react-router-dom'
-import { sideLinks } from '../assets/data/sideLinks'
-import './Styles/sidebar.css'
-import Logout from '../assets/images/logoout-black.svg'
-import { useState } from 'react'
+import { NavLink } from "react-router-dom";
+import { sideLinks } from "../assets/data/sideLinks";
+import "./Styles/sidebar.css";
+import Logout from "../assets/images/logoout-black.svg";
+import { useState } from "react";
+import { HiOutlineLogout } from "react-icons/hi";
 
-const Sidebar = ({setOpenModal}) => {
-
+const Sidebar = ({ setOpenModal }) => {
   const [switchIcon, setSwitchIcon] = useState(false);
-  
+
   return (
     <div className="sidebar">
       <div className="sidebar_content">
         <div className="menu">
-          <ul className="sidebar_list">
-            {
-              sideLinks.map((item,index)=>(
-                <li className= "sidebar_item" key={index}>
-                  <NavLink 
-                  to={item.path}
-                  className={(sideClass) => 
-                    sideClass.isActive ? "sidebar_active sidebar_link" : "sidebar_link"}>
-                    {switchIcon ? <img src={item.iconW} alt='' className='icon'></img> : <img src={item.icon} alt='' className='icon'></img>}
-                    {item.display}
-                  </NavLink>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+          {sideLinks.map((item, index) => (
+            <div className="sidebar_menu" key={index}>
+              <NavLink
+                to={item.path}
+                className={(sideClass) =>
+                  sideClass.isActive
+                    ? "sidebar_active sidebar_link"
+                    : "sidebar_link"
+                }
+              >
+                <item.icon className="icon" />
+                <span>{item.display}</span>
+              </NavLink>
+            </div>
+          ))}
 
-        <div className="sidebar_bottom">
-          <span onClick={()=>{
-            setOpenModal(true)
-          }}>
-            <img src={Logout} alt="" />
-            Logout
-          </span>
+          {/* Logout */}
+          <div className="sidebar_menu sidebar_bottom">
+            <HiOutlineLogout className="icon" />
+            <span
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              Logout
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

@@ -19,7 +19,7 @@ const MainContent = () => {
   return (
     <div className="App">
       <AuthenticatedTemplate>
-        <div>
+        <div className="full_page">
           <Layout setOpenModal={setOpenModal} />
           {openModal && (
             <Modal
