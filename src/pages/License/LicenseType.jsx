@@ -11,15 +11,15 @@ const LicenseType = () => {
   const [data, setData] = useState();
   const paramsValue = Object.values(userParams)
   const url = `${baseUrl}/api/licenseType/${paramsValue}`
-  const headers = ["Name","Band Type", "Maximum User", "Part Number", "Action"]
+  const headers = ["Band Type", "Maximum User", "Part Number", "Action"]
+  const mainUrl = `${baseUrl}/api/applicense/${paramsValue}`
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`${baseUrl}/api/applicense/${paramsValue}`)
+        await fetch(mainUrl)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data)
             setData(data)
           });
       } catch (error) {
@@ -27,7 +27,7 @@ const LicenseType = () => {
       }
     };
     fetchData();
-  }, [url]);
+  }, [mainUrl]);
 
   const handleEventClick = () => {
     navigate("/license/addLicenseBand",{state : {paramsValue:paramsValue}})
@@ -38,7 +38,7 @@ const LicenseType = () => {
   } 
   return (
     <div>
-      <Banner title={`Manage ${data? data.licenseName:""} License`} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add License Band"} btnEventHandler={handleEventClick}/>
+      <Banner title={` ${data? data.licenseName:""} License`} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add License Band"} btnEventHandler={handleEventClick}/>
       <TableAction headers={headers} url = {url} actionEvent={handleAction}/>
     </div>
   )

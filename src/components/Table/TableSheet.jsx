@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Styles/tablesheet.css";
 import { Link } from "react-router-dom";
+import Loader from "../Loader";
 
 export default function TableSheet({ headers, url, navigateTo }) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,6 +15,7 @@ export default function TableSheet({ headers, url, navigateTo }) {
           .then((data) => {
             let completeData = Object.values(data);
             setData(completeData);
+            setLoading(!loading)
           });
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,6 +27,7 @@ export default function TableSheet({ headers, url, navigateTo }) {
 
   return (
     <div className="tableData">
+  {loading? <Loader/> :
       <table>
         <thead>
           <tr>
@@ -32,20 +36,24 @@ export default function TableSheet({ headers, url, navigateTo }) {
             ))}
           </tr>
         </thead>
-        <tbody>
+ <tbody>
           {data.map((obj) => (
             <tr key={obj.id}>
-              {Object.entries(obj)
-                .filter(([key]) => key !== "id")
-                .map((val) => (
-                  <td key={obj.id}>
-                    <Link to={`${navigateTo}/${obj.id}`}>{val[1]}</Link>
-                  </td>
-                ))}
+              
+              <td>
+              <Link to={`${navigateTo}/${obj.id}`}>{obj.licenseName}
+              </Link>
+              </td>
+              <td>
+              <Link to={`${navigateTo}/${obj.id}`}>
+                {obj.description}
+                </Link>
+                </td>
             </tr>
           ))}
         </tbody>
       </table>
+}
     </div>
   );
 }

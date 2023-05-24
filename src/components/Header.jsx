@@ -30,7 +30,6 @@ const Header = () => {
   })
   .then((response) => {
     callMsGraphImg(response.accessToken).then((response) => {
-      console.log(response)
       setGraphImage(response)
     });
   });

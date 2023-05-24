@@ -1,23 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../../components/Styles/license.css'
 import Banner from "../../components/Banner";
 import { baseUrl } from "../../Hook/baseurl";
 import ArrowBack from "../../components/ArrowBack";
+import { useNavigate } from 'react-router-dom';
+import { FetchUserInfo } from "../../Hook/FetchUserInfo";
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from "../../Auth/authConfig";
+import { callMsGraph } from "../../Auth/graph";
 
 const AddLicense = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [message, setMessage]= useState ("")
+  const navigate = useNavigate();
 
+  //fetch current user from Azure
+  const { instance, accounts } = useMsal();
+  const [graphData, setGraphData] = useState(null);
 
-  //Submit form function
+  useEffect(() => {
+    instance.acquireTokenSilent({
+      loginRequest,
+      account: accounts[0],
+  })
+  .then((response) => {
+      callMsGraph(response.accessToken).then((response) => {
+        setGraphData(response)
+        console.log(response)
+      })
+  });
+  }, [instance,accounts]);
 
   const handleBackArrow = () => {
-
+    navigate('/license');
   }
 
+  //Submit form function
   let handleSubmitLicense = async (e) => {
     e.preventDefault();
+    FetchUserInfo().then(response=>console.log(response))
     try {
       let res = await fetch(`${baseUrl}/api/applicense`, {
         method: "POST",
@@ -25,6 +47,7 @@ const AddLicense = () => {
         body: JSON.stringify({
           licenseName: name,
           description: description,
+          CreatedBy: graphData.mail,
         }),
       });
       let resJson = await res.json();
