@@ -31,12 +31,22 @@ a{
   text-decoration: none;
   color: unset ;
 }
-
 .main_layout {
   margin-top: 70px;
 }
-
 .content {
   margin-left: 260px;
   padding: 2rem;
 }
+/* @media screen and (max-width: 1200px) {
+  .full_page{
+    grid-template-columns: 10% 50% auto;
+    overflow-y: scroll;
+  } 
+} */
+
+/* @media screen and (max-width: 768px) {
+  .App{
+    grid-template-columns: 1fr;
+  } 
+} */

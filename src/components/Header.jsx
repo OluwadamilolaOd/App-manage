@@ -3,12 +3,19 @@ import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../Auth/authConfig';
 import { callMsGraph, callMsGraphImg } from '../Auth/graph';
 import './Styles/header.css'
+import {GiHamburgerMenu} from "react-icons/gi"
+import {AiOutlineCloseCircle} from "react-icons/ai"
+import Sidebar from './Sidebar';
 
 const Header = () => {
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
   const [graphImage, setGraphImage] = useState(null);
   
+//hamburger
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar)
 
   useEffect(() => {
     instance.acquireTokenSilent({
@@ -42,6 +49,9 @@ const Header = () => {
           <div className="profile">
             <img src="https://hover.blog/wp-content/uploads/2015/08/dot-online-120x720.png" alt='profile'></img>
           </div>
+          <GiHamburgerMenu  className="icon bars"/>
+          <Sidebar />
+          <AiOutlineCloseCircle className="icon"/>
         </div>
     </div>
   )
