@@ -9,6 +9,8 @@ export default function TableAction({ headers, url }) {
   const [loading, setLoading] = useState(true);
   const [licenseName, setLicenseName] = useState();
   const [licenseTypes, setlicenseTypes] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const edit = () => {
     console.log("Edit License Band");
@@ -17,6 +19,26 @@ export default function TableAction({ headers, url }) {
   const archive = () => {
     console.log("archive License Band");
   };
+
+
+  // const handleSearch = (e) => {
+  //   setSearchQuery(e.target.value);
+  // };
+
+  // const filtered = data.filter((item) => {
+  //   if (searchQuery === ""){
+  //     return item
+  //   } else if (item.partNumber.toLowerCase().includes(searchQuery.toLowerCase())
+  //   ) {
+  //     return item
+  //   }
+  // }   
+  // );
+
+  // setFilteredData(filtered);
+  // console.log(filtered)
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +57,13 @@ export default function TableAction({ headers, url }) {
     fetchData();
   }, [url]);
   return (
+    <>
+          {/* <input
+        type="text"
+        placeholder="Search"
+        value={searchQuery}
+        onChange={handleSearch}
+      /> */}
     <div className="tableData">
       {loading ? (
         <Loader />
@@ -78,5 +107,6 @@ export default function TableAction({ headers, url }) {
         </table>
       )}
     </div>
+    </>
   );
 }

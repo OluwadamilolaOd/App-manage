@@ -10,7 +10,7 @@ const LicenseType = () => {
   const userParams = useParams();
   const [data, setData] = useState();
   const paramsValue = Object.values(userParams)
-  const url = `${baseUrl}/api/licenseType/${paramsValue}`
+  const url = `${baseUrl}/api/licenseType/license/${paramsValue}`
   const headers = ["Band Type", "Maximum User", "Part Number", "Action"]
   const mainUrl = `${baseUrl}/api/applicense/${paramsValue}`
 
@@ -32,6 +32,7 @@ const LicenseType = () => {
   const handleEventClick = () => {
     navigate("/license/addLicenseBand",{state : {paramsValue:paramsValue}})
   }
+
 
   const handleAction = () => {
 

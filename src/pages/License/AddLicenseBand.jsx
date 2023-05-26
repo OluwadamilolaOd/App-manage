@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
 import { useLocation, useNavigate } from "react-router-dom";
 import Banner from "../../components/Banner";
 import ArrowBack from "../../components/ArrowBack";
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from "../../Auth/authConfig";
+import { callMsGraph } from "../../Auth/graph";
 
 const AddLicenseBand = () => {
   const paramsValue = useLocation();
@@ -17,14 +20,25 @@ const AddLicenseBand = () => {
   const [maximumUser, setMaximumUser] = useState("");
   const [partNumber, setPartNumber] = useState("");
   const [message, setMessage] = useState("");
+  const [recurring, setRecurring] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(selectedOption);
-  //   console.log(selectedOption.value);
-  //   console.log(paramsValue.state.paramsValue[0]);
-  // };
+
+   //fetch current user from Azure
+   const { instance, accounts } = useMsal();
+   const [graphData, setGraphData] = useState(null);
+ 
+   useEffect(() => {
+     instance.acquireTokenSilent({
+       loginRequest,
+       account: accounts[0],
+   })
+   .then((response) => {
+       callMsGraph(response.accessToken).then((response) => {
+         setGraphData(response)
+       })
+   });
+   }, [instance,accounts]);
 
   const handleBackArrow = () => {
     navigate('/license');
@@ -32,15 +46,15 @@ const AddLicenseBand = () => {
 
 
   const licenseId = paramsValue.state.paramsValue[0]
-  let url 
+  let url = baseUrl+"/api/licensetype"
 
   let handleSubmitLicenseBand = async (e) => {
     e.preventDefault();
     if(selectedOption.value === "newLicenseType" ) {
-       url = baseUrl+"/api/licensetype"
+       setRecurring("")
     }
     else {
-      url = baseUrl+"/api/recurringlicensetype" 
+      setRecurring("Recurring License Type") 
     } 
     try {
       let res = await fetch(url, {
@@ -52,9 +66,11 @@ const AddLicenseBand = () => {
           partNumber:partNumber,
           maximumUser:maximumUser,
           appLicenseId:licenseId,
+          CreatedBy: graphData.mail,
+          recurringLicenseType: recurring,
         }),
       });
-      let resJson = await res.json();
+       await res.json();
       if (res.status === 200) {
         setDescription("");
         setPartNumber("");
@@ -81,15 +97,6 @@ const AddLicenseBand = () => {
 
         <form className="addlicensebandcontainer">
           <ArrowBack handleBackArrow =  {handleBackArrow} />
-        {/* <div className="input">
-                <label htmlFor="company-name">License Type:</label>
-                <input
-                  type="text"
-                  id="company-name"
-                  value={companyName}
-                  onChange={(event) => setCompanyName(event.target.value)}
-                />
-              </div> */}
           <div className="forminput">
             <div className="section">
             <div className="input">

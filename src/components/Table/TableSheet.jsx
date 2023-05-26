@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./Styles/tablesheet.css";
 import { Link } from "react-router-dom";
 import Loader from "../Loader";
+import Search from "../Search";
+import { SearchFunction } from "../../Hook/SearchFunction";
 
 export default function TableSheet({ headers, url, navigateTo }) {
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState("")
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,8 +30,10 @@ export default function TableSheet({ headers, url, navigateTo }) {
   }, [url]);
 
   return (
+    <>
+
     <div className="tableData">
-  {loading? <Loader/> :
+  {loading? <Loader/> : 
       <table>
         <thead>
           <tr>
@@ -55,5 +61,6 @@ export default function TableSheet({ headers, url, navigateTo }) {
       </table>
 }
     </div>
+    </>
   );
 }

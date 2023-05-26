@@ -9,11 +9,6 @@ const Header = () => {
   const [graphData, setGraphData] = useState(null);
   const [graphImage, setGraphImage] = useState(null);
 
-  //hamburger
-  const [sidebar, setSidebar] = useState(false);
-
-  const showSidebar = () => setSidebar(!sidebar);
-
   useEffect(() => {
     instance
       .acquireTokenSilent({
@@ -35,7 +30,10 @@ const Header = () => {
   })
   .then((response) => {
     callMsGraphImg(response.accessToken).then((response) => {
-      setGraphImage(response)
+      console.log(response.url)
+      // var img = response.url.blob();
+      // var imgUrl = URL.createObjectURL(img);
+      // setGraphImage(imgUrl)
     });
   });
   }, [instance,accounts]);
@@ -46,7 +44,7 @@ const Header = () => {
         {graphData ? <p>{graphData.givenName}</p> : <p>Loading...</p>}
         <div className="profile">
           <img
-            src="https://hover.blog/wp-content/uploads/2015/08/dot-online-120x720.png"
+            src= {graphImage}
             alt="profile"
           ></img>
         </div>
