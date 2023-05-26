@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: calc(100% - 5%);
+  /* height: calc(100% - 5%); */
   margin-top: 30px;
 }
 .menu {
@@ -40,7 +40,7 @@
 .sidebar_active {
   background: var(--blue-color);
   color: var(--white-color);
-  padding: 15px 2px ;
+  padding: 15px 2px;
   margin-left: 0;
   width: 100%;
 }
@@ -53,11 +53,11 @@
   /* margin-right: calc(1rem - 2px); */
 }
 .sidebar_link {
-    display: flex;
-    align-items: center;
-    column-gap: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .sidebar_bottom:hover {
   color: var(--white-color);
@@ -75,66 +75,19 @@
 }
 
 @media screen and (max-width: 1200px) {
-    .sidebar_menu {
-        display: none;
-        width: 50px;
-    }
-    .sidebar_menu > span{
-      display: none;
-      width: 100px;
-    }
-    /* .sidebar{
-        display: none;
-    } */
+  .sidebar{
+    width: 100px;
+  }
+  .sidebar_menu span {
+    display: none;
+  }
+  .sidebar_active{
+    width: 100%;
+  }
 }
-/* .sidebar_list {
-    display: flex;
-    row-gap: 2rem;
-    flex-direction: column;
-    color: var(--black-color);
-} */
 
-/* .sidebar_bottom {
-    padding-left: 1rem;
-    height: 20%;
-} */
-/* .sidebar_link {
-    display: flex;
-    align-items: center;
-    column-gap: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-} */
-/* .sidebar_bottom span {
-    display: flex;
-    align-items: center;
-    column-gap: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    padding: 15px;
-    color: var(--black-color);
-
-} */
-/* .sidebar_bottom span {
-    color: var(--black-color);
-    cursor: pointer;
-} */
-/* .sidebar_bottom span:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  color: var(--blue-color);
-    cursor: pointer;
-} */
-/* .sidebar_bottom img {
-    height: 20px;
-    width: 20px;
-} */
-
-/* .sidebar_link img {
-    height: 20px;
-    width: 20px;
-} */
-/* .sidebar_active{
-    color: var(--white-color);
-    background: var(--blue-color);
-    padding: 15px;
-} */
+@media screen and (max-width: 768px) {
+  .sidebar{
+    display: none;
+  }
+}

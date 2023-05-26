@@ -38,15 +38,12 @@ a{
   margin-left: 260px;
   padding: 2rem;
 }
-/* @media screen and (max-width: 1200px) {
-  .full_page{
-    grid-template-columns: 10% 50% auto;
-    overflow-y: scroll;
+@media screen and (max-width: 1200px) {
+  .layout{
+    background-color: red;
   } 
-} */
+  /* .menu-icon {
+    display: block;
+  } */
+}
 
-/* @media screen and (max-width: 768px) {
-  .App{
-    grid-template-columns: 1fr;
-  } 
-} */
