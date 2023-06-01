@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import Banner from '../../components/Banner';
 import { baseUrl } from '../../Hook/baseurl';
-import TableSheet from '../../components/Table/TableSheet';
+import OrgTableSheet from './OrgTableSheet';
 
 const Organizations = () => {
 
@@ -17,7 +17,7 @@ const Organizations = () => {
   return (
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/>     
-      <TableSheet headers={headers} url={url} navigateTo={"/organizationProfile"}/>
+      <OrgTableSheet headers={headers} url={url} navigateTo={"/organizationProfile"}/>
     </div>
   )
 }
