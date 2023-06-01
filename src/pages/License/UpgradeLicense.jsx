@@ -1,6 +1,9 @@
 import {useState} from 'react'
 import Banner from '../../components/Banner';
 import ArrowBack from '../../components/ArrowBack';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 const UpgradeLicense = () => {
 
@@ -110,6 +113,7 @@ const UpgradeLicense = () => {
         </div>
         <button type="submit">Save</button>
       </form>
+      <ToastContainer />
     </div>
   )
 }

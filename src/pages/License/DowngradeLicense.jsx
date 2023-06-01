@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Banner from "./../../components/Banner";
 import ArrowBack from "../../components/ArrowBack";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DowngradeLicense = () => {
   const [companyName, setCompanyName] = useState("");
@@ -109,6 +111,7 @@ const DowngradeLicense = () => {
         </div>
         <button type="submit">Save</button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
