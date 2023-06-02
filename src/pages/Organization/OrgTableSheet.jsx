@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./Styles/tablesheet.css";
-import { Link } from "react-router-dom";
-import Loader from "../Loader";
-import Search from "../Search";
-import { SearchFunction } from "../../Hook/SearchFunction";
+import "../../components/Table/Styles/tablesheet.css";
+import Loader from "../../components/Loader";
 
-export default function TableSheet({ headers, url, navigateTo }) {
+
+export default function OrgTableSheet({ headers, url, navigateTo }) {
   const [data, setData] = useState([]);
-  const [searchData, setSearchData] = useState("")
   const [loading, setLoading] = useState(true);
 
 
@@ -18,6 +15,7 @@ export default function TableSheet({ headers, url, navigateTo }) {
           .then((response) => response.json())
           .then((data) => {
             let completeData = Object.values(data);
+            console.log(completeData)
             setData(completeData);
             setLoading(!loading)
           });
@@ -47,14 +45,17 @@ export default function TableSheet({ headers, url, navigateTo }) {
             <tr key={obj.id}>
               
               <td>
-              <Link to={`${navigateTo}/${obj.id}`}>{obj.licenseName}
-              </Link>
+                {obj.organizationName}
               </td>
               <td>
-              <Link to={`${navigateTo}/${obj.id}`}>
-                {obj.description}
-                </Link>
-                </td>
+                {obj.email}
+              </td>
+              <td>
+                {obj.phoneNumber}
+              </td>
+              <td>
+                {obj.address}
+              </td>
             </tr>
           ))}
         </tbody>

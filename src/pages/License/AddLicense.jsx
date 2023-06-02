@@ -1,18 +1,38 @@
-import React, { useState } from "react";
-import "../../components/Styles/license.css";
+import React, { useState, useEffect } from "react";
+import '../../components/Styles/license.css'
 import Banner from "../../components/Banner";
 import { baseUrl } from "../../Hook/baseurl";
 import ArrowBack from "../../components/ArrowBack";
+import { useNavigate } from 'react-router-dom';
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from "../../Auth/authConfig";
+import { callMsGraph } from "../../Auth/graph";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddLicense = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [message, setMessage]= useState ("")
+  const navigate = useNavigate();
 
-  //Submit form function
+  //fetch current user from Azure
+  const { instance, accounts } = useMsal();
+  const [graphData, setGraphData] = useState(null);
 
-  const handleBackArrow = () => {};
+  useEffect(() => {
+    instance.acquireTokenSilent({
+      loginRequest,
+      account: accounts[0],
+  })
+  .then((response) => {
+      callMsGraph(response.accessToken).then((response) => {
+        setGraphData(response)
+        console.log(response)
+      })
+  });
+  }, [instance,accounts]);
+
 
   // react-toastify
   const notifySuccess = () =>
@@ -42,7 +62,11 @@ const AddLicense = () => {
       theme: "light",
     }
     );
+  const handleBackArrow = () => {
+    navigate('/license');
+  }
 
+  //Submit form function
   let handleSubmitLicense = async (e) => {
     e.preventDefault();
     try {
@@ -52,9 +76,10 @@ const AddLicense = () => {
         body: JSON.stringify({
           licenseName: name,
           description: description,
+          CreatedBy: graphData.mail,
         }),
       });
-      let resJson = await res.json();
+       await res.json();
       if (res.status === 200) {
         setName("");
         setDescription("");

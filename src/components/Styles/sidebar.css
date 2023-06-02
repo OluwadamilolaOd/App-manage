@@ -2,16 +2,24 @@
   width: 260px;
   height: 100%;
   position: fixed;
+  top: 0;
   left: 0;
   z-index: 999;
   background-color: var(--white-color);
+}
+.logo {
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
 }
 .sidebar_content {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  /* height: calc(100% - 5%); */
+  height: calc(100% - 5%);
   margin-top: 30px;
+  /* width: 100%; */
+  /* height: 70px; */
 }
 .menu {
   height: 80%;
@@ -34,7 +42,7 @@
 }
 .menu .sidebar_menu:last-child {
   position: absolute;
-  bottom: 6rem;
+  bottom: 3rem;
   width: 100%;
 }
 .sidebar_active {
@@ -44,14 +52,14 @@
   margin-left: 0;
   width: 100%;
 }
-.sidebar_active::before {
+/* .sidebar_active::before {
   content: "";
   width: 8px;
   height: 100%;
   background: var(--blue-color);
   color: var(--white-color);
-  /* margin-right: calc(1rem - 2px); */
-}
+  margin-right: calc(1rem - 2px);
+} */
 .sidebar_link {
   display: flex;
   align-items: center;
@@ -59,10 +67,12 @@
   cursor: pointer;
   transition: 0.3s;
 }
+
 .sidebar_bottom:hover {
-  color: var(--white-color);
-  background: var(--blue-color);
-  padding: 25px;
+  /* color: var(--white-color); */
+  color: var(--blue-color);
+  /* background: var(--blue-color); */
+  padding: 30px 2px;
   margin-left: 0;
   cursor: pointer;
 }

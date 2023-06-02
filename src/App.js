@@ -26,7 +26,7 @@ const MainContent = () => {
               setOpenModal={setOpenModal}
               image={logoutImg}
               btnAction={"Log out"}
-              title={"Log out"}
+              title={<h3>Logout</h3>}
               description={"Are you sure you want to Log out?"}
               handleOnclickEvent={handleLogout}
             />
