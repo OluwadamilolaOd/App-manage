@@ -2,6 +2,7 @@ import React from "react";
 import "./Styles/tablesheet.css";
 import { useState, useEffect } from "react";
 import Loader from "../Loader";
+import TableActionChildren from "./TableActionChildren";
 
 export default function TableAction({ headers, url }) {
   const [data, setData] = useState([]);
@@ -79,29 +80,7 @@ export default function TableAction({ headers, url }) {
 
           <tbody>
             {data.map((obj) => (
-              <tr key={obj.id}>
-                <td>{obj.licenseBand}</td>
-                <td>{obj.maximumUser}</td>
-                <td>{obj.partNumber}</td>
-                <td>
-                  <div
-                    className="actionbtn"
-                    onClick={() => setOpenOptions(!openOptions)}
-                  >
-                    ...
-                  </div>
-                </td>
-                {openOptions && (
-                  <div className="action">
-                    <div className="edit">
-                      <p onClick={edit}>Edit</p>
-                    </div>
-                    <div className="archive">
-                      <p onClick={archive}>Archive</p>
-                    </div>
-                  </div>
-                )}
-              </tr>
+              <TableActionChildren key={obj.id} obj={obj}/>
             ))}
           </tbody>
         </table>
