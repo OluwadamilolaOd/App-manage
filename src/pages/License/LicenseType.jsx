@@ -10,9 +10,9 @@ const LicenseType = () => {
   const userParams = useParams();
   const [data, setData] = useState();
   const paramsValue = Object.values(userParams)
-  const url = `${baseUrl}/api/licenseType/license/${paramsValue}`
+  const url = `${baseUrl}/licenseType/license/${paramsValue}`
   const headers = ["Band Type", "Maximum User", "Part Number", "Action"]
-  const mainUrl = `${baseUrl}/api/applicense/${paramsValue}`
+  const mainUrl = `${baseUrl}/applicense/${paramsValue}`
 
   useEffect(() => {
     const fetchData = async () => {

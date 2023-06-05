@@ -27,9 +27,9 @@ const Router = () => {
         <Route path='license/addLicenseBand' element = {<AddLicenseBand/>}/>
         <Route path='organizations' element= {<Organizations/>} />
         <Route path='emailorganization' element= {<EmailOrganization/>} />
-        <Route path='organizationProfile/:id' element = {<OrganizationProfile/>}/>
-        <Route path='editorganization' element = {<EditOrganization/>}/>
-        <Route path='addorganization' element = {<AddOrganization/>}/>
+        <Route path='organizations/organizationProfile/:id' element = {<OrganizationProfile/>}/>
+        <Route path='organizations/editorganization' element = {<EditOrganization/>}/>
+        <Route path='organizations/addorganization' element = {<AddOrganization/>}/>
         {/* <Route path='landingPage' element={<LandingPage/>}/> */}
         <Route path='downgradelicense' element = {<DowngradeLicense/>}/>
         <Route path='Upgradelicense' element = {<UpgradeLicense/>}/>
