@@ -71,7 +71,7 @@ const AddLicenseBand = () => {
     });
 
   const licenseId = paramsValue.state.paramsValue[0]
-  let url = baseUrl+"/api/licensetype"
+  let url = baseUrl+"/licensetype"
 
   let handleSubmitLicenseBand = async (e) => {
     e.preventDefault();

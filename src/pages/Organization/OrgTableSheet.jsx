@@ -1,31 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "../../components/Table/Styles/tablesheet.css";
 import Loader from "../../components/Loader";
+import { useNavigate } from "react-router-dom";
 
 
-export default function OrgTableSheet({ headers, url, navigateTo }) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function OrgTableSheet({ headers, items, loading, }) {
 
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            let completeData = Object.values(data);
-            console.log(completeData)
-            setData(completeData);
-            setLoading(!loading)
-          });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  // const handleClick = (id) => navigate(`organizationProfile/:${id}`)
+  const handleRowDoubleClick = (itemId) => {
+    // Navigate to details page using the selected item's ID
+    navigate(`organizationProfile/:${itemId}`)
+  };
 
-    fetchData();
-  }, [url]);
 
   return (
     <>
@@ -41,9 +29,8 @@ export default function OrgTableSheet({ headers, url, navigateTo }) {
           </tr>
         </thead>
  <tbody>
-          {data.map((obj) => (
-            <tr key={obj.id}>
-              
+          {items.map((obj) => (
+            <tr key={obj.id} onDoubleClick={() => handleRowDoubleClick(obj.id)}>
               <td>
                 {obj.organizationName}
               </td>
@@ -55,7 +42,7 @@ export default function OrgTableSheet({ headers, url, navigateTo }) {
               </td>
               <td>
                 {obj.address}
-              </td>
+              </td>             
             </tr>
           ))}
         </tbody>

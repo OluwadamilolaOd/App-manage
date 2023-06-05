@@ -70,7 +70,7 @@ const AddLicense = () => {
   let handleSubmitLicense = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch(`${baseUrl}/api/applicense`, {
+      let res = await fetch(`${baseUrl}/applicense`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
