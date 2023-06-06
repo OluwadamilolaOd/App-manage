@@ -20,7 +20,7 @@ const OrgPurchasedLicesTableChildren = ({ obj }) => {
           <div className="actionbtn" onClick={handleDropdownToggle}>...</div>
         </td>
         {showDropdown && (
-          <div className="action">
+          <div className="action-long">
             <div className="action-item">
               <p>Renew</p>
             </div>

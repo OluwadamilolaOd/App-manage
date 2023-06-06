@@ -17,10 +17,10 @@ const TableActionChildren = ({obj}) => {
                 </td>
                 {openOptions && (
                   <div className="action">
-                    <div className="edit">
+                    <div className="action-item">
                       <p>Edit</p>
                     </div>
-                    <div className="archive">
+                    <div className="action-item">
                       <p>Archive</p>
                     </div>
                   </div>
