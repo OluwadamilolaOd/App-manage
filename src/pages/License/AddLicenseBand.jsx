@@ -20,7 +20,6 @@ const AddLicenseBand = () => {
   const [maximumUser, setMaximumUser] = useState("");
   const [partNumber, setPartNumber] = useState("");
   const [message, setMessage] = useState("");
-  const [recurring, setRecurring] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
 
 
@@ -47,15 +46,18 @@ const AddLicenseBand = () => {
 
   const licenseId = paramsValue.state.paramsValue[0]
   let url = baseUrl+"/licensetype"
+  var recurring;
 
   let handleSubmitLicenseBand = async (e) => {
     e.preventDefault();
     if(selectedOption.value === "newLicenseType" ) {
-       setRecurring("")
+       recurring = ""
     }
     else {
-      setRecurring("Recurring License Type") 
+      recurring = "Recurring License Type"
     } 
+
+    console.log(recurring)
     try {
       let res = await fetch(url, {
         method: "POST",
