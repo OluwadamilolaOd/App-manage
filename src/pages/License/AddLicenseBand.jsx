@@ -6,7 +6,7 @@ import Banner from "../../components/Banner";
 import ArrowBack from "../../components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useMsal } from '@azure/msal-react';
+import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../Auth/authConfig";
 import { callMsGraph } from "../../Auth/graph";
 
@@ -24,23 +24,24 @@ const AddLicenseBand = () => {
   const [message, setMessage] = useState("");
   const [recurring, setRecurring] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
+  const [error, setError] = useState(false);
 
+  //fetch current user from Azure
+  const { instance, accounts } = useMsal();
+  const [graphData, setGraphData] = useState(null);
 
-   //fetch current user from Azure
-   const { instance, accounts } = useMsal();
-   const [graphData, setGraphData] = useState(null);
- 
-   useEffect(() => {
-     instance.acquireTokenSilent({
-       loginRequest,
-       account: accounts[0],
-   })
-   .then((response) => {
-       callMsGraph(response.accessToken).then((response) => {
-         setGraphData(response)
-       })
-   });
-   }, [instance,accounts]);
+  useEffect(() => {
+    instance
+      .acquireTokenSilent({
+        loginRequest,
+        account: accounts[0],
+      })
+      .then((response) => {
+        callMsGraph(response.accessToken).then((response) => {
+          setGraphData(response);
+        });
+      });
+  }, [instance, accounts]);
 
   const handleBackArrow = () => {
     navigate("/license");
@@ -70,32 +71,31 @@ const AddLicenseBand = () => {
       theme: "light",
     });
 
-  const licenseId = paramsValue.state.paramsValue[0]
-  let url = baseUrl+"/licensetype"
+  const licenseId = paramsValue.state.paramsValue[0];
+  let url = baseUrl + "/licensetype";
 
   let handleSubmitLicenseBand = async (e) => {
     e.preventDefault();
-    if(selectedOption.value === "newLicenseType" ) {
-       setRecurring("")
+    if (selectedOption.value === "newLicenseType") {
+      setRecurring("");
+    } else {
+      setRecurring("Recurring License Type");
     }
-    else {
-      setRecurring("Recurring License Type") 
-    } 
     try {
       let res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           description: description,
-          licenseBand:bandType,
-          partNumber:partNumber,
-          maximumUser:maximumUser,
-          appLicenseId:licenseId,
+          licenseBand: bandType,
+          partNumber: partNumber,
+          maximumUser: maximumUser,
+          appLicenseId: licenseId,
           CreatedBy: graphData.mail,
           recurringLicenseType: recurring,
         }),
       });
-       await res.json();
+      await res.json();
       if (res.status === 200) {
         setDescription("");
         setPartNumber("");
@@ -105,6 +105,36 @@ const AddLicenseBand = () => {
         notifySuccess("");
       } else {
         notifyError("");
+      }
+
+      if (
+        selectedOption.length == 0 ||
+        bandType.length == 0 ||
+        maximumUser.length == 0 ||
+        partNumber.length == 0 ||
+        description.length == 0
+      ) {
+        setError(true);
+      }
+      if (
+        selectedOption &&
+        bandType &&
+        maximumUser &&
+        partNumber &&
+        description
+      ) {
+        console.log(
+          "Licence Type: ",
+          selectedOption,
+          "\nLicence Band: ",
+          bandType,
+          "\nMaximum User: ",
+          maximumUser,
+          "\nPart Number: ",
+          partNumber,
+          "\nDescription: ",
+          description
+        );
       }
     } catch (err) {
       console.log(err);
@@ -121,7 +151,7 @@ const AddLicenseBand = () => {
         />
 
         <form className="addlicensebandcontainer">
-          <ArrowBack handleBackArrow =  {handleBackArrow} />
+          <ArrowBack handleBackArrow={handleBackArrow} />
           <div className="forminput">
             <div className="section">
               <div className="input">
@@ -141,6 +171,11 @@ const AddLicenseBand = () => {
                   value={bandType}
                   onChange={(event) => setBandType(event.target.value)}
                 />
+                {error && bandType.length <= 0 ? (
+                  <label className="error">This field is required.</label>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="input">
                 <label htmlFor="band type">Maximum User:</label>
@@ -150,6 +185,11 @@ const AddLicenseBand = () => {
                   value={maximumUser}
                   onChange={(event) => setMaximumUser(event.target.value)}
                 />
+                {error && maximumUser.length <= 0 ? (
+                  <label className="error">This field is required.</label>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className="section">
@@ -161,6 +201,11 @@ const AddLicenseBand = () => {
                   value={partNumber}
                   onChange={(event) => setPartNumber(event.target.value)}
                 />
+                {error && partNumber.length <= 0 ? (
+                  <label className="error">This field is required.</label>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="input">
@@ -172,6 +217,11 @@ const AddLicenseBand = () => {
                   value={description}
                   onChange={(event) => setDescription(event.target.value)}
                 />
+                {error && description.length <= 0 ? (
+                  <label className="error">This field is required.</label>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

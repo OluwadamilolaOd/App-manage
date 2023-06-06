@@ -3,6 +3,9 @@ import Banner from '../../components/Banner'
 import { baseUrl } from '../../Hook/baseurl'
 import { useNavigate, useParams } from 'react-router-dom'
 import TableAction from '../../components/Table/TableAction'
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 
 const LicenseType = () => {
 
@@ -23,7 +26,7 @@ const LicenseType = () => {
             setData(data)
           });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        toast.error("Error fetching data:", error);
       }
     };
     fetchData();
@@ -41,6 +44,7 @@ const LicenseType = () => {
     <div>
       <Banner title={` ${data? data.licenseName:""} License`} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add License Band"} btnEventHandler={handleEventClick}/>
       <TableAction headers={headers} url = {url} actionEvent={handleAction}/>
+      <ToastContainer />
     </div>
   )
 }

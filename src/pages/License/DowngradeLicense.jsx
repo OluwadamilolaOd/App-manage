@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Banner from "./../../components/Banner";
 import ArrowBack from "../../components/ArrowBack";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const DowngradeLicense = () => {
@@ -10,9 +10,30 @@ const DowngradeLicense = () => {
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handleBackArrow = () => {
-
-  }
+  const handleBackArrow = () => {};
+  // react-toastify
+  const notifySuccess = () =>
+    toast.success("User created successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifyError = () =>
+    toast.error("Some error occurred", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   return (
     <div>
@@ -22,8 +43,8 @@ const DowngradeLicense = () => {
         btntitle={"Edit Button"}
       />
       <form className="form_container">
-        <ArrowBack handleBackArrow = {handleBackArrow}/>
-      <div className="title-head">
+        <ArrowBack handleBackArrow={handleBackArrow} />
+        <div className="title-head">
           <h2>Organization Name</h2>
         </div>
         <div className="title-head">
