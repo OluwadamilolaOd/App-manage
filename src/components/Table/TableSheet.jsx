@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Loader from "../Loader";
 import Search from "../Search";
 import { SearchFunction } from "../../Hook/SearchFunction";
+import TableSheetChildren from "./TableSheetChildren";
 
 export default function TableSheet({ headers, url, navigateTo }) {
   const [data, setData] = useState([]);
@@ -44,18 +45,9 @@ export default function TableSheet({ headers, url, navigateTo }) {
         </thead>
  <tbody>
           {data.map((obj) => (
-            <tr key={obj.id}>
-              
-              <td>
-              <Link to={`${navigateTo}/${obj.id}`}>{obj.licenseName}
-              </Link>
-              </td>
-              <td>
-              <Link to={`${navigateTo}/${obj.id}`}>
-                {obj.description}
-                </Link>
-                </td>
-            </tr>
+
+            <TableSheetChildren obj={obj} key={obj.id}/>
+
           ))}
         </tbody>
       </table>

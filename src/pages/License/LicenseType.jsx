@@ -14,7 +14,7 @@ const LicenseType = () => {
   const [data, setData] = useState();
   const paramsValue = Object.values(userParams)
   const url = `${baseUrl}/licenseType/license/${paramsValue}`
-  const headers = ["Band Type", "Maximum User", "Part Number", "Action"]
+  const headers = ["Band Type", "Maximum User", "Part Number","status", "Action"]
   const mainUrl = `${baseUrl}/applicense/${paramsValue}`
 
   useEffect(() => {

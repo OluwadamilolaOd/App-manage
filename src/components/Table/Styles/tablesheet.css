@@ -46,24 +46,27 @@ tbody tr:hover {
   align-items: center;
 }
 
-.action {
+.action, .action-long {
   position: absolute;
-  right: 158px;
+  right: 10%;
   margin-top: 56px;
   background-color: #ffff;
   color: #323232;
   border-radius: 10px;
   padding: 10px 0;
-  width: 110px;
-  height: 80px;
+  width: 130px;
   cursor: pointer;
 }
 
-.edit, .archive {
-  padding: 3px;
+.action-long  {
+  right: 7%;
 }
 
-.edit:hover, .archive:hover {
+.action-item {
+  padding: 0.5rem;
+}
+
+.action-item:hover {
   background-color: var(--blue-color);
   color: var(--white-color);
   width: 100%;

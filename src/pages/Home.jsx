@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import List from '../components/Table/TableStructure';
 
 const Home = () => {
 
@@ -44,7 +43,6 @@ const Home = () => {
         // <p key={index}>{item}</p>
         console.log(item)
       ))}
-      <List />
     </div>
   )
 }

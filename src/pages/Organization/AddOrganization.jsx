@@ -18,10 +18,8 @@ const AddOrganization = () => {
   const [comapnyId, setCompanyId] = useState("");
   const [message, setMessage] = useState("");
 
-  const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
-    useState("");
-  const [selectedLicenseTypeOption, setSelectedLicenseTypeOption] =
-    useState("");
+  const [selectedLicenseBandOption, setSelectedLicenseBandOption] = useState("");
+  const [selectedLicenseTypeOption, setSelectedLicenseTypeOption] = useState("");
   const [licenseTypeOptions, setLicenseTypeOptions] = useState([]);
   const [licenseBandOptions, setLicenseBandOptions] = useState([]);
 
@@ -122,6 +120,7 @@ const AddOrganization = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log(data.id)
           setCompanyId(data.id);
           fetch(CompanyLicenseUrl, {
             method: "POST",
@@ -141,6 +140,8 @@ const AddOrganization = () => {
           setLocation("");
           setStartDate("");
           setEndDate("");
+          setSelectedLicenseBandOption("")
+          setSelectedLicenseTypeOption("")
           setMessage("User created successfully");
         });
     } catch (err) {
