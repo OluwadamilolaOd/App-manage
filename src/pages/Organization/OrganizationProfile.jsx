@@ -5,8 +5,10 @@ import ArrowBack from "../../components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
+import Button from "../../components/Button";
+import "./../../components/Styles/organization.css";
 
-const OrganizationProfile = () => {
+const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
@@ -54,12 +56,41 @@ const OrganizationProfile = () => {
     <div>
       <ArrowBack handleBackArrow={handleBackArrow} />
       <div>
-        <div>
-          <h1>{data.organizationName}</h1>
-          
-          <h1>{data.email}</h1>
-          <h1>{data.address}</h1>
+        <div className="orgProfile">
+          <div className="profileOrg">
+            <div>
+              <h1 className="profileName">{data.organizationName}</h1>
+            </div>
+            <div>
+              A B
+              <Button  btnClassname={"btnborder"} btntitle={"Edit"}/>
+              {/* <Button  btnClassname={"btnBorder"} btntitle={"Archive"}/> */}
+            </div>
+          </div>
+          <div className="genInfo">
+            <h3>General Information</h3>
+          </div>
+          <div className="info">
+            <div className="dataInfo">
+              <div>
+                <p className="text">Email Address</p>
+              </div>
+              <div>
+                <p className="textB">{data.email}</p>
+              </div>
+            </div>
+            <div className="dataInfo">
+              <div>
+                <p className="text">location</p>
+              </div>
+              <div>
+                <p className="textB">{data.address}</p>
+              </div>
+            </div>
+   
+          </div>
         </div>
+
         <OrgPurchasedLicsTableSheet
           data={tableData}
           headers={headers}
