@@ -1,12 +1,11 @@
 .header {
-  position: fixed;
   top: 0;
   left: 260px;
   z-index: 999;
   background: var(--white-color);
-  width: calc(100% - 260px);
-  height: 70px;
-  line-height: 70px;
+  height: 80px;
+  line-height: 80px;
+  position: sticky;
 }
 .header_menu {
   display: flex;
@@ -44,7 +43,6 @@
 
 @media screen and (max-width: 1200px) {
   .header{
-    width: calc(100% - 100px);
     left: 100px;
     background-color: rgb(197, 245, 120);
   }
@@ -53,7 +51,6 @@
 @media screen and (max-width: 768px) {
   .header{
     left: 0;
-    width: 100%;
     background-color: rgb(87, 87, 135);
   }
   .header_menu {

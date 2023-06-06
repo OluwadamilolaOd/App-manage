@@ -31,23 +31,22 @@ a{
   color: unset ;
 }
 .main_layout {
-  margin-top: 70px;
+  margin-left: 260px;
 }
 .content {
-  margin-left: 260px;
   padding: 2rem;
 }
 .error{
   color: var(--red-color);
 }
 @media screen and (max-width: 1200px) {
-  .content {
+  .main_layout{
     margin-left: 100px;
     background-color: aqua;
   }
 }
 @media screen and (max-width: 768px) {
-  .content {
+  .main_layout {
     margin-left: 0;
     width: 100%;
     background-color: rgb(68, 130, 5);
