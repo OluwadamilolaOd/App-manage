@@ -1,0 +1,41 @@
+.orgProfile {
+    padding: 20px;
+    color: var(--blue-color);
+    position: sticky;
+    top: 6rem;
+}
+.profileOrg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profileName {
+    font-size: 32px;    
+}
+.genInfo {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: var( --black-color);
+
+}
+.info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    margin-top: 1rem;
+    color: var( --black-color);
+}
+.datainfo {
+    display: flex;
+    align-items: center;    
+}
+.text {
+    font-size: 16px;
+} 
+.textB {
+    font-size: 16px;
+    font-weight: bold;
+}   
