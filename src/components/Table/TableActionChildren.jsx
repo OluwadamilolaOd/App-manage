@@ -7,6 +7,7 @@ const TableActionChildren = ({obj}) => {
                 <td>{obj.licenseBand}</td>
                 <td>{obj.maximumUser}</td>
                 <td>{obj.partNumber}</td>
+                 <td>{obj.status}</td>
                 <td>
                   <div
                     className="actionbtn"

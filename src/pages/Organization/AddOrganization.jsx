@@ -120,6 +120,7 @@ const AddOrganization = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log(data.id)
           setCompanyId(data.id);
           fetch(CompanyLicenseUrl, {
             method: "POST",

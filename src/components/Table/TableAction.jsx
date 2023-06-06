@@ -24,6 +24,7 @@ export default function TableAction({ headers, url }) {
     };
     fetchData();
   }, [url]);
+
   return (
     <>
       <div className="tableData">
