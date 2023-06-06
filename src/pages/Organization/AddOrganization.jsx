@@ -7,6 +7,7 @@ import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../Auth/authConfig";
 import { callMsGraph } from "../../Auth/graph";
 import { generateProductKey } from "../../components/GenKey";
+import { useNavigate } from "react-router";
 
 const AddOrganization = () => {
   const [companyName, setCompanyName] = useState("");
@@ -25,6 +26,7 @@ const AddOrganization = () => {
 
   const startDateInputRef = useRef(null);
   const endDateInputRef = useRef(null);
+  const navigate = useNavigate();
 
   //URLS
 
@@ -55,7 +57,7 @@ const AddOrganization = () => {
   }, [instance, accounts]);
 
   //Navigate back to the previous page
-  const handleBackArrow = () => {};
+  const handleBackArrow = () => navigate("/organizations");;
 
   //Get Product Key
   const keyLength = 20;
@@ -120,15 +122,15 @@ const AddOrganization = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.id)
           setCompanyId(data.id);
+          let companyId = data.id;
           fetch(CompanyLicenseUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               purchasedDate: startDate,
               expirationDate: endDate,
-              organizationId: comapnyId,
+              organizationId: companyId,
               licenseTypeId: selectedLicenseBandOption.id,
               licenseKey: productKey,
               CreatedBy: graphData.mail,

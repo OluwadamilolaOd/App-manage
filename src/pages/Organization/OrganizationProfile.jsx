@@ -17,10 +17,11 @@ const OrganizationProfile = () => {
   const headers = [
     "License Name",
     "Band Type",
-    "Maximum User",
+    "Max. User",
     "Part Number",
+    "Period",
     "Start Date",
-    "Expiration Date",
+    "Exp. Date",
     "Action",
   ];
   const handleBackArrow = () => {};
@@ -35,7 +36,6 @@ const OrganizationProfile = () => {
 
         const data1 = await response1.json();
         const data2 = await response2.json();
-        console.log(data2);
         setTableData(data2);
         setLoading(!loading);
         await fetch(orgProfileUrl)

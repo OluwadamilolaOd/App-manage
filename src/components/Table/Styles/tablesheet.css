@@ -46,9 +46,9 @@ tbody tr:hover {
   align-items: center;
 }
 
-.action, .action-long {
+.action {
   position: absolute;
-  right: 10%;
+  right: 7%;
   margin-top: 56px;
   background-color: #ffff;
   color: #323232;
@@ -56,10 +56,6 @@ tbody tr:hover {
   padding: 10px 0;
   width: 130px;
   cursor: pointer;
-}
-
-.action-long  {
-  right: 7%;
 }
 
 .action-item {
