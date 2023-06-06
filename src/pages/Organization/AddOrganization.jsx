@@ -18,10 +18,8 @@ const AddOrganization = () => {
   const [comapnyId, setCompanyId] = useState("");
   const [message, setMessage] = useState("");
 
-  const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
-    useState("");
-  const [selectedLicenseTypeOption, setSelectedLicenseTypeOption] =
-    useState("");
+  const [selectedLicenseBandOption, setSelectedLicenseBandOption] = useState("");
+  const [selectedLicenseTypeOption, setSelectedLicenseTypeOption] = useState("");
   const [licenseTypeOptions, setLicenseTypeOptions] = useState([]);
   const [licenseBandOptions, setLicenseBandOptions] = useState([]);
 
@@ -141,6 +139,8 @@ const AddOrganization = () => {
           setLocation("");
           setStartDate("");
           setEndDate("");
+          setSelectedLicenseBandOption("")
+          setSelectedLicenseTypeOption("")
           setMessage("User created successfully");
         });
     } catch (err) {
