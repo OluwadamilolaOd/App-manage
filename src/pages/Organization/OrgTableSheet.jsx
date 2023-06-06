@@ -8,10 +8,7 @@ export default function OrgTableSheet({ headers, items, loading, }) {
   const navigate = useNavigate();
 
   // const handleClick = (id) => navigate(`organizationProfile/:${id}`)
-  const handleRowDoubleClick = (itemId) => {
-    // Navigate to details page using the selected item's ID
-    navigate(`organizationProfile/${itemId}`)
-  };
+  const handleRowDoubleClick = (itemId) =>  navigate(`organizationProfile/${itemId}`)
 
 
   return (

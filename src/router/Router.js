@@ -30,7 +30,6 @@ const Router = () => {
         <Route path='organizations/organizationProfile/:id' element = {<OrganizationProfile/>}/>
         <Route path='organizations/editorganization' element = {<EditOrganization/>}/>
         <Route path='organizations/addorganization' element = {<AddOrganization/>}/>
-        {/* <Route path='landingPage' element={<LandingPage/>}/> */}
         <Route path='downgradelicense' element = {<DowngradeLicense/>}/>
         <Route path='Upgradelicense' element = {<UpgradeLicense/>}/>
         <Route path='license/successmodal' element = {<SuccessModal/>}/>
