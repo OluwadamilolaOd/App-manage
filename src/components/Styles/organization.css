@@ -1,5 +1,5 @@
 .orgProfile {
-    padding: 20px;
+    padding: 10px 20px 10px 20px;
     color: var(--blue-color);
     position: sticky;
     top: 6rem;
@@ -12,13 +12,11 @@
 .profileName {
     font-size: 32px;    
 }
-.genInfo {
-    display: flex;
+.genInfo h3{
     font-size: 18px;
     font-weight: bold;
     margin-top: 1rem;
     color: var( --black-color);
-
 }
 .info{
     display: flex;
@@ -38,4 +36,13 @@
 .textB {
     font-size: 16px;
     font-weight: bold;
-}   
+}  
+.licInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var( --black-color);
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 2rem;
+} 

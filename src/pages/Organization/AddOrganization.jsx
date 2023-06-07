@@ -7,6 +7,7 @@ import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../Auth/authConfig";
 import { callMsGraph } from "../../Auth/graph";
 import { generateProductKey } from "../../components/GenKey";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddOrganization = () => {
   const [companyName, setCompanyName] = useState("");
@@ -17,9 +18,12 @@ const AddOrganization = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [comapnyId, setCompanyId] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState(false);
 
-  const [selectedLicenseBandOption, setSelectedLicenseBandOption] = useState("");
-  const [selectedLicenseTypeOption, setSelectedLicenseTypeOption] = useState("");
+  const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
+    useState("");
+  const [selectedLicenseTypeOption, setSelectedLicenseTypeOption] =
+    useState("");
   const [licenseTypeOptions, setLicenseTypeOptions] = useState([]);
   const [licenseBandOptions, setLicenseBandOptions] = useState([]);
 
@@ -53,6 +57,30 @@ const AddOrganization = () => {
         });
       });
   }, [instance, accounts]);
+
+  // react-toastify
+  const notifySuccess = () =>
+    toast.success("User created successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifyError = () =>
+    toast.error("Some error occurred", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   //Navigate back to the previous page
   const handleBackArrow = () => {};
@@ -120,7 +148,7 @@ const AddOrganization = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.id)
+          console.log(data.id);
           setCompanyId(data.id);
           fetch(CompanyLicenseUrl, {
             method: "POST",
@@ -140,12 +168,55 @@ const AddOrganization = () => {
           setLocation("");
           setStartDate("");
           setEndDate("");
-          setSelectedLicenseBandOption("")
-          setSelectedLicenseTypeOption("")
-          setMessage("User created successfully");
+          setSelectedLicenseBandOption("");
+          setSelectedLicenseTypeOption("");
+          notifySuccess("");
+          // setMessage("User created successfully");
         });
-    } catch (err) {
-      console.log(err);
+   
+    if (
+      companyName.length == 0 ||
+      emailAddress.length == 0 ||
+      location.length == 0 ||
+      phoneNumber.length == 0 ||
+      selectedLicenseTypeOption.length == 0 ||
+      startDate.length == 0 ||
+      selectedLicenseBandOption.length == 0 ||
+      endDate.length == 0
+    ) {
+      setError(true);
+    }
+    if (
+      companyName &&
+      emailAddress &&
+      location &&
+      phoneNumber &&
+      selectedLicenseTypeOption &&
+      startDate &&
+      selectedLicenseBandOption &&
+      endDate
+    ) {
+      console.log(
+        "Company Name: ",
+        companyName,
+        "\nEmail Address: ",
+        emailAddress, 
+        "\nLocation: ",
+        location,
+        "\nPhone Number: ",
+        phoneNumber,
+        // "\nLicense Name: "
+        // selectedLicenseTypeOption,
+        "\nStart Date: ",
+        startDate,
+        "\nBand Type: ",
+        selectedLicenseBandOption,
+        "\nExpiration Data: ",
+        endDate
+      );
+    }
+     } catch (err) {
+      notifyError.log(err);
     }
   };
 
@@ -166,6 +237,11 @@ const AddOrganization = () => {
                 value={companyName}
                 onChange={(event) => setCompanyName(event.target.value)}
               />
+              {error && companyName.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
             <div>
               <label htmlFor="email-address">Email Address:</label>
@@ -175,6 +251,11 @@ const AddOrganization = () => {
                 value={emailAddress}
                 onChange={(event) => setEmailAddress(event.target.value)}
               />
+              {error && emailAddress.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="section">
@@ -186,6 +267,11 @@ const AddOrganization = () => {
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
               />
+              {error && location.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
             <div>
               <label htmlFor="phone-number">Phone Number:</label>
@@ -195,6 +281,11 @@ const AddOrganization = () => {
                 value={phoneNumber}
                 onChange={(event) => setPhoneNumber(event.target.value)}
               />
+              {error && phoneNumber.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
@@ -211,6 +302,11 @@ const AddOrganization = () => {
                 value={selectedLicenseTypeOption}
                 onChange={setSelectedLicenseTypeOption}
               />
+              {error && selectedLicenseTypeOption.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
             <div>
               <label htmlFor="start-date">Start Date:</label>
@@ -221,6 +317,11 @@ const AddOrganization = () => {
                 onChange={(event) => setStartDate(event.target.value)}
                 ref={startDateInputRef}
               />
+              {error && startDate.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="section">
@@ -232,6 +333,11 @@ const AddOrganization = () => {
                 value={selectedLicenseBandOption}
                 onChange={setSelectedLicenseBandOption}
               />
+              {error && selectedLicenseBandOption.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
             <div>
               <label htmlFor="end-date">Expiration Date:</label>
@@ -242,6 +348,11 @@ const AddOrganization = () => {
                 onChange={(event) => setEndDate(event.target.value)}
                 ref={endDateInputRef}
               />
+              {error && endDate.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
@@ -249,8 +360,9 @@ const AddOrganization = () => {
           Submit
         </button>
 
-        <div className="message">{message ? <p>{message}</p> : null}</div>
+        {/* <div className="message">{message ? <p>{message}</p> : null}</div> */}
       </form>
+      <ToastContainer />
     </div>
   );
 };
