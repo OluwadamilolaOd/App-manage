@@ -7,6 +7,7 @@ import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
 import Button from "../../components/Button";
 import "./../../components/Styles/organization.css";
+import Pagination from "../../components/Pagination";
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
@@ -97,6 +98,7 @@ const OrganizationProfile = ({}) => {
           loading={loading}
         />
       </div>
+      <Pagination url={orgLicense} setcompleteData={setTableData} />
     </div>
   );
 };

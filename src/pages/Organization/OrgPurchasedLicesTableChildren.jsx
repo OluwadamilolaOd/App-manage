@@ -7,7 +7,7 @@ const OrgPurchasedLicesTableChildren = ({ obj }) => {
     setShowDropdown(!showDropdown);
   };
 
-  const date1 = new Date(obj.purchasedDate);
+const date1 = new Date();
 const date2 = new Date(obj.expirationDate);
 const diffTime = Math.abs(date2 - date1);
 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Banner from '../../components/Banner';
 import { baseUrl } from '../../Hook/baseurl';
 import OrgTableSheet from './OrgTableSheet';
+import Pagination from '../../components/Pagination';
 
 const Organizations = () => {
   const [data, setData] = useState([]);
@@ -38,6 +39,7 @@ const Organizations = () => {
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/>     
       <OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={data} loading={loading}/>
+      <Pagination url={url} setcompleteData={setData} />
     </div>
   )
 }
