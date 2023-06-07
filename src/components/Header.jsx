@@ -8,6 +8,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import Sidebar from "./Sidebar";
 import { sideLinks } from "../assets/data/sideLinks";
 import { Link } from "react-router-dom";
+import Buffer from 'buffer';
 
 const Header = () => {
   const { instance, accounts } = useMsal();
@@ -34,12 +35,14 @@ const Header = () => {
         loginRequest,
         account: accounts[0],
       })
-      .then((response) => {
-        callMsGraphImg(response.accessToken).then((response) => {
-          console.log(response.url);
-          // var img = response.url.blob();
-          // var imgUrl = URL.createObjectURL(img);
-          // setGraphImage(imgUrl)
+      .then(async (response) => {
+        callMsGraphImg(response.accessToken).then(async (r) => {
+          
+
+          const finalBuffer = await r.arrayBuffer()
+
+          const blob = new Blob([finalBuffer], { type: 'image/jpg'})
+          setGraphImage(URL.createObjectURL(blob))
         });
       });
   }, [instance, accounts]);
@@ -48,10 +51,10 @@ const Header = () => {
     <div className="header">
       <div className="header_menu">
         <div className="header_right">
-          {graphData ? <p>{graphData.givenName}</p> : <p>Loading...</p>}
+          {graphData ? <p>{graphData.givenName}</p> : <p>Loadpaing...</p>}
           <div className="profile">
-            <img src={graphImage} alt="profile"></img>
-          </div>
+            <img className="profileImg" src={graphImage} alt="profile" />
+          </div> 
           <div className="hamburger">
             <FaBars className="menu-icon"/>
           </div>
