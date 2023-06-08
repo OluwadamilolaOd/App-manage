@@ -37,11 +37,11 @@ const Header = () => {
       })
       .then(async (response) => {
         callMsGraphImg(response.accessToken).then(async (r) => {
-          
-
+          //get the final buffer of the image
           const finalBuffer = await r.arrayBuffer()
-
+          //pass the buffer to blob and added image type
           const blob = new Blob([finalBuffer], { type: 'image/jpg'})
+          //set the Object Url 
           setGraphImage(URL.createObjectURL(blob))
         });
       });
