@@ -1,58 +1,30 @@
-import React, { useState, useEffect } from "react";
 import "./Styles/tablesheet.css";
-import { Link } from "react-router-dom";
 import Loader from "../Loader";
-import Search from "../Search";
-import { SearchFunction } from "../../Hook/SearchFunction";
 import TableSheetChildren from "./TableSheetChildren";
 
-export default function TableSheet({ headers, url, navigateTo }) {
-  const [data, setData] = useState([]);
-  const [searchData, setSearchData] = useState("")
-  const [loading, setLoading] = useState(true);
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            let completeData = Object.values(data);
-            setData(completeData);
-            setLoading(!loading)
-          });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [url]);
-
+export default function TableSheet({ headers, data, loading }) {
   return (
     <>
-
-    <div className="tableData">
-  {loading? <Loader/> : 
-      <table>
-        <thead>
-          <tr>
-            {headers.map((header, id) => (
-              <th key={id}>{header}</th>
-            ))}
-          </tr>
-        </thead>
- <tbody>
-          {data.map((obj) => (
-
-            <TableSheetChildren obj={obj} key={obj.id}/>
-
-          ))}
-        </tbody>
-      </table>
-}
-    </div>
+      <div className="tableData">
+        {loading ? (
+          <Loader />
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                {headers.map((header, id) => (
+                  <th key={id}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((obj) => (
+                <TableSheetChildren obj={obj} key={obj.id} />
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </>
   );
 }

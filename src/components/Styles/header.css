@@ -29,6 +29,16 @@
   margin-left: 1.5rem;
 }
 
+.profileImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  object-fit: cover;
+  background-color: var(--text-color);
+}
+
 /* hamburger */
 .hamburger{
   display: flex;
@@ -62,5 +72,15 @@
   .profile {
     display: none;
   }
+}
+
+.footer {
+  bottom: 0;
+  left: 260px;
+  z-index: 999;
+  background: red;
+  height: 80px;
+  line-height: 80px;
+  position: sticky;
 }
 

@@ -8,6 +8,7 @@ import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
 import Button from "../../components/Button";
 import "./../../components/Styles/organization.css";
+import Pagination from "../../components/Pagination";
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
@@ -21,10 +22,11 @@ const OrganizationProfile = ({}) => {
   const headers = [
     "License Name",
     "Band Type",
-    "Maximum User",
+    "Max. User",
     "Part Number",
+    "Period",
     "Start Date",
-    "Expiration Date",
+    "Exp. Date",
     "Action",
   ];
   const handleBackArrow = () => {};
@@ -39,7 +41,6 @@ const OrganizationProfile = ({}) => {
 
         const data1 = await response1.json();
         const data2 = await response2.json();
-        console.log(data2);
         setTableData(data2);
         setLoading(!loading);
         await fetch(orgProfileUrl)
@@ -109,6 +110,7 @@ const OrganizationProfile = ({}) => {
           loading={loading}
         />
       </div>
+      <Pagination url={orgLicense} setcompleteData={setTableData} />
     </div>
   );
 };

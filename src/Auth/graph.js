@@ -23,9 +23,11 @@ export async function callMsGraph(accessToken) {
     const bearer = `Bearer ${accessToken}`;
  
     headers.append("Authorization", bearer);
+    headers.append('Content-Type','image/jpg',)
  
     const options = {
         method: "GET",
+        
         headers: headers
     };
  
