@@ -4,11 +4,7 @@ import { loginRequest } from "../Auth/authConfig";
 import { callMsGraph, callMsGraphImg } from "../Auth/graph";
 import "./Styles/header.css";
 import { FaBars } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
-import Sidebar from "./Sidebar";
-import { sideLinks } from "../assets/data/sideLinks";
-import { Link } from "react-router-dom";
-import Buffer from 'buffer';
+
 
 const Header = () => {
   const { instance, accounts } = useMsal();
