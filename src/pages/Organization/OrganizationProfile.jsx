@@ -6,9 +6,14 @@ import ArrowBack from "../../components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
-import Button from "../../components/Button";
 import "./../../components/Styles/organization.css";
 import Pagination from "../../components/Pagination";
+import {
+  MdOutlineEdit,
+  MdDeleteOutline,
+  MdAddCircleOutline,
+} from "react-icons/md";
+import Button from "../../components/Button"
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
@@ -29,7 +34,9 @@ const OrganizationProfile = ({}) => {
     "Exp. Date",
     "Action",
   ];
-  const handleBackArrow = () => {};
+  const handleBackArrow = () => {
+    navigate("/organizations")
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,8 +63,8 @@ const OrganizationProfile = ({}) => {
   }, [orgProfileUrl]);
 
   const handleEventClick = () => {
-    navigate("")
-  }
+    navigate("");
+  };
 
   return (
     <div>
@@ -68,9 +75,15 @@ const OrganizationProfile = ({}) => {
             <div>
               <h1 className="profileName">{data.organizationName}</h1>
             </div>
-            <div>
-              A B{/* <Button  btnClassname={"btnborder"} btntitle={"Edit"}/> */}
-              {/* <Button  btnClassname={"btnBorder"} btntitle={"Archive"}/> */}
+            <div className="profile-icon ">
+              <div className="profile-action">
+                <MdOutlineEdit />
+                <span>Edit</span>
+              </div>
+              <div className="profile-action color-red">
+                <MdDeleteOutline/>
+                <span>Archive</span>
+              </div>
             </div>
           </div>
           <div className="genInfo">
@@ -95,12 +108,14 @@ const OrganizationProfile = ({}) => {
             </div>
           </div>
           <div className="licInfo">
-            <div>
+            <div className="">
               <h3>Licensing Information</h3>
             </div>
-            <div>
-              <Button btnClassname={"btnblue"} btntitle={"Edit"} btnEventHandler={handleEventClick}/>
-            </div>
+            <Button className={"btnblue"} title={"Add New License"} btnEventHandler={handleEventClick}/>
+            {/* <div className="lic-btn">
+              <MdAddCircleOutline className="lic-icon"/>
+              <span>Add New License</span>
+            </div> */}
           </div>
         </div>
 

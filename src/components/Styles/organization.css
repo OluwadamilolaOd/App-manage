@@ -1,48 +1,97 @@
 .orgProfile {
-    padding: 10px 20px 10px 20px;
-    color: var(--blue-color);
-    position: sticky;
-    top: 6rem;
+  padding: 10px 20px 10px 20px;
+  color: var(--blue-color);
+  position: sticky;
+  top: 6rem;
 }
 .profileOrg {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .profileName {
-    font-size: 32px;    
+  font-size: 32px;
 }
-.genInfo h3{
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 1rem;
-    color: var( --black-color);
+.profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
 }
-.info{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 30%;
-    margin-top: 1rem;
-    color: var( --black-color);
+.profile-action {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.profile-icon span {
+  margin-left: 0.5rem;
+}
+.color-red {
+  color: var(--red-color);
+}
+.profile-action:hover {
+  font-size: 150%;
+}
+.genInfo h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: var(--black-color);
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+  margin-top: 1rem;
+  color: var(--black-color);
 }
 .datainfo {
-    display: flex;
-    align-items: center;    
+  display: flex;
+  align-items: center;
 }
 .text {
-    font-size: 16px;
-} 
+  font-size: 16px;
+}
 .textB {
-    font-size: 16px;
-    font-weight: bold;
-}  
+  font-size: 16px;
+  font-weight: bold;
+}
 .licInfo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var( --black-color);
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 2rem;
-} 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--black-color);
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+.lic-btn {
+  display: flex;
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.4s;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.lic-btn span {
+  margin-left: 0.5rem;
+}
+.lic-btn .lic-icon {
+  font-size: 25px;
+}
+.lic-btn:hover {
+  background-color: transparent;
+  border: 2px solid var(--blue-color);
+  color: var(--blue-color);
+  cursor: pointer;
+}
