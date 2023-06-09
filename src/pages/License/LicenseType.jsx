@@ -6,6 +6,7 @@ import TableAction from '../../components/Table/TableAction'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import Pagination from '../../components/Pagination'
+import Modal from '../../components/Modal/Modal'
 
 
 const LicenseType = () => {
@@ -15,6 +16,7 @@ const LicenseType = () => {
   const [data, setData] = useState();
   const [completeData, setcompleteData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false)
   const paramsValue = Object.values(userParams)
   const url = `${baseUrl}/licenseType/license/${paramsValue}`
   const headers = ["Band Type", "Maximum User", "Part Number","status", "Action"]
@@ -49,8 +51,9 @@ const LicenseType = () => {
   return (
     <div>
       <Banner title={` ${data? data.licenseName:""} License`} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add License Band"} btnEventHandler={handleEventClick}/>
-      <TableAction headers={headers} data={completeData} loading={loading}/>
+      <TableAction headers={headers} data={completeData} loading={loading} setOpenModal = {setOpenModal} />
       <Pagination url={url} setcompleteData={setcompleteData}/>
+      {openModal && <Modal />}
       <ToastContainer />
     </div>
   )

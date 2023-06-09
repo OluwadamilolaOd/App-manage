@@ -1,8 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Styles/tablesheet.css";
 
-const TableActionChildren = ({ obj }) => {
+
+
+
+const TableActionChildren = ({ obj, setOpenModal}) => {
   const [openOptions, setOpenOptions] = useState(false);
+  const navigate = useNavigate();
+  
+
+  const handleEdit = () => {
+    console.log(obj.id)
+    navigate(`license/EditLicese/${obj.id}`)
+  }
+
   return (
     <tr key={obj.id}>
       <td>{obj.licenseBand}</td>
@@ -14,10 +26,12 @@ const TableActionChildren = ({ obj }) => {
       </td>
       {openOptions && (
         <div className="action">
-          <div className="action-item">
+          <div className="action-item" onClick={handleEdit}>
             <p>Edit</p>
           </div>
-          <div className="action-item">
+          <div className="action-item" onClick={() => {
+                setOpenModal(true);
+              }}>
             <p>Archive</p>
           </div>
         </div>

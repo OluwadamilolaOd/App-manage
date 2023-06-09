@@ -13,6 +13,7 @@ import EmailOrganization from '../pages/Organization/EmailOrganization'
 import DowngradeLicense from '../pages/License/DowngradeLicense'
 import UpgradeLicense from '../pages/License/UpgradeLicense'
 import SuccessModal from '../components/Modal/SuccessModal'
+import EditLicense from '../pages/License/EditLicense'
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
         <Route path='home' element={<Home/>} />
         <Route path='license' element={<License/>} />
         <Route path='license/licenseType/:id' element = {<LicenseType/>}/>
+        <Route path='license/licenseType/:id/license/EditLicese/:id' element = {<EditLicense/>}/>
         <Route path='license/addNewLicense' element = {<AddLicense/>}/>
         <Route path='license/addLicenseBand' element = {<AddLicenseBand/>}/>
         <Route path='organizations' element= {<Organizations/>} />

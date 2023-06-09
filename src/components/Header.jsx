@@ -4,11 +4,7 @@ import { loginRequest } from "../Auth/authConfig";
 import { callMsGraph, callMsGraphImg } from "../Auth/graph";
 import "./Styles/header.css";
 import { FaBars } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
-import Sidebar from "./Sidebar";
-import { sideLinks } from "../assets/data/sideLinks";
-import { Link } from "react-router-dom";
-import Buffer from 'buffer';
+
 
 const Header = () => {
   const { instance, accounts } = useMsal();
@@ -37,11 +33,11 @@ const Header = () => {
       })
       .then(async (response) => {
         callMsGraphImg(response.accessToken).then(async (r) => {
-          
-
+          //get the final buffer of the image
           const finalBuffer = await r.arrayBuffer()
-
+          //pass the buffer to blob and added image type
           const blob = new Blob([finalBuffer], { type: 'image/jpg'})
+          //set the Object Url 
           setGraphImage(URL.createObjectURL(blob))
         });
       });
