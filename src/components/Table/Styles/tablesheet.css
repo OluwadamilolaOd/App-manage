@@ -2,8 +2,7 @@
   padding: 30px;
   background-color: var(--white-color);
   border-radius: 10px;
-  margin-top: 20px;
-  
+  margin-top: 20px;  
 }
 table {
   width: 100%;
@@ -14,12 +13,13 @@ table {
 th {
   border: none;
   padding: 10px 20px;
+  font-weight: bold;
 }
 thead th {
   text-align: center;
   color: var(--black-color);
 }
-td {
+td{
   border: none;
   padding: 20px;
 }
@@ -42,7 +42,8 @@ tbody tr:hover {
 
 .actionbtn {
   cursor: pointer;
-  font-size: 30px;
+  font-weight: 900;
+  /* font-size: 30px; */
   align-items: center;
 }
 

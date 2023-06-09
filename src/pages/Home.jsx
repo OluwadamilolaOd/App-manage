@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import Button from "../components/Button";
 
 const Home = () => {
-
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -12,12 +12,14 @@ const Home = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://unifiedlicenseapi.azurewebsites.net/api/LicenseType');
+      const response = await fetch(
+        "https://unifiedlicenseapi.azurewebsites.net/api/LicenseType"
+      );
       const jsonData = await response.json();
       setData(jsonData);
       setFilteredData(jsonData);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -39,12 +41,12 @@ const Home = () => {
         value={searchQuery}
         onChange={handleSearch}
       />
-      {filteredData.map((item, index) => (
+      {filteredData.map((item, index) =>
         // <p key={index}>{item}</p>
         console.log(item)
-      ))}
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

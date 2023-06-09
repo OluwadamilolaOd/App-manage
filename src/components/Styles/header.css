@@ -74,3 +74,13 @@
   }
 }
 
+.footer {
+  bottom: 0;
+  left: 260px;
+  z-index: 999;
+  background: red;
+  height: 80px;
+  line-height: 80px;
+  position: sticky;
+}
+

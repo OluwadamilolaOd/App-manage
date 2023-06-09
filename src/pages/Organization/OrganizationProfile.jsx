@@ -1,18 +1,25 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import TableAction from "../../components/Table/TableAction";
 import { organizationProfileData } from "../../assets/data/organizationProfileData";
 import ArrowBack from "../../components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
-import Button from "../../components/Button";
 import "./../../components/Styles/organization.css";
 import Pagination from "../../components/Pagination";
+import {
+  MdOutlineEdit,
+  MdDeleteOutline,
+  MdAddCircleOutline,
+} from "react-icons/md";
+import Button from "../../components/Button"
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
+  const navigate = useNavigate();
   const userParams = useParams();
   const paramsValue = Object.values(userParams);
   const orgProfileUrl = `${baseUrl}/Organizations/${paramsValue}`;
@@ -27,7 +34,9 @@ const OrganizationProfile = ({}) => {
     "Exp. Date",
     "Action",
   ];
-  const handleBackArrow = () => {};
+  const handleBackArrow = () => {
+    navigate("/organizations")
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +62,10 @@ const OrganizationProfile = ({}) => {
     fetchData();
   }, [orgProfileUrl]);
 
+  const handleEventClick = () => {
+    navigate("");
+  };
+
   return (
     <div>
       <ArrowBack handleBackArrow={handleBackArrow} />
@@ -62,33 +75,47 @@ const OrganizationProfile = ({}) => {
             <div>
               <h1 className="profileName">{data.organizationName}</h1>
             </div>
-            <div>
-              A B
-              <Button  btnClassname={"btnborder"} btntitle={"Edit"}/>
-              {/* <Button  btnClassname={"btnBorder"} btntitle={"Archive"}/> */}
+            <div className="profile-icon ">
+              <div className="profile-action">
+                <MdOutlineEdit />
+                <span>Edit</span>
+              </div>
+              <div className="profile-action color-red">
+                <MdDeleteOutline/>
+                <span>Archive</span>
+              </div>
             </div>
           </div>
           <div className="genInfo">
             <h3>General Information</h3>
+            <div className="info">
+              <div className="dataInfo">
+                <div>
+                  <p className="text">Email Address</p>
+                </div>
+                <div>
+                  <p className="textB">{data.email}</p>
+                </div>
+              </div>
+              <div className="dataInfo">
+                <div>
+                  <p className="text">location</p>
+                </div>
+                <div>
+                  <p className="textB">{data.address}</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="info">
-            <div className="dataInfo">
-              <div>
-                <p className="text">Email Address</p>
-              </div>
-              <div>
-                <p className="textB">{data.email}</p>
-              </div>
+          <div className="licInfo">
+            <div className="">
+              <h3>Licensing Information</h3>
             </div>
-            <div className="dataInfo">
-              <div>
-                <p className="text">location</p>
-              </div>
-              <div>
-                <p className="textB">{data.address}</p>
-              </div>
-            </div>
-   
+            <Button className={"btnblue"} title={"Add New License"} btnEventHandler={handleEventClick}/>
+            {/* <div className="lic-btn">
+              <MdAddCircleOutline className="lic-icon"/>
+              <span>Add New License</span>
+            </div> */}
           </div>
         </div>
 
