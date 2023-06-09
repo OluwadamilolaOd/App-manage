@@ -63,15 +63,16 @@
     left: 0;
     background-color: rgb(87, 87, 135);
   }
-  .header_menu {
+  
+  /* .header_menu {
     display: none;
-  }
-   .header_right p {
+  } */
+   /* .header_right p {
     display: none;
   }
   .profile {
     display: none;
-  }
+  } */
 }
 
 .footer {
