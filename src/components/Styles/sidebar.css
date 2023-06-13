@@ -7,10 +7,17 @@
   z-index: 999;
   background-color: var(--white-color);
 }
-.logo {
+.nav-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 70px;
+  height: 80px;
   line-height: 70px;
+}
+.logo {
+    font-size: 25px;
+    font-weight: bold;
 }
 .sidebar_content {
   display: flex;
@@ -83,6 +90,9 @@
   margin-right: 0.5rem;
   margin-left: 2rem;
 }
+
+
+
 
 @media screen and (max-width: 1200px) {
   .sidebar{

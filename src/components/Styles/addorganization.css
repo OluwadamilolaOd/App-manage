@@ -1,6 +1,6 @@
 .form_container {
     background-color: var(--white-color);
-    margin-top: 2rem;
+    /* margin-top: 1rem; */
     padding: 2rem;
     align-items: center;
     border-radius: 5px;
@@ -10,4 +10,21 @@
     color: var(--blue-color);
     margin-top: 1rem;
     margin-bottom: 1rem;
+    font-weight: bold;
 }
+.section-form {
+    margin-bottom: 0.5rem;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+}
+.formContainer {
+    background-color: var(--white-color);
+    margin-top: 5rem;
+    padding: 3rem;
+    align-items: center;
+    border-radius: 5px;
+}
+
+

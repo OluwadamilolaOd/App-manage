@@ -14,6 +14,7 @@ import DowngradeLicense from '../pages/License/DowngradeLicense'
 import UpgradeLicense from '../pages/License/UpgradeLicense'
 import SuccessModal from '../components/Modal/SuccessModal'
 import EditLicense from '../pages/License/EditLicense'
+import OrgLicense from '../pages/Organization/OrgLicense'
 
 const Router = () => {
   return (
@@ -35,6 +36,7 @@ const Router = () => {
         <Route path='downgradelicense' element = {<DowngradeLicense/>}/>
         <Route path='Upgradelicense' element = {<UpgradeLicense/>}/>
         <Route path='license/successmodal' element = {<SuccessModal/>}/>
+        <Route path='addorganizationLicense' element = {<OrgLicense/>}/>
       </Routes>
   )
 }

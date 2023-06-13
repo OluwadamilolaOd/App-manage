@@ -4,7 +4,7 @@ import { loginRequest } from "../Auth/authConfig";
 import { callMsGraph, callMsGraphImg } from "../Auth/graph";
 import "./Styles/header.css";
 import { FaBars } from "react-icons/fa";
-
+import Sidebar from "./Sidebar";
 
 const Header = () => {
   const { instance, accounts } = useMsal();
@@ -34,11 +34,11 @@ const Header = () => {
       .then(async (response) => {
         callMsGraphImg(response.accessToken).then(async (r) => {
           //get the final buffer of the image
-          const finalBuffer = await r.arrayBuffer()
+          const finalBuffer = await r.arrayBuffer();
           //pass the buffer to blob and added image type
-          const blob = new Blob([finalBuffer], { type: 'image/jpg'})
-          //set the Object Url 
-          setGraphImage(URL.createObjectURL(blob))
+          const blob = new Blob([finalBuffer], { type: "image/jpg" });
+          //set the Object Url
+          setGraphImage(URL.createObjectURL(blob));
         });
       });
   }, [instance, accounts]);
@@ -46,13 +46,14 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header_menu">
+        <div className="hamburger">
+          <FaBars className="menu-icon" />
+        </div>
+        {/* <Sidebar className="nav-sidebar"/> */}
         <div className="header_right">
           {graphData ? <p>{graphData.givenName}</p> : <p>Loadpaing...</p>}
           <div className="profile">
             <img className="profileImg" src={graphImage} alt="profile" />
-          </div> 
-          <div className="hamburger">
-            <FaBars className="menu-icon"/>
           </div>
         </div>
       </div>
