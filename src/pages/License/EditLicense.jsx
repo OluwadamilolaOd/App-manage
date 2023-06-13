@@ -1,38 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom'
 import Select from "react-select";
 import Banner from '../../components/Banner';
+import { baseUrl } from '../../Hook/baseurl';
+import { callMsGraph } from '../../Auth/graph';
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from '../../Auth/authConfig';
 
-const EditLicense = ({ itemId, initialContent }) => {
-    const [content, setContent] = useState(initialContent);
-    const [name, setName] = useState("");
-    const [maximumUser, setMaximumUser] = useState("");
-    const [partNumber, setPartNumber] = useState("");
-    const [bandType, setBandType] = useState("");
-    const [selectedOption, setSelectedOption] = useState("");
-    const [description, setDescription] = useState("");
+const EditLicense = () => {
+
+  const location = useLocation();
+  const data = location.state.data;
+    const [maximumUser, setMaximumUser] = useState(data.maximumUser);
+    const [partNumber, setPartNumber] = useState(data.partNumber);
+    const [bandType, setBandType] = useState(data.licenseBand);
+    const [selectedOption, setSelectedOption] = useState(null);
     const [error, setError] = useState(false);
 
+    const userParams = useParams();
+    const paramsValue = Object.values(userParams)
+    const url = `${baseUrl}/licenseType/${paramsValue}`
+    var recurring;
 
+      //fetch current user from Azure
+  const { instance, accounts } = useMsal();
+  const [graphData, setGraphData] = useState(null);
 
     const options = [
         { value: "newLicenseType", label: "New License Type" },
         { value: "recurringLicenseType", label: "Recurring License Type" },
       ];
-    
-    
-      const handleContentChange = (event) => {
-        setContent(event.target.value);
-      };
-    
-      const handleSubmit = async (event) => {
+
+
+      console.log(data)
+
+      useEffect(() => {
+        instance
+          .acquireTokenSilent({
+            loginRequest,
+            account: accounts[0],
+          })
+          .then((response) => {
+            callMsGraph(response.accessToken).then((response) => {
+              setGraphData(response);
+            });
+          });
+      }, [instance, accounts]);
+
+
+      const handleSubmitLicenseBand = async (event) => {
         event.preventDefault();
+        if(selectedOption.value === "newLicenseType" ) {
+          recurring = ""
+       }
+       else {
+         recurring = "Recurring License Type"
+       } 
         try {
-          const response = await fetch(`/api/items/${itemId}`, {
+          const response = await fetch(url, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ content }),
+            body: JSON.stringify({
+              licenseBand: bandType,
+              partNumber: partNumber,
+              maximumUser: maximumUser,
+              CreatedBy: graphData.mail,
+              description: data.description,
+              recurringLicenseType: recurring,
+            }),
           });
           
         } catch (error) {
@@ -41,7 +78,6 @@ const EditLicense = ({ itemId, initialContent }) => {
         }
       };
 
-      const handleSubmitLicenseBand = () => console.log("helloooo")
 
         return (
             <div><Banner
@@ -76,20 +112,6 @@ const EditLicense = ({ itemId, initialContent }) => {
                     ""
                   )}
                 </div>
-                <div className="input">
-                  <label htmlFor="band type">Maximum User:</label>
-                  <input
-                    type="number"
-                    id="maximumUser"
-                    value={maximumUser}
-                    onChange={(event) => setMaximumUser(event.target.value)}
-                  />
-                  {error && maximumUser.length <= 0 ? (
-                    <label className="error">This field is required.</label>
-                  ) : (
-                    ""
-                  )}
-                </div>
               </div>
               <div className="section">
                 <div className="input">
@@ -106,17 +128,16 @@ const EditLicense = ({ itemId, initialContent }) => {
                     ""
                   )}
                 </div>
-  
+
                 <div className="input">
-                  <label htmlFor="location">description:</label>
-                  <textarea
-                    className="textareaSize"
-                    type="text"
-                    id="description"
-                    value={description}
-                    onChange={(event) => setDescription(event.target.value)}
+                  <label htmlFor="band type">Maximum User:</label>
+                  <input
+                    type="number"
+                    id="maximumUser"
+                    value={maximumUser}
+                    onChange={(event) => setMaximumUser(event.target.value)}
                   />
-                  {error && description.length <= 0 ? (
+                  {error && maximumUser.length <= 0 ? (
                     <label className="error">This field is required.</label>
                   ) : (
                     ""

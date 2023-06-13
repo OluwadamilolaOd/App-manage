@@ -24,9 +24,10 @@ const MainContent = () => {
           {openModal && (
             <Modal
               setOpenModal={setOpenModal}
+              header={"Log Out"}
               image={logoutImg}
               btnAction={"Log out"}
-              title={<h3>Logout</h3>}
+              title={<h3>Log out</h3>}
               description={"Are you sure you want to Log out?"}
               handleOnclickEvent={handleLogout}
             />

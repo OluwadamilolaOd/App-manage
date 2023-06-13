@@ -3,7 +3,7 @@ import "./Styles/tablesheet.css";
 import Loader from "../Loader";
 import TableActionChildren from "./TableActionChildren";
 
-export default function TableAction({ headers,loading, data, setOpenModal}) {
+export default function TableAction({ headers,loading, data, deleteItem}) {
 
   return (
     <>
@@ -21,7 +21,7 @@ export default function TableAction({ headers,loading, data, setOpenModal}) {
             </thead>
             <tbody>
               {data.map((obj) => (
-                <TableActionChildren key={obj.id} obj={obj} setOpenModal = {setOpenModal} />
+                <TableActionChildren key={obj.id} obj={obj} deleteItem = {deleteItem}/>
               ))}
             </tbody>
           </table>

@@ -6,9 +6,9 @@
   cursor: pointer;
   margin-top: 1rem;
   padding: 10px;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0.5;
-  width: 80%;
+  /* width: 80%; */
 }
 
 /* Pagination link styles */
