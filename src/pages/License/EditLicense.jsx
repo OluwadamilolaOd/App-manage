@@ -3,45 +3,73 @@ import { useLocation, useParams } from 'react-router-dom'
 import Select from "react-select";
 import Banner from '../../components/Banner';
 import { baseUrl } from '../../Hook/baseurl';
+import { callMsGraph } from '../../Auth/graph';
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from '../../Auth/authConfig';
 
-const EditLicense = ({ itemId }) => {
+const EditLicense = () => {
 
   const location = useLocation();
   const data = location.state.data;
     const [maximumUser, setMaximumUser] = useState(data.maximumUser);
     const [partNumber, setPartNumber] = useState(data.partNumber);
     const [bandType, setBandType] = useState(data.licenseBand);
-    const [selectedOption, setSelectedOption] = useState("");
+    const [selectedOption, setSelectedOption] = useState(null);
     const [error, setError] = useState(false);
 
     const userParams = useParams();
-
-    console.log(userParams)
     const paramsValue = Object.values(userParams)
-    console.log(paramsValue)
+    const url = `${baseUrl}/licenseType/${paramsValue}`
+    var recurring;
 
-
+      //fetch current user from Azure
+  const { instance, accounts } = useMsal();
+  const [graphData, setGraphData] = useState(null);
 
     const options = [
         { value: "newLicenseType", label: "New License Type" },
         { value: "recurringLicenseType", label: "Recurring License Type" },
       ];
 
-      const url = `${baseUrl}/licenseType/${paramsValue}`
-      console.log(url)
 
-  
-    
       console.log(data)
+
+      useEffect(() => {
+        instance
+          .acquireTokenSilent({
+            loginRequest,
+            account: accounts[0],
+          })
+          .then((response) => {
+            callMsGraph(response.accessToken).then((response) => {
+              setGraphData(response);
+            });
+          });
+      }, [instance, accounts]);
+
+
       const handleSubmitLicenseBand = async (event) => {
         event.preventDefault();
+        if(selectedOption.value === "newLicenseType" ) {
+          recurring = ""
+       }
+       else {
+         recurring = "Recurring License Type"
+       } 
         try {
-          const response = await fetch(`/api/items/${itemId}`, {
+          const response = await fetch(url, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(),
+            body: JSON.stringify({
+              licenseBand: bandType,
+              partNumber: partNumber,
+              maximumUser: maximumUser,
+              CreatedBy: graphData.mail,
+              description: data.description,
+              recurringLicenseType: recurring,
+            }),
           });
           
         } catch (error) {
