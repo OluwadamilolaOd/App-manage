@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { baseUrl } from "../../Hook/baseurl";
 import { useNavigate } from "react-router-dom";
 import "./Styles/tablesheet.css";
 import Modal from "../Modal/Modal";
 import archiveIcon from '../../assets/images/archive_red.png'
+import EditLicense from "../../pages/License/EditLicense";
 
 
 
@@ -11,12 +12,16 @@ import archiveIcon from '../../assets/images/archive_red.png'
 const TableActionChildren = ({ obj, deleteItem}) => {
   const [openOptions, setOpenOptions] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [data, setData] = useState([]);
+  const url = `${baseUrl}/licenseType/${obj.id}`
   const navigate = useNavigate();
   
 
   const handleEdit = () => {
     console.log(obj.id)
-    navigate(`license/EditLicese/${obj.id}`)
+    navigate(`license/EditLicese/${obj.id}`,{state:{data:data}})
+    return 
+    <EditLicense mainData={data} />
   }
 
  const handleArchive = () => {
@@ -24,6 +29,20 @@ const TableActionChildren = ({ obj, deleteItem}) => {
   setOpenModal(false)
 };
 
+useEffect(()=> {
+  const fetchData = async () => {
+    try {
+      await fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  fetchData();
+},[])
  
 
   return (
