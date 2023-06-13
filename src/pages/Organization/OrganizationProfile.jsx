@@ -11,7 +11,6 @@ import Pagination from "../../components/Pagination";
 import {
   MdOutlineEdit,
   MdDeleteOutline,
-  MdAddCircleOutline,
 } from "react-icons/md";
 import Button from "../../components/Button"
 
@@ -63,7 +62,7 @@ const OrganizationProfile = ({}) => {
   }, [orgProfileUrl]);
 
   const handleEventClick = () => {
-    navigate("");
+    navigate("/addorganizationLicense");
   };
 
   return (

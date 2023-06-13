@@ -44,34 +44,48 @@
   display: flex;
   align-items: center;
   display: none;
+  cursor: pointer;
 }
 .menu-icon {
   font-size: 3rem;
+  font-weight: bolder;
   color: var(--blue-color);
   background-color: none;
 }
 
+
 @media screen and (max-width: 1200px) {
   .header{
     left: 100px;
-    background-color: rgb(197, 245, 120);
   }
 }
 
 @media screen and (max-width: 768px) {
   .header{
     left: 0;
-    background-color: rgb(87, 87, 135);
   }
-  
-  /* .header_menu {
-    display: none;
-  } */
-   /* .header_right p {
-    display: none;
+  .header_menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  .profile {
-    display: none;
+  .hamburger {
+    display: block;
+    align-items: center;
+    padding-top: 1rem;
+  }
+  .header_right {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+  .menu-icon:hover {
+    color: red;
+  }
+
+ 
+  /* .hamburger:hover + .nav-sidebar {
+    display: block;
   } */
 }
 
