@@ -6,7 +6,7 @@ import TableAction from '../../components/Table/TableAction'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import Pagination from '../../components/Pagination'
-import Modal from '../../components/Modal/Modal'
+
 
 
 const LicenseType = () => {
