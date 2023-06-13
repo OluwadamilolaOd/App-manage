@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
+import CardList from "../components/Report/CardList";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -34,17 +35,7 @@ const Home = () => {
   };
   return (
     <div>
-      <h1>Data from API:</h1>
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchQuery}
-        onChange={handleSearch}
-      />
-      {filteredData.map((item, index) =>
-        // <p key={index}>{item}</p>
-        console.log(item)
-      )}
+      <CardList />
     </div>
   );
 };

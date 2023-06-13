@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { baseUrl } from "../../Hook/baseurl";
 import { useNavigate } from "react-router-dom";
 import "./Styles/tablesheet.css";
+import Modal from "../Modal/Modal";
+import archiveIcon from '../../assets/images/archive_red.png'
 
 
 
 
-const TableActionChildren = ({ obj, setOpenModal}) => {
+const TableActionChildren = ({ obj, deleteItem}) => {
   const [openOptions, setOpenOptions] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   
 
@@ -15,7 +19,15 @@ const TableActionChildren = ({ obj, setOpenModal}) => {
     navigate(`license/EditLicese/${obj.id}`)
   }
 
+ const handleArchive = () => {
+  deleteItem(obj.id)
+  setOpenModal(false)
+};
+
+ 
+
   return (
+    <>
     <tr key={obj.id}>
       <td>{obj.licenseBand}</td>
       <td>{obj.maximumUser}</td>
@@ -37,6 +49,16 @@ const TableActionChildren = ({ obj, setOpenModal}) => {
         </div>
       )}
     </tr>
+    {openModal && <Modal 
+                    setOpenModal={setOpenModal}
+                    header={"Archive License"}
+                    image={archiveIcon}
+                    btnAction={"Archive"}
+                    title= {obj.licenseBand}
+                    description={"Are you sure you want to archive?"}
+                    handleOnclickEvent={handleArchive}
+      />}
+    </>
   );
 };
 
