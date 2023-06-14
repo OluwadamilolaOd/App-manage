@@ -19,7 +19,7 @@ const EditOrganization = () => {
         btntitle={"Edit Button"}
       />
 
-      <form className="formcontainer">
+      <form className="formContainer">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="forminput">
           <div className="section">

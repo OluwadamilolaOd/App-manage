@@ -15,7 +15,9 @@
 .section-form {
     margin-bottom: 0.5rem;
 }
-
+.emailForm {
+    margin-top: 0rem;
+}
 .form-section {
     margin-bottom: 2rem;
 }
@@ -25,6 +27,23 @@
     padding: 3rem;
     align-items: center;
     border-radius: 5px;
+}
+.emailContainer {
+    margin-top: 2rem;
+}
+.attachFiles {
+    display: flex;
+    color: var(--blue-color);
+    align-items: center;
+    font-size: 18px;
+
+}
+.attach-icon {
+    font-size: 25px;
+    font-weight: bold;
+}
+.attachFiles:hover {
+    color: red;
 }
 
 
