@@ -43,10 +43,10 @@ const UpgradeLicense = () => {
         btnClassname={"btnwhite"}
         btntitle={"Edit Button"}
       />
-      <form className="form_container">
+      <form className="container_form">
         <ArrowBack handleBackArrow={handleBackArrow} />
-        <div className="title-head">
-          <h2>Organization Name</h2>
+        <div>
+          <h1 className="profileName">Organization Name</h1>
         </div>
         <div className="title-head">
           <h4>Current License Information</h4>
@@ -54,40 +54,44 @@ const UpgradeLicense = () => {
         <div className="form_input">
           <div>
             <label htmlFor="company-name">License Name:</label>
-            <input
+            {/* <input
               type="text"
               id="company-name"
               value={companyName}
               onChange={(event) => setCompanyName(event.target.value)}
-            />
+            /> */}
+            <div className="label_input">License Name</div>
           </div>
           <div>
             <label htmlFor="email-address">Band Type:</label>
-            <input
+            {/* <input
               type="email"
               id="email-address"
               value={emailAddress}
               onChange={(event) => setEmailAddress(event.target.value)}
-            />
+            /> */}
+            <div className="label_input">Band Type</div>
           </div>
 
           <div>
             <label htmlFor="location">Start Date:</label>
-            <input
+            {/* <input
               type="text"
               id="location"
               value={location}
               onChange={(event) => setLocation(event.target.value)}
-            />
+            /> */}
+            <div className="label_input">Start Date</div>
           </div>
           <div>
             <label htmlFor="phone-number">Expiration Date:</label>
-            <input
+            {/* <input
               type="tel"
               id="phone-number"
               value={phoneNumber}
               onChange={(event) => setPhoneNumber(event.target.value)}
-            />
+            /> */}
+            <div className="label_input">Expiration Date</div>
           </div>
         </div>
         <div className="title-head">
@@ -96,12 +100,13 @@ const UpgradeLicense = () => {
         <div className="form_input">
           <div>
             <label htmlFor="company-name">License Name:</label>
-            <input
+            {/* <input
               type="text"
               id="company-name"
               value={companyName}
               onChange={(event) => setCompanyName(event.target.value)}
-            />
+            /> */}
+            <div className="label_input">License Name</div>
           </div>
           <div>
             <label htmlFor="email-address">Start Date:</label>
