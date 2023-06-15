@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import TableAction from "../../components/Table/TableAction";
-import { organizationProfileData } from "../../assets/data/organizationProfileData";
 import ArrowBack from "../../components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
@@ -62,6 +60,28 @@ const OrganizationProfile = ({}) => {
     fetchData();
   }, [orgProfileUrl]);
 
+
+  //Delete License Type
+
+  const deleteItem = (itemId) => {
+    fetch(`${baseUrl}/purchasedlicense/${itemId}`, {
+      method: 'DELETE',
+    })
+    .then(response => {
+      if (response.ok) {
+        // Update the state by removing the deleted item
+        setTableData(tableData.filter(item => item.id !== itemId));
+      } else {
+        // Handle error if the item deletion was unsuccessful
+        console.error('Error deleting item');
+      }
+    })
+    .catch(error => {
+      // Handle network or other errors
+      console.error('Error:', error);
+    });
+  };
+
   const handleEventClick = () => {
     navigate("/addorganizationLicense", {state:{data:data}});
   };
@@ -119,6 +139,7 @@ const OrganizationProfile = ({}) => {
           data={tableData}
           headers={headers}
           loading={loading}
+          deleteItem = {deleteItem}
         />
       </div>
       <Pagination url={orgLicense} setcompleteData={setTableData} />

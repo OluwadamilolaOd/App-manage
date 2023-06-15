@@ -2,7 +2,7 @@ import {useState} from "react";
 import Loader from "../../components/Loader";
 import OrgPurchasedLicesTableChildren from "./OrgPurchasedLicesTableChildren";
 
-const OrgPurchasedLicsTableSheet = ({ data, headers, loading }) => {
+const OrgPurchasedLicsTableSheet = ({ data, headers, loading, deleteItem }) => {
 
   return (
     <div className="tableData">
@@ -19,7 +19,7 @@ const OrgPurchasedLicsTableSheet = ({ data, headers, loading }) => {
           </thead>
           <tbody>
             {data.map((obj) => (
-              <OrgPurchasedLicesTableChildren             
+              <OrgPurchasedLicesTableChildren deleteItem = {deleteItem}            
               key={obj.id}
               obj={obj} />
             ))}
