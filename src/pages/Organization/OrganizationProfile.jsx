@@ -47,6 +47,7 @@ const OrganizationProfile = ({}) => {
 
         const data1 = await response1.json();
         const data2 = await response2.json();
+        console.log(data1)
         setTableData(data2);
         setLoading(!loading);
         await fetch(orgProfileUrl)
@@ -62,7 +63,7 @@ const OrganizationProfile = ({}) => {
   }, [orgProfileUrl]);
 
   const handleEventClick = () => {
-    navigate("/addorganizationLicense");
+    navigate("/addorganizationLicense", {state:{data:data}});
   };
 
   return (
@@ -111,10 +112,6 @@ const OrganizationProfile = ({}) => {
               <h3>Licensing Information</h3>
             </div>
             <Button className={"btnblue"} title={"Add New License"} btnEventHandler={handleEventClick}/>
-            {/* <div className="lic-btn">
-              <MdAddCircleOutline className="lic-icon"/>
-              <span>Add New License</span>
-            </div> */}
           </div>
         </div>
 

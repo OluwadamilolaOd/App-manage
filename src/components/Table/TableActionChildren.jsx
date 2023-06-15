@@ -19,9 +19,8 @@ const TableActionChildren = ({ obj, deleteItem}) => {
 
   const handleEdit = () => {
     console.log(obj.id)
-    navigate(`license/EditLicese/${obj.id}`,{state:{data:data}})
+    navigate(`license/EditLicese/${obj.id}`,{state:{data:obj}})
     return 
-    <EditLicense mainData={data} />
   }
 
  const handleArchive = () => {

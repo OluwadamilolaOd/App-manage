@@ -1,18 +1,28 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const OrgPurchasedLicesTableChildren = ({ obj }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const handleDropdownToggle = () => {
     setShowDropdown(!showDropdown);
   };
 
+  //All Event handlers
+
+  const handleUpgrade = () => {
+    console.log("You about to get upgraded")
+    const data = obj
+    console.log(data)
+     navigate(`upgradelicense/${obj.id}`,{state:{data:data}})
+  }
+
 const date1 = new Date();
 const date2 = new Date(obj.expirationDate);
 const diffTime = Math.abs(date2 - date1);
-const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-console.log(diffTime + " milliseconds");
-console.log(diffDays + " days");
+const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   return (
     <>
@@ -33,7 +43,7 @@ console.log(diffDays + " days");
             <div className="action-item">
               <p>Renew</p>
             </div>
-            <div className="action-item">
+            <div className="action-item" onClick = {handleUpgrade}>
               <p>Upgrade</p>
             </div>
             <div className="action-item">
