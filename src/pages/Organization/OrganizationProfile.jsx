@@ -6,7 +6,7 @@ import ArrowBack from "../../components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
-import "./../../components/Styles/organization.css";
+import "./../../pages/Styles/organization.css";
 import Pagination from "../../components/Pagination";
 import {
   MdOutlineEdit,
