@@ -22,6 +22,10 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
      navigate(`upgradelicense/${obj.id}`,{state:{data:data}})
   }
 
+  const handleRenewal = () => {
+    navigate(`upgradelicense/${obj.id}`,{state:{data:obj}})
+  }
+
   const handleArchive = () => {
     deleteItem(obj.id)
     setOpenModal(false)
@@ -49,7 +53,7 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         </td>
         {showDropdown && (
           <div className="action">
-            <div className="action-item">
+            <div className="action-item" onClick={handleRenewal}>
               <p>Renew</p>
             </div>
             <div className="action-item" onClick = {handleUpgrade}>
