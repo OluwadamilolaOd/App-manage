@@ -4,7 +4,7 @@ import Banner from "../../components/Banner";
 import ArrowBack from "../../components/ArrowBack";
 import Select from "react-select";
 import { generateProductKey } from "../../components/GenKey";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { baseUrl } from "../../Hook/baseurl";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../Auth/authConfig";
@@ -25,6 +25,8 @@ const OrgLicense = () => {
   const startDateInputRef = useRef(null);
   const endDateInputRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const data = location.state.data;
 
   //URLS
 
@@ -131,25 +133,14 @@ const OrgLicense = () => {
     e.preventDefault();
     const productKey = generateProductKey(keyLength);
     try {
-      await fetch(CompanyDetailsUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          CreatedBy: graphData.mail,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.id);
-          setCompanyId(data.id);
-          let companyId = data.id;
-          fetch(CompanyLicenseUrl, {
+
+        await  fetch(CompanyLicenseUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               purchasedDate: startDate,
               expirationDate: endDate,
-              organizationId: companyId,
+               organizationId: data.id,
               licenseTypeId: selectedLicenseBandOption.id,
               licenseKey: productKey,
               CreatedBy: graphData.mail,
@@ -161,7 +152,6 @@ const OrgLicense = () => {
           setSelectedLicenseTypeOption("");
           notifySuccess("");
           // setMessage("User created successfully");
-        });
 
       if (
         selectedLicenseTypeOption.length == 0 ||

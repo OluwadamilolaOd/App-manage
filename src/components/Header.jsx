@@ -51,7 +51,7 @@ const Header = () => {
         </div>
         {/* <Sidebar className="nav-sidebar"/> */}
         <div className="header_right">
-          {graphData ? <p>{graphData.givenName}</p> : <p>Loadpaing...</p>}
+          {graphData ? <p>{graphData.givenName}</p> : <p>Loading...</p>}
           <div className="profile">
             <img className="profileImg" src={graphImage} alt="profile" />
           </div>
