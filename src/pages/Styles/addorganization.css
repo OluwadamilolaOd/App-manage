@@ -1,0 +1,53 @@
+.form_container {
+    background-color: var(--white-color);
+    /* margin-top: 1rem; */
+    padding: 2rem;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.title-head {
+    color: var(--blue-color);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+.section-form {
+    margin-bottom: 0.5rem;
+}
+.emailForm {
+    margin-top: 0rem;
+}
+.form-section {
+    margin-bottom: 2rem;
+}
+.formContainer {
+    background-color: var(--white-color);
+    margin-top: 5rem;
+    padding: 3rem;
+    align-items: center;
+    border-radius: 5px;
+}
+.emailContainer {
+    margin-top: 2rem;
+}
+.attachFiles {
+    display: flex;
+    color: var(--blue-color);
+    align-items: center;
+    font-size: 18px;
+
+}
+.attach-icon {
+    font-size: 25px;
+    font-weight: bold;
+}
+.attachFiles:hover {
+    color: red;
+}
+.textArea {
+    height: 120px;
+    resize: none;
+}
+
+

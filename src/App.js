@@ -1,25 +1,50 @@
-import './App.css';
-import {Routes, Route} from 'react-router-dom'
-import Dashboard from './Components/Dashboard/Dashboard';
-import Home from './Pages/Home/Home'
-import User from './Pages/User/User'
-import Organizations from './Pages/Organization/Organization'
-import LandingPage from './Pages/LandingPage/LandingPage';
+import { useState } from "react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal} from '@azure/msal-react';
+import "./App.css";
+import Layout from "./components/Layout";
+import Modal from "./components/Modal/Modal";
+import logoutImg from "./assets/images/logout_red.png";
+import LandingPage from "./pages/LandingPage";
 
+const MainContent = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const { instance } = useMsal();
 
-function App() {
+  const handleLogout = () => {
+    instance.logoutPopup({
+      account: instance.getActiveAccount(),
+      mainWindowRedirectUri: '/', // redirects the top level app after logout
+  });
+  }
   return (
     <div className="App">
-      {/* <LandingPage /> */}
-      <Dashboard >
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/user' element={<User />} />
-          <Route path='/organization' element={<Organizations />} />
-        </Routes>
-        </Dashboard>
+      <AuthenticatedTemplate>
+        <div className="full_page">
+          <Layout setOpenModal={setOpenModal} />
+          {openModal && (
+            <Modal
+              setOpenModal={setOpenModal}
+              header={"Log Out"}
+              image={logoutImg}
+              btnAction={"Log out"}
+              title={<h3>Log out</h3>}
+              description={"Are you sure you want to Log out?"}
+              handleOnclickEvent={handleLogout}
+            />
+          )}
+        </div>
+      </AuthenticatedTemplate>
+
+      <UnauthenticatedTemplate>
+        <LandingPage />
+      </UnauthenticatedTemplate>
     </div>
   );
+};
+
+function App() {
+
+  return <MainContent />;
 }
 
 export default App;

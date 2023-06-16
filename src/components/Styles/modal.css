@@ -1,0 +1,138 @@
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+
+.modal, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 55555;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+}
+.modal-content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  /* padding: 14px 28px; */
+  border-radius: 8px;
+  max-width: 600px;
+  min-width: 300px;
+  height: 60%;
+  width: 25%;
+  z-index: 777777;
+}
+
+.modalwrapper {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalwrapper h4 {
+  padding-top: 15px;
+  font-size: x-large;
+}
+
+.modalTitle{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: var(--red-color);
+  padding: 1rem;
+  border-radius: 8px 8px 0 0 ;
+  align-items: center;
+  color: var(--white-color);
+}
+
+.modalImg {
+  width: 90px;
+  height: 90px;
+}
+
+.successModalBtn {
+  width: 100%;
+  height: 15%;
+  background-color: var(--green-color);
+  border-radius: 8px;
+}
+
+.successModalBtn button {
+  width: 100%;
+  height: 100%;
+  background-color: var(--green-color);
+  border-radius: 0 0 8px 8px;
+  border: none;
+  color: var(--white-color);
+  font-size: 15px;
+}
+
+.modalbtnwrapper {
+  display: flex;
+  padding-bottom: 2rem;
+}
+
+.modalButton {
+  padding: 2rem;
+}
+
+.modalButton button {
+  padding: 10px 30px;
+  border-radius: 5px;
+}
+
+.modalButton button:hover {
+  background-color: var(--red-color);
+  border: none;
+  color: var(--white-color);
+}
+
+
+
+
+/*=============================================
+=            For only Logout Modal            =
+=============================================*/
+
+.logoutmodalwrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoutmodalwrapper h4 {
+  padding-top: 1rem;
+}
+
+.logoutmodalwrapper p {
+  padding-top: 1rem;
+  color: var(--red-color);
+}
+
+
+/*=====  End of For only Logout Modal  ======*/
+
