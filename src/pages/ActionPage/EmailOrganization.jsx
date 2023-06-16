@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
-import { GrFormAttachment } from "react-icons/gr";
+import { TiAttachment } from "react-icons/ti";
 import "../../Pages/Styles/addorganization.css";
 
 const EmailOrganization = () => {
@@ -13,9 +13,9 @@ const EmailOrganization = () => {
 
   const handleBackArrow = () => {};
   const handleFileChange = (event) => {
-    setFile(event.target.files[0])
-    console.log(file)
-  }
+    setFile(event.target.files[0]);
+    console.log(file);
+  };
 
   return (
     <div>
@@ -67,11 +67,23 @@ const EmailOrganization = () => {
             </div>
           </div>
 
-          <div className="attachFiles">
-            <input type="file" name="file" onChange={handleFileChange}/>
+          {/* <div className="attachFiles">
+            <input type="file" 
+            name="file" 
+            onChange={handleFileChange}
+            />
             <GrFormAttachment className="attach-icon" />
             <span>Attach Files</span>
-          </div>
+          </div> */}
+          <form action="/form/sumbit" method="get">
+            <label className="label">
+              <input type="file" required />
+              <div className="labelText">
+                <TiAttachment className="label-icon" />
+                <span>Attach Files</span>
+              </div>
+            </label>
+          </form>
         </div>
         <div className="btnRight">
           <button type="submit">Submit</button>

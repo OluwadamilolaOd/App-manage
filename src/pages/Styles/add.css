@@ -53,19 +53,6 @@ textarea:hover {
   margin-top: 0.5rem;
   border-color: var(--blue-color);
 }
-.attachFiles {
-  display: flex;
-  color: var(--blue-color);
-  align-items: center;
-  font-size: 18px;
-}
-.attach-icon {
-  font-size: 25px;
-  font-weight: bold;
-}
-.attachFiles:hover {
-  color: red;
-}
 .btnRight {
   display: flex;
   justify-content: flex-end;
@@ -82,7 +69,6 @@ button[type="submit"] {
   transition: all 0.3s ease-in-out;
   width: 20%;
 }
-
 button[type="submit"]:hover {
   background-color: var(--white-color);
   border: 2px solid var(--blue-color);
@@ -130,4 +116,54 @@ button[type="submit"]:hover {
 }
 .btnBig {
     width: 100%;
+}
+/* .attachFiles {
+  display: flex;
+  color: var(--blue-color);
+  align-items: center;
+  font-size: 18px;
+}
+.attach-icon {
+  font-size: 25px;
+  font-weight: bold;
+}
+.attachFiles:hover {
+  color: red;
+} */
+/* //////// */
+label.label input[type="file"] {
+  position: absolute;
+  top: -1000px;
+}
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  font-size: 22px;
+  border: none;
+  color: var(--blue-color);
+}
+.label-icon {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--blue-color);
+  align-items: center;
+}
+
+.label:hover {
+  background: var(--blue-color);
+  color: var(--white-color);
+}
+.label:active {
+  background: var(--stroke-color);
+}
+.label:invalid + span {
+  color: var( --black-color);
+}
+.label:valid + span {
+  color: var(--white-color);
 }

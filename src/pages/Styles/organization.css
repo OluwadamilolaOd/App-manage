@@ -9,9 +9,6 @@
   justify-content: space-between;
   align-items: center;
 }
-.profileName {
-  font-size: 32px;
-}
 .profile-icon {
   display: flex;
   align-items: center;

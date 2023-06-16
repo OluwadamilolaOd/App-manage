@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef, useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
@@ -12,29 +12,28 @@ import { callMsGraph } from "../../Auth/graph";
 
 const LicRenewal = () => {
   const [expirationDate, setExpirationDate] = useState("");
-  const startDateInputRef = useRef(null)
+  const startDateInputRef = useRef(null);
   const locations = useLocation();
   const data = locations.state.data;
-  console.log(data)
+  console.log(data);
   const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
 
+  //fetch current user from Azure
+  const { instance, accounts } = useMsal();
+  const [graphData, setGraphData] = useState(null);
 
-      //fetch current user from Azure
-      const { instance, accounts } = useMsal();
-      const [graphData, setGraphData] = useState(null);
-    
-      useEffect(() => {
-        instance
-          .acquireTokenSilent({
-            loginRequest,
-            account: accounts[0],
-          })
-          .then((response) => {
-            callMsGraph(response.accessToken).then((response) => {
-              setGraphData(response);
-            });
-          });
-      }, [instance, accounts]);
+  useEffect(() => {
+    instance
+      .acquireTokenSilent({
+        loginRequest,
+        account: accounts[0],
+      })
+      .then((response) => {
+        callMsGraph(response.accessToken).then((response) => {
+          setGraphData(response);
+        });
+      });
+  }, [instance, accounts]);
 
   const handleBackArrow = () => {};
 
@@ -62,28 +61,28 @@ const LicRenewal = () => {
       theme: "light",
     });
 
-    const handleSubmitRenewal = async (event) => {
-      event.preventDefault();
-      console.log(expirationDate)
-      try {
-        const response = await fetch(Updateurl, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            expirationDate: expirationDate,
-            licenseTypeId: data.licenseTypeId,
-            CreatedBy: graphData.mail,
-            PurchasedDate: data.purchasedDate,
-            OrganizationId: data.organizationId
-          }),
-        });
-      } catch (err) {
-        // Handle fetch error
-        notifyError.log(err);;
-      }
+  const handleSubmitRenewal = async (event) => {
+    event.preventDefault();
+    console.log(expirationDate);
+    try {
+      const response = await fetch(Updateurl, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          expirationDate: expirationDate,
+          licenseTypeId: data.licenseTypeId,
+          CreatedBy: graphData.mail,
+          PurchasedDate: data.purchasedDate,
+          OrganizationId: data.organizationId,
+        }),
+      });
+    } catch (err) {
+      // Handle fetch error
+      notifyError.log(err);
     }
+  };
 
   return (
     <div>
@@ -135,15 +134,17 @@ const LicRenewal = () => {
           <div>
             <label htmlFor="expiration-Date">Expiration Date:</label>
             <input
-                type="date"
-                id="expiration-date"
-                value={expirationDate}
-                onChange={(event) => setExpirationDate(event.target.value)}
-                ref={startDateInputRef}
-              />
+              type="date"
+              id="expiration-date"
+              value={expirationDate}
+              onChange={(event) => setExpirationDate(event.target.value)}
+              ref={startDateInputRef}
+            />
           </div>
         </div>
-        <button type="submit">Save</button>
+        <div className="btnRight">
+          <button type="submit">Save</button>
+        </div>
       </form>
       <ToastContainer />
     </div>
