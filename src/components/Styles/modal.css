@@ -67,6 +67,14 @@ body.active-modal {
   color: var(--white-color);
 }
 
+#downloadP {
+  color: var(--blue-color);
+}
+
+.downloadModalTile {
+  background-color: var(--blue-color);
+}
+
 .modalImg {
   width: 90px;
   height: 90px;
@@ -103,11 +111,16 @@ body.active-modal {
   border-radius: 5px;
 }
 
-.modalButton button:hover {
+button:hover {
   background-color: var(--red-color);
   border: none;
   color: var(--white-color);
 }
+
+.downloadModalButton:hover {
+  background-color: var(--blue-color);
+}
+
 
 
 

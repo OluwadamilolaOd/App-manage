@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../Components/Modal/Modal";
 import archiveIcon from '../../assets/images/archive_red.png'
+import DownloadModal from "../ActionPage/Download/DownloadModal";
 
 
 const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openDownloadModal, setOpenDownloadModal] = useState(false)
   const navigate = useNavigate();
 
   const handleDropdownToggle = () => {
@@ -54,7 +56,7 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
         <td>
           <div className="actionbtn" onClick={handleDropdownToggle}>...</div>
-        </td>
+        </td> 
         {showDropdown && (
           <div className="action">
             <div className="action-item" onClick={handleRenewal}>
@@ -66,7 +68,7 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             <div className="action-item" onClick = {handleEmail}>
               <p>Email</p>
             </div>
-            <div className="action-item">
+            <div className="action-item" onClick={() => {setOpenDownloadModal(true)}}>
               <p>Export</p>
             </div>
             <div className="action-item">
@@ -89,6 +91,7 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                     description={"Are you sure you want to archive?"}
                     handleOnclickEvent={handleArchive}
       />}
+      {openDownloadModal && <DownloadModal setOpenModal = {setOpenDownloadModal} data = {obj} />}
     </>
   );
 };

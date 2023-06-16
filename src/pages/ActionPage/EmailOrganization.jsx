@@ -7,10 +7,15 @@ import "../../Pages/Styles/addorganization.css";
 const EmailOrganization = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [emailSubject, setEmailSubject] = useState("");
+  const [file, setFile] = useState();
   const [emailCC, setEmailCC] = useState("");
   const [description, setDescription] = useState("");
 
   const handleBackArrow = () => {};
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0])
+    console.log(file)
+  }
 
   return (
     <div>
@@ -63,6 +68,7 @@ const EmailOrganization = () => {
           </div>
 
           <div className="attachFiles">
+            <input type="file" name="file" onChange={handleFileChange}/>
             <GrFormAttachment className="attach-icon" />
             <span>Attach Files</span>
           </div>
