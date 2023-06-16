@@ -10,7 +10,6 @@ import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../Auth/authConfig";
 import { callMsGraph } from "../../Auth/graph";
 
-
 const LicRenewal = () => {
   const [expirationDate, setExpirationDate] = useState("");
   const startDateInputRef = useRef(null)
@@ -36,7 +35,6 @@ const LicRenewal = () => {
             });
           });
       }, [instance, accounts]);
-
 
   const handleBackArrow = () => {};
 
@@ -90,7 +88,7 @@ const LicRenewal = () => {
   return (
     <div>
       <Banner title={"License Renewal"} />
-      <form className="container_form">
+      <form className="add_container">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div>
           <h1 className="profileName">{data.organizationName}</h1>
@@ -108,7 +106,6 @@ const LicRenewal = () => {
             <label htmlFor="email-address">Band Type:</label>
             <div className="label_input">{data.licenseBand}</div>
           </div>
-
           <div>
             <label htmlFor="location">Start Date:</label>
             <div className="label_input">{data.purchasedDate}</div>
@@ -119,7 +116,7 @@ const LicRenewal = () => {
             <div className="label_input">{data.expirationDate}</div>
           </div>
         </div>
-        <div className="title-head">
+        <div className="title-head section-head">
           <h4>New License Information</h4>
         </div>
         <div className="form_input">
@@ -141,6 +138,7 @@ const LicRenewal = () => {
                 type="date"
                 id="expiration-date"
                 value={expirationDate}
+                min={data.expirationDate}
                 onChange={(event) => setExpirationDate(event.target.value)}
                 ref={startDateInputRef}
               />

@@ -226,10 +226,10 @@ const AddOrganization = () => {
 
   return (
     <div>
-      <form className="form_container">
+      <form className="add_container">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="title-head">
-          <h3>Organization Details</h3>
+          <h2>Organization Details</h2>
         </div>
         <div className="forminput">
           <div className="section">
@@ -247,7 +247,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div>
+            <div  className="section-form">
               <label htmlFor="email-address">Email Address:</label>
               <input
                 type="email"
@@ -277,7 +277,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div>
+            <div  className="section-form">
               <label htmlFor="phone-number">Phone Number:</label>
               <input
                 type="tel"
@@ -293,8 +293,8 @@ const AddOrganization = () => {
             </div>
           </div>
         </div>
-        <div className="title-head">
-          <h3>License Details</h3>
+        <div className="title-head section-title">
+          <h2>License Details</h2>
         </div>
         <div className="forminput">
           <div className="section">
@@ -312,7 +312,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div>
+            <div  className="section-form">
               <label htmlFor="start-date">Start Date:</label>
               <input
                 type="date"
@@ -343,7 +343,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div >
+            <div  className="section-form">
               <label htmlFor="end-date">Expiration Date:</label>
               <input
                 type="date"
@@ -360,10 +360,11 @@ const AddOrganization = () => {
             </div>
           </div>
         </div>
+        <div className="btnRight">
         <button onClick={handleSubmit} type="submit">
           Submit
         </button>
-
+        </div>
         {/* <div className="message">{message ? <p>{message}</p> : null}</div> */}
       </form>
       <ToastContainer />

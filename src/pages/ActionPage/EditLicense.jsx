@@ -60,7 +60,7 @@ const EditLicense = () => {
     });
 
   const handleBackArrow = () => {
-    navigate("");
+    navigate("/license");
   };
 
   console.log(data);

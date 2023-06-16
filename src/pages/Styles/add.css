@@ -88,3 +88,46 @@ button[type="submit"]:hover {
   border: 2px solid var(--blue-color);
   color: var(--blue-color);
 }
+.title-head {
+  color: var(--blue-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.section-head {
+  margin-top: 3rem;
+}
+.form_input {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.label_input {
+  border: 1px solid var(--stroke-color);
+  border-radius: 5px;
+  background-color: var(--white-color);
+  color: var(--blue-color);
+  padding: 6px 15px;
+  margin-top: 0.5rem;
+}
+.section-form {
+  margin-bottom: 0.7rem;
+}
+.formPage {
+  background-color: var(--white-color);
+  margin: auto;
+  margin-top: 2rem;
+  padding: 2rem;
+  align-items: center;
+  height: 60vh;
+  width: 60%;
+  border-radius: 5px;
+}
+.form {
+    margin-top: 3rem;
+}
+.btnBig {
+    width: 100%;
+}

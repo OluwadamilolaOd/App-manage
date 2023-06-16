@@ -117,10 +117,10 @@ const UpgradeLicense = () => {
         btnClassname={"btnwhite"}
         btntitle={"Edit Button"}
       />
-      <form className="container_form">
+      <form className="add_container">
         <ArrowBack handleBackArrow={handleBackArrow} />
-        <div>
-          <h1 className="profileName">{data.organizationName}</h1>
+        <div className="profileName">
+          <h1>{data.organizationName}</h1>
         </div>
         <div className="title-head">
           <h4>Current License Information</h4>
@@ -144,7 +144,7 @@ const UpgradeLicense = () => {
             <div className="label_input">{data.expirationDate}</div>
           </div>
         </div>
-        <div className="title-head">
+        <div className="title-head section-head">
           <h4>New License Information</h4>
         </div>
         <div className="form_input">
@@ -171,12 +171,15 @@ const UpgradeLicense = () => {
                 type="date"
                 id="expiration-date"
                 value={expirationDate}
+                min={data.expirationDate}
                 onChange={(event) => setExpirationDate(event.target.value)}
                 ref={startDateInputRef}
               />
           </div>
         </div>
+        <div className="btnRight">
         <button type="submit" onClick={handleSubmitUpgrade}>Save</button>
+        </div>
       </form>
       <ToastContainer />
     </div>
