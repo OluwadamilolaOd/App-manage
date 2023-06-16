@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../../pages/Styles/addorganization.css";
-import Banner from "../../components/Banner";
-import ArrowBack from "../../components/ArrowBack";
+import "../../Pages/Styles/addorganization.css";
+import Banner from "../../Components/Banner";
+import ArrowBack from "../../Components/ArrowBack";
 import Select from "react-select";
-import { generateProductKey } from "../../components/GenKey";
+import { generateProductKey } from "../../Components/GenKey";
 import { useNavigate, useLocation } from "react-router";
 import { baseUrl } from "../../Hook/baseurl";
 import { useMsal } from "@azure/msal-react";

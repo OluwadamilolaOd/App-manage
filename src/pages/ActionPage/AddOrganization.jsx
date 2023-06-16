@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../../pages/Styles/addorganization.css";
-import ArrowBack from "../../components/ArrowBack";
+import "../../Pages/Styles/addorganization.css";
+import ArrowBack from "../../Components/ArrowBack";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../Auth/authConfig";
 import { callMsGraph } from "../../Auth/graph";
-import { generateProductKey } from "../../components/GenKey";
+import { generateProductKey } from "../../Components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import "../Styles/add.css"

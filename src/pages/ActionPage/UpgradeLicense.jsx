@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import Banner from "../../components/Banner";
-import ArrowBack from "../../components/ArrowBack";
+import Banner from "../../Components/Banner";
+import ArrowBack from "../../Components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from "react-router-dom";

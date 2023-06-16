@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Button from "../components/Button";
-import CardList from "../components/Report/CardList";
+import CardList from "../Components/Report/CardList";
 
 const Home = () => {
   const [data, setData] = useState([]);

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Banner from '../../components/Banner'
+import Banner from '../../Components/Banner'
 import { baseUrl } from '../../Hook/baseurl'
 import { useNavigate, useParams } from 'react-router-dom'
-import TableAction from '../../components/Table/TableAction'
+import TableAction from '../../Components/Table/TableAction'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
-import Pagination from '../../components/Pagination'
+import Pagination from '../../Components/Pagination'
 
 
 

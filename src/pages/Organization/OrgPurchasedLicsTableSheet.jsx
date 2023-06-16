@@ -1,5 +1,4 @@
-import {useState} from "react";
-import Loader from "../../components/Loader";
+import Loader from "../../Components/Loader";
 import OrgPurchasedLicesTableChildren from "./OrgPurchasedLicesTableChildren";
 
 const OrgPurchasedLicsTableSheet = ({ data, headers, loading, deleteItem }) => {

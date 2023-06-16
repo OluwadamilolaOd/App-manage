@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
-import Banner from '../../components/Banner'
+import Banner from '../../Components/Banner'
 import { useNavigate } from 'react-router-dom'
-import TableSheet from '../../components/Table/TableSheet';
+import TableSheet from '../../Components/Table/TableSheet';
 import {baseUrl} from './../../Hook/baseurl';
-import Pagination from '../../components/Pagination';
+import Pagination from '../../Components/Pagination';
 
 const License = () => {
 

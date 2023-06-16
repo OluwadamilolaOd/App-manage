@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../components/Modal/Modal";
+import Modal from "../../Components/Modal/Modal";
 import archiveIcon from '../../assets/images/archive_red.png'
 
 
@@ -23,13 +23,17 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
   }
 
   const handleRenewal = () => {
-    navigate(`upgradelicense/${obj.id}`,{state:{data:obj}})
+    navigate(`Renewal/${obj.id}`,{state:{data:obj}})
   }
 
   const handleArchive = () => {
     deleteItem(obj.id)
     setOpenModal(false)
   };
+
+  const handleEmail = () => {
+    navigate(`emailorganization/${obj.id}`,{state:{data:obj}})
+  }
 
 
 const date1 = new Date();
@@ -59,7 +63,7 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             <div className="action-item" onClick = {handleUpgrade}>
               <p>Upgrade</p>
             </div>
-            <div className="action-item">
+            <div className="action-item" onClick = {handleEmail}>
               <p>Email</p>
             </div>
             <div className="action-item">

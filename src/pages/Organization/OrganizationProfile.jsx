@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ArrowBack from "../../components/ArrowBack";
+import ArrowBack from "../../Components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
-import "./../../pages/Styles/organization.css";
-import Pagination from "../../components/Pagination";
+import "./../../Pages/Styles/organization.css";
+import Pagination from "../../Components/Pagination";
 import {
   MdOutlineEdit,
   MdDeleteOutline,
 } from "react-icons/md";
-import Button from "../../components/Button"
+import Button from "../../Components/Button"
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);

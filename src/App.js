@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal} from '@azure/msal-react';
 import "./App.css";
-import Layout from "./components/Layout";
-import Modal from "./components/Modal/Modal";
+import Layout from "./Components/Layout";
+import Modal from "./Components/Modal/Modal";
 import logoutImg from "./assets/images/logout_red.png";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./Pages/LandingPage";
 
 const MainContent = () => {
   const [openModal, setOpenModal] = useState(false);

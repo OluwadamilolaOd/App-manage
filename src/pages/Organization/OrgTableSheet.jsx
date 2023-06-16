@@ -1,5 +1,5 @@
-import "../../components/Table/Styles/tablesheet.css";
-import Loader from "../../components/Loader";
+import "../../Components/Table/Styles/tablesheet.css";
+import Loader from "../../Components/Loader";
 import { useNavigate } from "react-router-dom";
 
 
