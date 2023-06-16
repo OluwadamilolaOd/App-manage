@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
-import Banner from '../../components/Banner';
+import Banner from '../../Components/Banner';
 import { baseUrl } from '../../Hook/baseurl';
 import OrgTableSheet from './OrgTableSheet';
-import Pagination from '../../components/Pagination';
+import Pagination from '../../Components/Pagination';
 
 const Organizations = () => {
   const [data, setData] = useState([]);

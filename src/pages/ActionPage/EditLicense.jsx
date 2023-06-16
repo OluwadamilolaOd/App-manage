@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Select from "react-select";
-import Banner from "../../components/Banner";
-import ArrowBack from "../../components/ArrowBack";
+import Banner from "../../Components/Banner";
+import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
 import { callMsGraph } from "../../Auth/graph";

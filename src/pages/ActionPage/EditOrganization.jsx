@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../../pages/Styles/editorganization.css";
-import Banner from "../../components/Banner";
-import ArrowBack from "../../components/ArrowBack";
+import "../../Pages/Styles/editorganization.css";
+import Banner from "../../Components/Banner";
+import ArrowBack from "../../Components/ArrowBack";
 
 const EditOrganization = () => {
   const [companyName, setCompanyName] = useState("");
