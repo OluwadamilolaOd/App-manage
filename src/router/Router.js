@@ -3,18 +3,19 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from '../pages/Home'
 import License from '../pages/License/License'
 import LicenseType from '../pages/License/LicenseType'
-import AddLicense from '../pages/License/AddLicense'
-import AddLicenseBand from '../pages/License/AddLicenseBand'
+import AddLicense from '../pages/ActionPage/AddLicense'
+import AddLicenseBand from '../pages/ActionPage/AddLicenseBand'
 import Organizations from '../pages/Organization/Organizations'
 import OrganizationProfile from '../pages/Organization/OrganizationProfile'
-import EditOrganization from '../pages/Organization/EditOrganization'
-import AddOrganization from '../pages/Organization/AddOrganization'
-import EmailOrganization from '../pages/Organization/EmailOrganization'
-import DowngradeLicense from '../pages/License/DowngradeLicense'
-import UpgradeLicense from '../pages/License/UpgradeLicense'
+import EditOrganization from '../pages/ActionPage/EditOrganization'
+import AddOrganization from '../pages/ActionPage/AddOrganization'
+import EmailOrganization from '../pages/ActionPage/EmailOrganization'
+import DowngradeLicense from '../pages/ActionPage/DowngradeLicense'
+import UpgradeLicense from '../pages/ActionPage/UpgradeLicense'
 import SuccessModal from '../components/Modal/SuccessModal'
-import EditLicense from '../pages/License/EditLicense'
-import OrgLicense from '../pages/Organization/OrgLicense'
+import EditLicense from '../pages/ActionPage/EditLicense'
+import OrgLicense from '../pages/ActionPage/OrgLicense'
+import LicRenewal from '../pages/ActionPage/LicRenewal'
 
 const Router = () => {
   return (
@@ -37,6 +38,7 @@ const Router = () => {
         <Route path='organizations/organizationProfile/:id/upgradelicense/:id' element = {<UpgradeLicense/>}/>
         <Route path='license/successmodal' element = {<SuccessModal/>}/>
         <Route path='addorganizationLicense' element = {<OrgLicense/>}/>
+        <Route path='Renewal' element = {<LicRenewal/>}/>
       </Routes>
   )
 }

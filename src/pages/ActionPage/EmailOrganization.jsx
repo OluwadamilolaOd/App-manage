@@ -2,7 +2,7 @@ import { useState } from "react";
 import Banner from "../../components/Banner";
 import ArrowBack from "../../components/ArrowBack";
 import { GrFormAttachment } from "react-icons/gr";
-import "../../components/Styles/addorganization.css";
+import "../../pages/Styles/addorganization.css";
 
 const EmailOrganization = () => {
   const [emailAddress, setEmailAddress] = useState("");
