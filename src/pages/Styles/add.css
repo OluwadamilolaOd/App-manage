@@ -10,6 +10,9 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2.5rem;
 }
+.form-input {
+  margin-bottom: 1rem;
+}
 .section {
   display: flex;
   flex-direction: column;
@@ -19,24 +22,27 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.textArea {
-    height: 120px;
-    resize: none;
+input {
+  border: 1px solid var(--stroke-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--black-color);
+  width: 100%;
+  box-sizing: border-box;
 }
-.textareaSize {
-    height: 150px;
-    resize: none;
-}
-input,
 textarea {
   border: 1px solid var(--stroke-color);
   border-radius: 4px;
   padding: 0.5rem;
   margin-top: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--black-color);
   width: 100%;
   box-sizing: border-box;
+  height: 150px;
+  resize: none;
 }
 input:hover,
 textarea:hover {
@@ -44,8 +50,41 @@ textarea:hover {
   color: var(--blue-color);
 }
 .select {
-    margin-top: 0.5rem;
-    border-color: var(--blue-color);
-  }
+  margin-top: 0.5rem;
+  border-color: var(--blue-color);
+}
+.attachFiles {
+  display: flex;
+  color: var(--blue-color);
+  align-items: center;
+  font-size: 18px;
+}
+.attach-icon {
+  font-size: 25px;
+  font-weight: bold;
+}
+.attachFiles:hover {
+  color: red;
+}
+.btnRight {
+  display: flex;
+  justify-content: flex-end;
+}
+button[type="submit"] {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 4px;
+  padding: 1rem 1rem;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 20%;
+}
 
-  
+button[type="submit"]:hover {
+  background-color: var(--white-color);
+  border: 2px solid var(--blue-color);
+  color: var(--blue-color);
+}

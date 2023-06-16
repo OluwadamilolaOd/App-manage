@@ -13,9 +13,7 @@ const EditOrganization = () => {
 
   return (
     <div>
-      <Banner
-        title={"Edit Organization"}
-      />
+      <Banner title={"Edit Organization"} />
 
       <form className="add_container ">
         <ArrowBack handleBackArrow={handleBackArrow} />
@@ -61,7 +59,9 @@ const EditOrganization = () => {
             </div>
           </div>
         </div>
-        <button type="submit">Submit</button>
+        <div className="btnRight">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );
