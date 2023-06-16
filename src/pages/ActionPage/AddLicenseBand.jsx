@@ -70,20 +70,19 @@ const AddLicenseBand = () => {
       theme: "light",
     });
 
-  const licenseId = paramsValue.state.paramsValue[0]
-  let url = baseUrl+"/licensetype"
+  const licenseId = paramsValue.state.paramsValue[0];
+  let url = baseUrl + "/licensetype";
   var recurring;
 
   let handleSubmitLicenseBand = async (e) => {
     e.preventDefault();
-    if(selectedOption.value === "newLicenseType" ) {
-       recurring = ""
+    if (selectedOption.value === "newLicenseType") {
+      recurring = "";
+    } else {
+      recurring = "Recurring License Type";
     }
-    else {
-      recurring = "Recurring License Type"
-    } 
 
-    console.log(recurring)
+    console.log(recurring);
     try {
       let res = await fetch(url, {
         method: "POST",
@@ -147,7 +146,7 @@ const AddLicenseBand = () => {
   return (
     <div>
       <div>
-        <Banner title={"Add License Band"}/>
+        <Banner title={"Add License Band"} />
         <form className="add_container ">
           <ArrowBack handleBackArrow={handleBackArrow} />
           <div className="forminput">
@@ -205,7 +204,6 @@ const AddLicenseBand = () => {
                   ""
                 )}
               </div>
-
               <div className="input">
                 <label htmlFor="location">Description:</label>
                 <textarea
@@ -223,11 +221,11 @@ const AddLicenseBand = () => {
               </div>
             </div>
           </div>
-          <button type="submit" onClick={handleSubmitLicenseBand}>
-            Submit
-          </button>
-
-          {/* <div className="message">{message ? <p>{message}</p> : null}</div> */}
+          <div className="btnRight">
+            <button type="submit" onClick={handleSubmitLicenseBand}>
+              Submit
+            </button>
+          </div>
         </form>
         <ToastContainer />
       </div>

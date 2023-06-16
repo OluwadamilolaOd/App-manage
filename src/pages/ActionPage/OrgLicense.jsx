@@ -133,25 +133,24 @@ const OrgLicense = () => {
     e.preventDefault();
     const productKey = generateProductKey(keyLength);
     try {
-
-        await  fetch(CompanyLicenseUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              purchasedDate: startDate,
-              expirationDate: endDate,
-               organizationId: data.id,
-              licenseTypeId: selectedLicenseBandOption.id,
-              licenseKey: productKey,
-              CreatedBy: graphData.mail,
-            }),
-          });
-          setStartDate("");
-          setEndDate("");
-          setSelectedLicenseBandOption("");
-          setSelectedLicenseTypeOption("");
-          notifySuccess("");
-          // setMessage("User created successfully");
+      await fetch(CompanyLicenseUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          purchasedDate: startDate,
+          expirationDate: endDate,
+          organizationId: data.id,
+          licenseTypeId: selectedLicenseBandOption.id,
+          licenseKey: productKey,
+          CreatedBy: graphData.mail,
+        }),
+      });
+      setStartDate("");
+      setEndDate("");
+      setSelectedLicenseBandOption("");
+      setSelectedLicenseTypeOption("");
+      notifySuccess("");
+      // setMessage("User created successfully");
 
       if (
         selectedLicenseTypeOption.length == 0 ||
@@ -251,9 +250,11 @@ const OrgLicense = () => {
             </div>
           </div>
         </div>
-        <button onClick={handleSubmit} type="submit">
-          Submit
-        </button>
+        <div className="btnRight">
+          <button onClick={handleSubmit} type="submit">
+            Submit
+          </button>
+        </div>
       </form>
       <ToastContainer />
     </div>

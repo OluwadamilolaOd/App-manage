@@ -34,8 +34,8 @@ const EditLicense = () => {
     { value: "recurringLicenseType", label: "Recurring License Type" },
   ];
 
-    // react-toastify
-    const notifySuccess = () =>
+  // react-toastify
+  const notifySuccess = () =>
     toast.success("User created successfully", {
       position: "top-right",
       autoClose: 5000,
@@ -102,16 +102,13 @@ const EditLicense = () => {
       });
     } catch (err) {
       // Handle fetch error
-      notifyError.log(err);;
+      notifyError.log(err);
     }
   };
 
-
   return (
     <div>
-      <Banner
-        title={"Edit License Band"}
-      />
+      <Banner title={"Edit License Band"} />
       <form className="add_container">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="forminput">
@@ -172,11 +169,13 @@ const EditLicense = () => {
             </div>
           </div>
         </div>
-        <button type="submit" onClick={handleSubmitLicenseBand}>
-          Edit
-        </button>
+        <div className="btnRight">
+          <button type="submit" onClick={handleSubmitLicenseBand}>
+            Edit
+          </button>
+        </div>
       </form>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

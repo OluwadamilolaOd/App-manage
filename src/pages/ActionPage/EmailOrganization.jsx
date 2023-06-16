@@ -18,7 +18,7 @@ const EmailOrganization = () => {
       <form className="add_container ">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div>
-          <div className="input">
+          <div className="form-input">
             <label htmlFor="name">Email Subject:</label>
             <input
               type="text"
@@ -28,7 +28,7 @@ const EmailOrganization = () => {
             />
           </div>
           <div className="forminput">
-            <div>
+            <div className="section">
               <div className="input">
                 <label htmlFor="name">Email Address:</label>
                 <input
@@ -48,15 +48,17 @@ const EmailOrganization = () => {
                 />
               </div>
             </div>
-            <div className="input">
-              <label htmlFor="Description">Email Body:</label>
-              <textarea
-                className="textArea"
-                type="tel"
-                id="description"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-              />
+            <div className="section">
+              <div className="input">
+                <label htmlFor="Description">Email Body:</label>
+                <textarea
+                  className="textAreaSize"
+                  type="tel"
+                  id="description"
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
+                />
+              </div>
             </div>
           </div>
 
@@ -65,7 +67,9 @@ const EmailOrganization = () => {
             <span>Attach Files</span>
           </div>
         </div>
-        <button type="submit">Submit</button>
+        <div className="btnRight">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );
