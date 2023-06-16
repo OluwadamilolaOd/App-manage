@@ -17,7 +17,7 @@ const EditOrganization = () => {
         title={"Edit Organization"}
       />
 
-      <form className="formContainer">
+      <form className="add_container ">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="forminput">
           <div className="section">

@@ -1,14 +1,51 @@
-.addlicensebandcontainer {
-    background-color: var(--white-color);
-    margin-top: 5rem;
-    padding: 3rem;
-    align-items: center;
-    border-radius: 5px;
+.add_container {
+  background-color: var(--white-color);
+  margin-top: 2rem;
+  padding: 2rem;
+  align-items: center;
+  border-radius: 5px;
 }
-.formContainer {
-    background-color: var(--white-color);
-    margin-top: 5rem;
-    padding: 3rem;
-    align-items: center;
-    border-radius: 5px;
+.forminput {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2.5rem;
 }
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.input {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.textArea {
+    height: 120px;
+    resize: none;
+}
+.textareaSize {
+    height: 150px;
+    resize: none;
+}
+input,
+textarea {
+  border: 1px solid var(--stroke-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--black-color);
+  width: 100%;
+  box-sizing: border-box;
+}
+input:hover,
+textarea:hover {
+  border: 2px solid var(--blue-color);
+  color: var(--blue-color);
+}
+.select {
+    margin-top: 0.5rem;
+    border-color: var(--blue-color);
+  }
+
+  

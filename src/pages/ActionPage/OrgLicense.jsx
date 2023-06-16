@@ -185,11 +185,11 @@ const OrgLicense = () => {
   return (
     <div>
       <Banner title={"Add New License"} />
-      <form className="formContainer">
+      <form className="add_container ">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="forminput">
           <div className="section">
-            <div className="form-section">
+            <div className="input">
               <label htmlFor="company-name">License Name:</label>
               <Select
                 className="select"
@@ -203,7 +203,7 @@ const OrgLicense = () => {
                 ""
               )}
             </div>
-            <div className="form-section">
+            <div className="input">
               <label htmlFor="start-date">Start Date:</label>
               <input
                 type="date"
@@ -220,7 +220,7 @@ const OrgLicense = () => {
             </div>
           </div>
           <div className="section">
-            <div className="form-section">
+            <div className="input">
               <label htmlFor="location">Band Type:</label>
               <Select
                 className="select"
@@ -234,7 +234,7 @@ const OrgLicense = () => {
                 ""
               )}
             </div>
-            <div className="form-section">
+            <div className="input">
               <label htmlFor="end-date">Expiration Date:</label>
               <input
                 type="date"

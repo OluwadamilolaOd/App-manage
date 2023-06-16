@@ -15,10 +15,10 @@ const EmailOrganization = () => {
   return (
     <div>
       <Banner title={"Email Organisation"} />
-      <form className="formContainer emailContainer">
+      <form className="add_container ">
         <ArrowBack handleBackArrow={handleBackArrow} />
-        <div className="form">
-          <div className="input emailForm">
+        <div>
+          <div className="input">
             <label htmlFor="name">Email Subject:</label>
             <input
               type="text"
@@ -29,7 +29,7 @@ const EmailOrganization = () => {
           </div>
           <div className="forminput">
             <div>
-              <div className="input emailForm">
+              <div className="input">
                 <label htmlFor="name">Email Address:</label>
                 <input
                   type="text"
@@ -38,7 +38,7 @@ const EmailOrganization = () => {
                   onChange={(event) => setEmailAddress(event.target.value)}
                 />
               </div>
-              <div className="input emailForm">
+              <div className="input">
                 <label htmlFor="name">Cc:</label>
                 <input
                   type="text"
@@ -48,7 +48,7 @@ const EmailOrganization = () => {
                 />
               </div>
             </div>
-            <div className="input emailForm">
+            <div className="input">
               <label htmlFor="Description">Email Body:</label>
               <textarea
                 className="textArea"
