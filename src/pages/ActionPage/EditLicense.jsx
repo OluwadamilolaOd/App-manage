@@ -112,7 +112,7 @@ const EditLicense = () => {
       <Banner
         title={"Edit License Band"}
       />
-      <form className="addlicensebandcontainer">
+      <form className="add_container">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="forminput">
           <div className="section">

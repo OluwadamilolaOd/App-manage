@@ -147,13 +147,8 @@ const AddLicenseBand = () => {
   return (
     <div>
       <div>
-        <Banner
-          title={"Add License Band"}
-          btnClassname={"btnwhite"}
-          btntitle={"Edit Button"}
-        />
-
-        <form className="addlicensebandcontainer">
+        <Banner title={"Add License Band"}/>
+        <form className="add_container ">
           <ArrowBack handleBackArrow={handleBackArrow} />
           <div className="forminput">
             <div className="section">
@@ -212,9 +207,9 @@ const AddLicenseBand = () => {
               </div>
 
               <div className="input">
-                <label htmlFor="location">description:</label>
+                <label htmlFor="location">Description:</label>
                 <textarea
-                  className="textareaSize"
+                  className="textArea"
                   type="text"
                   id="description"
                   value={description}

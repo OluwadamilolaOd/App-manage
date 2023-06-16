@@ -1,12 +1,12 @@
 .form_container {
-    background-color: var(--white-color);
+    /* background-color: var(--white-color); */
     /* margin-top: 1rem; */
-    padding: 2rem;
+    /* padding: 2rem;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 5px; */
 }
 
-.title-head {
+/* .title-head {
     color: var(--blue-color);
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -48,6 +48,6 @@
 .textArea {
     height: 120px;
     resize: none;
-}
+} */
 
 

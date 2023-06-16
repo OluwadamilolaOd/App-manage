@@ -1,16 +1,16 @@
 .addLicenseContainer {
-    background-color: var(--white-color);
+    /* background-color: var(--white-color);
     margin: auto;
     margin-top: 2rem;
-    padding: 2rem;
+    padding: 2rem; */
     /* padding-top: 2.3rem; */
-    align-items: center;
+    /* align-items: center;
     height: 65vh;
     width: 60%;
-    border-radius: 5px;
+    border-radius: 5px; */
 }
 
-.textareaSize {
+/* .textareaSize {
     height: 150px;
     resize: none;
 }
@@ -34,7 +34,7 @@
     font-size: 32px;
     margin-bottom: 1rem;
     margin-top: 0;
-   color: var(--blue-color);;
+   color: var(--blue-color);
 }
 .container_form .form_input{
     margin-bottom: 2rem;
@@ -58,4 +58,4 @@
     color: var(--blue-color);
 }
 
-
+ */

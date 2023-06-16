@@ -9,6 +9,7 @@ import { callMsGraph } from "../../Auth/graph";
 import { generateProductKey } from "../../components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import "../Styles/add.css"
 
 const AddOrganization = () => {
   const [companyName, setCompanyName] = useState("");
