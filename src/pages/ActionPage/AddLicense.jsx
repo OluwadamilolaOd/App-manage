@@ -100,11 +100,9 @@ const AddLicense = () => {
     <div>
       <Banner
         title={"Add New License"}
-        btnClassname={"btnwhite"}
-        btntitle={"Edit Button"}
       />
 
-      <form className="addLicenseContainer">
+      <form className="add_container formPage">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="form">
           <div className="input">
@@ -124,7 +122,7 @@ const AddLicense = () => {
           <div className="input">
             <label htmlFor="Description">Description:</label>
             <textarea
-              className="textareaSize"
+              className="textarea"
               type="tel"
               id="description"
               value={description}
@@ -137,9 +135,11 @@ const AddLicense = () => {
             )}
           </div>
         </div>
+        <div className="btnBig">
         <button onClick={handleSubmitLicense} type="submit">
           Submit
         </button>
+        </div>  
       </form>
       <ToastContainer />
     </div>

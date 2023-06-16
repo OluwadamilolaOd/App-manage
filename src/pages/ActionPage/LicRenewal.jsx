@@ -5,10 +5,8 @@ import ArrowBack from "../../components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const LicRenewal = () => {
   const [expirationDate, setExpirationDate] = useState("");
-
 
   const handleBackArrow = () => {};
 
@@ -39,10 +37,10 @@ const LicRenewal = () => {
   return (
     <div>
       <Banner title={"License Renewal"} />
-      <form className="container_form">
+      <form className="add_container">
         <ArrowBack handleBackArrow={handleBackArrow} />
-        <div>
-          <h1 className="profileName">Organization Name</h1>
+        <div className="profileName">
+          <h1>Organization Name</h1>
         </div>
         <div className="title-head">
           <h4>Current License Information</h4>
@@ -57,18 +55,16 @@ const LicRenewal = () => {
             <label htmlFor="email-address">Band Type:</label>
             <div className="label_input">Band Type</div>
           </div>
-
           <div>
             <label htmlFor="location">Start Date:</label>
             <div className="label_input">Start Date</div>
           </div>
           <div>
             <label htmlFor="phone-number">Expiration Date:</label>
-
             <div className="label_input">Expiration Date</div>
           </div>
         </div>
-        <div className="title-head">
+        <div className="title-head section-head">
           <h4>New License Information</h4>
         </div>
         <div className="form_input">
@@ -94,7 +90,9 @@ const LicRenewal = () => {
             />
           </div>
         </div>
-        <button type="submit">Save</button>
+        <div className="btnRight">
+          <button type="submit">Save</button>
+        </div>
       </form>
       <ToastContainer />
     </div>

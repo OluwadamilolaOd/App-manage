@@ -40,10 +40,10 @@ const DowngradeLicense = () => {
       <Banner
         title={"License Downgrade"}
       />
-     <form className="container_form">
+     <form className="add_container">
         <ArrowBack handleBackArrow={handleBackArrow} />
-        <div>
-          <h1 className="profileName">Organization Name</h1>
+        <div className="profileName"> 
+          <h1 >Organization Name</h1>
         </div>
         <div className="title-head">
           <h4>Current License Information</h4>
@@ -51,58 +51,28 @@ const DowngradeLicense = () => {
         <div className="form_input">
           <div>
             <label htmlFor="company-name">License Name:</label>
-            {/* <input
-              type="text"
-              id="company-name"
-              value={companyName}
-              onChange={(event) => setCompanyName(event.target.value)}
-            /> */}
             <div className="label_input">License Name</div>
           </div>
           <div>
             <label htmlFor="email-address">Band Type:</label>
-            {/* <input
-              type="email"
-              id="email-address"
-              value={emailAddress}
-              onChange={(event) => setEmailAddress(event.target.value)}
-            /> */}
             <div className="label_input">Band Type</div>
           </div>
 
           <div>
             <label htmlFor="location">Start Date:</label>
-            {/* <input
-              type="text"
-              id="location"
-              value={location}
-              onChange={(event) => setLocation(event.target.value)}
-            /> */}
             <div className="label_input">Start Date</div>
           </div>
           <div>
             <label htmlFor="phone-number">Expiration Date:</label>
-            {/* <input
-              type="tel"
-              id="phone-number"
-              value={phoneNumber}
-              onChange={(event) => setPhoneNumber(event.target.value)}
-            /> */}
             <div className="label_input">Expiration Date</div>
           </div>
         </div>
-        <div className="title-head">
+        <div className="title-head section-head">
           <h4>New License Information</h4>
         </div>
         <div className="form_input">
           <div>
             <label htmlFor="company-name">License Name:</label>
-            {/* <input
-              type="text"
-              id="company-name"
-              value={companyName}
-              onChange={(event) => setCompanyName(event.target.value)}
-            /> */}
             <div className="label_input">License Name</div>
           </div>
           <div>
@@ -133,7 +103,9 @@ const DowngradeLicense = () => {
             />
           </div>
         </div>
+        <div className="btnRight">
         <button type="submit">Save</button>
+        </div>
       </form>
       <ToastContainer />
     </div>
