@@ -1,40 +1,47 @@
 import React, { useState, useEffect } from "react";
 import CardList from "../Components/Report/CardList";
+import { baseUrl } from "../Hook/baseurl";
+import { useMsal } from "@azure/msal-react";
+import { loginRequest } from "../Auth/authConfig";
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [bearerToken, setBearerToken ] = useState("")
+  const { instance, accounts } = useMsal();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+const handleGetData = (e) => {
+      e.preventDefault();
+    instance
+      .acquireTokenSilent({
+        loginRequest,
+        account: accounts[0],
+      })
+      .then((response) => {
+        setBearerToken(response.accessToken)
+        console.log(bearerToken)
+            const headers = { 'Authorization': `Bearer ${bearerToken}` };
+             fetch(`${baseUrl}/purchasedlicense`,{ headers })
+             .then(console.log(response))
+      });
+  }
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        "https://unifiedlicenseapi.azurewebsites.net/api/LicenseType"
-      );
-      const jsonData = await response.json();
-      setData(jsonData);
-      setFilteredData(jsonData);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+ 
 
-  const handleSearch = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
+  // const handleSearch = (e) => {
+  //   const query = e.target.value;
+  //   setSearchQuery(query);
 
-    const filtered = data.filter((item) =>
-      item.description.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredData(filtered);
-  };
+  //   const filtered = data.filter((item) =>
+  //     item.description.toLowerCase().includes(query.toLowerCase())
+  //   );
+  //   setFilteredData(filtered);
+  // };
   return (
     <div>
       <CardList />
+      <button onClick={handleGetData}>GetData</button>
     </div>
   );
 };

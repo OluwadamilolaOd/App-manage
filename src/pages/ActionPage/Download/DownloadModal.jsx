@@ -1,18 +1,31 @@
+import { useState } from 'react';
 import imageIcon from '../../../assets/images/download_blue.png'
+import { CSVLink } from "react-csv";
+// import { PDFDownloadLink, Document, Page, Text } from 'react-pdf';
 
 
 
 function DownloadModal({ setOpenModal,data }) {
 
-  const handlePDF = (e) => {
-    e.preventDefault()
-    console.log("helloooPDF")
-  }
+  // const [csvData, setCsvData] = useState([]);
+  // const handlePDF = (e) => {
+  //   e.preventDefault()
+  //   console.log(data)
+  //   console.log("helloooPDF")
+  // }
 
-  const handleCsv = (e) => {
-    e.preventDefault()
-    console.log("helloooCSV")
-  }
+
+  // const MyPdfDocument = () => (
+  //   <Document>
+  //     <Page>
+  //       <Text>This is the content of my PDF document.</Text>
+  //     </Page>
+  //   </Document>
+  // );
+
+  
+
+  const entries = Object.entries(data);
 
   return (
     <div className="modal">
@@ -27,13 +40,17 @@ function DownloadModal({ setOpenModal,data }) {
       </p>
       </div>
       <div className="modalbtnwrapper">
-      <div className="modalButton "><button className="downloadModalButton" onClick={handlePDF}>
+      {/* <div className="modalButton ">
+        <button className="downloadModalButton" onClick={handlePDF}>
         PDF
       </button>
-      </div>
-      <div className="modalButton "><button className="downloadModalButton" onClick={handleCsv}>
+      </div> */}
+      <div className="modalButton ">
+        <CSVLink className='csvdownloadLink' data={entries} filename={`${data.organizationName}-license-file.csv`}>Download me</CSVLink>
+{/* <button className="downloadModalButton" onClick={handleCsv}>
         EXCEL
-      </button></div>
+      </button> */}
+      </div>
       </div>
     </div>
   </div>

@@ -121,6 +121,19 @@ button:hover {
   background-color: var(--blue-color);
 }
 
+.csvdownloadLink{
+  border-radius: 10px;
+  outline: solid;
+  padding: 10px;
+}
+
+.csvdownloadLink:hover{
+  padding: 0.5rem;
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  border-radius: 10px;
+}
+
 
 
 
