@@ -19,7 +19,6 @@ const AddOrganization = () => {
   const [endDate, setEndDate] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [comapnyId, setCompanyId] = useState("");
-  const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
 
   const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
@@ -86,7 +85,7 @@ const AddOrganization = () => {
     });
 
   //Navigate back to the previous page
-  const handleBackArrow = () => navigate("/organizations");;
+  const handleBackArrow = () => navigate("/organizations");
 
   //Get Product Key
   const keyLength = 20;

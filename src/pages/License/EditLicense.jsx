@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Select from "react-select";
-import Banner from "../../components/Banner";
-import ArrowBack from "../../components/ArrowBack";
+import Banner from "../../Components/Banner";
+import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
 import { callMsGraph } from "../../Auth/graph";
@@ -60,7 +60,7 @@ const EditLicense = () => {
     });
 
   const handleBackArrow = () => {
-    navigate("");
+    navigate(`/${paramsValue}`)
   };
 
   console.log(data);
@@ -100,9 +100,22 @@ const EditLicense = () => {
           recurringLicenseType: recurring,
         }),
       });
+      await res.json();
+      if (res.status === 200) {
+        maximumUser("");
+        notifySuccess("");
+      } else {
+        notifyError("");
+      }
+      if (maximumUser.length == 0) {
+        setError(true);
+      }
+      if (maximumUser) {
+        console.log("Maximum User:: ", maximumUser);
+      }
     } catch (err) {
       // Handle fetch error
-      notifyError.log(err);;
+      console.log(err);;
     }
   };
 
@@ -124,6 +137,11 @@ const EditLicense = () => {
                 value={selectedOption}
                 onChange={setSelectedOption}
               />
+                 {error && selectedOption.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
             <div className="input">
               <label htmlFor="license-name">Licence Band:</label>

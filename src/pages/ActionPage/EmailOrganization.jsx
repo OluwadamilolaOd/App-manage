@@ -3,6 +3,7 @@ import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { TiAttachment } from "react-icons/ti";
 import "../../Pages/Styles/addorganization.css";
+import { useNavigate} from "react-router-dom";
 
 const EmailOrganization = () => {
   const [emailAddress, setEmailAddress] = useState("");
@@ -10,8 +11,11 @@ const EmailOrganization = () => {
   const [file, setFile] = useState();
   const [emailCC, setEmailCC] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
 
-  const handleBackArrow = () => {};
+  const handleBackArrow = () => {
+    navigate("/organizations");
+  };
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
     console.log(file);

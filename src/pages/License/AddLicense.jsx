@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../../components/Styles/license.css";
-import Banner from "../../components/Banner";
+import Banner from "../../Components/Banner";
 import { baseUrl } from "../../Hook/baseurl";
-import ArrowBack from "../../components/ArrowBack";
+import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../Auth/authConfig";

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,8 +10,12 @@ const DowngradeLicense = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const navigate = useNavigate();
 
-  const handleBackArrow = () => {};
+  const handleBackArrow = () => {
+    navigate("/organizations")
+  };
+  
   // react-toastify
   const notifySuccess = () =>
     toast.success("User created successfully", {
@@ -34,6 +39,11 @@ const DowngradeLicense = () => {
       progress: undefined,
       theme: "light",
     });
+
+  
+     const handleSubmitDowngrade = (event) => {
+      notifySuccess("");
+    } 
 
   return (
     <div>
@@ -104,7 +114,7 @@ const DowngradeLicense = () => {
           </div>
         </div>
         <div className="btnRight">
-        <button type="submit">Save</button>
+        <button type="submit" onClick={handleSubmitDowngrade}>Save</button>
         </div>
       </form>
       <ToastContainer />

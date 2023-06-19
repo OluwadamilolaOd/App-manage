@@ -32,6 +32,7 @@ a{
 }
 .main_layout {
   margin-left: 260px;
+  position: relative;
 }
 .content {
   padding: 2rem;

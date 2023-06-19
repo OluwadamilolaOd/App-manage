@@ -60,7 +60,7 @@ const EditLicense = () => {
     });
 
   const handleBackArrow = () => {
-    navigate("");
+    navigate("/license");
   };
 
   console.log(data);
@@ -100,6 +100,29 @@ const EditLicense = () => {
           recurringLicenseType: recurring,
         }),
       });
+      // setSelectedOption("");
+      // setBandType("");
+      // setPartNumber("");
+      // setMaximumUser("");
+      notifySuccess("");
+
+      if (
+        selectedOption.length == 0 ||
+        maximumUser.length == 0 
+      ){
+        setError(true);
+      }
+      if (
+        selectedOption &&
+        maximumUser
+      ) {
+        console.log(
+          "Licence Type: ",
+          selectedOption,
+          "\nMaximum User: ",
+          maximumUser,
+        );
+      }
     } catch (err) {
       // Handle fetch error
       notifyError.log(err);
@@ -121,6 +144,11 @@ const EditLicense = () => {
                 value={selectedOption}
                 onChange={setSelectedOption}
               />
+               {error && selectedOption.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
             <div className="input">
               <label htmlFor="license-name">Licence Band:</label>
@@ -130,11 +158,6 @@ const EditLicense = () => {
                 value={bandType}
                 onChange={(event) => setBandType(event.target.value)}
               />
-              {error && bandType.length <= 0 ? (
-                <label className="error">This field is required.</label>
-              ) : (
-                ""
-              )}
             </div>
           </div>
           <div className="section">
@@ -146,11 +169,6 @@ const EditLicense = () => {
                 value={partNumber}
                 onChange={(event) => setPartNumber(event.target.value)}
               />
-              {error && partNumber.length <= 0 ? (
-                <label className="error">This field is required.</label>
-              ) : (
-                ""
-              )}
             </div>
 
             <div className="input">

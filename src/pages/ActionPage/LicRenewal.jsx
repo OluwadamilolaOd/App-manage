@@ -9,6 +9,8 @@ import { baseUrl } from "../../Hook/baseurl";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../Auth/authConfig";
 import { callMsGraph } from "../../Auth/graph";
+import { useNavigate } from "react-router-dom";
+
 
 const LicRenewal = () => {
   const [expirationDate, setExpirationDate] = useState("");
@@ -17,6 +19,8 @@ const LicRenewal = () => {
   const data = locations.state.data;
   console.log(data);
   const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
+  const navigate = useNavigate();
+
 
   //fetch current user from Azure
   const { instance, accounts } = useMsal();
@@ -35,7 +39,10 @@ const LicRenewal = () => {
       });
   }, [instance, accounts]);
 
-  const handleBackArrow = () => {};
+
+  const handleBackArrow = () => {
+    navigate("/organizations");
+  };
 
   // react-toastify
   const notifySuccess = () =>
@@ -80,7 +87,7 @@ const LicRenewal = () => {
       });
     } catch (err) {
       // Handle fetch error
-      notifyError.log(err);
+      console.log(err);
     }
   };
 
@@ -89,8 +96,8 @@ const LicRenewal = () => {
       <Banner title={"License Renewal"} />
       <form className="add_container">
         <ArrowBack handleBackArrow={handleBackArrow} />
-        <div className="profileName">
-          <h1>{data.organizationName}</h1>
+        <div>
+          <h1 className="profileName">{data.organizationName}</h1>
         </div>
         <div className="title-head">
           <h4>Current License Information</h4>
@@ -112,7 +119,7 @@ const LicRenewal = () => {
           <div>
             <label htmlFor="phone-number">Expiration Date:</label>
 
-            <div className="label_input">Expiration Date</div>
+            <div className="label_input">{data.expirationDate}</div>
           </div>
         </div>
         <div className="title-head section-head">
@@ -137,13 +144,16 @@ const LicRenewal = () => {
               type="date"
               id="expiration-date"
               value={expirationDate}
+              min={data.expirationDate}
               onChange={(event) => setExpirationDate(event.target.value)}
               ref={startDateInputRef}
             />
           </div>
         </div>
         <div className="btnRight">
-          <button type="submit">Save</button>
+          <button type="submit" onClick={handleSubmitRenewal}>
+            Save
+          </button>
         </div>
       </form>
       <ToastContainer />

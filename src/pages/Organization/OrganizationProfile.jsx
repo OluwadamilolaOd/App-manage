@@ -85,6 +85,9 @@ const OrganizationProfile = ({}) => {
   const handleEventClick = () => {
     navigate("/addorganizationLicense", {state:{data:data}});
   };
+  const handleEditOrg = () => {
+    navigate("organizations/editorganization")
+  }
 
   return (
     <div>
@@ -98,7 +101,7 @@ const OrganizationProfile = ({}) => {
             <div className="profile-icon ">
               <div className="profile-action">
                 <MdOutlineEdit />
-                <span>Edit</span>
+                <span onClick={handleEditOrg}>Edit</span>
               </div>
               <div className="profile-action color-red">
                 <MdDeleteOutline/>

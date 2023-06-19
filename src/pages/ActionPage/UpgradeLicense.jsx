@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useNavigate } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,8 +22,9 @@ const UpgradeLicense = () => {
   const data = locations.state.data;
   const url = `${baseUrl}/licenseType/upgrade?maximumuser=${data.maximumUser}&applicenseId=${data.appLicenseId}`;
   const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
- 
+  const navigate = useNavigate();
 
+ 
     //fetch current user from Azure
     const { instance, accounts } = useMsal();
     const [graphData, setGraphData] = useState(null);
@@ -42,8 +43,9 @@ const UpgradeLicense = () => {
     }, [instance, accounts]);
 
 
-  
-  const handleBackArrow = () => {};
+    const handleBackArrow = () => {
+      navigate("/organizations");
+    };
   // react-toastify
   const notifySuccess = () =>
     toast.success("User created successfully", {
@@ -171,6 +173,7 @@ const UpgradeLicense = () => {
                 type="date"
                 id="expiration-date"
                 value={expirationDate}
+                min={data.expirationDate}
                 onChange={(event) => setExpirationDate(event.target.value)}
                 ref={startDateInputRef}
               />

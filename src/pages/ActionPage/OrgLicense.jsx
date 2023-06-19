@@ -44,8 +44,10 @@ const OrgLicense = () => {
   const [graphData, setGraphData] = useState(null);
 
   //Navigate back to the previous page
-  const handleBackArrow = () => navigate("/organizationProfile");
-
+  const handleBackArrow = () => {
+    navigate("/organizations");
+  };
+  
   useEffect(() => {
     instance
       .acquireTokenSilent({
