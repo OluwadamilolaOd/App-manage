@@ -1,7 +1,6 @@
 .tableData {
   padding: 30px;
-  /* background-color: var(--white-color); */
-  background-color: red;
+  background-color: var(--white-color);
   border-radius: 10px;
   margin-bottom: 1rem;
 }

@@ -11,11 +11,13 @@ import {
   MdDeleteOutline,
 } from "react-icons/md";
 import Button from "../../Components/Button"
+import Modal from "../../Components/Modal/Modal";
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const userParams = useParams();
   const paramsValue = Object.values(userParams);
@@ -89,6 +91,11 @@ const OrganizationProfile = ({}) => {
     navigate("organizations/editorganization")
   }
 
+  const handleArchive = () => {
+    deleteItem(data.id)
+    setOpenModal(false)
+  };
+
   return (
     <div>
       <ArrowBack handleBackArrow={handleBackArrow} />
@@ -99,14 +106,25 @@ const OrganizationProfile = ({}) => {
               <h1 className="profileName">{data.organizationName}</h1>
             </div>
             <div className="profile-icon ">
-              <div className="profile-action">
+              <div className="profile-action" onClick={handleEditOrg}>
                 <MdOutlineEdit />
-                <span onClick={handleEditOrg}>Edit</span>
+                <span>Edit</span>
               </div>
-              <div className="profile-action color-red">
+              <div className="profile-action color-red" onClick={() => {
+                setOpenModal(true);
+              }}>
                 <MdDeleteOutline/>
                 <span>Archive</span>
               </div>
+              {openModal && <Modal 
+                    setOpenModal={setOpenModal}
+                    header={"Archive License"}
+                   // image={archiveIcon}
+                    btnAction={"Archive"}
+                    title= {data.organizationName}
+                    description={"Are you sure you want to archive?"}
+                    handleOnclickEvent={handleArchive} />
+                }
             </div>
           </div>
           <div className="genInfo">
