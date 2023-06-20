@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
-import { useLocation } from "react-router-dom";
+import { useLocation,  useNavigate } from "react-router-dom";
 import Select from "react-select";
 import "react-toastify/dist/ReactToastify.css";
 import { useMsal } from "@azure/msal-react";
@@ -20,6 +20,8 @@ const DowngradeLicense = () => {
   const data = locations.state.data;
   const url = `${baseUrl}/licenseType/upgrade?maximumuser=${data.maximumUser}&applicenseId=${data.appLicenseId}`;
   const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
+  const navigate = useNavigate();
+
 
    //fetch current user from Azure
    const { instance, accounts } = useMsal();
@@ -38,9 +40,7 @@ const DowngradeLicense = () => {
        });
    }, [instance, accounts]);
 
-  const handleBackArrow = () => {
-    navigate("/organizations")
-  };
+   const handleBackArrow = () => navigate("/organizations");
   
   // react-toastify
   const notifySuccess = () =>
