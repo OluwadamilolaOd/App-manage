@@ -1,10 +1,16 @@
 .add_container {
   background-color: var(--white-color);
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding: 2rem;
   align-items: center;
   border-radius: 5px;
 }
+/* .add_orgPage {
+  background-color: var(--white-color);
+  padding: 2rem;
+  align-items: center;
+  border-radius: 5px;
+} */
 .forminput {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

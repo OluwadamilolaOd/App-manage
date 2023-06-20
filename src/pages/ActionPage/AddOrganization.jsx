@@ -225,7 +225,7 @@ const AddOrganization = () => {
 
   return (
     <div>
-      <form className="add_container">
+      <form className="add_container add_orgPage">
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="title-head">
           <h2>Organization Details</h2>
