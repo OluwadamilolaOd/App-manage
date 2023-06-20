@@ -34,7 +34,7 @@ const Router = () => {
         <Route path='organizations/organizationProfile/:id' element = {<OrganizationProfile/>}/>
         <Route path='organizations/editorganization' element = {<EditOrganization/>}/>
         <Route path='organizations/addorganization' element = {<AddOrganization/>}/>
-        <Route path='organizations/downgradelicense' element = {<DowngradeLicense/>}/>
+        <Route path='organizations/organizationProfile/:id/downgradelicense/:id' element = {<DowngradeLicense/>}/>
         <Route path='organizations/organizationProfile/:id/upgradelicense/:id' element = {<UpgradeLicense/>}/>
         <Route path='organizations/organizationProfile/:id/Renewal/:id' element = {<LicRenewal/>}/>
         <Route path='license/successmodal' element = {<SuccessModal/>}/>

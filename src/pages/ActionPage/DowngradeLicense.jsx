@@ -1,16 +1,36 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
+import Select from "react-select";
 import "react-toastify/dist/ReactToastify.css";
+import { useMsal } from "@azure/msal-react";
+import { callMsGraph } from "../../Auth/graph";
+import { loginRequest } from "../../Auth/authConfig";
 
 const DowngradeLicense = () => {
-  const [companyName, setCompanyName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const navigate = useNavigate();
+  const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
+  useState("");
+  const [licenseBandOptions, setLicenseBandOptions] = useState([]); 
+
+
+   //fetch current user from Azure
+   const { instance, accounts } = useMsal();
+   const [graphData, setGraphData] = useState(null);
+ 
+   useEffect(() => {
+     instance
+       .acquireTokenSilent({
+         loginRequest,
+         account: accounts[0],
+       })
+       .then((response) => {
+         callMsGraph(response.accessToken).then((response) => {
+           setGraphData(response);
+         });
+       });
+   }, [instance, accounts]);
 
   const handleBackArrow = () => {
     navigate("/organizations")
@@ -40,10 +60,26 @@ const DowngradeLicense = () => {
       theme: "light",
     });
 
-  
-     const handleSubmitDowngrade = (event) => {
-      notifySuccess("");
-    } 
+    const url = ""
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          await fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              const bandType = data.map((obj) => {
+                return { id: obj.id, label: obj.licenseBand };
+              });
+              setLicenseBandOptions(bandType);
+            });
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+      fetchData();
+    }, [url]);
+
 
   return (
     <div>
@@ -87,21 +123,16 @@ const DowngradeLicense = () => {
           </div>
           <div>
             <label htmlFor="email-address">Start Date:</label>
-            <input
-              type="email"
-              id="email-address"
-              value={emailAddress}
-              onChange={(event) => setEmailAddress(event.target.value)}
-            />
+            <div className="label_input">Start Date</div>
           </div>
           <div>
             <label htmlFor="location">Band Type:</label>
-            <input
-              type="text"
-              id="location"
-              value={location}
-              onChange={(event) => setLocation(event.target.value)}
-            />
+            <Select
+                className="select"
+                options={licenseBandOptions}
+                value={selectedLicenseBandOption}
+                onChange={setSelectedLicenseBandOption}
+              />
           </div>
           <div>
             <label htmlFor="phone-number">Expiration Date:</label>
