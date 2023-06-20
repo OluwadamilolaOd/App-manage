@@ -1,19 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 import Select from "react-select";
 import "react-toastify/dist/ReactToastify.css";
 import { useMsal } from "@azure/msal-react";
 import { callMsGraph } from "../../Auth/graph";
 import { loginRequest } from "../../Auth/authConfig";
+import { baseUrl } from "../../Hook/baseurl";
 
 const DowngradeLicense = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
   const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
   useState("");
   const [licenseBandOptions, setLicenseBandOptions] = useState([]); 
-
+  const locations = useLocation();
+  const startDateInputRef = useRef(null)
+  const data = locations.state.data;
+  const url = `${baseUrl}/licenseType/upgrade?maximumuser=${data.maximumUser}&applicenseId=${data.appLicenseId}`;
+  const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
 
    //fetch current user from Azure
    const { instance, accounts } = useMsal();
@@ -57,8 +63,6 @@ const DowngradeLicense = () => {
       theme: "light",
     });
 
-    const url = ""
-
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -77,6 +81,28 @@ const DowngradeLicense = () => {
       fetchData();
     }, [url]);
 
+    const handleSubmitDowngrade = async (event) => {
+      event.preventDefault();
+      console.log(expirationDate, selectedLicenseBandOption.id)
+      try {
+        const response = await fetch(Updateurl, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            expirationDate: expirationDate,
+            licenseTypeId: selectedLicenseBandOption.id,
+            CreatedBy: graphData.mail,
+            PurchasedDate: data.purchasedDate,
+            OrganizationId: data.organizationId
+          }),
+        });
+      } catch (err) {
+        // Handle fetch error
+        notifyError.log(err);;
+      }
+    }
 
   return (
     <div>
@@ -94,20 +120,21 @@ const DowngradeLicense = () => {
         <div className="form_input">
           <div>
             <label htmlFor="company-name">License Name:</label>
-            <div className="label_input">License Name</div>
+            <div className="label_input">{data.licenseName}</div>
+           
           </div>
           <div>
             <label htmlFor="email-address">Band Type:</label>
-            <div className="label_input">Band Type</div>
+            <div className="label_input">{data.licenseBand}</div>
           </div>
 
           <div>
             <label htmlFor="location">Start Date:</label>
-            <div className="label_input">Start Date</div>
+            <div className="label_input">{data.purchasedDate}</div>
           </div>
           <div>
             <label htmlFor="phone-number">Expiration Date:</label>
-            <div className="label_input">Expiration Date</div>
+            <div className="label_input">{data.expirationDate}</div>
           </div>
         </div>
         <div className="title-head section-head">
@@ -116,11 +143,11 @@ const DowngradeLicense = () => {
         <div className="form_input">
           <div>
             <label htmlFor="company-name">License Name:</label>
-            <div className="label_input">License Name</div>
+            <div className="label_input">{data.licenseName}</div>
           </div>
           <div>
             <label htmlFor="email-address">Start Date:</label>
-            <div className="label_input">Start Date</div>
+            <div className="label_input">{data.purchasedDate}</div>
           </div>
           <div>
             <label htmlFor="location">Band Type:</label>
@@ -134,15 +161,17 @@ const DowngradeLicense = () => {
           <div>
             <label htmlFor="phone-number">Expiration Date:</label>
             <input
-              type="tel"
-              id="phone-number"
-              value={phoneNumber}
-              onChange={(event) => setPhoneNumber(event.target.value)}
-            />
+                type="date"
+                id="expiration-date"
+                value={expirationDate}
+                min={data.expirationDate}
+                onChange={(event) => setExpirationDate(event.target.value)}
+                ref={startDateInputRef}
+              />
           </div>
         </div>
         <div className="btnRight">
-        <button type="submit">Save</button>
+        <button type="submit" onClick={handleSubmitDowngrade}>Save</button>
         </div>
       </form>
       <ToastContainer />
