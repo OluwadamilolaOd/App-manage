@@ -1,8 +1,9 @@
 .tableData {
   padding: 30px;
-  background-color: var(--white-color);
+  /* background-color: var(--white-color); */
+  background-color: red;
   border-radius: 10px;
-  margin-top: 20px;  
+  margin-bottom: 1rem;
 }
 table {
   width: 100%;

@@ -4,9 +4,9 @@
   border-radius: 10px;
   color: var(--white-color);
   position: sticky;
-  top: 6rem;
+  top: 7rem;
+  margin-bottom: 1rem;
 }
-
 .wrapper {
   display: flex;
   height: 5rem;
