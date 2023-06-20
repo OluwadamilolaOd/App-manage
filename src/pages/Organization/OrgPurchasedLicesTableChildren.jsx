@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../Components/Modal/Modal";
 import archiveIcon from '../../assets/images/archive_red.png'
 import DownloadModal from "../ActionPage/Download/DownloadModal";
+import { ToastContainer, toast } from "react-toastify";
+import DowngradeModal from "../../Components/Modal/DowngradeModal";
 
 
 const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openDownloadModal, setOpenDownloadModal] = useState(false)
+  const [downgradeLicense, setDowngradeLicense] = useState(false)
   const navigate = useNavigate();
 
   const handleDropdownToggle = () => {
@@ -37,10 +40,26 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
     navigate(`emailorganization/${obj.id}`,{state:{data:obj}})
   }
 
+  const handleDowngrade = () => {
+    console.log(obj)
+    const currentDate = new Date();
+    console.log(currentDate)
+
+    const date1 = new Date(obj.expirationDate);
+  
+    if (date1 > currentDate) {
+        setDowngradeLicense(true)
+    } else {
+      navigate(`downgradelicense/${obj.id}`,{state:{data:obj}})
+    }
+  }
+
+  
+
 
 const date1 = new Date();
 const date2 = new Date(obj.expirationDate);
-const diffTime = Math.abs(date2 - date1);
+const diffTime = (date2 - date1);
 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   return (
@@ -71,7 +90,7 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             <div className="action-item" onClick={() => {setOpenDownloadModal(true)}}>
               <p>Export</p>
             </div>
-            <div className="action-item">
+            <div className="action-item"  onClick = {handleDowngrade}>
               <p>Downgrade</p>
             </div>
             <div className="action-item" onClick={() => {
@@ -92,6 +111,15 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                     handleOnclickEvent={handleArchive}
       />}
       {openDownloadModal && <DownloadModal setOpenModal = {setOpenDownloadModal} data = {obj} />}
+
+    {downgradeLicense && <DowngradeModal
+                    setOpenModal={setDowngradeLicense}
+                    header={"Downgrade License"}
+                    image={archiveIcon}
+                    btnAction={""}
+                    title= {obj.licenseName}
+                    description={"You can not Downgrade the license except it has expiered"}
+                    handleOnclickEvent={handleArchive}/>}
     </>
   );
 };
