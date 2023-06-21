@@ -79,7 +79,19 @@ const EditLicense = () => {
   }, [instance, accounts]);
 
   const handleSubmitLicenseBand = async (event) => {
-   
+    event.preventDefault();
+    if (selectedOption.value === "newLicenseType") {
+      recurring = "";
+    } else {
+      recurring = "Recurring License Type";
+    }
+    try {
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           licenseBand: bandType,
           partNumber: partNumber,
           maximumUser: maximumUser,
