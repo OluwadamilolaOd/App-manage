@@ -16,6 +16,7 @@ import SuccessModal from '../Components/Modal/SuccessModal'
 import EditLicense from '../Pages/ActionPage/EditLicense'
 import OrgLicense from '../Pages/ActionPage/OrgLicense'
 import LicRenewal from '../Pages/ActionPage/LicRenewal'
+import EditCompanyDetails from '../Pages/ActionPage/EditCompanyDetails'
 
 const Router = () => {
   return (
@@ -39,6 +40,7 @@ const Router = () => {
         <Route path='organizations/organizationProfile/:id/Renewal/:id' element = {<LicRenewal/>}/>
         <Route path='license/successmodal' element = {<SuccessModal/>}/>
         <Route path='addorganizationLicense' element = {<OrgLicense/>}/>
+        <Route path='editCompanyDetails' element = {<EditCompanyDetails/>}/>
       </Routes>
   )
 }

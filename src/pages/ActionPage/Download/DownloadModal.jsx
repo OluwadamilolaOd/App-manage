@@ -46,7 +46,7 @@ function DownloadModal({ setOpenModal,data }) {
       </button>
       </div> */}
       <div className="modalButton ">
-        <CSVLink className='csvdownloadLink' data={entries} filename={`${data.organizationName}-license-file.csv`}>Download me</CSVLink>
+        <CSVLink className='btnblue' data={entries} filename={`${data.organizationName}-license-file.csv`}>Download me</CSVLink>
 {/* <button className="downloadModalButton" onClick={handleCsv}>
         EXCEL
       </button> */}
