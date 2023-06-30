@@ -3,7 +3,8 @@ import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { TiAttachment } from "react-icons/ti";
 import "../../Pages/Styles/addorganization.css";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../../Hook/baseurl";
 
 const EmailOrganization = () => {
   const [emailAddress, setEmailAddress] = useState("");
@@ -13,12 +14,43 @@ const EmailOrganization = () => {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
+ 
+const jsonData = {
+  "recipient" : emailAddress,
+  "subject": emailSubject,
+  "ccRecipient" : emailCC,
+  "body":description,
+};
   const handleBackArrow = () => {
     navigate("/organizations");
   };
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
-    console.log(file);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('jsonData', JSON.stringify(jsonData));
+
+      const response = await fetch(`${baseUrl}/purchasedlicense/sendemail`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:  JSON.stringify( {
+          "recipient" : emailAddress,
+          "subject": emailSubject,
+          "ccRecipient" : emailCC,
+          "body":description,
+        })
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -79,18 +111,10 @@ const EmailOrganization = () => {
             <GrFormAttachment className="attach-icon" />
             <span>Attach Files</span>
           </div> */}
-          <form action="/form/sumbit" method="get">
-            <label className="label">
-              <input type="file" required />
-              <div className="labelText">
-                <TiAttachment className="label-icon" />
-                <span>Attach Files</span>
-              </div>
-            </label>
-          </form>
+          <input type="file" onChange={handleFileChange} />
         </div>
         <div className="btnRight">
-          <button type="submit">Submit</button>
+          <button type="submit" onClick={handleSubmit}>Submit</button>
         </div>
       </form>
     </div>

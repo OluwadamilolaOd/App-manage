@@ -12,12 +12,13 @@ import { LogLevel } from "@azure/msal-browser";
  */
 export const msalConfig = {
     auth: {
-        clientId: "2a8289b2-62b8-4ac0-bfd1-9de268106ec4",
-        authority: "https://login.microsoftonline.com/4f270365-128d-440c-876a-fa42897a7439",
-        redirectUri: "http://localhost:3000/"
+        clientId: '2078eeb8-ed63-4ccf-b36b-1eb205e815f0', // This is the ONLY mandatory field that you need to supply.
+        authority: 'https://blossomhearthospital.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
+        redirectUri: '/', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+        postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
     },
     cache: {
-        cacheLocation: "sessionStorage", // This configures where your cache will be stored
+        cacheLocation: 'localStorage', // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
         storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
     },
     system: {	
@@ -52,21 +53,19 @@ export const msalConfig = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: {userRead:["User.Read"],
-            taskRead:["tasks.read"],
-            taskWrite:["tasks.write"],}
+        scopes: {
+            read: ['api://a606c665-f9f7-49e2-95b9-041c18433646/LicenseEndpoint.read'],
+            write: ['api://a606c665-f9f7-49e2-95b9-041c18433646/LicenseEndpoint.ReadWrite'],
+        },
   };
 
 /**
  * Add here the scopes to request when obtaining an access token for MS Graph API. For more information, see:
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
+
 export const graphConfig = {
     graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
     graphImageEndpoint: "https://graph.microsoft.com/v1.0/me/photo/$value"
 };
 
-
-export const externalApiConfig = {
-    externalApiEndpoint: "https://localhost:7182/api/Product"
-};

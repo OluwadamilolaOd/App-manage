@@ -7,25 +7,15 @@ import { CSVLink } from "react-csv";
 
 function DownloadModal({ setOpenModal,data }) {
 
-  // const [csvData, setCsvData] = useState([]);
-  // const handlePDF = (e) => {
-  //   e.preventDefault()
-  //   console.log(data)
-  //   console.log("helloooPDF")
-  // }
+   // Remove the 'email' and 'address' properties from the original object
+   const modifiedObject = (({ appLicenseId, createdAt,createdBy,licenseTypeId,organizationId, ...rest }) => rest)(data);
 
-
-  // const MyPdfDocument = () => (
-  //   <Document>
-  //     <Page>
-  //       <Text>This is the content of my PDF document.</Text>
-  //     </Page>
-  //   </Document>
-  // );
-
-  
-
-  const entries = Object.entries(data);
+   console.log(modifiedObject);
+  //console.log(data)
+  const keyArrays = Object.keys(modifiedObject)
+  const valueArrays = Object.values(modifiedObject)
+  const combineArray = [keyArrays,valueArrays]
+  console.log(combineArray)
 
   return (
     <div className="modal">
@@ -46,7 +36,7 @@ function DownloadModal({ setOpenModal,data }) {
       </button>
       </div> */}
       <div className="modalButton ">
-        <CSVLink className='btnblue' data={entries} filename={`${data.organizationName}-license-file.csv`}>Download me</CSVLink>
+        <CSVLink className='btnblue' data={combineArray} filename={`${data.organizationName}-license-file.csv`}>Download</CSVLink>
 {/* <button className="downloadModalButton" onClick={handleCsv}>
         EXCEL
       </button> */}
