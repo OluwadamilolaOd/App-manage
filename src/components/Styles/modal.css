@@ -96,14 +96,12 @@ body.active-modal {
   color: var(--white-color);
   font-size: 15px;
 }
-
-.modalbtnwrapper {
-  display: flex;
-  padding-bottom: 2rem;
-}
-
 .modalButton {
-  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 2rem;
+  padding-bottom: 5rem;
 }
 
 .modalButton button {
