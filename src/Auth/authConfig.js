@@ -13,7 +13,7 @@ import { LogLevel } from "@azure/msal-browser";
 export const msalConfig = {
     auth: {
         clientId: '2078eeb8-ed63-4ccf-b36b-1eb205e815f0', // This is the ONLY mandatory field that you need to supply.
-        authority: 'https://blossomhearthospital.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
+        authority: 'https://login.microsoftonline.com/4f270365-128d-440c-876a-fa42897a7439', // Replace the placeholder with your tenant subdomain
         redirectUri: '/', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
         postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
     },
@@ -69,3 +69,48 @@ export const graphConfig = {
     graphImageEndpoint: "https://graph.microsoft.com/v1.0/me/photo/$value"
 };
 
+
+
+
+
+// import { LogLevel } from "@azure/msal-browser";
+
+// export const msalConfig = {
+//     auth: {
+//       clientId: "7fda36db-95a7-42c8-90b3-bad100eab2c6", // Client ID 
+//       authority: 'https://login.microsoftonline.com/4f270365-128d-440c-876a-fa42897a7439', // Tenant ID of the React.JS App Registration
+//       redirectUri: "http://localhost:3000/",
+//     },
+//     cache: {
+//       cacheLocation: "sessionStorage", // This configures where your cache will be stored
+//       storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+//     },
+//     system: {
+//       loggerOptions: {
+//         loggerCallback: (level, message, containsPii) => {
+//           if (containsPii) {
+//             return;
+//           }
+//           switch (level) {
+//             case LogLevel.Error:
+//               console.error(message);
+//               return;
+//             case LogLevel.Info:
+//               console.info(message);
+//               return;
+//             case LogLevel.Verbose:
+//               console.debug(message);
+//               return;
+//             case LogLevel.Warning:
+//               console.warn(message);
+//               return;
+//             }
+//           },
+//         },
+//       },
+//     };
+  
+// // Can be found in the API Permissions of the ASP.NET Web API
+// export const loginApiRequest = {
+//   scopes: ["api://180863bc-09dd-44ff-afbe-de97f9a95bdd/api.scope"],
+// };
