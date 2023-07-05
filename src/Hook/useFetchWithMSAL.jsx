@@ -12,18 +12,23 @@ import { useMsal, useMsalAuthentication } from "@azure/msal-react";
  * @returns 
  */
 const useFetchWithMsal = (msalRequest) => {
-    const { instance } = useMsal();
+    const { instance, accounts } = useMsal();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
 
-    const { result, error: msalError } = useMsalAuthentication(InteractionType.Popup, {
-        ...msalRequest,
-        account: instance.getActiveAccount(),
-        redirectUri: '/redirect'
-    });
 
-    console.log(result)
+    const request = {
+        account: accounts[0],
+        ...msalRequest,
+    }
+    const { result, error: msalError } = useMsalAuthentication(InteractionType.Silent, request);
+
+    if (result) {
+        localStorage.setItem("token", result.accessToken)
+    }
+
+        const TokenNeeded = localStorage.getItem("token")
 
     /**
      * Execute a fetch request with the given options
@@ -41,9 +46,9 @@ const useFetchWithMsal = (msalRequest) => {
         if (result) {
             try {
                 let response = null;
-                console.log(result.accessToken)
+
                 const headers = new Headers();
-                const bearer = `Bearer ${result.accessToken}`;
+                const bearer = `Bearer ${TokenNeeded}`;
                 headers.append("Authorization", bearer);
 
                 if (data) headers.append('Content-Type', 'application/json');

@@ -18,6 +18,8 @@ const Header = () => {
         account: accounts[0],
       })
       .then((response) => {
+        const BearerToken = response.accessToken
+        localStorage.setItem("BearerToken",BearerToken)
         callMsGraph(response.accessToken).then((response) => {
           setGraphData(response);
         });

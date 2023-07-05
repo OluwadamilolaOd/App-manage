@@ -25,11 +25,14 @@ const LicenseType = () => {
     fetchData();
   }, [mainUrl,url]);
 
+  const TokenNeeded = localStorage.getItem("token")
   const fetchData = async () => {
     try {
       const [response1, response2] = await Promise.all([
         fetch(mainUrl),
-        fetch(url),
+        fetch(url,{
+          headers: {Authentication: `Bearer ${TokenNeeded}`}
+        }),
       ]);
       const data1 = await response1.json();
       const data2 = await response2.json();
