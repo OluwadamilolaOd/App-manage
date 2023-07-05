@@ -15,6 +15,7 @@ const MainContent = () => {
       account: instance.getActiveAccount(),
       mainWindowRedirectUri: '/', // redirects the top level app after logout
   });
+  localStorage.clear();
   }
   return (
     <div className="App">
