@@ -118,7 +118,7 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                     image={archiveIcon}
                     btnAction={""}
                     title= {obj.licenseName}
-                    description={"You can not Downgrade the license except it has expiered"}
+                    description={"You cannot downgrade the license except it has expired"}
                     handleOnclickEvent={handleArchive}/>}
     </>
   );
