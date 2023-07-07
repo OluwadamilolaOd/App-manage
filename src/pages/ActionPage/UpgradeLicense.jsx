@@ -103,7 +103,8 @@ const UpgradeLicense = () => {
             licenseTypeId: selectedLicenseBandOption.id,
             CreatedBy: graphData.mail,
             PurchasedDate: data.purchasedDate,
-            OrganizationId: data.organizationId
+            OrganizationId: data.organizationId,
+            LicenseKey: data.purchasedLicenseKey,
           }),
         });
       } catch (err) {

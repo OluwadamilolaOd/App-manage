@@ -18,13 +18,21 @@ const EmailOrganization = () => {
 
     try {
       const formDataObj = new FormData();
-      formDataObj.append('title', data.email);
-      formDataObj.append('body', ccEmail);
-      formDataObj.append('file', file);
+      formDataObj.append('Recipient', data.email);
+      formDataObj.append('RecipientName', data.organizationName);
+      formDataObj.append('licenseName', data.licenseName);
+      formDataObj.append('CcRecipient', ccEmailInputValue);
+      formDataObj.append('AttachmentFileName', `${data.organizationName} license`);
+      formDataObj.append('AttachmentContentType', 'text/csv');
+      formDataObj.append('AttachmentStream', file);
 
-      const response = await fetch('https://example.com/api/posts', {
+      
+      const response = await fetch(`${baseUrl}/PurchasedLicense/SendEmail`, {
         method: 'POST',
         body: formDataObj,
+        // headers: {
+        //   'Content-Type': 'multipart/form-data'
+        // }
       });
 
       // Handle the response

@@ -71,6 +71,7 @@ const LicRenewal = () => {
   const handleSubmitRenewal = async (event) => {
     event.preventDefault();
     console.log(expirationDate);
+    console.log(data);
     try {
       const response = await fetch(Updateurl, {
         method: "PUT",
@@ -83,6 +84,8 @@ const LicRenewal = () => {
           CreatedBy: graphData.mail,
           PurchasedDate: data.purchasedDate,
           OrganizationId: data.organizationId,
+          LicenseKey: data.purchasedLicenseKey,
+
         }),
       });
     } catch (err) {
