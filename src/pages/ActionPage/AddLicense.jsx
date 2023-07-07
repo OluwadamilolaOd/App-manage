@@ -98,9 +98,7 @@ const AddLicense = () => {
 
   return (
     <div>
-      <Banner
-        title={"Add New License"}
-      />
+      <Banner title={"Add New License"} />
 
       <form className="add_container formPage">
         <ArrowBack handleBackArrow={handleBackArrow} />
@@ -136,10 +134,10 @@ const AddLicense = () => {
           </div>
         </div>
         <div className="btnBig">
-        <button onClick={handleSubmitLicense} type="submit">
-          Submit
-        </button>
-        </div>  
+          <button onClick={handleSubmitLicense} type="submit">
+            Submit
+          </button>
+        </div>
       </form>
       <ToastContainer />
     </div>

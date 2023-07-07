@@ -7,7 +7,7 @@ import { baseUrl } from "../../Hook/baseurl";
 
 const EmailOrganization = () => {
   const navigate = useNavigate();
-  const [ccEmailInputValue, setCcEmailInputValue] = useState('');
+  const [ccEmailInputValue, setCcEmailInputValue] = useState("");
   const [ccEmail, setCcEmail] = useState([]);
   const [file, setFile] = useState(null);
   const locations = useLocation();
@@ -19,39 +19,37 @@ const EmailOrganization = () => {
     try {
       const formDataObj = new FormData();
       formDataObj.append('title', data.email);
-      formDataObj.append('body', ccEmail);
-      formDataObj.append('file', file);
+      formDataObj.append("body", ccEmail);
+      formDataObj.append("file", file);
 
-      const response = await fetch('https://example.com/api/posts', {
-        method: 'POST',
+      const response = await fetch("https://example.com/api/posts", {
+        method: "POST",
         body: formDataObj,
       });
 
       // Handle the response
       if (response.ok) {
-        console.log('Post created successfully!');
+        console.log("Post created successfully!");
       } else {
-        console.log('Error creating post!');
+        console.log("Error creating post!");
       }
     } catch (error) {
-      console.log('Error:', error);
+      console.log("Error:", error);
     }
   };
 
-
-
   const handleInputChange = (event) => {
     setCcEmailInputValue(event.target.value);
-    setCcEmail(event.target.value.split(','));
+    setCcEmail(event.target.value.split(","));
   };
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.type === 'text/csv') {
+    if (selectedFile && selectedFile.type === "text/csv") {
       setFile(selectedFile);
     } else {
       setFile(null);
-      console.log('Please select a CSV file.');
+      console.log("Please select a CSV file.");
     }
   };
 
@@ -61,26 +59,38 @@ const EmailOrganization = () => {
   return (
     <div>
       <Banner title={"Email Organisation"} />
-      <ArrowBack handleBackArrow={handleBackArrow} />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="reciver">Reciver</label>
-        <div>{data.email}</div>
-
-      <label htmlFor="CC">Copy Email</label>
-      <input type="text" value={ccEmailInputValue} onChange={handleInputChange} />
-      <p>Note: Seprate each email with comma</p>
-
-      <label htmlFor="file">File (CSV only)</label>
-      <input
-        type="file"
-        id="file"
-        name="file"
-        accept=".csv"
-        onChange={handleFileChange}
-      />
-
-      <button type="submit">Send Email</button>
-    </form>
+      <form className=".add_container formPage" onSubmit={handleSubmit}>
+        <ArrowBack handleBackArrow={handleBackArrow} />
+        <div className="title-head">
+          {/* <label htmlFor="reciver">Reciver</label> */}
+          <h2>License Information will be sent to this email :</h2>
+          <p className="emailTxt">name</p>
+        </div>
+        <div className="form-email">
+          <div className="input">
+            <label htmlFor="CC">Copy Email</label>
+            <input
+              type="text"
+              value={ccEmailInputValue}
+              onChange={handleInputChange}
+            />
+            <p>Note: Seprate each email with comma</p>
+          </div>
+          <div className="input">
+            <label htmlFor="file">File (CSV only)</label>
+            <input
+              type="file"
+              id="file"
+              name="file"
+              accept=".csv"
+              onChange={handleFileChange}
+            />
+          </div>
+        </div>
+        <div className="btnRight">
+          <button type="submit">Send Email</button>
+        </div>
+      </form>
     </div>
   );
 };
