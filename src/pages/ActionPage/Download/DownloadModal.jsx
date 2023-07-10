@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import imageIcon from '../../../assets/images/download_blue.png'
+import { useState } from "react";
+import imageIcon from "../../../assets/images/download_blue.png";
 import { CSVLink } from "react-csv";
 // import { PDFDownloadLink, Document, Page, Text } from 'react-pdf';
 
@@ -8,14 +8,13 @@ import { CSVLink } from "react-csv";
 function DownloadModal({ setOpenModal,data }) {
 
    // Remove the 'email' and 'address' properties from the original object
-   const modifiedObject = (({ appLicenseId, createdAt,createdBy,licenseTypeId,organizationId, ...rest }) => rest)(data);
+   const modifiedObject = (({id, appLicenseId, createdAt,createdBy,licenseTypeId,organizationId, ...rest }) => rest)(data);
 
    console.log(modifiedObject);
   //console.log(data)
   const keyArrays = Object.keys(modifiedObject)
   const valueArrays = Object.values(modifiedObject)
   const combineArray = [keyArrays,valueArrays]
-  console.log(combineArray)
 
   return (
     <div className="modal">
@@ -43,7 +42,7 @@ function DownloadModal({ setOpenModal,data }) {
       </div>
       </div>
     </div>
-  </div>
+    </div>
   );
 }
 

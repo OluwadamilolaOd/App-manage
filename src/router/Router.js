@@ -41,6 +41,7 @@ const Router = () => {
         <Route path='license/successmodal' element = {<SuccessModal/>}/>
         <Route path='addorganizationLicense' element = {<OrgLicense/>}/>
         <Route path='editCompanyDetails' element = {<EditCompanyDetails/>}/>
+
       </Routes>
   )
 }

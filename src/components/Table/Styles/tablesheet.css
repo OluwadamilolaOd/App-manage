@@ -1,14 +1,20 @@
-.tableData {
+/* .tableData {
   padding: 30px;
   background-color: var(--white-color);
   border-radius: 10px;
   margin-bottom: 1rem;
-}
+} */
 table {
   width: 100%;
+  height: 100%;
+  margin-top: 5rem;
   border-collapse: separate;
   border-spacing: 0 15px;
-  color: var(--black-color);
+  padding: 30px;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  /* color: var(--black-color); */
 }
 th {
   border: none;

@@ -4,7 +4,6 @@ import { loginRequest } from "../Auth/authConfig";
 import { callMsGraph, callMsGraphImg } from "../Auth/graph";
 import "./Styles/header.css";
 import { FaBars } from "react-icons/fa";
-import Sidebar from "./Sidebar";
 
 const Header = () => {
   const { instance, accounts } = useMsal();

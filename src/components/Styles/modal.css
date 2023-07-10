@@ -96,14 +96,13 @@ body.active-modal {
   color: var(--white-color);
   font-size: 15px;
 }
-
-.modalbtnwrapper {
-  display: flex;
-  padding-bottom: 2rem;
-}
-
 .modalButton {
-  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding-right: 2rem; */
+  padding-bottom: 5rem;
+  margin: 0 0.5rem;
 }
 
 .modalButton button {
@@ -156,6 +155,11 @@ button:hover {
   color: var(--red-color);
 }
 
+.modalbtnwrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 
 /*=====  End of For only Logout Modal  ======*/
 

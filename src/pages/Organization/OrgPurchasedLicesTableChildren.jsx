@@ -40,6 +40,7 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
     navigate(`emailorganization/${obj.id}`,{state:{data:obj}})
   }
 
+  //Handle Downgrade Action.
   const handleDowngrade = () => {
     console.log(obj)
     const currentDate = new Date();
@@ -56,11 +57,14 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
 
   
 
-
+//Handle Logic for calculating the number of days left for license to expire.
 const date1 = new Date();
 const date2 = new Date(obj.expirationDate);
 const diffTime = (date2 - date1);
-const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+if (diffDays < 0) { diffDays = "Expired" }
+else { diffDays = diffDays + " days" }
+
 
   return (
     <>
@@ -69,7 +73,7 @@ const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         <td>{obj.licenseBand}</td>
         <td>{obj.maximumUser}</td>
         <td>{obj.partNumber}</td>
-        <td>{diffDays} days</td>
+        <td>{diffDays}</td>
         <td>{obj.purchasedDate}</td>
         <td>{obj.expirationDate}</td>
         

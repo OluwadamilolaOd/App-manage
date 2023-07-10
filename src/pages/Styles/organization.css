@@ -1,7 +1,7 @@
 .orgProfile {
   padding: 0px 20px 5px 20px;
   color: var(--blue-color);
-  position: sticky;
+  /* position: sticky; */
   top: 6rem;
 }
 .profileOrg {

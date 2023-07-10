@@ -113,12 +113,18 @@ button[type="submit"]:hover {
   margin-top: 2rem;
   padding: 2rem;
   align-items: center;
-  height: 60vh;
+  /* height: 60vh; */
   width: 60%;
   border-radius: 5px;
 }
 .form {
-    margin-top: 3rem;
+  margin-top: 3rem;
+}
+.form-email {
+  margin-top: 1.5rem;
+}
+.emailTxt {
+  color: red;
 }
 .btnBig {
     width: 100%;
