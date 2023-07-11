@@ -7,11 +7,10 @@ import { CSVLink } from "react-csv";
 
 function DownloadModal({ setOpenModal,data }) {
 
-   // Remove the 'email' and 'address' properties from the original object
+   // Remove some properties from the original object
    const modifiedObject = (({id, appLicenseId, createdAt,createdBy,licenseTypeId,organizationId, ...rest }) => rest)(data);
 
    console.log(modifiedObject);
-  //console.log(data)
   const keyArrays = Object.keys(modifiedObject)
   const valueArrays = Object.values(modifiedObject)
   const combineArray = [keyArrays,valueArrays]
@@ -29,16 +28,8 @@ function DownloadModal({ setOpenModal,data }) {
       </p>
       </div>
       <div className="modalbtnwrapper">
-      {/* <div className="modalButton ">
-        <button className="downloadModalButton" onClick={handlePDF}>
-        PDF
-      </button>
-      </div> */}
       <div className="modalButton ">
         <CSVLink className='btnblue' data={combineArray} filename={`${data.organizationName}-license-file.csv`}>Download</CSVLink>
-{/* <button className="downloadModalButton" onClick={handleCsv}>
-        EXCEL
-      </button> */}
       </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ const Header = () => {
   const [graphData, setGraphData] = useState(null);
   const [graphImage, setGraphImage] = useState(null);
 
+  // fetch user data to get loging profile details
   useEffect(() => {
     instance
       .acquireTokenSilent({
@@ -17,8 +18,6 @@ const Header = () => {
         account: accounts[0],
       })
       .then((response) => {
-        const BearerToken = response.accessToken
-        localStorage.setItem("BearerToken",BearerToken)
         callMsGraph(response.accessToken).then((response) => {
           setGraphData(response);
         });
@@ -42,6 +41,16 @@ const Header = () => {
           setGraphImage(URL.createObjectURL(blob));
         });
       });
+  }, [instance, accounts]);
+
+  //Get Data from Private API using Browser Fetch
+  useEffect(() => {
+    instance
+      .acquireTokenSilent({
+        ...loginRequest,
+        account: accounts[0],
+      })
+      .then((response) => localStorage.setItem("token", response.accessToken));
   }, [instance, accounts]);
 
   return (

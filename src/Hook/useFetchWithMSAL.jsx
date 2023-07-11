@@ -6,11 +6,7 @@ import {
 import { InteractionType } from '@azure/msal-browser';
 import { useMsal, useMsalAuthentication } from "@azure/msal-react";
 
-/**
- * Custom hook to call a web API using bearer token obtained from MSAL
- * @param {PopupRequest} msalRequest 
- * @returns 
- */
+
 const useFetchWithMsal = (msalRequest) => {
     const { instance, accounts } = useMsal();
     const [isLoading, setIsLoading] = useState(false);
@@ -24,11 +20,11 @@ const useFetchWithMsal = (msalRequest) => {
     }
     const { result, error: msalError } = useMsalAuthentication(InteractionType.Silent, request);
 
-    if (result) {
-        localStorage.setItem("token", result.accessToken)
-    }
+    // if (result) {
+    //     localStorage.setItem("token", result.accessToken)
+    // }
 
-        const TokenNeeded = localStorage.getItem("token")
+    //     const TokenNeeded = localStorage.getItem("token")
 
     /**
      * Execute a fetch request with the given options
@@ -48,7 +44,7 @@ const useFetchWithMsal = (msalRequest) => {
                 let response = null;
 
                 const headers = new Headers();
-                const bearer = `Bearer ${TokenNeeded}`;
+                const bearer = `Bearer `;
                 headers.append("Authorization", bearer);
 
                 if (data) headers.append('Content-Type', 'application/json');
