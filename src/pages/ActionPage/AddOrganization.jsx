@@ -18,8 +18,9 @@ const AddOrganization = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [comapnyId, setCompanyId] = useState("");
   const [error, setError] = useState(false);
+  //get token from local storage and set it to state
+  const token =localStorage.getItem("token")
 
   const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
     useState("");
@@ -95,7 +96,13 @@ const AddOrganization = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(url)
+        await fetch(url, {
+          method:"GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+        })
           .then((response) => response.json())
           .then((data) => {
             const licenseName = data.map((obj) => {
@@ -108,15 +115,20 @@ const AddOrganization = () => {
       }
     };
     fetchData();
-  }, [url]);
+  }, [url, token]);
 
   //Selected option 2
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(url2);
-        await fetch(url2)
+        await fetch(url2,{
+          method:"GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
           .then((response) => response.json())
           .then((data) => {
             const bandType = data.map((obj) => {
@@ -129,7 +141,7 @@ const AddOrganization = () => {
       }
     };
     fetchData();
-  }, [selectedLicenseTypeOption, url2]);
+  }, [url2,token]);
 
   //Submit Company details and License Details
 
@@ -139,7 +151,9 @@ const AddOrganization = () => {
     try {
       await fetch(CompanyDetailsUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+       },
         body: JSON.stringify({
           organizationName: companyName,
           email: emailAddress,
@@ -150,12 +164,12 @@ const AddOrganization = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.id);
-          setCompanyId(data.id);
           let companyId = data.id;
           fetch(CompanyLicenseUrl, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
             body: JSON.stringify({
               purchasedDate: startDate,
               expirationDate: endDate,
@@ -178,14 +192,14 @@ const AddOrganization = () => {
         });
    
     if (
-      companyName.length == 0 ||
-      emailAddress.length == 0 ||
-      location.length == 0 ||
-      phoneNumber.length == 0 ||
-      selectedLicenseTypeOption.length == 0 ||
-      startDate.length == 0 ||
-      selectedLicenseBandOption.length == 0 ||
-      endDate.length == 0
+      companyName.length === 0 ||
+      emailAddress.length === 0 ||
+      location.length === 0 ||
+      phoneNumber.length === 0 ||
+      selectedLicenseTypeOption.length === 0 ||
+      startDate.length === 0 ||
+      selectedLicenseBandOption.length === 0 ||
+      endDate.length === 0
     ) {
       setError(true);
     }

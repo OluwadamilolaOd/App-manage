@@ -43,13 +43,13 @@ a{
 @media screen and (max-width: 1200px) {
   .main_layout{
     margin-left: 100px;
-    background-color: aqua;
+    /* background-color: aqua; */
   }
 }
 @media screen and (max-width: 768px) {
   .main_layout {
     margin-left: 0;
     width: 100%;
-    background-color: rgb(68, 130, 5);
+    /* background-color: rgb(68, 130, 5); */
   }
 }

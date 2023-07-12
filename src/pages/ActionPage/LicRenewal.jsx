@@ -46,7 +46,7 @@ const LicRenewal = () => {
 
   // react-toastify
   const notifySuccess = () =>
-    toast.success("User created successfully", {
+    toast.success("License Renewed Successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -77,6 +77,7 @@ const LicRenewal = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           expirationDate: expirationDate,
@@ -88,6 +89,13 @@ const LicRenewal = () => {
 
         }),
       });
+      await response.json();
+      if (response.status === 200) {
+        setExpirationDate("");
+        notifySuccess("");
+      } else {
+        notifyError("");
+      }
     } catch (err) {
       // Handle fetch error
       console.log(err);

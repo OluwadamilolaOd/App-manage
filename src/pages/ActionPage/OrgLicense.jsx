@@ -20,7 +20,6 @@ const OrgLicense = () => {
   const [endDate, setEndDate] = useState("");
   const [licenseTypeOptions, setLicenseTypeOptions] = useState([]);
   const [licenseBandOptions, setLicenseBandOptions] = useState([]);
-  const [comapnyId, setCompanyId] = useState("");
   const [error, setError] = useState(false);
   const startDateInputRef = useRef(null);
   const endDateInputRef = useRef(null);
@@ -34,8 +33,6 @@ const OrgLicense = () => {
   const url = `${baseUrl}/AppLicense`;
   //get license Band url
   const url2 = `${baseUrl}/licenseType/license/${selectedLicenseTypeOption.id}`;
-  //post company details url
-  const CompanyDetailsUrl = `${baseUrl}/Organizations`;
   //post company license url
   const CompanyLicenseUrl = `${baseUrl}/PurchasedLicense`;
 
@@ -47,7 +44,7 @@ const OrgLicense = () => {
   const handleBackArrow = () => {
     navigate("/organizations");
   };
-  
+
   useEffect(() => {
     instance
       .acquireTokenSilent({
@@ -93,7 +90,12 @@ const OrgLicense = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(url)
+        await fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
           .then((response) => response.json())
           .then((data) => {
             const licenseName = data.map((obj) => {
@@ -113,8 +115,12 @@ const OrgLicense = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(url2);
-        await fetch(url2)
+        await fetch(url2, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
           .then((response) => response.json())
           .then((data) => {
             const bandType = data.map((obj) => {
@@ -137,7 +143,10 @@ const OrgLicense = () => {
     try {
       await fetch(CompanyLicenseUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify({
           purchasedDate: startDate,
           expirationDate: endDate,
@@ -155,10 +164,10 @@ const OrgLicense = () => {
       // setMessage("User created successfully");
 
       if (
-        selectedLicenseTypeOption.length == 0 ||
-        startDate.length == 0 ||
-        selectedLicenseBandOption.length == 0 ||
-        endDate.length == 0
+        selectedLicenseTypeOption.length === 0 ||
+        startDate.length === 0 ||
+        selectedLicenseBandOption.length === 0 ||
+        endDate.length === 0
       ) {
         setError(true);
       }

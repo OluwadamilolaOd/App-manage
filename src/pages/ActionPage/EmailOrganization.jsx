@@ -29,7 +29,10 @@ const EmailOrganization = () => {
 
       
       const response = await fetch(`${baseUrl}/PurchasedLicense/SendEmail`, {
-        method: 'POST',
+        method: 'POST',        
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: formDataObj,
       });
 
@@ -60,7 +63,7 @@ const EmailOrganization = () => {
         <ArrowBack handleBackArrow={handleBackArrow} />
         <div className="title-head">
           {/* <label htmlFor="reciver">Reciver</label> */}
-          <h2>License Information will be sent to this email :<span className="emailTxt">{data.email}</span></h2>
+          <h3>License Information will be sent to this email :<span>{data.email}</span></h3>
         </div>
         <div className="form-email">
         <div className="input">

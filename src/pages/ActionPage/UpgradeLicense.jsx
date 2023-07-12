@@ -74,7 +74,13 @@ const UpgradeLicense = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          await fetch(url)
+          await fetch(url, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
             .then((response) => response.json())
             .then((data) => {
               const bandType = data.map((obj) => {
@@ -98,6 +104,7 @@ const UpgradeLicense = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             expirationDate: expirationDate,
@@ -105,7 +112,7 @@ const UpgradeLicense = () => {
             CreatedBy: graphData.mail,
             PurchasedDate: data.purchasedDate,
             OrganizationId: data.organizationId,
-            //LicenseKey: data.purchasedLicenseKey,
+            LicenseKey: data.purchasedLicenseKey,
           }),
         });
         await response.json();

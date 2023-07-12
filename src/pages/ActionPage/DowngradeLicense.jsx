@@ -71,7 +71,13 @@ const DowngradeLicense = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          await fetch(url)
+          await fetch(url, {
+            method:"GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
             .then((response) => response.json())
             .then((data) => {
               const bandType = data.map((obj) => {
@@ -94,6 +100,7 @@ const DowngradeLicense = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             expirationDate: expirationDate,

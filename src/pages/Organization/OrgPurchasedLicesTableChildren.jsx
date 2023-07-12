@@ -41,10 +41,7 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
 
   //Handle Downgrade Action.
   const handleDowngrade = () => {
-    console.log(obj)
     const currentDate = new Date();
-    console.log(currentDate)
-
     const date1 = new Date(obj.expirationDate);
   
     if (date1 > currentDate) {
