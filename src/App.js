@@ -10,7 +10,7 @@ import LandingPage from './Pages/LandingPage/LandingPage';
 function App() {
   return (
     <div className="App">
-      {/* <LandingPage /> */}
+      <LandingPage />
       <Dashboard >
         <Routes>
           <Route path='/' element={<Home />} />
