@@ -28,6 +28,8 @@ const AddLicenseBand = () => {
   //fetch current user from Azure
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
+   //get token from local storage and set it to state
+   const token =localStorage.getItem("token")
 
   useEffect(() => {
     instance
@@ -87,6 +89,7 @@ const AddLicenseBand = () => {
     try {
       let res = await fetch(url, {
         method: "POST",
+        Authorization: `Bearer ${token}`,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           description: description,

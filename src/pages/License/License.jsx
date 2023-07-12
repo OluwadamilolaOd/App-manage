@@ -9,6 +9,8 @@ const License = () => {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  //get token from local storage and set it to state
+  const token =localStorage.getItem("token")
   
   const navigate = useNavigate();
   const url = `${baseUrl}/AppLicense`
@@ -17,7 +19,13 @@ const License = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(url)
+        await fetch(url,{
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
           .then((response) => response.json())
           .then((data) => {
             let completeData = Object.values(data);

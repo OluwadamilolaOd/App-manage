@@ -16,6 +16,13 @@ export const msalConfig = {
         authority: 'https://blossomhearthospital.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
         redirectUri: '/', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
         postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
+        // End point URL for Power BI API
+        powerBiApiUrl: "https://api.powerbi.com/",
+        // Id of the workspace where the report is hosted
+        workspaceId:"820adcae-4672-437b-a5b2-856ebc9b9717",
+        // Id of the report to be embedded
+        reportId: "8c61ecf7-e10d-46f7-ac9d-4d785611967c",
+
     },
     cache: {
         cacheLocation: 'localStorage', // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.

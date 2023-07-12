@@ -15,10 +15,12 @@ const DowngradeLicense = () => {
   const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
   useState("");
   const [licenseBandOptions, setLicenseBandOptions] = useState([]); 
+  const [error, setError] = useState(null); 
   const locations = useLocation();
   const startDateInputRef = useRef(null)
   const data = locations.state.data;
-  const url = `${baseUrl}/licenseType/upgrade?maximumuser=${data.maximumUser}&applicenseId=${data.appLicenseId}`;
+  console.log(data) 
+  const url = `${baseUrl}/licenseType/downgrade?maximumuser=${data.maximumUser}&applicenseId=${data.appLicenseId}`;
   const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
   const navigate = useNavigate();
 
@@ -44,7 +46,7 @@ const DowngradeLicense = () => {
   
   // react-toastify
   const notifySuccess = () =>
-    toast.success("User created successfully", {
+    toast.success("License Updated successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -55,7 +57,7 @@ const DowngradeLicense = () => {
       theme: "light",
     });
   const notifyError = () =>
-    toast.error("Some error occurred", {
+    toast.error(error, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -98,12 +100,23 @@ const DowngradeLicense = () => {
             licenseTypeId: selectedLicenseBandOption.id,
             CreatedBy: graphData.mail,
             PurchasedDate: data.purchasedDate,
-            OrganizationId: data.organizationId
+            OrganizationId: data.organizationId,
+            LicenseKey: data.purchasedLicenseKey,
+
           }),
         });
+        await response.json();
+      if (response.status === 200) {
+        setExpirationDate("");
+        setSelectedLicenseBandOption(null);
+        notifySuccess("");
+      } else {
+        notifyError("");
+      }
       } catch (err) {
         // Handle fetch error
-        notifyError.log(err);;
+       setError(err.message);
+        notifyError("");
       }
     }
 

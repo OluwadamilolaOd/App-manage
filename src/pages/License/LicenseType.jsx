@@ -25,13 +25,24 @@ const LicenseType = () => {
     fetchData();
   }, [mainUrl,url]);
 
-  const TokenNeeded = localStorage.getItem("token")
+  //get token from local storage and set it to state
+  const token =localStorage.getItem("token")
   const fetchData = async () => {
     try {
       const [response1, response2] = await Promise.all([
-        fetch(mainUrl),
+        fetch(mainUrl,{
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }),
         fetch(url,{
-          headers: {Authentication: `Bearer ${TokenNeeded}`}
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         }),
       ]);
       const data1 = await response1.json();
@@ -48,8 +59,12 @@ const LicenseType = () => {
   //Delete License Type
 
   const deleteItem = (itemId) => {
-    fetch(`${baseUrl}/licenseType/${itemId}`, {
-      method: 'DELETE',
+    fetch(`${baseUrl}/licenseType/${itemId}`,{
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     })
     .then(response => {
       if (response.ok) {

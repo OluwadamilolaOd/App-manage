@@ -18,7 +18,7 @@ const Header = () => {
         account: accounts[0],
       })
       .then((response) => {
-        callMsGraph(response.accessToken).then((response) => {
+        callMsGraph(response.accessToken).then((response) => { 
           setGraphData(response);
         });
       });
@@ -43,15 +43,7 @@ const Header = () => {
       });
   }, [instance, accounts]);
 
-  //Get Data from Private API using Browser Fetch
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        ...loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => localStorage.setItem("token", response.accessToken));
-  }, [instance, accounts]);
+
 
   return (
     <div className="header">

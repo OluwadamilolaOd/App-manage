@@ -16,6 +16,8 @@ const AddLicense = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  //get token from local storage and set it to state
+  const token =localStorage.getItem("token")
 
   //fetch current user from Azure
   const { instance, accounts } = useMsal();
@@ -63,13 +65,16 @@ const AddLicense = () => {
     navigate("/license");
   };
 
+
   //Submit form function
   let handleSubmitLicense = async (e) => {
     e.preventDefault();
     try {
       let res = await fetch(`${baseUrl}/applicense`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           licenseName: name,
           description: description,

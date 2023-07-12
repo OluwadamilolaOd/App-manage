@@ -16,7 +16,12 @@ const Organizations = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(url)
+        await fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
+        })
           .then((response) => response.json())
           .then((data) => {
             let completeData = Object.values(data);

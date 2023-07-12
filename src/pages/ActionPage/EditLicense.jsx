@@ -13,13 +13,14 @@ import { ToastContainer, toast } from "react-toastify";
 const EditLicense = () => {
   const location = useLocation();
   const data = location.state.data;
+  console.log(data);
   const [maximumUser, setMaximumUser] = useState(data.maximumUser);
   const [partNumber, setPartNumber] = useState(data.partNumber);
   const [bandType, setBandType] = useState(data.licenseBand);
   const [selectedOption, setSelectedOption] = useState(null);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   const userParams = useParams();
   const paramsValue = Object.values(userParams);
   const url = `${baseUrl}/licenseType/${paramsValue}`;
@@ -74,6 +75,7 @@ const EditLicense = () => {
       .then((response) => {
         callMsGraph(response.accessToken).then((response) => {
           setGraphData(response);
+          console.log(response);
         });
       });
   }, [instance, accounts]);
@@ -89,6 +91,7 @@ const EditLicense = () => {
       const response = await fetch(url, {
         method: "PUT",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -100,11 +103,12 @@ const EditLicense = () => {
           recurringLicenseType: recurring,
         }),
       });
-      // setSelectedOption("");
-      // setBandType("");
-      // setPartNumber("");
-      // setMaximumUser("");
-      notifySuccess("");
+      await response.json();
+      if (response.status === 200) {
+        notifySuccess("");
+      } else {
+        notifyError("");
+      }
 
       if (
         selectedOption.length == 0 ||

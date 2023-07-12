@@ -14,6 +14,8 @@ const TableActionChildren = ({ obj, deleteItem}) => {
   const [data, setData] = useState([]);
   const url = `${baseUrl}/licenseType/${obj.id}`
   const navigate = useNavigate();
+    //get token from local storage and set it to state
+    const token =localStorage.getItem("token")
   
 
   const handleEdit = () => {
@@ -30,7 +32,10 @@ const TableActionChildren = ({ obj, deleteItem}) => {
 useEffect(()=> {
   const fetchData = async () => {
     try {
-      await fetch(url)
+      await fetch(url, {
+        method: "GET",
+        Authorization: `Bearer ${token}`,
+      })
         .then((response) => response.json())
         .then((data) => {
           setData(data);

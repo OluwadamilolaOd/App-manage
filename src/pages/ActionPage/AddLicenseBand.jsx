@@ -21,9 +21,10 @@ const AddLicenseBand = () => {
   const [bandType, setBandType] = useState("");
   const [maximumUser, setMaximumUser] = useState("");
   const [partNumber, setPartNumber] = useState("");
-  const [message, setMessage] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [error, setError] = useState(false);
+  //get token from local storage and set it to state
+  const token =localStorage.getItem("token")
 
   //fetch current user from Azure
   const { instance, accounts } = useMsal();
@@ -86,6 +87,7 @@ const AddLicenseBand = () => {
     try {
       let res = await fetch(url, {
         method: "POST",
+        Authorization: `Bearer ${token}`,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           description: description,

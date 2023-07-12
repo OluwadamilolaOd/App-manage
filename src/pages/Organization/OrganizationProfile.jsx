@@ -23,6 +23,7 @@ const OrganizationProfile = ({}) => {
   const paramsValue = Object.values(userParams);
   const orgProfileUrl = `${baseUrl}/Organizations/${paramsValue}`;
   const orgLicense = `${baseUrl}/PurchasedLicense/ByOrganizationId/${paramsValue}`;
+  const token = localStorage.getItem("token");
   const headers = [
     "License Name",
     "Band Type",
@@ -41,8 +42,20 @@ const OrganizationProfile = ({}) => {
     const fetchData = async () => {
       try {
         const [response1, response2] = await Promise.all([
-          fetch(orgProfileUrl),
-          fetch(orgLicense),
+          fetch(orgProfileUrl, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            }
+          }),
+          fetch(orgLicense, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            }
+          }),
         ]);
 
         const data1 = await response1.json();
@@ -50,7 +63,13 @@ const OrganizationProfile = ({}) => {
         console.log(data1)
         setTableData(data2);
         setLoading(!loading);
-        await fetch(orgProfileUrl)
+        await fetch(orgProfileUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          }
+        })
           .then((response) => response.json())
           .then((data) => {
             setData(data);
@@ -68,6 +87,9 @@ const OrganizationProfile = ({}) => {
   const deleteItem = (itemId) => {
     fetch(`${baseUrl}/purchasedlicense/${itemId}`, {
       method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
     })
     .then(response => {
       if (response.ok) {

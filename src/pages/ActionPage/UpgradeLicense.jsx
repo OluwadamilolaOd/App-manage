@@ -17,6 +17,7 @@ const UpgradeLicense = () => {
   const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
   useState("");
   const [licenseBandOptions, setLicenseBandOptions] = useState([]); 
+  const [error, setError] = useState([]); 
   const locations = useLocation();
   const startDateInputRef = useRef(null)
   const data = locations.state.data;
@@ -48,7 +49,7 @@ const UpgradeLicense = () => {
     };
   // react-toastify
   const notifySuccess = () =>
-    toast.success("User created successfully", {
+    toast.success("License Updated Successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -59,7 +60,7 @@ const UpgradeLicense = () => {
       theme: "light",
     });
   const notifyError = () =>
-    toast.error("Some error occurred", {
+    toast.error(error, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -104,13 +105,22 @@ const UpgradeLicense = () => {
             CreatedBy: graphData.mail,
             PurchasedDate: data.purchasedDate,
             OrganizationId: data.organizationId,
-            LicenseKey: data.purchasedLicenseKey,
+            //LicenseKey: data.purchasedLicenseKey,
           }),
         });
-      } catch (err) {
-        // Handle fetch error
-        notifyError.log(err);;
-      }
+        await response.json();
+        if (response.status === 200) {
+          setExpirationDate("");
+          setSelectedLicenseBandOption(null);
+          notifySuccess("");
+        } else {
+          notifyError("");
+        }
+        } catch (err) {
+          // Handle fetch error
+         setError(err.message);
+          notifyError("");
+        }
     }
 
   return (

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../Components/Modal/Modal";
 import archiveIcon from '../../assets/images/archive_red.png'
 import DownloadModal from "../ActionPage/Download/DownloadModal";
-import { ToastContainer, toast } from "react-toastify";
 import DowngradeModal from "../../Components/Modal/DowngradeModal";
 
 
@@ -62,13 +61,13 @@ const date1 = new Date();
 const date2 = new Date(obj.expirationDate);
 const diffTime = (date2 - date1);
 let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-if (diffDays < 0) { diffDays = "Expired" }
+if (diffDays < 0) { diffDays = "Expired"}
 else { diffDays = diffDays + " days" }
 
 
   return (
     <>
-      <tr key={obj.id}>
+      <tr key={obj.id} style={{color:diffDays === "Expired" && "red"}}>
         <td>{obj.licenseName}</td>
         <td>{obj.licenseBand}</td>
         <td>{obj.maximumUser}</td>
