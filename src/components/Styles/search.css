@@ -1,0 +1,21 @@
+.searchWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 1rem 0;
+}
+
+.searchInput {
+    height: 40px;
+    width: 20%;
+    border-radius: 30px;
+    padding-left: 2%;
+    border: none;
+}
+
+.searchIcon {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: red;
+    padding: 4px;
+}
