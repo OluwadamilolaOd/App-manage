@@ -16,6 +16,20 @@ export async function callMsGraph(accessToken) {
         .catch(error => console.log(error));
  }
 
+ //Get User Roles
+    export async function callMsGraphRoles(accessToken) {
+        const headers = new Headers();
+        const bearer = `Bearer ${accessToken}`;
+        headers.append("Authorization", bearer);
+        const options = {
+            method: "GET",
+            headers: headers
+        };
+        return fetch(graphConfig.graphRolesEndpoint, options)
+            .then(response => response)
+            .catch(error => console.log(error));
+        }
+
  //Image 
 
  export async function callMsGraphImg(accessToken) {

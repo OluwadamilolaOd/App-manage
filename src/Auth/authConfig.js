@@ -18,10 +18,12 @@ export const msalConfig = {
         postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
         // End point URL for Power BI API
         powerBiApiUrl: "https://api.powerbi.com/",
+
         // Id of the workspace where the report is hosted
-        workspaceId:"820adcae-4672-437b-a5b2-856ebc9b9717",
+        //workspaceId:"820adcae-4672-437b-a5b2-856ebc9b9717",
+        workspaceId:"075f0f9e-2933-4824-b22f-824ff873fa1f",
         // Id of the report to be embedded
-        reportId: "8c61ecf7-e10d-46f7-ac9d-4d785611967c",
+        reportId: "c0887636-84df-4d33-882c-a2c61e7d7cff",
 
     },
     cache: {
@@ -87,5 +89,6 @@ export const loginRequest = {
 
 export const graphConfig = {
     graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
-    graphImageEndpoint: "https://graph.microsoft.com/v1.0/me/photo/$value"
+    graphImageEndpoint: "https://graph.microsoft.com/v1.0/me/photo/$value",
+    graphRoleEndpoint: "https://graph.microsoft.com/v1.0/me/memberOf",
 };

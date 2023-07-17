@@ -43,11 +43,10 @@ const UpgradeLicense = () => {
         });
     }, [instance, accounts]);
 
+//navigate back
+    const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.organizationId}`);
 
-    const handleBackArrow = () => {
-      navigate("/organizations");
-    };
-  // react-toastify
+    // react-toastify
   const notifySuccess = () =>
     toast.success("License Updated Successfully", {
       position: "top-right",

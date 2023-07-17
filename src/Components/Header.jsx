@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../Auth/authConfig";
-import { callMsGraph, callMsGraphImg } from "../Auth/graph";
+import { callMsGraph, callMsGraphImg, callMsGraphRoles } from "../Auth/graph";
 import "./Styles/header.css";
 import { FaBars } from "react-icons/fa";
 
 const Header = () => {
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
+  const [graphRole, setGraphRole] = useState(null);
   const [graphImage, setGraphImage] = useState(null);
 
+  let activeAccount;
+
+  if (instance) {
+      activeAccount = instance.getActiveAccount();
+  }
   // fetch user data to get loging profile details
   useEffect(() => {
     instance
@@ -18,8 +24,26 @@ const Header = () => {
         account: accounts[0],
       })
       .then((response) => {
+        //save token to local storage
+        // console.log(response);
+        // localStorage.setItem("token", response.idToken);
         callMsGraph(response.accessToken).then((response) => { 
           setGraphData(response);
+        });
+      });
+  }, []);
+
+  // fetch user role
+  useEffect(() => {
+    instance
+      .acquireTokenSilent({
+        loginRequest,
+        account: accounts[0],
+      })
+      .then((response) => {
+        callMsGraphRoles(response.accessToken).then((response) => {
+          setGraphRole(response);
+          console.log(response);
         });
       });
   }, [instance, accounts]);
@@ -28,7 +52,7 @@ const Header = () => {
   useEffect(() => {
     instance
       .acquireTokenSilent({
-        loginRequest,
+        ...loginRequest,
         account: accounts[0],
       })
       .then(async (response) => {
@@ -41,7 +65,7 @@ const Header = () => {
           setGraphImage(URL.createObjectURL(blob));
         });
       });
-  }, [instance, accounts]);
+  }, []);
 
 
 
@@ -54,6 +78,7 @@ const Header = () => {
         {/* <Sidebar className="nav-sidebar"/> */}
         <div className="header_right">
           {graphData ? <p>{graphData.givenName}</p> : <p>Loading...</p>}
+          {/* {activeAccount ? activeAccount.name : 'Unknown'} */}
           <div className="profile">
             <img className="profileImg" src={graphImage} alt="profile" />
           </div>

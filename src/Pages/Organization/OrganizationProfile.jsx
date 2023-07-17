@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ArrowBack from "../../Components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
+import  archiveIcon  from "../../assets/images/archive_red.png";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
 import "./../../Pages/Styles/organization.css";
 import Pagination from "../../Components/Pagination";
@@ -60,7 +61,6 @@ const OrganizationProfile = ({}) => {
 
         const data1 = await response1.json();
         const data2 = await response2.json();
-        console.log(data1)
         setTableData(data2);
         setLoading(!loading);
         await fetch(orgProfileUrl, {
@@ -85,7 +85,7 @@ const OrganizationProfile = ({}) => {
   //Delete License Type
 
   const deleteItem = (itemId) => {
-    fetch(`${baseUrl}/purchasedlicense/${itemId}`, {
+    fetch(`${baseUrl}/organizations/${itemId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -93,6 +93,7 @@ const OrganizationProfile = ({}) => {
     })
     .then(response => {
       if (response.ok) {
+        navigate('/organizations')
         // Update the state by removing the deleted item
         setTableData(tableData.filter(item => item.id !== itemId));
       } else {
@@ -110,9 +111,9 @@ const OrganizationProfile = ({}) => {
     navigate("/addorganizationLicense", {state:{data:data}});
   };
   const handleEditOrg = () => {
-    navigate("organizations/editorganization")
+    navigate("editorganization", {state:{data:data}})
   }
-
+  
   const handleArchive = () => {
     deleteItem(data.id)
     setOpenModal(false)
@@ -141,7 +142,7 @@ const OrganizationProfile = ({}) => {
               {openModal && <Modal 
                     setOpenModal={setOpenModal}
                     header={"Archive License"}
-                   // image={archiveIcon}
+                    image={archiveIcon}
                     btnAction={"Archive"}
                     title= {data.organizationName}
                     description={"Are you sure you want to archive?"}

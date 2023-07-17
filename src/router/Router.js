@@ -33,7 +33,7 @@ const Router = () => {
         <Route path='organizations' element= {<Organizations/>} />
         <Route path='organizations/organizationProfile/:id/emailorganization/:id' element= {<EmailOrganization/>} />
         <Route path='organizations/organizationProfile/:id' element = {<OrganizationProfile/>}/>
-        <Route path='organizations/editorganization' element = {<EditOrganization/>}/>
+        <Route path='organizations/organizationProfile/:id/editorganization' element = {<EditOrganization/>}/>
         <Route path='organizations/addorganization' element = {<AddOrganization/>}/>
         <Route path='organizations/organizationProfile/:id/downgradelicense/:id' element = {<DowngradeLicense/>}/>
         <Route path='organizations/organizationProfile/:id/upgradelicense/:id' element = {<UpgradeLicense/>}/>

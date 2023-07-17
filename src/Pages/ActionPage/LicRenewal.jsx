@@ -17,7 +17,6 @@ const LicRenewal = () => {
   const startDateInputRef = useRef(null);
   const locations = useLocation();
   const data = locations.state.data;
-  console.log(data);
   const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
   const navigate = useNavigate();
 
@@ -39,10 +38,8 @@ const LicRenewal = () => {
       });
   }, [instance, accounts]);
 
-
-  const handleBackArrow = () => {
-    navigate("/organizations");
-  };
+//navigate Back
+  const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.organizationId}`);
 
   // react-toastify
   const notifySuccess = () =>

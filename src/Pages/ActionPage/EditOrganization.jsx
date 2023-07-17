@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import "../../Pages/Styles/editorganization.css";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { baseUrl } from "../../Hook/baseurl";
 
 const EditOrganization = () => {
-  const [companyName, setCompanyName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [location, setLocation] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const locations = useLocation();
+  const data = locations.state.data;
+  console.log(data)
+  const [companyName, setCompanyName] = useState(data.organizationName);
+  const [emailAddress, setEmailAddress] = useState(data.email);
+  const [location, setLocation] = useState(data.address);
+  const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  const url = `${baseUrl}/Organizations/${data.id}`;
+  const token = localStorage.getItem("token");
 
-  const handleBackArrow = () => {
-    navigate("/organizations");
-  };
+  const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.id}`);
 
   // react-toastify
   const notifySuccess = () =>
@@ -42,7 +46,32 @@ const EditOrganization = () => {
       theme: "light",
     });
 
-  const handleSubmitEditOrg = (event) => {
+  const handleSubmitEditOrg = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch (url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          organizationName: companyName,
+          email: emailAddress,
+          address: location,
+          phoneNumber: phoneNumber,
+        }),
+      });
+      await response.json();
+      if (response.status === 200) {
+        notifySuccess("");
+      } else {
+        notifyError("");
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
     setCompanyName("");
     setEmailAddress("");
     setLocation("");

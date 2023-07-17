@@ -9,7 +9,7 @@ const LandingPage = () => {
 
   const handleLogin = () => {
     instance.loginPopup({
-      loginRequest,
+      ...loginRequest,
       redirectUri: '/'
   }).catch((error) => console.log(error));
   }

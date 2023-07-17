@@ -4,15 +4,42 @@ import ArrowBack from "../../Components/ArrowBack";
 import "../../Pages/Styles/addorganization.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EmailOrganization = () => {
   const navigate = useNavigate();
   const [ccEmail, setCcEmail] = useState('');
-  const [subject, setSubject] = useState('');
   const [file, setFile] = useState(null);
   const locations = useLocation();
   const data = locations.state.data;
   console.log(data)
+
+  // react-toastify
+  const notifySuccess = () =>
+    toast.success("Email Sent successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifyError = () =>
+    toast.error("Some error occurred", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const ccEmailsArray = ccEmail.split(',').map((email) => email.trim());
@@ -21,7 +48,6 @@ const EmailOrganization = () => {
       formDataObj.append('Recipient', data.email);
       formDataObj.append('RecipientName', data.organizationName);
       formDataObj.append('licenseName', data.licenseName);
-      formDataObj.append('Subject', subject);
       ccEmailsArray.forEach((ccEmail) => {
         formDataObj.append('CcRecipient', ccEmail);
       });
@@ -35,7 +61,14 @@ const EmailOrganization = () => {
         },
         body: formDataObj,
       });
+      if (response.ok) {
+        notifySuccess("");
+        setCcEmail('');
+        setFile(null);
 
+      } else {
+        notifyError("");
+      }
       // Handle the response
       if (response.ok) {
         console.log("Post created successfully!");
@@ -54,7 +87,7 @@ const EmailOrganization = () => {
   };
 
   const handleBackArrow = () => {
-    navigate("/organizations");
+    navigate(`/organizations/organizationprofile/${data.organizationId}`);
   };
   return (
     <div>
@@ -66,14 +99,6 @@ const EmailOrganization = () => {
           <h3>License Information will be sent to this email :<span>{data.email}</span></h3>
         </div>
         <div className="form-email">
-        <div className="input">
-            <label htmlFor="CC">Email Subject</label>
-            <input
-              type="text"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-            />
-            </div>
 
           <div className="input">
             <label htmlFor="CC">Copy Email</label>
@@ -99,6 +124,7 @@ const EmailOrganization = () => {
           <button type="submit">Send Email</button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };
