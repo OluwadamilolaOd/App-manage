@@ -104,8 +104,8 @@ button[type="submit"]:hover {
 .formPage {
   background-color: var(--white-color);
   margin: auto;
-  margin-top: 2rem;
-  padding: 2rem;
+  margin-top: 4rem;
+  padding: 5rem;
   align-items: center;
   /* height: 60vh; */
   width: 60%;

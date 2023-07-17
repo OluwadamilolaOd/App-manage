@@ -19,7 +19,6 @@ const DowngradeLicense = () => {
   const locations = useLocation();
   const startDateInputRef = useRef(null)
   const data = locations.state.data;
-  console.log(data) 
   const url = `${baseUrl}/licenseType/downgrade?maximumuser=${data.maximumUser}&applicenseId=${data.appLicenseId}`;
   const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
   const navigate = useNavigate();
@@ -42,7 +41,7 @@ const DowngradeLicense = () => {
        });
    }, [instance, accounts]);
 
-   const handleBackArrow = () => navigate("/organizations");
+   const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.organizationId}`);
   
   // react-toastify
   const notifySuccess = () =>
