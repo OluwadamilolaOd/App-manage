@@ -15,7 +15,6 @@ const CardList = () => {
       try {
       const response = await fetch(`${baseUrl}/Report/AllReport`);
         const data = await response.json();
-        console.log(data);
         setData(data);
         setLoading(!loading);
       } catch (error) {

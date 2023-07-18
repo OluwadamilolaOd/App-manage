@@ -1,87 +1,3 @@
-// import { useEffect, useState } from 'react';
-// import { useMsal } from '@azure/msal-react';
-// import { msalConfig} from '../Auth/authConfig';
-// import { PowerBIEmbed } from 'powerbi-client-react';
-// import { models } from 'powerbi-client';
-
-// const PowerBi = () => {
-
-//     const { instance, accounts } = useMsal();
-//     const [embedToken, setEmbedToken] = useState(null);
-//     const [embedUrl, setEmbedUrl] = useState(null);
-
-//     useEffect(() => {
-//         // Create a new configuration object
-
-//         instance
-//       .acquireTokenSilent({
-//         scopes:['https://analysis.windows.net/powerbi/api/Report.Read.All'],
-//         account: accounts[0],
-//       })
-//       .then((response) => {
-//         console.log(response.accessToken);
-//         setEmbedToken(response.accessToken);
-        
-//       });
-
-//       //get embed url from power bi
-//       fetch(msalConfig.auth.powerBiApiUrl + "v1.0/myorg/groups/" + msalConfig.auth.workspaceId + "/reports/" + msalConfig.auth.reportId, {
-//         headers: {
-//             "Authorization": "Bearer " + embedToken
-//         },
-//         method: "GET"
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//         let embedUrl = data.embedUrl;
-//         console.log(embedUrl)
-//     })
-//     .catch(error => console.log(error));
-//       }, [embedToken]);
- 
-//       return (
-//         <PowerBIEmbed
-//         embedConfig = {{
-//             type: 'report',   // Supported types: report, dashboard, tile, visual, qna, paginated report and create
-//             id: msalConfig.auth.reportId,
-//             embedUrl: embedUrl,
-//             accessToken: embedToken,
-//             tokenType: models.TokenType.Aad, // Use models.TokenType.Aad for SaaS embed
-//             settings: {
-//                 panes: {
-//                     filters: {
-//                         expanded: false,
-//                         visible: false
-//                     }
-//                 },
-//                 background: models.BackgroundType.Transparent,
-//             }
-//         }}
-    
-//         eventHandlers = {
-//             new Map([
-//                 ['loaded', function () {console.log('Report loaded');}],
-//                 ['rendered', function () {console.log('Report rendered');}],
-//                 ['error', function (event) {console.log(event.detail);}],
-//                 ['visualClicked', () => console.log('visual clicked')],
-//                 ['pageChanged', (event) => console.log(event)],
-//             ])
-//         }
-    
-//         cssClassName = { "PBiEmbed-container" }
-    
-//         getEmbeddedComponent = { (embeddedReport) => {
-//             window.report = embeddedReport;
-//         }}
-//     />
-//   )
-// }
-
-// export default PowerBi
-
-
-
 // ----------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
@@ -94,6 +10,7 @@ import { service, factories, models, IEmbedConfiguration } from "powerbi-client"
 //import "./App.css";
 import { msalConfig } from "../Auth/authConfig";
 import { scopeBase } from './../Auth/authConfig';
+import { useEffect } from 'react';
 
 const powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
 
@@ -269,7 +186,6 @@ class PowerBi extends React.Component<AppProps, AppState> {
             });
         }
     }
-
     
     // Power BI REST API call to refresh User Permissions in Power BI
     // Refreshes user permissions and makes sure the user permissions are fully updated

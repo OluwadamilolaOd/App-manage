@@ -18,13 +18,13 @@ import OrgLicense from '../Pages/ActionPage/OrgLicense'
 import LicRenewal from '../Pages/ActionPage/LicRenewal'
 import EditCompanyDetails from '../Pages/ActionPage/EditCompanyDetails'
 import PowerBi from '../Components/PowerBi'
+import Error404 from '../Components/404/Error404'
 
 const Router = () => {
   return (
       <Routes>
-        <Route path='/' 
-          element={<Navigate to="home" element={<Home/>}/>}  
-        />
+        <Route path='*' element={<Error404 />} />
+        <Route path='/' element={<Navigate to="home" element={<Home/>}/>}/>
         <Route path='home' element={<Home/>} />
         <Route path='powerbi' element={<PowerBi/>} />
         <Route path='license' element={<License/>} />
@@ -42,7 +42,7 @@ const Router = () => {
         <Route path='organizations/organizationProfile/:id/Renewal/:id' element = {<LicRenewal/>}/>
         <Route path='license/successmodal' element = {<SuccessModal/>}/>
         <Route path='addorganizationLicense' element = {<OrgLicense/>}/>
-        <Route path='editCompanyDetails' element = {<EditCompanyDetails/>}/>
+        {/* <Route path='editCompanyDetails' element = {<EditCompanyDetails/>}/> */}
 
       </Routes>
   )
