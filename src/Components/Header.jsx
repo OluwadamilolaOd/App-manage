@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../Auth/authConfig";
 import { callMsGraph, callMsGraphImg, callMsGraphRoles } from "../Auth/graph";
 import "./Styles/header.css";
 import { FaBars } from "react-icons/fa";
@@ -8,51 +7,44 @@ import { FaBars } from "react-icons/fa";
 const Header = () => {
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
-  const [graphRole, setGraphRole] = useState(null);
   const [graphImage, setGraphImage] = useState(null);
 
-  let activeAccount;
 
-  if (instance) {
-      activeAccount = instance.getActiveAccount();
-  }
-  // fetch user data to get loging profile details
+
+  //fetch user data to get loging profile details
   useEffect(() => {
     instance
       .acquireTokenSilent({
-        loginRequest,
+        scopes:['User.Read'],
         account: accounts[0],
       })
       .then((response) => {
-        //save token to local storage
-        // console.log(response);
-        // localStorage.setItem("token", response.idToken);
         callMsGraph(response.accessToken).then((response) => { 
           setGraphData(response);
         });
       });
   }, []);
 
-  // fetch user role
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraphRoles(response.accessToken).then((response) => {
-          setGraphRole(response);
-          console.log(response);
-        });
-      });
-  }, [instance, accounts]);
+  // // fetch user role
+  // useEffect(() => {
+  //   instance
+  //     .acquireTokenSilent({
+  //       loginRequest,
+  //       account: accounts[0],
+  //     })
+  //     .then((response) => {
+  //       callMsGraphRoles(response.accessToken).then((response) => {
+  //         setGraphRole(response);
+  //         console.log(response);
+  //       });
+  //     });
+  // }, [instance, accounts]);
 
   // fetch profile picture
   useEffect(() => {
     instance
       .acquireTokenSilent({
-        ...loginRequest,
+        scopes:['User.Read'],
         account: accounts[0],
       })
       .then(async (response) => {

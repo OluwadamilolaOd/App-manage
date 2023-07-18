@@ -2,10 +2,20 @@ import ReactPaginate from "react-paginate";
 import "./Styles/pagination.css";
 
 const Pagination = ({ url, setcompleteData }) => {
-  //Pagination//
 
+  //get token from local storage and set it to state
+  const token =localStorage.getItem("token")
+  
+  //Pagination//
   const fetchCurrentPage = async (currentPage) => {
-    const res = await fetch(`${url}?pageNumber=${currentPage}`);
+    const res = await fetch(`${url}?pageNumber=${currentPage}`,{
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+    );
     const data = await res.json();
     return data;
   };

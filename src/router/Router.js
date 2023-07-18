@@ -17,6 +17,7 @@ import EditLicense from '../Pages/ActionPage/EditLicense'
 import OrgLicense from '../Pages/ActionPage/OrgLicense'
 import LicRenewal from '../Pages/ActionPage/LicRenewal'
 import EditCompanyDetails from '../Pages/ActionPage/EditCompanyDetails'
+import PowerBi from '../Components/PowerBi'
 
 const Router = () => {
   return (
@@ -25,9 +26,10 @@ const Router = () => {
           element={<Navigate to="home" element={<Home/>}/>}  
         />
         <Route path='home' element={<Home/>} />
+        <Route path='powerbi' element={<PowerBi/>} />
         <Route path='license' element={<License/>} />
         <Route path='license/licenseType/:id' element = {<LicenseType/>}/>
-        <Route path='license/licenseType/:id/license/EditLicese/:id' element = {<EditLicense/>}/>
+        <Route path='license/licenseType/:id/EditLicese/:id' element = {<EditLicense/>}/>
         <Route path='license/addNewLicense' element = {<AddLicense/>}/>
         <Route path='license/addLicenseBand' element = {<AddLicenseBand/>}/>
         <Route path='organizations' element= {<Organizations/>} />

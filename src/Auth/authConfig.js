@@ -12,7 +12,8 @@ import { LogLevel } from "@azure/msal-browser";
  */
 export const msalConfig = {
     auth: {
-        clientId: '66ffb285-220a-42ae-9277-20f7e3af6284', // This is the ONLY mandatory field that you need to supply.
+  //      clientId: '66ffb285-220a-42ae-9277-20f7e3af6284', // This is the ONLY mandatory field that you need to supply.
+        clientId:'66ffb285-220a-42ae-9277-20f7e3af6284',
         authority: 'https://blossomhearthospital.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
         redirectUri: '/', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
         postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
@@ -74,6 +75,9 @@ export const protectedResources = {
         },
     },
 };
+
+// Scope for securing access token
+export const scopeBase = ["https://analysis.windows.net/powerbi/api/Report.Read.All"];
 
 /**
  * Scopes you add here will be prompted for user consent during sign-in.

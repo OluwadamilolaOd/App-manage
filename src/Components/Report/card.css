@@ -1,11 +1,20 @@
 .card-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr; /* Sets the column sizes */
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Sets the column sizes */
   grid-template-rows: auto auto; /* Sets the row sizes */
   gap: 10px; /* Adds a gap between the grid cells */
 }
 
+.card-container h2 {
+  margin-top: 10px;
+  font-size: 2.5rem;
+}
+
 .blueBackg {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
   background: linear-gradient(269.72deg, #000066 0.21%, #85b5ff 156.95%);
   box-shadow: 0px 4px 21px rgba(1, 14, 35, 0.15);
   border-radius: 10px;
@@ -16,6 +25,10 @@
 }
 
 .greenBackg {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
   background: linear-gradient(269.72deg, #2bbc8e 0.21%, #35f5b8 156.95%);
   box-shadow: 0px 4px 21px rgba(1, 14, 35, 0.15);
   border-radius: 10px;
@@ -26,6 +39,10 @@
 }
 
 .orangeBackg {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
   background: linear-gradient(269.72deg, #962a11 0.21%, #f25f3e 156.95%);
   border-radius: 10px;
   padding: 10px;
@@ -35,6 +52,10 @@
 }
 
 .redBackg {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
   background: linear-gradient(269.72deg, #9e1e3e 0.21%, #ff6a8f 156.95%);
   box-shadow: 0px 4px 21px rgba(1, 14, 35, 0.15);
   border-radius: 10px;
@@ -45,6 +66,10 @@
 }
 
 .yellowBackg {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
   background: linear-gradient(269.72deg, #a68821 0.21%, #facf3f 156.95%);
   box-shadow: 0px 4px 21px rgba(1, 14, 35, 0.15);
   border-radius: 10px;

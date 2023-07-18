@@ -133,7 +133,7 @@ const OrganizationProfile = ({}) => {
                 <MdOutlineEdit />
                 <span>Edit</span>
               </div>
-              <div className="profile-action color-red" onClick={() => {
+              {/* <div className="profile-action color-red" onClick={() => {
                 setOpenModal(true);
               }}>
                 <MdDeleteOutline/>
@@ -147,7 +147,7 @@ const OrganizationProfile = ({}) => {
                     title= {data.organizationName}
                     description={"Are you sure you want to archive?"}
                     handleOnclickEvent={handleArchive} />
-                }
+                } */}
             </div>
           </div>
           <div className="genInfo">

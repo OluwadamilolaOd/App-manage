@@ -4,6 +4,7 @@ import { PowerBIEmbed } from 'powerbi-client-react';
 import * as pbi from 'powerbi-client';
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../Auth/authConfig";
+import PieR from "../Components/Report/Pie/Pie";
 
 const Home = () => {
 
@@ -26,6 +27,7 @@ const Home = () => {
   return (
     <div>
       <CardList />
+	  {/* <PieR /> */}
       {/* <PowerBIEmbed
 	embedConfig = {{
 		type: 'report',   // Supported types: report, dashboard, tile, visual, qna, paginated report and create
@@ -60,6 +62,7 @@ const Home = () => {
 		this.report = embeddedReport;
 	}}
 /> */}
+
     </div>
   );
 };

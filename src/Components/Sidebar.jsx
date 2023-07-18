@@ -34,12 +34,9 @@ const Sidebar = ({ setOpenModal }) => {
           ))}
 
           {/* Logout */}
-          <div className="sidebar_menu sidebar_bottom">
+          <div className="sidebar_menu sidebar_bottom" onClick={() => setOpenModal(true)}>
             <HiOutlineLogout className="icon" />
             <span
-              onClick={() => {
-                setOpenModal(true);
-              }}
             >
               Logout
             </span>

@@ -29,6 +29,14 @@ export const sideLinks = [
         // iconW: organizationW,
         display: "Organizations",
         cName: 'nav-text',
+    },
+
+    {
+        path: "/powerbi",
+        icon: MdOutlineDataThresholding,
+        // iconW: organizationW,
+        display: "PowerBi",
+        cName: 'nav-text',
     }
 
 ]
