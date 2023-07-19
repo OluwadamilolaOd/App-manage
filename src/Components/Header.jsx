@@ -2,24 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useMsal } from "@azure/msal-react";
 import { callMsGraph, callMsGraphImg, callMsGraphRoles } from "../Auth/graph";
 import "./Styles/header.css";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaWindowClose } from "react-icons/fa";
 
 const Header = () => {
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
   const [graphImage, setGraphImage] = useState(null);
 
-
-
   //fetch user data to get loging profile details
   useEffect(() => {
     instance
       .acquireTokenSilent({
-        scopes:['User.Read'],
+        scopes: ["User.Read"],
         account: accounts[0],
       })
       .then((response) => {
-        callMsGraph(response.accessToken).then((response) => { 
+        callMsGraph(response.accessToken).then((response) => {
           setGraphData(response);
         });
       });
@@ -44,7 +42,7 @@ const Header = () => {
   useEffect(() => {
     instance
       .acquireTokenSilent({
-        scopes:['User.Read'],
+        scopes: ["User.Read"],
         account: accounts[0],
       })
       .then(async (response) => {
@@ -59,13 +57,25 @@ const Header = () => {
       });
   }, []);
 
-
+  // state = { clicked: false };
+  // handleClick = () => {
+  //   this.setState({ clicked: !this.state.clicked });
+  // };
 
   return (
     <div className="header">
       <div className="header_menu">
+        {/* <div className="hamburger" onClick={this.handleClick}>
+          <i
+            id="bar"
+            className={this.state.clicked ? "FaBars" : "FaWindowClose"}
+          ></i>
+        </div> */}
         <div className="hamburger">
-          <FaBars className="menu-icon" />
+          < FaBars className="menu-icon" />
+        </div>
+        <div className="close-icon">
+          <FaWindowClose className="menu-icon-icon" />
         </div>
         {/* <Sidebar className="nav-sidebar"/> */}
         <div className="header_right">

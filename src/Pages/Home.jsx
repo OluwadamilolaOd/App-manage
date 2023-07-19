@@ -1,33 +1,33 @@
 import { useEffect } from "react";
 import CardList from "../Components/Report/CardList";
-import { PowerBIEmbed } from 'powerbi-client-react';
-import * as pbi from 'powerbi-client';
+import { PowerBIEmbed } from "powerbi-client-react";
+import * as pbi from "powerbi-client";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../Auth/authConfig";
-import PieR from "../Components/Report/Pie/Pie";
+import ChartReport from "../Components/Report/Chart/ChartReport";
 
 const Home = () => {
+  const { instance, accounts } = useMsal();
 
-	const { instance, accounts } = useMsal();
+  useEffect(() => {
+    instance
+      .acquireTokenSilent({
+        ...loginRequest,
+        account: accounts[0],
+      })
+      .then((response) => {
+        //save token to local storage
+        localStorage.setItem("token", response.accessToken);
+      });
+  }, [instance, accounts]);
 
-	useEffect(() => {
-		instance
-		  .acquireTokenSilent({
-			...loginRequest,
-			account: accounts[0],
-		  })
-		  .then((response) => {
-			//save token to local storage
-			localStorage.setItem("token", response.accessToken);
-		  });
-	  }, [instance, accounts]);
-
-   const models = pbi.models;
+  const models = pbi.models;
 
   return (
     <div>
-      <CardList />
-	  {/* <PieR /> */}
+		<div><CardList /></div>
+      
+      {/* <PieR /> */}
       {/* <PowerBIEmbed
 	embedConfig = {{
 		type: 'report',   // Supported types: report, dashboard, tile, visual, qna, paginated report and create
@@ -62,7 +62,7 @@ const Home = () => {
 		this.report = embeddedReport;
 	}}
 /> */}
-
+      <div><ChartReport/></div>
     </div>
   );
 };

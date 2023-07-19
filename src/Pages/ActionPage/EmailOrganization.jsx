@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
-import "../../Pages/Styles/addorganization.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
 import { ToastContainer, toast } from "react-toastify";
