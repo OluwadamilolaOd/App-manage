@@ -67,7 +67,7 @@
   color: var(--blue-color);
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 120px) {
   .landingPage {
     width: 100%;
     display: flex;

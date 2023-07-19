@@ -26,17 +26,32 @@
   font-weight: bold;
   cursor: pointer;
 }
-/* .btnwhite {
-  color: var(--blue-color);
-  background-color: var(--white-color);
-  padding: 0.8rem;
-  margin-right: 2rem;
-  border: none;
+.btnactive {
+  display: flex;
+  color: var(--white-color);
+  background-color: var(--blue-color);
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding: 10px 15px;
   border-radius: 5px;
-  cursor: pointer;
+  transition: 0.4s;
   font-size: 16px;
   font-weight: bold;
-} */
+  cursor: pointer;
+}
+.btninactive{
+  display: flex;
+  color: var(--blue-color);
+  background-color: var(--lightblue-color);
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: 0.4s;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 .btnborder {
   color: white;
   background-color: rgb(135, 11, 11);
@@ -66,6 +81,11 @@ span {
   background-color: var(--blue-color);
   border: 2px solid var(--white-color);
   color: var(--white-color);
+}
+.btninactive:hover,.btnactive:hover {
+  background-color: var(--white-color);
+  border: 2px solid var(--blue-color);
+  color: var(--blue-color);
 }
 
 @media screen and (max-width: 1200px) {

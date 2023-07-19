@@ -92,3 +92,8 @@
   color: var(--blue-color);
   cursor: pointer;
 }
+.emailBtn {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}

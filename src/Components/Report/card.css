@@ -1,6 +1,6 @@
 .card-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; /* Sets the column sizes */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Sets the column sizes */
   grid-template-rows: auto auto; /* Sets the row sizes */
   gap: 10px; /* Adds a gap between the grid cells */
 }

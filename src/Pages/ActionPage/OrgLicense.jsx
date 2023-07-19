@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../../Pages/Styles/addorganization.css";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import Select from "react-select";

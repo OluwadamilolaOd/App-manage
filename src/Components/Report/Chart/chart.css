@@ -1,0 +1,22 @@
+.container_chart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 1.5rem;
+}
+.report_chart{
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    height: 30rem; 
+    margin-bottom: 1rem;
+}
+
+.chart-bar {
+    margin: 2rem;
+    padding: 10rem;
+}

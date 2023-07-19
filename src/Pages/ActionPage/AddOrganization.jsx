@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../../Pages/Styles/addorganization.css";
 import ArrowBack from "../../Components/ArrowBack";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
@@ -9,7 +8,7 @@ import { callMsGraph } from "../../Auth/graph";
 import { generateProductKey } from "../../Components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
-import "../Styles/add.css"
+import "../Styles/license.css"
 
 const AddOrganization = () => {
   const [companyName, setCompanyName] = useState("");

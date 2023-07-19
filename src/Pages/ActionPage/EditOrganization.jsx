@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../Pages/Styles/editorganization.css";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate,useLocation } from "react-router-dom";

@@ -46,7 +46,19 @@
   display: none;
   cursor: pointer;
 }
+.close-icon{
+  display: flex;
+  align-items: center;
+  /* display: none; */
+  cursor: pointer;
+}
 .menu-icon {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: var(--blue-color);
+  background-color: none;
+}
+.menu-icon-icon{
   font-size: 3rem;
   font-weight: bolder;
   color: var(--blue-color);
@@ -70,6 +82,11 @@
     align-items: center;
   }
   .hamburger {
+    display: block;
+    align-items: center;
+    padding-top: 1rem;
+  }
+  .close-icon {
     display: block;
     align-items: center;
     padding-top: 1rem;
