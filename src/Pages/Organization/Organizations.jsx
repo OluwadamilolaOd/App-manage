@@ -4,6 +4,7 @@ import Banner from '../../Components/Banner';
 import { baseUrl } from '../../Hook/baseurl';
 import OrgTableSheet from './OrgTableSheet';
 import Pagination from '../../Components/Pagination';
+import Search from './../../Components/Search';
 
 const Organizations = () => {
   const [data, setData] = useState([]);
@@ -42,7 +43,8 @@ const Organizations = () => {
 
   return (
     <div>
-      <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/>     
+      <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/> 
+      <Search />    
       <OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={data} loading={loading}/>
       <Pagination url={url} setcompleteData={setData} />
     </div>

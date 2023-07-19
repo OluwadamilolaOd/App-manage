@@ -2,13 +2,13 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin: 1rem 0;
+    margin: 5rem 0 0 0; 
 }
 
 .searchInput {
     height: 40px;
     width: 20%;
-    border-radius: 30px;
+    border-radius: 10px;
     padding-left: 2%;
     border: none;
 }

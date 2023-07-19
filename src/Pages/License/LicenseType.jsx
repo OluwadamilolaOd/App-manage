@@ -6,6 +6,7 @@ import TableAction from '../../Components/Table/TableAction'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import Pagination from '../../Components/Pagination'
+import Search from '../../Components/Search'
 
 
 
@@ -89,6 +90,7 @@ const LicenseType = () => {
   return (
     <div>
       <Banner title={` ${data? data.licenseName:""} License`} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add License Band"} btnEventHandler={handleEventClick}/>
+      <Search />
       <TableAction headers={headers} data={completeData} loading={loading} deleteItem = {deleteItem}/>
       <Pagination url={url} setcompleteData={setcompleteData}/>
       <ToastContainer />

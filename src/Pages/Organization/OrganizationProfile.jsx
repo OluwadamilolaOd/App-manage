@@ -13,6 +13,7 @@ import {
 } from "react-icons/md";
 import Button from "../../Components/Button"
 import Modal from "../../Components/Modal/Modal";
+import Search from "../../Components/Search";
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
@@ -114,10 +115,10 @@ const OrganizationProfile = ({}) => {
     navigate("editorganization", {state:{data:data}})
   }
   
-  const handleArchive = () => {
-    deleteItem(data.id)
-    setOpenModal(false)
-  };
+  // const handleArchive = () => {
+  //   deleteItem(data.id)
+  //   setOpenModal(false)
+  // };
 
   return (
     <div>
@@ -177,6 +178,8 @@ const OrganizationProfile = ({}) => {
             </div>
             <Button className={"btnblue"} title={"Add New License"} btnEventHandler={handleEventClick}/>
           </div>
+
+          <Search />
         </div>
 
         <OrgPurchasedLicsTableSheet

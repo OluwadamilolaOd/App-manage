@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import TableSheet from '../../Components/Table/TableSheet';
 import {baseUrl} from './../../Hook/baseurl';
 import Pagination from '../../Components/Pagination';
+import Search from '../../Components/Search';
 
 const License = () => {
 
@@ -46,6 +47,7 @@ const License = () => {
   return (
     <div>
       <Banner title={"Manage License"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add New License"} btnEventHandler={handleEventClick} />
+      <Search />
       <TableSheet headers={headers} data={data} loading={loading} />
       <Pagination url={url} setcompleteData={setData} />
     </div>

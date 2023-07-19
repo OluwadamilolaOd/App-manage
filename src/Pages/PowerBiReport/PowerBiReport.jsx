@@ -10,6 +10,7 @@ import { service, factories, models, IEmbedConfiguration } from "powerbi-client"
 import * as config from "../../Auth/authConfig";
 import { loginRequest } from "../../Auth/authConfig";
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
 
@@ -21,10 +22,7 @@ let loading;
 let error = [];
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-
 class PowerBiReport extends React.Component {
-    //const [error, setError] = useState([]);
-
     static contextType = MsalContext;
 
     constructor(props) {
