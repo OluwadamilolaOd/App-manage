@@ -25,11 +25,11 @@ const CardList = () => {
   }, []);
   return (
     <div className='card-container'>
-        <Card title={"Number of Organisations"} value={data.organization} className = {"redBackg"} />
-        <Card title={"Number of Licenses"} value={data.purchasedLicense} className = {"greenBackg"} />
+        <Card title={"Number of Organisations"} value={data.organization} className = {"blueBackg"} />
+        <Card title={"Number of Licenses"} value={data.purchasedLicense} className = {"blueBackg"} />
         {/* <Card title={"Number of Licenses due to Expire This Month and Next Month"} value={100} className = {"blueBackg"} /> */}
-        <Card title={"Number of Expired Licenses"} value={data.expiredlicense} className = {"orangeBackg"} />
-        <Card title={"Number of Active License"} value={data.activeLicense} className = {"yellowBackg"} />
+        <Card title={"Number of Expired Licenses"} value={data.expiredlicense} className = {"redBackg"} />
+        <Card title={"Number of Active License"} value={data.activeLicense} className = {"blueBackg"} />
         <Card title={"Number of New License"} value={data.application} className = {"blueBackg"} />
     </div>
   )
