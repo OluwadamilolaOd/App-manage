@@ -1,0 +1,44 @@
+.errorPage {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+}
+.errorSection {
+  display: flex;
+  align-items: center;
+  height: 70%;
+  width: 100%;
+  background-color: var(--body-bg);
+}
+.error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10rem;
+  padding: 5rem;
+}
+.text-error {
+  padding-left: 5rem;
+  width: 45%;
+  text-align: center;
+  color: var(--txtblack-color);
+}
+.bigtxt-error {
+  font-size: 2rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+.smalltxt-error {
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  word-spacing: 2px;
+  text-align: justify;
+  word-spacing: 1px;
+}
+.error-icon {
+  width: 8rem;
+  height: 8rem;
+  color: var(--blue-color);
+}
