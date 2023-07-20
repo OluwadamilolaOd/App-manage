@@ -40,20 +40,29 @@ const EmailOrganization = () => {
       theme: "light",
     });
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    var url;
+    if (emailNotification) {
+      url = `${baseUrl}/PurchasedLicense/SendEmailReminder`
+    }
+    else {
+      url = `${baseUrl}/PurchasedLicense/SendEmail`
+    }
     const ccEmailsArray = ccEmail.split(",").map((email) => email.trim());
     try {
       const formDataObj = new FormData();
       formDataObj.append("Recipient", data.email);
       formDataObj.append("RecipientName", data.organizationName);
       formDataObj.append("licenseName", data.licenseName);
+      formDataObj.append("ExpirationDate", data.expirationDate);
       ccEmailsArray.forEach((ccEmail) => {
         formDataObj.append("CcRecipient", ccEmail);
       });
       formDataObj.append("attachment", file);
 
-      const response = await fetch(`${baseUrl}/PurchasedLicense/SendEmail`, {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -93,6 +102,7 @@ const EmailOrganization = () => {
 
  const handleNotificationClick = () => { 
   setEmailNotification(!emailNotification)
+  console.log(emailNotification)
  }
   return (
     <div>
