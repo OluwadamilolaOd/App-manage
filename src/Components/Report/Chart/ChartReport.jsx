@@ -4,6 +4,7 @@ import LicenseStatus from "./LicenseStatus";
 import AvailableAppLicense from "./AvailableAppLicense";
 import RecurringLicenseStatus from "./RecurringLicenseStatus";
 import PurchasedLicenses from "./PurchasedLicenses";
+import RangeLicense from "./RangeLicense";
 
 const ChartReport = () => {
   return (
@@ -16,6 +17,9 @@ const ChartReport = () => {
       <div className="report_chart">
         <LicenseStatus/>
         <AvailableAppLicense />
+      </div>
+      <div className="report_chart">
+        <RangeLicense/>
       </div>
     </div>
   );

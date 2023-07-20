@@ -1,22 +1,18 @@
 .container_chart{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+   
     padding-top: 1.5rem;
 }
 .report_chart{
     padding-top: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color: #ffffff;
-    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto; 
+    gap: 5px;
     height: 30rem; 
-    margin-bottom: 1rem;
 }
-
 .chart-bar {
-    margin: 2rem;
-    padding: 10rem;
+    background-color: var(--white-color);
+    width: 95%;
+    padding: 2rem;
+    border-radius: 10px;
 }
