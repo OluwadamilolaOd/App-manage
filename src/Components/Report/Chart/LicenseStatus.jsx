@@ -3,31 +3,45 @@ import Chart from "react-apexcharts";
 
 
 const LicenseStatus = () => {
+  const barData = {
+    series:[
+      {
+        name: "Licenses",
+        data: [11, 1],
+      },
+    ],
+    options: {
+      chart: {
+        type:'bar',
+      },
+      plotOptions: {
+        bar: {
+          distributed: true,
+          dataLabels: {
+            hideOverflowingLabels:false,
+          },
+        },
+      },
+      colors:["#000066", "#DA2929"],
+      xaxis: {
+        categories: ["Active", "Expired"],
+      },
+      title: {
+        text: "Licenses Status",
+      },
+      chart: {
+        stacked: true,
+      },
+    },
+  }
   return (
     <div className="chart-bar">
       <Chart
+        options={barData.options}
+        series={barData.series}
         type="bar"
-        width={600}
-        height={400}
-        series={[
-          {
-            name: "Licenses",
-            data: [11, 1],
-          },
-        ]}
-        options={{
-          title: {
-            text: "Licenses Status",
-          },
-          chart: {
-            stacked: true,
-          },
-          xaxis: {
-            categories: ["Active", "Expired"],
-          },
-          colors: ["#000066", "#DA2929"],
-        }}
-      ></Chart>
+        height={350}
+      />
     </div>
   )
 }
