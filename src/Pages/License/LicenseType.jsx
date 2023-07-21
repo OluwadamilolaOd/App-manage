@@ -16,6 +16,8 @@ const LicenseType = () => {
   const userParams = useParams();
   const [data, setData] = useState();
   const [completeData, setcompleteData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const paramsValue = Object.values(userParams)
   const url = `${baseUrl}/licenseType/license/${paramsValue}`
@@ -50,6 +52,7 @@ const LicenseType = () => {
       const data2 = await response2.json();
       setData(data1)
       setcompleteData(data2)
+      setFilteredData(data2)
       setLoading(!loading)
 
     } catch (error) {
@@ -83,6 +86,20 @@ const LicenseType = () => {
   };
 
 
+    //Handle search event
+    const handleSearch = (e) => {
+      const searchTerm = e.target.value;
+      setSearchTerm(searchTerm);
+      if(searchTerm === "") {
+        setFilteredData(completeData);
+      }else if(completeData){
+        const filteredData = completeData.filter((value) => value.licenseBand.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredData(filteredData);
+      }
+    };
+
+
   const handleEventClick = () => {
     navigate("/license/addLicenseBand",{state : {paramsValue:paramsValue}})
   }
@@ -90,8 +107,8 @@ const LicenseType = () => {
   return (
     <div>
       <Banner title={` ${data? data.licenseName:""} License`} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add License Band"} btnEventHandler={handleEventClick}/>
-      <Search />
-      <TableAction headers={headers} data={completeData} loading={loading} deleteItem = {deleteItem}/>
+      <Search handleSearch = {handleSearch} value={searchTerm}/>
+      <TableAction headers={headers} data={filteredData} loading={loading} deleteItem = {deleteItem}/>
       <Pagination url={url} setcompleteData={setcompleteData}/>
       <ToastContainer />
     </div>

@@ -8,6 +8,8 @@ import Search from './../../Components/Search';
 
 const Organizations = () => {
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
 
   const url = `${baseUrl}/Organizations`
@@ -27,6 +29,8 @@ const Organizations = () => {
           .then((data) => {
             let completeData = Object.values(data);
             setData(completeData);
+            setFilteredData(completeData);
+            console.log(data)
             setLoading(!loading)
           });
       } catch (error) {
@@ -41,11 +45,24 @@ const Organizations = () => {
     navigate("/organizations/addOrganization")
   }
 
+    //Handle search event
+    const handleSearch = (e) => {
+      const searchTerm = e.target.value;
+      setSearchTerm(searchTerm);
+      if(searchTerm === "") {
+        setFilteredData(data);
+      }else if(data){
+        const filteredData = data.filter((value) => value.organizationName.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredData(filteredData);
+      }
+    };
+
   return (
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/> 
-      <Search />    
-      <OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={data} loading={loading}/>
+      <Search handleSearch = {handleSearch} value={searchTerm} />  
+      <OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={filteredData} loading={loading}/>
       <Pagination url={url} setcompleteData={setData} />
     </div>
   )

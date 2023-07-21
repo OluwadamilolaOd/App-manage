@@ -19,6 +19,8 @@ const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const userParams = useParams();
@@ -63,6 +65,8 @@ const OrganizationProfile = ({}) => {
         const data1 = await response1.json();
         const data2 = await response2.json();
         setTableData(data2);
+        setFilteredData(data2);
+        console.log(data2)
         setLoading(!loading);
         await fetch(orgProfileUrl, {
           method: "GET",
@@ -119,6 +123,20 @@ const OrganizationProfile = ({}) => {
   //   deleteItem(data.id)
   //   setOpenModal(false)
   // };
+
+
+    //Handle search event
+    const handleSearch = (e) => {
+      const searchTerm = e.target.value;
+      setSearchTerm(searchTerm);
+      if(searchTerm === "") {
+        setFilteredData(tableData);
+      }else if(tableData){
+        const filteredData = tableData.filter((value) => value.licenseName.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredData(filteredData);
+      }
+    };
 
   return (
     <div>
@@ -179,11 +197,11 @@ const OrganizationProfile = ({}) => {
             <Button className={"btnblue"} title={"Add New License"} btnEventHandler={handleEventClick}/>
           </div>
 
-          <Search />
+          <Search handleSearch = {handleSearch} value={searchTerm} />
         </div>
 
         <OrgPurchasedLicsTableSheet
-          data={tableData}
+          data={filteredData}
           headers={headers}
           loading={loading}
           deleteItem = {deleteItem}

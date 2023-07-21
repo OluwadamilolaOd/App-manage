@@ -9,6 +9,8 @@ import Search from '../../Components/Search';
 const License = () => {
 
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   //get token from local storage and set it to state
   const token =localStorage.getItem("token")
@@ -31,6 +33,7 @@ const License = () => {
           .then((data) => {
             let completeData = Object.values(data);
             setData(completeData);
+            setFilteredData(completeData);
             setLoading(!loading)
           });
       } catch (error) {
@@ -39,16 +42,31 @@ const License = () => {
     };
 
     fetchData();
-  }, [url]);
+  }, [url, token]);
 
   const handleEventClick = () => {
     navigate("addNewLicense")
   }
+
+
+  //Handle search event
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+    setSearchTerm(searchTerm);
+    if(searchTerm === "") {
+      setFilteredData(data);
+    }else if(data){
+      const filteredData = data.filter((value) => value.licenseName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(filteredData);
+    }
+  };
+
   return (
     <div>
       <Banner title={"Manage License"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add New License"} btnEventHandler={handleEventClick} />
-      <Search />
-      <TableSheet headers={headers} data={data} loading={loading} />
+      <Search handleSearch = {handleSearch} value={searchTerm} />
+      <TableSheet headers={headers} data={filteredData} loading={loading} />
       <Pagination url={url} setcompleteData={setData} />
     </div>
   )

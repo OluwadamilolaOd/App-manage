@@ -23,7 +23,7 @@ const LandingPage = () => {
       </div>
       <div className="text-page">
         <div className="text-center">
-          <h1 className="big-title"> Havis AppManage</h1>
+          <h1 className="big-title"> Havis 360 Unified License</h1>
           <div className="btn-page">
             <button className="btn" onClick={handleLogin}>Login</button>
           </div>
