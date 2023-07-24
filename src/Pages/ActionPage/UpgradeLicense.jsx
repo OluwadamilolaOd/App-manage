@@ -48,7 +48,7 @@ const UpgradeLicense = () => {
 
     // react-toastify
   const notifySuccess = () =>
-    toast.success("License Updated Successfully", {
+    toast.success("License successfully updated.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

@@ -23,7 +23,7 @@ const EditOrganization = () => {
 
   // react-toastify
   const notifySuccess = () =>
-    toast.success("User created successfully", {
+    toast.success("Organization successfully edited.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -34,7 +34,7 @@ const EditOrganization = () => {
       theme: "light",
     });
   const notifyError = () =>
-    toast.error("Some error occurred", {
+    toast.error("Some error occurred.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

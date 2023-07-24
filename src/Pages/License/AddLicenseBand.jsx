@@ -50,7 +50,7 @@ const AddLicenseBand = () => {
 
   // react-toastify
   const notifySuccess = () =>
-    toast.success("User created successfully", {
+    toast.success("New License created successfully.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

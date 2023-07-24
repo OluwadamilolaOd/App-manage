@@ -37,7 +37,7 @@ const EditLicense = () => {
 
   // react-toastify
   const notifySuccess = () =>
-    toast.success("User created successfully", {
+    toast.success("License successfully Edited", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

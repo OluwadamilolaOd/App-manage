@@ -39,7 +39,7 @@ const AddLicense = () => {
 
   // react-toastify
   const notifySuccess = () =>
-    toast.success("User created successfully", {
+    toast.success("License successfully created.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -51,7 +51,7 @@ const AddLicense = () => {
     });
   // const notifyError = () => toast("Some error occurred");
   const notifyError = () =>
-    toast.error("Some error occurred", {
+    toast.error("Some error occurred.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

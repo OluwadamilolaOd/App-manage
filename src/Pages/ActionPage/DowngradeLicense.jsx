@@ -45,7 +45,7 @@ const DowngradeLicense = () => {
   
   // react-toastify
   const notifySuccess = () =>
-    toast.success("License Updated successfully", {
+    toast.success("License successfully downgrade.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

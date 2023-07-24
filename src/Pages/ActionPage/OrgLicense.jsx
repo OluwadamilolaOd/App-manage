@@ -59,7 +59,7 @@ const OrgLicense = () => {
 
   // react-toastify
   const notifySuccess = () =>
-    toast.success("User created successfully", {
+    toast.success("Organization license successfully created.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
