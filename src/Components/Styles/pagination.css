@@ -23,13 +23,13 @@
   transition: background-color 0.3s ease;
 }
 
-.pagination-link:hover {
+.pagination-link:hover, .previous:hover, .next:hover  {
   color: var(--white-color);
   background-color: var(--blue-color);
   border: 1px solid var(--blue-color);
 }
 
-.pagination-link.pagination-active {
+ .pagination-link .pagination-active {
   background-color: var(--blue-color);
   border: 1px solid var(--blue-color);
   color: var(--white-color);
@@ -46,8 +46,6 @@
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
-
-
 /* Optional: Pagination link animation */
 .pagination-link {
   transition: background-color 0.3s ease, transform 0.3s ease;
