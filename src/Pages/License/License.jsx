@@ -12,6 +12,7 @@ const License = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   //get token from local storage and set it to state
   const token =localStorage.getItem("token")
   
@@ -19,6 +20,7 @@ const License = () => {
   const url = `${baseUrl}/AppLicense`
   const headers = ["Name","Description"]
 
+  //const [data] = useFetch(url);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,11 +35,11 @@ const License = () => {
           .then((data) => {
             let completeData = Object.values(data);
             setData(completeData);
-            setFilteredData(completeData);
             setLoading(!loading)
           });
       } catch (error) {
         console.error("Error fetching data:", error);
+        setError(true);
       }
     };
 
@@ -53,20 +55,16 @@ const License = () => {
   const handleSearch = (e) => {
     const searchTerm = e.target.value;
     setSearchTerm(searchTerm);
-    if(searchTerm === "") {
-      setFilteredData(data);
-    }else if(data){
       const filteredData = data.filter((value) => value.licenseName.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setFilteredData(filteredData);
-    }
+      setData(filteredData);
   };
 
   return (
     <div>
       <Banner title={"Manage License"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add New License"} btnEventHandler={handleEventClick} />
       <Search handleSearch = {handleSearch} value={searchTerm} />
-      <TableSheet headers={headers} data={filteredData} loading={loading} />
+      {error ? <p>Something went wrong...</p>:<TableSheet headers={headers} data={data} loading={loading} />}
       <Pagination url={url} setcompleteData={setData} />
     </div>
   )

@@ -51,7 +51,7 @@ const AddLicense = () => {
     });
   // const notifyError = () => toast("Some error occurred");
   const notifyError = () =>
-    toast.error("Some error occurred", {
+    toast.error("something went wrong", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -98,6 +98,7 @@ const AddLicense = () => {
       }
     } catch (err) {
       console.log(err);
+      notifyError(err);
     }
   };
 
