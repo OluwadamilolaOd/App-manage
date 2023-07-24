@@ -14,7 +14,7 @@ const EmailOrganization = () => {
   const locations = useLocation();
   const [emailNotification, setEmailNotification] = useState(false);
   const data = locations.state.data;
-  console.log(data);
+  const [url, setUrl] = useState(`${baseUrl}/PurchasedLicense/SendEmailReminder`)
 
   // react-toastify
   const notifySuccess = () =>
@@ -43,13 +43,6 @@ const EmailOrganization = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    var url;
-    if (emailNotification) {
-      url = `${baseUrl}/PurchasedLicense/SendEmailReminder`
-    }
-    else {
-      url = `${baseUrl}/PurchasedLicense/SendEmail`
-    }
     const ccEmailsArray = ccEmail.split(",").map((email) => email.trim());
     try {
       const formDataObj = new FormData();
@@ -98,11 +91,12 @@ const EmailOrganization = () => {
 
  const handleEventClick = () => {
   setEmailNotification(!emailNotification)
+  setUrl(`${baseUrl}/PurchasedLicense/SendEmail`)
  }
 
  const handleNotificationClick = () => { 
   setEmailNotification(!emailNotification)
-  console.log(emailNotification)
+  setUrl(`${baseUrl}/PurchasedLicense/SendEmailReminder`)
  }
   return (
     <div>

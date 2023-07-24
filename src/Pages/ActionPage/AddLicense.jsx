@@ -49,9 +49,9 @@ const AddLicense = () => {
       progress: undefined,
       theme: "light",
     });
-  // const notifyError = () => toast("Some error occurred");
+
   const notifyError = () =>
-    toast.error("Some error occurred.", {
+    toast.error("something went wrong", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -81,23 +81,25 @@ const AddLicense = () => {
           CreatedBy: graphData.mail,
         }),
       });
-      await res.json();
+      const data = await res.json();
       if (res.status === 200) {
         setName("");
         setDescription("");
-        notifySuccess("");
+        notifySuccess("License successfully created.");
       } else {
-        notifyError("");
+        notifyError("something went wrong");
       }
 
       if (name.length == 0 || description.length == 0) {
         setError(true);
+        return;
+      } else {
+        setError(false);
       }
-      if (name && description) {
-        console.log("Name: ", name, "\nDescription: ", description);
-      }
+      console.log("Name: ", name, "\nDescription: ", description);
     } catch (err) {
       console.log(err);
+      notifyError(err.message);
     }
   };
 

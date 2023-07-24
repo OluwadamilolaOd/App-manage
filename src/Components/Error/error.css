@@ -10,7 +10,7 @@
   width: 100%;
   background-color: var(--body-bg);
 }
-.error {
+.error-page {
   width: 100%;
   display: flex;
   justify-content: center;

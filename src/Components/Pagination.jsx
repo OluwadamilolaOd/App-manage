@@ -29,6 +29,7 @@ const Pagination = ({ url, setcompleteData }) => {
   };
 
   return (
+    <div>
     <ReactPaginate
       pageCount={4}
       onPageChange={handlePageChange}
@@ -40,6 +41,7 @@ const Pagination = ({ url, setcompleteData }) => {
       previousLabel={"<"}
       nextLabel={">"}
     />
+    </div>
   );
 };
 

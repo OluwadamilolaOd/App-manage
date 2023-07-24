@@ -7,7 +7,7 @@ const Error404 = () => {
   return (
     <div className="errorPage">
       <div className="errorSection">
-        <div className="error">
+        <div className="error-page">
           <img src={Error404_Picture} alt="" className="picture" />
           <div className="text-error">
             <BiError className="error-icon" />

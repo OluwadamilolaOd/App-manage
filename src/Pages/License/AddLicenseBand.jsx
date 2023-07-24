@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
 import { useLocation, useNavigate } from "react-router-dom";
-import Banner from "../../components/Banner";
-import ArrowBack from "../../components/ArrowBack";
+import Banner from "../../Components/Banner";
+import ArrowBack from "../../Components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useMsal } from "@azure/msal-react";
@@ -28,8 +28,8 @@ const AddLicenseBand = () => {
   //fetch current user from Azure
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
-   //get token from local storage and set it to state
-   const token =localStorage.getItem("token")
+  //get token from local storage and set it to state
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     instance
@@ -72,20 +72,19 @@ const AddLicenseBand = () => {
       theme: "light",
     });
 
-  const licenseId = paramsValue.state.paramsValue[0]
-  let url = baseUrl+"/licensetype"
+  const licenseId = paramsValue.state.paramsValue[0];
+  let url = baseUrl + "/licensetype";
   var recurring;
 
   let handleSubmitLicenseBand = async (e) => {
     e.preventDefault();
-    if(selectedOption.value === "newLicenseType" ) {
-       recurring = ""
+    if (selectedOption.value === "newLicenseType") {
+      recurring = "";
+    } else {
+      recurring = "Recurring License Type";
     }
-    else {
-      recurring = "Recurring License Type"
-    } 
 
-    console.log(recurring)
+    console.log(recurring);
     try {
       let res = await fetch(url, {
         method: "POST",
@@ -155,7 +154,6 @@ const AddLicenseBand = () => {
           btnClassname={"btnwhite"}
           btntitle={"Edit Button"}
         />
-
         <form className="addlicensebandcontainer">
           <ArrowBack handleBackArrow={handleBackArrow} />
           <div className="forminput">

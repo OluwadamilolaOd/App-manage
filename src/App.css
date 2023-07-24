@@ -68,6 +68,7 @@ iframe {
 .error{
   color: var(--red-color);
 }
+
 @media screen and (max-width: 1200px) {
   .main_layout{
     margin-left: 100px;

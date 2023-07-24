@@ -2,20 +2,14 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin: 5rem 0 0 0; 
+    margin: 1rem 0 0 0; 
 }
 
 .searchInput {
     height: 40px;
     width: 20%;
     border-radius: 10px;
-    padding-left: 2%;
+    padding-left: 1%;
+    padding-right: 1%;
     border: none;
-}
-
-.searchIcon {
-    height: 1.5rem;
-    width: 1.5rem;
-    background-color: red;
-    padding: 4px;
 }
