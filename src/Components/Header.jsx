@@ -23,20 +23,20 @@ const Header = () => {
       });
   }, []);
 
-  // // fetch user role
-  // useEffect(() => {
-  //   instance
-  //     .acquireTokenSilent({
-  //       loginRequest,
-  //       account: accounts[0],
-  //     })
-  //     .then((response) => {
-  //       callMsGraphRoles(response.accessToken).then((response) => {
-  //         setGraphRole(response);
-  //         console.log(response);
-  //       });
-  //     });
-  // }, [instance, accounts]);
+  // fetch user role
+  useEffect(() => {
+    instance
+      .acquireTokenSilent({
+        scopes: ["User.Read"],
+        account: accounts[0],
+      })
+      .then((response) => {
+        callMsGraphRoles(response.accessToken).then((response) => {
+          //setGraphRole(response);
+          console.log(response);
+        });
+      });
+  }, [instance, accounts]);
 
   // fetch profile picture
   useEffect(() => {
