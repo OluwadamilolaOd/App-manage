@@ -82,13 +82,12 @@ const AddLicenseBand = () => {
     } else {
       recurring = "Recurring License Type";
     }
-
-    console.log(recurring);
     try {
       let res = await fetch(url, {
         method: "POST",
-        Authorization: `Bearer ${token}`,
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`},
+
         body: JSON.stringify({
           description: description,
           licenseBand: bandType,

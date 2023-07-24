@@ -16,7 +16,7 @@ const EditOrganization = () => {
   const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const url = `${baseUrl}/Organizations/${data.id}`;
+  const url = `${baseUrl}/Organizations?id=${data.id}`;
   const token = localStorage.getItem("token");
 
   const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.id}`);
