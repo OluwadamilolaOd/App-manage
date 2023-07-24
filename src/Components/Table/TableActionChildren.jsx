@@ -11,11 +11,8 @@ import archiveIcon from '../../assets/images/archive_red.png'
 const TableActionChildren = ({ obj, deleteItem}) => {
   const [openOptions, setOpenOptions] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [data, setData] = useState([]);
   const url = `${baseUrl}/licenseType/${obj.id}`
   const navigate = useNavigate();
-    //get token from local storage and set it to state
-    const token =localStorage.getItem("token")
   
 
   const handleEdit = () => {
@@ -27,24 +24,6 @@ const TableActionChildren = ({ obj, deleteItem}) => {
   deleteItem(obj.id)
   setOpenModal(false)
 };
-
-useEffect(()=> {
-  const fetchData = async () => {
-    try {
-      await fetch(url, {
-        method: "GET",
-        Authorization: `Bearer ${token}`,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setData(data);
-        });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  fetchData();
-},[])
  
 
   return (

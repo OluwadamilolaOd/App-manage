@@ -13,7 +13,6 @@ import { ToastContainer, toast } from "react-toastify";
 const EditLicense = () => {
   const location = useLocation();
   const data = location.state.data;
-  console.log(data);
   const [maximumUser, setMaximumUser] = useState(data.maximumUser);
   const [partNumber, setPartNumber] = useState(data.partNumber);
   const [bandType, setBandType] = useState(data.licenseBand);
@@ -63,8 +62,6 @@ const EditLicense = () => {
   const handleBackArrow = () => {
     navigate(`/license/licenseType`);
   };
-
-  console.log(data);
 
   useEffect(() => {
     instance
