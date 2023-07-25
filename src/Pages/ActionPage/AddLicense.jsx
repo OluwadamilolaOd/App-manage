@@ -87,7 +87,7 @@ const AddLicense = () => {
         setDescription("");
         notifySuccess("License successfully created.");
       } else {
-        notifyError("something went wrong");
+        notifyError("something went wrong.");
       }
 
       if (name.length == 0 || description.length == 0) {

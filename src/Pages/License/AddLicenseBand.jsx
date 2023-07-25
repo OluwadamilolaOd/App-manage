@@ -61,7 +61,7 @@ const AddLicenseBand = () => {
       theme: "light",
     });
   const notifyError = () =>
-    toast.error("Some error occurred", {
+    toast.error("Some error occurred.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -100,7 +100,7 @@ const AddLicenseBand = () => {
           recurringLicenseType: recurring,
         }),
       });
-      await res.json();
+      const data = await res.json();
       if (res.status === 200) {
         setDescription("");
         setPartNumber("");
@@ -112,22 +112,26 @@ const AddLicenseBand = () => {
         notifyError("");
       }
 
-      if (
-        selectedOption.length == 0 ||
-        bandType.length == 0 ||
-        maximumUser.length == 0 ||
-        partNumber.length == 0 ||
-        description.length == 0
-      ) {
-        setError(true);
-      }
-      if (
-        selectedOption &&
-        bandType &&
-        maximumUser &&
-        partNumber &&
-        description
-      ) {
+      // if (
+      //   selectedOption.length == 0 ||
+      //   bandType.length == 0 ||
+      //   maximumUser.length == 0 ||
+      //   partNumber.length == 0 ||
+      //   description.length == 0
+      // ) {
+      //   setError(true);
+      //   return;
+      // } else {
+      //   setError(false);
+      // }
+      // if (
+      //   selectedOption &&
+      //   bandType &&
+      //   maximumUser &&
+      //   partNumber &&
+      //   description
+      // ) 
+      // {
         console.log(
           "Licence Type: ",
           selectedOption,
@@ -140,9 +144,10 @@ const AddLicenseBand = () => {
           "\nDescription: ",
           description
         );
-      }
+      // }
     } catch (err) {
       console.log(err);
+      notifyError(err.message);
     }
   };
 

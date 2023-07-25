@@ -159,6 +159,11 @@ const EditLicense = () => {
                 value={bandType}
                 onChange={(event) => setBandType(event.target.value)}
               />
+               {error && maximumUser.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="section">
@@ -170,6 +175,11 @@ const EditLicense = () => {
                 value={partNumber}
                 onChange={(event) => setPartNumber(event.target.value)}
               />
+               {error && maximumUser.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
             </div>
 
             <div className="input">
