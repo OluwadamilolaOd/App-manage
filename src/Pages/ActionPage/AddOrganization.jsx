@@ -187,6 +187,7 @@ const AddOrganization = () => {
           setSelectedLicenseBandOption("");
           setSelectedLicenseTypeOption("");
           notifySuccess("");
+          notifyError("")
           // setMessage("User created successfully");
         });
    
@@ -201,6 +202,9 @@ const AddOrganization = () => {
       endDate.length === 0
     ) {
       setError(true);
+      return;
+    } else {
+      setError(false)
     }
     if (
       companyName &&
@@ -232,7 +236,8 @@ const AddOrganization = () => {
       );
     }
      } catch (err) {
-      notifyError.log(err);
+       console.log(err);
+      notifyError.log(err.message);
     }
   };
 

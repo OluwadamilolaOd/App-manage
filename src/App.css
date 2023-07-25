@@ -33,7 +33,6 @@ a{
 }
 .main_layout {
   margin-left: 260px;
-  /* position: relative; */
 }
 .content {
   padding: 2rem;
@@ -72,7 +71,7 @@ iframe {
 @media screen and (max-width: 1200px) {
   .main_layout{
     margin-left: 100px;
-    /* background-color: aqua; */
+    background-color: aqua;
   }
 }
 @media screen and (max-width: 768px) {

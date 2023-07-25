@@ -31,6 +31,7 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
 
   const handleArchive = () => {
     deleteItem(obj.id)
+    setOpenModal(false)
   };
 
   const handleEmail = () => {

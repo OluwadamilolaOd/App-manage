@@ -22,6 +22,7 @@ const TableActionChildren = ({ obj, deleteItem}) => {
 
  const handleArchive = () => {
   deleteItem(obj.id)
+  setOpenModal(false)
 };
  
 

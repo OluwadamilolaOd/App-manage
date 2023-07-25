@@ -1,7 +1,6 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Router from "../router/Router";
-// import Footer from "./Footer";
 
 const Layout = (props) => {
   return (
@@ -16,7 +15,6 @@ const Layout = (props) => {
             <Router />
           </div>
 
-          {/* <Footer /> */}
         </div>
       </div>
     </>

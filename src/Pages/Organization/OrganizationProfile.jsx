@@ -3,17 +3,16 @@ import { useNavigate } from "react-router-dom";
 import ArrowBack from "../../Components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
-import  archiveIcon  from "../../assets/images/archive_red.png";
+import archiveIcon from "../../assets/images/archive_red.png";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
 import "./../../Pages/Styles/organization.css";
 import Pagination from "../../Components/Pagination";
-import {
-  MdOutlineEdit,
-  MdDeleteOutline,
-} from "react-icons/md";
-import Button from "../../Components/Button"
+import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
+import Button from "../../Components/Button";
 import Modal from "../../Components/Modal/Modal";
 import Search from "../../Components/Search";
+import { ToastContainer, toast } from "react-toastify";
+
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
@@ -38,8 +37,33 @@ const OrganizationProfile = ({}) => {
     "Action",
   ];
   const handleBackArrow = () => {
-    navigate("/organizations")
+    navigate("/organizations");
   };
+
+  // react-toastify
+  const notifySuccess = () =>
+    toast.success("License Achived Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const notifyError = () =>
+    toast.error("something went wrong", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,14 +74,14 @@ const OrganizationProfile = ({}) => {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
-            }
+            },
           }),
           fetch(orgLicense, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
-            }
+            },
           }),
         ]);
 
@@ -65,14 +89,14 @@ const OrganizationProfile = ({}) => {
         const data2 = await response2.json();
         setTableData(data2);
         setFilteredData(data2);
-        console.log(data2)
+        console.log(data2);
         setLoading(!loading);
         await fetch(orgProfileUrl, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          }
+          },
         })
           .then((response) => response.json())
           .then((data) => {
@@ -85,57 +109,61 @@ const OrganizationProfile = ({}) => {
     fetchData();
   }, [orgProfileUrl]);
 
-
   //Delete License Type
 
   const deleteItem = (itemId) => {
     fetch(`${baseUrl}/purchasedLicense/${itemId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
-      }
+      },
     })
-    .then(response => {
-      if (response.ok) {
-        // Handle successfull deletion
-        setFilteredData(tableData.filter(item => item.id !== itemId));
-        //Help Put the Success Tostify here
-      } else {
-        // Handle error if the item deletion was unsuccessful
-        console.error('Error deleting item');
-      }
-    })
-    .catch(error => {
-      // Handle network or other errors
-      console.error('Error:', error);
-    });
+      .then((response) => {
+        if (response.ok) {
+          navigate(`/organizations/organizationProfile/${paramsValue}`);
+          // Update the state by removing the deleted item
+          setFilteredData(tableData.filter((item) => item.id !== itemId));
+          notifySuccess();
+        } else {
+          // Handle error if the item deletion was unsuccessful
+          notifyError();
+
+          // console.error("Error deleting item");
+        }
+      })
+      .catch((error) => {
+        // Handle network or other errors
+        console.log(error);
+        notifyError(error.message);
+        // console.error("Error:", error);
+      });
   };
 
   const handleEventClick = () => {
-    navigate("/addorganizationLicense", {state:{data:data}});
+    navigate("/addorganizationLicense", { state: { data: data } });
   };
   const handleEditOrg = () => {
-    navigate("editorganization", {state:{data:data}})
-  }
-  
+    navigate("editorganization", { state: { data: data } });
+  };
+
   // const handleArchive = () => {
   //   deleteItem(data.id)
   //   setOpenModal(false)
   // };
 
-
-    //Handle search event
-    const handleSearch = (e) => {
-      const searchTerm = e.target.value;
-      setSearchTerm(searchTerm);
-      if(searchTerm === "") {
-        setFilteredData(tableData);
-      }else if(tableData){
-        const filteredData = tableData.filter((value) => value.licenseName.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setFilteredData(filteredData);
-      }
-    };
+  //Handle search event
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+    setSearchTerm(searchTerm);
+    if (searchTerm === "") {
+      setFilteredData(tableData);
+    } else if (tableData) {
+      const filteredData = tableData.filter((value) =>
+        value.licenseName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(filteredData);
+    }
+  };
 
   return (
     <div>
@@ -193,20 +221,26 @@ const OrganizationProfile = ({}) => {
             <div className="">
               <h3>Licensing Information</h3>
             </div>
-            <Button className={"btnblue"} title={"Add New License"} btnEventHandler={handleEventClick}/>
+            <Button
+              className={"btnblue"}
+              title={"Add New License"}
+              btnEventHandler={handleEventClick}
+            />
           </div>
 
-          <Search handleSearch = {handleSearch} value={searchTerm} />
+          <Search handleSearch={handleSearch} value={searchTerm} />
         </div>
 
         <OrgPurchasedLicsTableSheet
           data={filteredData}
           headers={headers}
           loading={loading}
-          deleteItem = {deleteItem}
+          deleteItem={deleteItem}
         />
       </div>
       <Pagination url={orgLicense} setcompleteData={setTableData} />
+      <ToastContainer />
+
     </div>
   );
 };

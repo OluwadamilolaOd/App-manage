@@ -19,6 +19,7 @@ import LicRenewal from '../Pages/ActionPage/LicRenewal'
 import EditCompanyDetails from '../Pages/ActionPage/EditCompanyDetails'
 import PowerBi from '../Components/PowerBi'
 import Error404 from '../Components/Error/Error404'
+import Error500 from '../Components/Error/Error500'
 
 
 
@@ -47,6 +48,7 @@ const Router = () => {
         <Route path='addorganizationLicense' element = {<OrgLicense/>}/>
         <Route path='editCompanyDetails' element = {<EditCompanyDetails/>}/>
         <Route path='error404' element={<Error404/>}/>
+        <Route path='error500' element={<Error500/>}/>
 
       </Routes>
   )
