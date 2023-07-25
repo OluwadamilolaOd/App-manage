@@ -73,7 +73,7 @@ const LicenseType = () => {
     .then(response => {
       if (response.ok) {
         // Update the state by removing the deleted item
-        setcompleteData(completeData.filter(item => item.id !== itemId));
+        setFilteredData(completeData.filter(item => item.id !== itemId));
       } else {
         // Handle error if the item deletion was unsuccessful
         console.error('Error deleting item');

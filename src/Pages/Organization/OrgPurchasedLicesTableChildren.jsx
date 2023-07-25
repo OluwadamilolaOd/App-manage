@@ -22,7 +22,6 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
   const handleUpgrade = () => {
     console.log("You about to get upgraded")
     const data = obj
-    console.log(data)
      navigate(`upgradelicense/${obj.id}`,{state:{data:data}})
   }
 
@@ -32,7 +31,6 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
 
   const handleArchive = () => {
     deleteItem(obj.id)
-    setOpenModal(false)
   };
 
   const handleEmail = () => {
@@ -107,7 +105,7 @@ else { diffDays = diffDays + " days" }
                     image={archiveIcon}
                     btnAction={"Archive"}
                     title= {obj.licenseBand}
-                    description={"Are you sure you want to archive?"}
+                   description= { "Are you sure you want to archive?"}   
                     handleOnclickEvent={handleArchive}
       />}
       {openDownloadModal && <DownloadModal setOpenModal = {setOpenDownloadModal} data = {obj} />}

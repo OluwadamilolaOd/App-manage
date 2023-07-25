@@ -1,7 +1,7 @@
 import Loader from "../../Components/Loader";
 import OrgPurchasedLicesTableChildren from "./OrgPurchasedLicesTableChildren";
 
-const OrgPurchasedLicsTableSheet = ({ data, headers, loading, deleteItem }) => {
+const OrgPurchasedLicsTableSheet = ({ data, headers, loading, deleteItem}) => {
 
   return (
     <div className="tableData">
@@ -18,7 +18,8 @@ const OrgPurchasedLicsTableSheet = ({ data, headers, loading, deleteItem }) => {
           </thead>
           <tbody>
             {data.map((obj) => (
-              <OrgPurchasedLicesTableChildren deleteItem = {deleteItem}            
+              <OrgPurchasedLicesTableChildren 
+              deleteItem = {deleteItem}            
               key={obj.id}
               obj={obj} />
             ))}

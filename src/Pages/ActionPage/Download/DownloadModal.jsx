@@ -9,7 +9,6 @@ function DownloadModal({ setOpenModal,data }) {
 
    // Remove some properties from the original object
    const modifiedObject = (({id, appLicenseId, createdAt,createdBy,licenseTypeId,organizationId, ...rest }) => rest)(data);
-
    console.log(modifiedObject);
   const keyArrays = Object.keys(modifiedObject)
   const valueArrays = Object.values(modifiedObject)
@@ -24,7 +23,7 @@ function DownloadModal({ setOpenModal,data }) {
       <img className='modalImg' src={imageIcon} alt='Error'></img>
       <h4>{data.organizationName}-{data.licenseName}</h4>  
       <p id='downloadP'>
-        Export License Information
+        Export License Information as (CSV)
       </p>
       </div>
       <div className="modalbtnwrapper">

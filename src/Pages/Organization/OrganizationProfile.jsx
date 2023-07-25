@@ -21,7 +21,6 @@ const OrganizationProfile = ({}) => {
   const [tableData, setTableData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const userParams = useParams();
   const paramsValue = Object.values(userParams);
@@ -98,9 +97,9 @@ const OrganizationProfile = ({}) => {
     })
     .then(response => {
       if (response.ok) {
-        navigate('/organizations')
-        // Update the state by removing the deleted item
-        setTableData(tableData.filter(item => item.id !== itemId));
+        // Handle successfull deletion
+        setFilteredData(tableData.filter(item => item.id !== itemId));
+        //Help Put the Success Tostify here
       } else {
         // Handle error if the item deletion was unsuccessful
         console.error('Error deleting item');

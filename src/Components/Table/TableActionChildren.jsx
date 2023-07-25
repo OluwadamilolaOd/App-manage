@@ -22,7 +22,6 @@ const TableActionChildren = ({ obj, deleteItem}) => {
 
  const handleArchive = () => {
   deleteItem(obj.id)
-  setOpenModal(false)
 };
  
 
@@ -54,7 +53,7 @@ const TableActionChildren = ({ obj, deleteItem}) => {
                     header={"Archive License"}
                     image={archiveIcon}
                     btnAction={"Archive"}
-                    title= {obj.licenseBand}
+                    title= {obj.licenseBand} 
                     description={"Are you sure you want to archive?"}
                     handleOnclickEvent={handleArchive}
       />}
