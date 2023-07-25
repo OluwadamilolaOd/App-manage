@@ -5,7 +5,7 @@ import { BiError } from "react-icons/bi";
 const Error500 = () => {
   return (
     <div className="error_Section">
-      <div className="error">
+      <div className="error-sec">
         <div className="text-error">
           <BiError className="error-icon-red" />
           <h1>Sorry! Something went wrong</h1>
