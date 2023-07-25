@@ -60,7 +60,7 @@ const EditLicense = () => {
     });
 
   const handleBackArrow = () => {
-    navigate(`/license/licenseType`);
+    navigate(`/license`);
   };
 
   useEffect(() => {
