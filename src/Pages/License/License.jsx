@@ -5,12 +5,14 @@ import TableSheet from '../../Components/Table/TableSheet';
 import {baseUrl} from './../../Hook/baseurl';
 import Pagination from '../../Components/Pagination';
 import Search from '../../Components/Search';
+import Error500 from '../../Components/Error/Error500';
 
 const License = () => {
 
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [errorMess, setErrorMess] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   //get token from local storage and set it to state
@@ -39,6 +41,7 @@ const License = () => {
           });
       } catch (error) {
         console.error("Error fetching data:", error);
+        setErrorMess(error);
         setError(true);
       }
     };
@@ -64,7 +67,7 @@ const License = () => {
     <div>
       <Banner title={"Manage License"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add New License"} btnEventHandler={handleEventClick} />
       <Search handleSearch = {handleSearch} value={searchTerm} />
-      {error ? <p>Something went wrong...</p>:<TableSheet headers={headers} data={data} loading={loading} />}
+      {error ? <Error500 />:<TableSheet headers={headers} data={data} loading={loading} />}
       <Pagination url={url} setcompleteData={setData} />
     </div>
   )

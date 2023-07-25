@@ -90,7 +90,7 @@ const OrganizationProfile = ({}) => {
   //Delete License Type
 
   const deleteItem = (itemId) => {
-    fetch(`${baseUrl}/organizations/${itemId}`, {
+    fetch(`${baseUrl}/purchasedLicense/${itemId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
