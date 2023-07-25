@@ -1,44 +1,75 @@
-.errorPage {
-  display: flex;
-  height: 100vh;
+.error_Section {
+  height: calc(100% - 80px);
+  margin-top: 1.5rem;
   align-items: center;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+}
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--red-color);
+  margin: 10rem;
+}
+.errortext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--blue-color);
+  margin: 10rem;
+}
+.text-error {
+  margin-bottom: 2rem;
+}
+.error-icon-red {
+  width: 8rem;
+  height: 8rem;
+  color: var(--red-color);
 }
 .errorSection {
-  display: flex;
+  height: calc(100% - 80px);
+  margin-top: 1.5rem;
+  padding: 2rem;
+  justify-content: center;
   align-items: center;
-  height: 70%;
-  width: 100%;
-  background-color: var(--body-bg);
+  position: sticky;
+  background-color: red;
 }
-.error-page {
-  width: 100%;
+.errorPage {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10rem;
-  padding: 5rem;
-}
-.text-error {
-  padding-left: 5rem;
-  width: 45%;
-  text-align: center;
   color: var(--txtblack-color);
 }
-.bigtxt-error {
-  font-size: 2rem;
-  line-height: 1.4;
+.text-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   margin-bottom: 1rem;
-  text-align: justify;
-}
-.smalltxt-error {
-  margin-bottom: 1rem;
-  line-height: 1.4;
-  word-spacing: 2px;
-  text-align: justify;
-  word-spacing: 1px;
 }
 .error-icon {
   width: 8rem;
   height: 8rem;
   color: var(--blue-color);
 }
+.bigtxt-error {
+  font-size: 2rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  color: var(--txtblack-color);
+}
+.smalltxt-error {
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  word-spacing: 1px;
+  color: var(--txtblack-color);
+}
+.picError {
+  margin-left: 5rem;
+}
+
