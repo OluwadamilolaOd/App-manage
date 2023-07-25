@@ -20,6 +20,7 @@
   align-items: center;
   text-align: center;
   color: var(--blue-color);
+  width: 45%;
   margin: 10rem;
 }
 .text-error {
