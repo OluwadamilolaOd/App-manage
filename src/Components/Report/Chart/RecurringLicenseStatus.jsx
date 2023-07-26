@@ -5,7 +5,7 @@ const RecurringLicenseStatus = () => {
   const donutData =[ 
     {
       name: 'New License', 
-      y: 44
+      y: 100
     },
     {
       name: 'Recurring License', 

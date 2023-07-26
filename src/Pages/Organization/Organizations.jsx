@@ -5,12 +5,14 @@ import { baseUrl } from '../../Hook/baseurl';
 import OrgTableSheet from './OrgTableSheet';
 import Pagination from '../../Components/Pagination';
 import Search from './../../Components/Search';
+import Error500 from '../../Components/Error/Error500';
 
 const Organizations = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const url = `${baseUrl}/Organizations`
   const headers = ["Company Name", "Email Address", "Phone Number", "Location"]
@@ -35,6 +37,7 @@ const Organizations = () => {
           });
       } catch (error) {
         console.error("Error fetching data:", error);
+        setError(true);
       }
     };
 
@@ -61,8 +64,9 @@ const Organizations = () => {
   return (
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/> 
-      <Search handleSearch = {handleSearch} value={searchTerm} />  
-      <OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={filteredData} loading={loading}/>
+      <Search handleSearch = {handleSearch} value={searchTerm} />
+      {error ? <Error500 /> :<OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={filteredData} loading={loading}/>}  
+      
       <Pagination url={url} setcompleteData={setData} />
     </div>
   )
