@@ -49,7 +49,7 @@
 .close-icon{
   display: flex;
   align-items: center;
-  /* display: none; */
+  display: none;
   cursor: pointer;
 }
 .menu-icon {
