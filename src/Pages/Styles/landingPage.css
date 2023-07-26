@@ -67,7 +67,9 @@
   text-decoration: none;
   border: 2px solid transparent;
   font-weight: bold;
-  padding: 15px 60px;
+  font-size: 20px;
+
+  padding: 15px 100px;
   border-radius: 7px;
   transition: 0.4s;
 }
