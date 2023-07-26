@@ -15,6 +15,8 @@ const EmailOrganization = () => {
   const [emailNotification, setEmailNotification] = useState(false);
   const data = locations.state.data;
   const [url, setUrl] = useState(`${baseUrl}/PurchasedLicense/SendEmailReminder`)
+  const [error, setError] = useState(false);
+
 
   // react-toastify
   const notifySuccess = () =>
@@ -67,7 +69,7 @@ const EmailOrganization = () => {
         setCcEmail("");
         setFile(null);
       } else {
-        notifyError("");
+        notifyError("something went wrong.");
       }
       // Handle the response
       if (response.ok) {
@@ -75,8 +77,17 @@ const EmailOrganization = () => {
       } else {
         console.log("Error creating post!");
       }
+      if (ccEmail.length == 0 ) {
+        setError(true);
+        return;
+      } else {
+        setError(false);
+      }
+      console.log("Name: ", ccEmail);
+
     } catch (error) {
-      console.log("Error:", error);
+      console.log(error);
+      notifyError(error.message);
     }
   };
 
@@ -122,6 +133,11 @@ const EmailOrganization = () => {
               value={ccEmail}
               onChange={(e) => setCcEmail(e.target.value)}
             />
+             {error && ccEmail.length <= 0 ? (
+              <label className="error">This field is required.</label>
+            ) : (
+              ""
+            )}
             <p>Note: Seprate each email with comma</p>
           </div>
          {emailNotification && <div className="input">

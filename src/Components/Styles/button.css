@@ -42,7 +42,7 @@
 .btninactive{
   display: flex;
   color: var(--blue-color);
-  background-color: var(--lightblue-color);
+  background-color: var(--light-blue);
   text-decoration: none;
   border: 2px solid transparent;
   padding: 10px 15px;
