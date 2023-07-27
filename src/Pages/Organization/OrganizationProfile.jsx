@@ -209,7 +209,7 @@ const OrganizationProfile = ({}) => {
               </div>
               <div className="dataInfo">
                 <div>
-                  <p className="text">location</p>
+                  <p className="text">Location</p>
                 </div>
                 <div>
                   <p className="textB">{data.address}</p>
