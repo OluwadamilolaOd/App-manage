@@ -1,9 +1,12 @@
-/* .tableData {
-  padding: 30px;
+.tableData {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* padding: 30px;
   background-color: var(--white-color);
   border-radius: 10px;
-  margin-bottom: 1rem;
-} */
+  margin-bottom: 1rem; */
+}
 table {
   width: 100%;
   height: 100%;
@@ -14,7 +17,8 @@ table {
   background-color: var(--white-color);
   border-radius: 10px;
   margin-bottom: 1rem;
-  /* color: var(--black-color); */
+  table-layout: fixed;
+  /* table-layout: auto; */
 }
 th {
   border: none;
@@ -28,6 +32,7 @@ thead th {
 td{
   border: none;
   padding: 20px;
+  word-break: break-all;
 }
 td:first-child {
   border-top-left-radius: 10px;
