@@ -57,4 +57,7 @@
 
 .pagination-link.pagination-active {
   transform: scale(1.1);
+  background-color: var(--blue-color);
+  color: var(--white-color);
+
 }
