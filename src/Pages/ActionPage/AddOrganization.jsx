@@ -147,7 +147,22 @@ const AddOrganization = () => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     const productKey = generateProductKey(keyLength);
-    try {
+    if (
+      companyName.length === 0 ||
+      emailAddress.length === 0 ||
+      location.length === 0 ||
+      phoneNumber.length === 0 ||
+      selectedLicenseTypeOption.length === 0 ||
+      startDate.length === 0 ||
+      selectedLicenseBandOption.length === 0 ||
+      endDate.length === 0
+    ) {
+      setError(true);
+      return;
+    } 
+    else {
+      setError(false)
+      try {
       await fetch(CompanyDetailsUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json",
@@ -187,59 +202,13 @@ const AddOrganization = () => {
           setSelectedLicenseBandOption("");
           setSelectedLicenseTypeOption("");
           notifySuccess("");
-          notifyError("")
-          // setMessage("User created successfully");
         });
-   
-    if (
-      companyName.length === 0 ||
-      emailAddress.length === 0 ||
-      location.length === 0 ||
-      phoneNumber.length === 0 ||
-      selectedLicenseTypeOption.length === 0 ||
-      startDate.length === 0 ||
-      selectedLicenseBandOption.length === 0 ||
-      endDate.length === 0
-    ) {
-      setError(true);
-      return;
-    } else {
-      setError(false)
-    }
-    if (
-      companyName &&
-      emailAddress &&
-      location &&
-      phoneNumber &&
-      selectedLicenseTypeOption &&
-      startDate &&
-      selectedLicenseBandOption &&
-      endDate
-    ) {
-      console.log(
-        "Company Name: ",
-        companyName,
-        "\nEmail Address: ",
-        emailAddress, 
-        "\nLocation: ",
-        location,
-        "\nPhone Number: ",
-        phoneNumber,
-        // "\nLicense Name: "
-        // selectedLicenseTypeOption,
-        "\nStart Date: ",
-        startDate,
-        "\nBand Type: ",
-        selectedLicenseBandOption,
-        "\nExpiration Data: ",
-        endDate
-      );
-    }
-     } catch (err) {
+    } catch (err) {
        console.log(err);
       notifyError.log(err.message);
     }
   };
+};
 
   return (
     <div>

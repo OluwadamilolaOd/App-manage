@@ -6,6 +6,8 @@ import { baseUrl } from "../../Hook/baseurl";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../Components/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotate } from '@fortawesome/free-solid-svg-icons'
 
 const EmailOrganization = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const EmailOrganization = () => {
   const data = locations.state.data;
   const [url, setUrl] = useState(`${baseUrl}/PurchasedLicense/SendEmailReminder`)
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   // react-toastify
@@ -45,6 +48,7 @@ const EmailOrganization = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const ccEmailsArray = ccEmail.split(",").map((email) => email.trim());
     try {
       const formDataObj = new FormData();
@@ -68,6 +72,7 @@ const EmailOrganization = () => {
         notifySuccess("");
         setCcEmail("");
         setFile(null);
+        setLoading(false);
       } else {
         notifyError("something went wrong.");
       }
@@ -152,7 +157,7 @@ const EmailOrganization = () => {
           </div>} 
         </div>
         <div className="btnRight">
-          <button type="submit">Send Email</button>
+          <button type="submit">{loading&&<FontAwesomeIcon icon={faRotate} spin />}Send Email</button>
         </div>
       </form>
       <ToastContainer />

@@ -69,38 +69,38 @@ const AddLicense = () => {
   //Submit form function
   let handleSubmitLicense = async (e) => {
     e.preventDefault();
-    try {
-      let res = await fetch(`${baseUrl}/applicense`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          licenseName: name,
-          description: description,
-          CreatedBy: graphData.mail,
-        }),
-      });
-      const data = await res.json();
-      if (res.status === 200) {
-        setName("");
-        setDescription("");
-        notifySuccess("License successfully created.");
-      } else {
-        notifyError("something went wrong.");
-      }
 
-      if (name.length == 0 || description.length == 0) {
-        setError(true);
-        return;
-      } else {
-        setError(false);
+    if (name.length == 0 || description.length == 0) {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+      try {
+        let res = await fetch(`${baseUrl}/applicense`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            licenseName: name,
+            description: description,
+            CreatedBy: graphData.mail,
+          }),
+        });
+        const data = await res.json();
+        if (res.status === 200) {
+          setName("");
+          setDescription("");
+          notifySuccess("License successfully created.");
+        } else {
+          notifyError("something went wrong.");
+        }
+      } catch (err) {
+        console.log(err);
+        notifyError(err.message);
       }
-      console.log("Name: ", name, "\nDescription: ", description);
-    } catch (err) {
-      console.log(err);
-      notifyError(err.message);
     }
+    
   };
 
   return (

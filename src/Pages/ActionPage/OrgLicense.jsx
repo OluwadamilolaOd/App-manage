@@ -139,57 +139,44 @@ const OrgLicense = () => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     const productKey = generateProductKey(keyLength);
-    try {
-      await fetch(CompanyLicenseUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({
-          purchasedDate: startDate,
-          expirationDate: endDate,
-          organizationId: data.id,
-          licenseTypeId: selectedLicenseBandOption.id,
-          licenseKey: productKey,
-          CreatedBy: graphData.mail,
-        }),
-      });
-      setStartDate("");
-      setEndDate("");
-      setSelectedLicenseBandOption("");
-      setSelectedLicenseTypeOption("");
-      notifySuccess("");
-      // setMessage("User created successfully");
 
-      if (
-        selectedLicenseTypeOption.length === 0 ||
-        startDate.length === 0 ||
-        selectedLicenseBandOption.length === 0 ||
-        endDate.length === 0
-      ) {
-        setError(true);
-      }
-      if (
-        selectedLicenseTypeOption &&
-        startDate &&
-        selectedLicenseBandOption &&
-        endDate
-      ) {
-        console.log(
-          //   "\nLicense Name: "
-          //   selectedLicenseTypeOption,
-          "\nStart Date: ",
-          startDate,
-          "\nBand Type: ",
-          selectedLicenseBandOption,
-          "\nExpiration Data: ",
-          endDate
-        );
-      }
-    } catch (err) {
-      notifyError.log(err);
+    if (
+      selectedLicenseTypeOption.length === 0 ||
+      startDate.length === 0 ||
+      selectedLicenseBandOption.length === 0 ||
+      endDate.length === 0
+    ) {
+      setError(true);
+      return;
     }
+    else {
+      setError(false);
+      try {
+        await fetch(CompanyLicenseUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            purchasedDate: startDate,
+            expirationDate: endDate,
+            organizationId: data.id,
+            licenseTypeId: selectedLicenseBandOption.id,
+            licenseKey: productKey,
+            CreatedBy: graphData.mail,
+          }),
+        });
+        setStartDate("");
+        setEndDate("");
+        setSelectedLicenseBandOption("");
+        setSelectedLicenseTypeOption("");
+        notifySuccess("");
+      } catch (err) {
+        notifyError.log(err);
+      }
+    }
+    
   };
   return (
     <div>

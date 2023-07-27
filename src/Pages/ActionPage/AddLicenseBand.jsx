@@ -82,65 +82,49 @@ const AddLicenseBand = () => {
     } else {
       recurring = "Recurring License Type";
     }
-    try {
-      let res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`},
+    if (
+      selectedOption.length == 0 ||
+      bandType.length == 0 ||
+      maximumUser.length == 0 ||
+      partNumber.length == 0 ||
+      description.length == 0
+    ) {
+      setError(true);
+      return;
+    }
+    else{
+      setError(false);
 
-        body: JSON.stringify({
-          description: description,
-          licenseBand: bandType,
-          partNumber: partNumber,
-          maximumUser: maximumUser,
-          appLicenseId: licenseId,
-          CreatedBy: graphData.mail,
-          recurringLicenseType: recurring,
-        }),
-      });
-      await res.json();
-      if (res.status === 200) {
-        setDescription("");
-        setPartNumber("");
-        setMaximumUser("");
-        setBandType("");
-        setSelectedOption(null);
-        notifySuccess("");
-      } else {
+      try {
+        let res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`},
+  
+          body: JSON.stringify({
+            description: description,
+            licenseBand: bandType,
+            partNumber: partNumber,
+            maximumUser: maximumUser,
+            appLicenseId: licenseId,
+            CreatedBy: graphData.mail,
+            recurringLicenseType: recurring,
+          }),
+        });
+        await res.json();
+        if (res.status === 200) {
+          setDescription("");
+          setPartNumber("");
+          setMaximumUser("");
+          setBandType("");
+          setSelectedOption(null);
+          notifySuccess("");
+        } else {
+          notifyError("");
+        }
+      } catch (err) {
         notifyError("");
       }
-
-      if (
-        selectedOption.length == 0 ||
-        bandType.length == 0 ||
-        maximumUser.length == 0 ||
-        partNumber.length == 0 ||
-        description.length == 0
-      ) {
-        setError(true);
-      }
-      if (
-        selectedOption &&
-        bandType &&
-        maximumUser &&
-        partNumber &&
-        description
-      ) {
-        console.log(
-          "Licence Type: ",
-          selectedOption,
-          "\nLicence Band: ",
-          bandType,
-          "\nMaximum User: ",
-          maximumUser,
-          "\nPart Number: ",
-          partNumber,
-          "\nDescription: ",
-          description
-        );
-      }
-    } catch (err) {
-      console.log(err);
     }
   };
 
