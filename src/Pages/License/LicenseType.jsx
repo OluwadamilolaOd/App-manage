@@ -22,7 +22,7 @@ const LicenseType = () => {
     "Band Type",
     "Maximum User",
     "Part Number",
-    "status",
+    "Status",
     "Action",
   ];
   const mainUrl = `${baseUrl}/applicense/${paramsValue}`;
@@ -146,7 +146,7 @@ const LicenseType = () => {
         btntitle={"Add License Band"}
         btnEventHandler={handleEventClick}
       />
-      <Search handleSearch={handleSearch} value={searchTerm} />
+      <Search handleSearch={handleSearch} value={searchTerm} placeholder="Search for License Band"  />
       <TableAction
         headers={headers}
         data={filteredData}

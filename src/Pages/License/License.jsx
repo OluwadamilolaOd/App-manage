@@ -66,7 +66,7 @@ const License = () => {
   return (
     <div>
       <Banner title={"Manage License"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add New License"} btnEventHandler={handleEventClick} />
-      <Search handleSearch = {handleSearch} value={searchTerm} />
+      <Search handleSearch = {handleSearch} value={searchTerm} placeholder="Search for License" />
       {error ? <Error500 />:<TableSheet headers={headers} data={data} loading={loading} />}
       <Pagination url={url} setcompleteData={setData} />
     </div>

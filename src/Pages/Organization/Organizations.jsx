@@ -64,7 +64,7 @@ const Organizations = () => {
   return (
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/> 
-      <Search handleSearch = {handleSearch} value={searchTerm} />
+      <Search handleSearch = {handleSearch} value={searchTerm} placeholder="Search for Organization"  />
       {error ? <Error500 /> :<OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={filteredData} loading={loading}/>}  
       
       <Pagination url={url} setcompleteData={setData} />

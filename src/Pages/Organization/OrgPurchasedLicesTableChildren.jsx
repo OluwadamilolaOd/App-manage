@@ -72,8 +72,8 @@ else { diffDays = diffDays + " days" }
         <td>{obj.purchasedDate}</td>
         <td>{obj.expirationDate}</td>
         
-        <td>
-          <div className="actionbtn" onClick={handleDropdownToggle}>...</div>
+        <td className="actionbtn" onClick={handleDropdownToggle}>
+          ...
         </td> 
         {showDropdown && (
           <div className="action">

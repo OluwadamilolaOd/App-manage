@@ -228,7 +228,7 @@ const OrganizationProfile = ({}) => {
             />
           </div>
 
-          <Search handleSearch={handleSearch} value={searchTerm} />
+          <Search handleSearch={handleSearch} value={searchTerm} placeholder="Search for Purchased License"  />
         </div>
 
         <OrgPurchasedLicsTableSheet
