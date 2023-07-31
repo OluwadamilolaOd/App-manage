@@ -15,6 +15,7 @@ const License = () => {
   const [errorMess, setErrorMess] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [isFilteredData, setIsFilteredData] = useState(false);
   //get token from local storage and set it to state
   const token =localStorage.getItem("token")
   
@@ -53,22 +54,28 @@ const License = () => {
     navigate("addNewLicense")
   }
 
-
-  //Handle search event
-  const handleSearch = (e) => {
-    const searchTerm = e.target.value;
-    setSearchTerm(searchTerm);
-      const filteredData = data.filter((value) => value.licenseName.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setData(filteredData);
-  };
+    //Handle search event
+    const handleSearch = (e) => {
+      const searchTerm = e.target.value;
+      setSearchTerm(searchTerm);
+      if(searchTerm === "") {
+        setFilteredData(data);
+      }else if(data){
+        const filteredData = data.filter((value) => 
+          value.licenseName.toLowerCase().includes(searchTerm.toLowerCase()) 
+          || value.description.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredData(filteredData);
+        setIsFilteredData(true);
+      }
+    };
 
   return (
     <div>
       <Banner title={"Manage License"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add New License"} btnEventHandler={handleEventClick} />
       <Search handleSearch = {handleSearch} value={searchTerm} placeholder="Search for License" />
-      {error ? <Error500 />:<TableSheet headers={headers} data={data} loading={loading} />}
-      <Pagination url={url} setcompleteData={setData} />
+      {error ? <Error500 />:<TableSheet headers={headers} data={isFilteredData ? filteredData : data} loading={loading} />}
+      <Pagination url={url} setData={isFilteredData ? setFilteredData : setData} />
     </div>
   )
 }

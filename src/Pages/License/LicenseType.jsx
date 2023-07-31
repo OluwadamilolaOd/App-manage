@@ -16,6 +16,7 @@ const LicenseType = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [isFilteredData, setIsFilteredData] = useState(false);
   const paramsValue = Object.values(userParams);
   const url = `${baseUrl}/licenseType/license/${paramsValue}`;
   const headers = [
@@ -126,8 +127,12 @@ const LicenseType = () => {
     } else if (completeData) {
       const filteredData = completeData.filter((value) =>
         value.licenseBand.toLowerCase().includes(searchTerm.toLowerCase())
+        || value.maximumUser == searchTerm.toLowerCase()
+        || value.partNumber.toLowerCase().includes(searchTerm.toLowerCase())
+        || value.status.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredData(filteredData);
+      setIsFilteredData(true);
     }
   };
 
@@ -149,11 +154,11 @@ const LicenseType = () => {
       <Search handleSearch={handleSearch} value={searchTerm} placeholder="Search for License Band"  />
       <TableAction
         headers={headers}
-        data={filteredData}
+        data={isFilteredData? filteredData: completeData}
         loading={loading}
         deleteItem={deleteItem}
       />
-      <Pagination url={url} setcompleteData={setcompleteData} />
+      <Pagination url={url} setData={isFilteredData ? setFilteredData : setcompleteData} />
       <ToastContainer />
     </div>
   );
