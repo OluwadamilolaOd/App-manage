@@ -25,7 +25,7 @@ const Pagination = ({ url, setData }) => {
     const dataFromApi = await fetchCurrentPage(currentPage);
 
     console.log(dataFromApi);
-    setData(dataFromApi);
+    setData = dataFromApi;
   };
 
   return (
