@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import ArrowBack from "../../Components/ArrowBack";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../Auth/authConfig";
-import { callMsGraph } from "../../Auth/graph";
 import { generateProductKey } from "../../Components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
@@ -42,23 +39,10 @@ const AddOrganization = () => {
   const CompanyDetailsUrl = `${baseUrl}/Organizations`;
   //post company license url
   const CompanyLicenseUrl = `${baseUrl}/PurchasedLicense`;
+  //get user email from local storage
+  const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
-  //fetch current user from Azure
-  const { instance, accounts } = useMsal();
-  const [graphData, setGraphData] = useState(null);
 
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraph(response.accessToken).then((response) => {
-          setGraphData(response);
-        });
-      });
-  }, [instance, accounts]);
 
   // react-toastify
   const notifySuccess = () =>
@@ -173,7 +157,7 @@ const AddOrganization = () => {
           email: emailAddress,
           phoneNumber: phoneNumber,
           address: location,
-          CreatedBy: graphData.mail,
+          CreatedBy: userEmail,
         }),
       })
         .then((response) => response.json())
@@ -190,7 +174,7 @@ const AddOrganization = () => {
               organizationId: companyId,
               licenseTypeId: selectedLicenseBandOption.id,
               licenseKey: productKey,
-              CreatedBy: graphData.mail,
+              CreatedBy: userEmail,
             }),
           });
           setCompanyName("");

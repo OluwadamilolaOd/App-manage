@@ -26,7 +26,7 @@ const LandingPage = () => {
       <div className="text-page-container">
         <div className="container-one">
           <div>
-            <h1 className="big-title"> Havis 360 Unified License</h1>
+            <h1 className="big-title"> Havis AppManage</h1>
             <p>A Unified License Solution</p>
           </div>
           <div className="btn-page">

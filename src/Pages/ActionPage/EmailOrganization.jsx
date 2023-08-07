@@ -48,7 +48,12 @@ const EmailOrganization = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    if (ccEmail.length == 0 && file == null ) {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+      setLoading(true);
     const ccEmailsArray = ccEmail.split(",").map((email) => email.trim());
     try {
       const formDataObj = new FormData();
@@ -82,17 +87,12 @@ const EmailOrganization = () => {
       } else {
         console.log("Error creating post!");
       }
-      if (ccEmail.length == 0 ) {
-        setError(true);
-        return;
-      } else {
-        setError(false);
-      }
       console.log("Name: ", ccEmail);
 
     } catch (error) {
       console.log(error);
       notifyError(error.message);
+    }
     }
   };
 

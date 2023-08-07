@@ -3,15 +3,14 @@ import { useNavigate } from "react-router-dom";
 import ArrowBack from "../../Components/ArrowBack";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
-import archiveIcon from "../../assets/images/archive_red.png";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
 import "./../../Pages/Styles/organization.css";
 import Pagination from "../../Components/Pagination";
-import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
+import { MdOutlineEdit} from "react-icons/md";
 import Button from "../../Components/Button";
-import Modal from "../../Components/Modal/Modal";
 import Search from "../../Components/Search";
 import { ToastContainer, toast } from "react-toastify";
+
 
 
 const OrganizationProfile = ({}) => {
@@ -20,6 +19,7 @@ const OrganizationProfile = ({}) => {
   const [tableData, setTableData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isFilteredData, setIsFilteredData] = useState(false);
   const navigate = useNavigate();
   const userParams = useParams();
   const paramsValue = Object.values(userParams);
@@ -146,11 +146,6 @@ const OrganizationProfile = ({}) => {
     navigate("editorganization", { state: { data: data } });
   };
 
-  // const handleArchive = () => {
-  //   deleteItem(data.id)
-  //   setOpenModal(false)
-  // };
-
   //Handle search event
   const handleSearch = (e) => {
     const searchTerm = e.target.value;
@@ -160,8 +155,12 @@ const OrganizationProfile = ({}) => {
     } else if (tableData) {
       const filteredData = tableData.filter((value) =>
         value.licenseName.toLowerCase().includes(searchTerm.toLowerCase())
+        || value.licenseBand.toLowerCase().includes(searchTerm.toLowerCase())
+        || value.maximumUser == searchTerm
+        || value.partNumber.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredData(filteredData);
+      setIsFilteredData(true);
     }
   };
 
@@ -179,21 +178,6 @@ const OrganizationProfile = ({}) => {
                 <MdOutlineEdit />
                 <span>Edit</span>
               </div>
-              {/* <div className="profile-action color-red" onClick={() => {
-                setOpenModal(true);
-              }}>
-                <MdDeleteOutline/>
-                <span>Archive</span>
-              </div>
-              {openModal && <Modal 
-                    setOpenModal={setOpenModal}
-                    header={"Archive License"}
-                    image={archiveIcon}
-                    btnAction={"Archive"}
-                    title= {data.organizationName}
-                    description={"Are you sure you want to archive?"}
-                    handleOnclickEvent={handleArchive} />
-                } */}
             </div>
           </div>
           <div className="genInfo">
@@ -232,13 +216,13 @@ const OrganizationProfile = ({}) => {
         </div>
 
         <OrgPurchasedLicsTableSheet
-          data={filteredData}
+          data={isFilteredData? filteredData: tableData}
           headers={headers}
           loading={loading}
           deleteItem={deleteItem}
         />
       </div>
-      <Pagination url={orgLicense} setcompleteData={setTableData} />
+      <Pagination url={orgLicense} setData={isFilteredData ? setFilteredData : setTableData} />
       <ToastContainer />
 
     </div>

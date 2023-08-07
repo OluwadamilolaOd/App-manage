@@ -1,7 +1,7 @@
 import ReactPaginate from "react-paginate";
 import "./Styles/pagination.css";
 
-const Pagination = ({ url, setcompleteData }) => {
+const Pagination = ({ url, setData }) => {
 
   //get token from local storage and set it to state
   const token =localStorage.getItem("token")
@@ -25,7 +25,7 @@ const Pagination = ({ url, setcompleteData }) => {
     const dataFromApi = await fetchCurrentPage(currentPage);
 
     console.log(dataFromApi);
-    setcompleteData(dataFromApi);
+    setData(dataFromApi);
   };
 
   return (

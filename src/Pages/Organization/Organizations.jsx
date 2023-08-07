@@ -13,6 +13,7 @@ const Organizations = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [isFilteredData, setIsFilteredData] = useState(false);
 
   const url = `${baseUrl}/Organizations`
   const headers = ["Company Name", "Email Address", "Phone Number", "Location"]
@@ -32,7 +33,6 @@ const Organizations = () => {
             let completeData = Object.values(data);
             setData(completeData);
             setFilteredData(completeData);
-            console.log(data)
             setLoading(!loading)
           });
       } catch (error) {
@@ -55,9 +55,14 @@ const Organizations = () => {
       if(searchTerm === "") {
         setFilteredData(data);
       }else if(data){
-        const filteredData = data.filter((value) => value.organizationName.toLowerCase().includes(searchTerm.toLowerCase())
+        const filteredData = data.filter((value) => 
+          value.organizationName.toLowerCase().includes(searchTerm.toLowerCase()) 
+          || value.email.toLowerCase().includes(searchTerm.toLowerCase()) 
+          || value.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase()) 
+          || value.address.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredData(filteredData);
+        setIsFilteredData(true);
       }
     };
 
@@ -65,9 +70,9 @@ const Organizations = () => {
     <div>
       <Banner title={"Manage Organization"} isbtn={true} btnClassname={"btnwhite"} btntitle={"Add Organization"} btnEventHandler={handleEventClick}/> 
       <Search handleSearch = {handleSearch} value={searchTerm} placeholder="Search for Organization"  />
-      {error ? <Error500 /> :<OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={filteredData} loading={loading}/>}  
+      {error ? <Error500 /> :<OrgTableSheet headers={headers} navigateTo={"/organizationProfile"} items={isFilteredData? filteredData: data} loading={loading}/>}  
       
-      <Pagination url={url} setcompleteData={setData} />
+      <Pagination url={url} setData={isFilteredData ? setFilteredData : setData} />
     </div>
   )
 }

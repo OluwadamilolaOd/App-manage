@@ -19,6 +19,8 @@ const Header = () => {
       .then((response) => {
         callMsGraph(response.accessToken).then((response) => {
           setGraphData(response);
+          //save to local storage
+          localStorage.setItem("user", JSON.stringify(response));
         });
       });
   }, []);

@@ -4,38 +4,18 @@ import Banner from "../../Components/Banner";
 import { baseUrl } from "../../Hook/baseurl";
 import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate } from "react-router-dom";
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../Auth/authConfig";
-import { callMsGraph } from "../../Auth/graph";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddLicense = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   //get token from local storage and set it to state
   const token =localStorage.getItem("token")
-
-  //fetch current user from Azure
-  const { instance, accounts } = useMsal();
-  const [graphData, setGraphData] = useState(null);
-
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraph(response.accessToken).then((response) => {
-          setGraphData(response);
-          console.log(response);
-        });
-      });
-  }, [instance, accounts]);
+  //get user email from local storage
+  const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
   // react-toastify
   const notifySuccess = () =>
@@ -61,6 +41,8 @@ const AddLicense = () => {
       progress: undefined,
       theme: "light",
     });
+
+
   const handleBackArrow = () => {
     navigate("/license");
   };
@@ -84,7 +66,7 @@ const AddLicense = () => {
           body: JSON.stringify({
             licenseName: name,
             description: description,
-            CreatedBy: graphData.mail,
+            CreatedBy: userEmail,
           }),
         });
         const data = await res.json();
