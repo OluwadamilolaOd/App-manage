@@ -6,7 +6,7 @@ import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
 import "./../../Pages/Styles/organization.css";
 import Pagination from "../../Components/Pagination";
-import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
+import { MdOutlineEdit} from "react-icons/md";
 import Button from "../../Components/Button";
 import Search from "../../Components/Search";
 import { ToastContainer, toast } from "react-toastify";
@@ -146,11 +146,6 @@ const OrganizationProfile = ({}) => {
     navigate("editorganization", { state: { data: data } });
   };
 
-  // const handleArchive = () => {
-  //   deleteItem(data.id)
-  //   setOpenModal(false)
-  // };
-
   //Handle search event
   const handleSearch = (e) => {
     const searchTerm = e.target.value;
@@ -183,21 +178,6 @@ const OrganizationProfile = ({}) => {
                 <MdOutlineEdit />
                 <span>Edit</span>
               </div>
-              {/* <div className="profile-action color-red" onClick={() => {
-                setOpenModal(true);
-              }}>
-                <MdDeleteOutline/>
-                <span>Archive</span>
-              </div>
-              {openModal && <Modal 
-                    setOpenModal={setOpenModal}
-                    header={"Archive License"}
-                    image={archiveIcon}
-                    btnAction={"Archive"}
-                    title= {data.organizationName}
-                    description={"Are you sure you want to archive?"}
-                    handleOnclickEvent={handleArchive} />
-                } */}
             </div>
           </div>
           <div className="genInfo">

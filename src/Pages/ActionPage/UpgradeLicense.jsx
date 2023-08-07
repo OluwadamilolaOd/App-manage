@@ -6,9 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
-import { callMsGraph } from "../../Auth/graph";
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../Auth/authConfig";
 
 
 const UpgradeLicense = () => {
@@ -25,23 +22,8 @@ const UpgradeLicense = () => {
   const Updateurl = `${baseUrl}/purchasedlicense/${data.id}`;
   const navigate = useNavigate();
 
- 
-    //fetch current user from Azure
-    const { instance, accounts } = useMsal();
-    const [graphData, setGraphData] = useState(null);
-  
-    useEffect(() => {
-      instance
-        .acquireTokenSilent({
-          loginRequest,
-          account: accounts[0],
-        })
-        .then((response) => {
-          callMsGraph(response.accessToken).then((response) => {
-            setGraphData(response);
-          });
-        });
-    }, [instance, accounts]);
+  //Get User Email from local storage
+  const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
 //navigate back
     const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.organizationId}`);
@@ -108,7 +90,7 @@ const UpgradeLicense = () => {
           body: JSON.stringify({
             expirationDate: expirationDate,
             licenseTypeId: selectedLicenseBandOption.id,
-            CreatedBy: graphData.mail,
+            CreatedBy: userEmail,
             PurchasedDate: data.purchasedDate,
             OrganizationId: data.organizationId,
             LicenseKey: data.purchasedLicenseKey,

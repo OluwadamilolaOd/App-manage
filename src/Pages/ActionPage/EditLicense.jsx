@@ -5,9 +5,6 @@ import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
-import { callMsGraph } from "../../Auth/graph";
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../Auth/authConfig";
 import { ToastContainer, toast } from "react-toastify";
 
 const EditLicense = () => {
@@ -24,10 +21,10 @@ const EditLicense = () => {
   const paramsValue = Object.values(userParams);
   const url = `${baseUrl}/licenseType/${paramsValue}`;
   var recurring;
+  //get logged in user email from local storage
+  const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
-  //fetch current user from Azure
-  const { instance, accounts } = useMsal();
-  const [graphData, setGraphData] = useState(null);
+  console.log(userEmail)
 
   const options = [
     { value: "newLicenseType", label: "New License Type" },
@@ -63,20 +60,6 @@ const EditLicense = () => {
     navigate(`/license`);
   };
 
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraph(response.accessToken).then((response) => {
-          setGraphData(response);
-          console.log(response);
-        });
-      });
-  }, [instance, accounts]);
-
   const handleSubmitLicenseBand = async (event) => {
     event.preventDefault();
     if (selectedOption.value === "newLicenseType") {
@@ -95,7 +78,7 @@ const EditLicense = () => {
           licenseBand: bandType,
           partNumber: partNumber,
           maximumUser: maximumUser,
-          CreatedBy: graphData.mail,
+          CreatedBy: userEmail,
           description: data.description,
           recurringLicenseType: recurring,
         }),

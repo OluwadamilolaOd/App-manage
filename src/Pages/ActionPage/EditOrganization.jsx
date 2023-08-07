@@ -18,6 +18,8 @@ const EditOrganization = () => {
   const [error, setError] = useState(false);
   const url = `${baseUrl}/Organizations?id=${data.id}`;
   const token = localStorage.getItem("token");
+  //get user email from local storage
+  const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
   const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.id}`);
 
@@ -47,37 +49,6 @@ const EditOrganization = () => {
 
   const handleSubmitEditOrg = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch (url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          organizationName: companyName,
-          email: emailAddress,
-          address: location,
-          phoneNumber: phoneNumber,
-        }),
-      });
-      await response.json();
-      if (response.status === 200) {
-        notifySuccess("");
-      } else {
-        notifyError("");
-      }
-
-    } catch (error) {
-      console.log(error)
-    }
-    setCompanyName("");
-    setEmailAddress("");
-    setLocation("");
-    setPhoneNumber("");
-    notifySuccess("");
-    // notifyError("")
-
     if (
       companyName.length == 0 ||
       emailAddress.length == 0 ||
@@ -85,19 +56,38 @@ const EditOrganization = () => {
       phoneNumber.length == 0
     ) {
       setError(true);
+    } else {
+      try {
+        const response = await fetch (url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            organizationName: companyName,
+            email: emailAddress,
+            address: location,
+            phoneNumber: phoneNumber,
+            createdBy: userEmail,
+          }),
+        });
+        await response.json();
+        if (response.status === 200) {
+          notifySuccess("");
+        } else {
+          notifyError("");
+        }
+  
+      } catch (error) {
+        console.log(error)
+      }
+      setCompanyName("");
+      setEmailAddress("");
+      setLocation("");
+      setPhoneNumber("");
     }
-    if (companyName && emailAddress && location && phoneNumber) {
-      console.log(
-        "Company Name: ",
-        companyName,
-        "\nEmail Address: ",
-        emailAddress,
-        "\nLocation: ",
-        location,
-        "\nPhone Number: ",
-        phoneNumber
-      );
-    }
+   
   };
 
   return (

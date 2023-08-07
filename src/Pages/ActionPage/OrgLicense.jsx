@@ -35,27 +35,13 @@ const OrgLicense = () => {
   //post company license url
   const CompanyLicenseUrl = `${baseUrl}/PurchasedLicense`;
 
-  //fetch current user from Azure
-  const { instance, accounts } = useMsal();
-  const [graphData, setGraphData] = useState(null);
+  //get user email from local storage
+  const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
   //Navigate back to the previous page
   const handleBackArrow = () => {
     navigate("/organizations");
   };
-
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraph(response.accessToken).then((response) => {
-          setGraphData(response);
-        });
-      });
-  }, [instance, accounts]);
 
   // react-toastify
   const notifySuccess = () =>
@@ -164,7 +150,7 @@ const OrgLicense = () => {
             organizationId: data.id,
             licenseTypeId: selectedLicenseBandOption.id,
             licenseKey: productKey,
-            CreatedBy: graphData.mail,
+            CreatedBy: userEmail,
           }),
         });
         setStartDate("");

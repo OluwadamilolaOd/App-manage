@@ -6,9 +6,6 @@ import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../Auth/authConfig";
-import { callMsGraph } from "../../Auth/graph";
 
 const AddLicenseBand = () => {
   const paramsValue = useLocation();
@@ -25,23 +22,8 @@ const AddLicenseBand = () => {
   const [error, setError] = useState(false);
   //get token from local storage and set it to state
   const token =localStorage.getItem("token")
-
-  //fetch current user from Azure
-  const { instance, accounts } = useMsal();
-  const [graphData, setGraphData] = useState(null);
-
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraph(response.accessToken).then((response) => {
-          setGraphData(response);
-        });
-      });
-  }, [instance, accounts]);
+  //get user email from local storage
+  const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
   const handleBackArrow = () => {
     navigate("/license");
@@ -107,7 +89,7 @@ const AddLicenseBand = () => {
             partNumber: partNumber,
             maximumUser: maximumUser,
             appLicenseId: licenseId,
-            CreatedBy: graphData.mail,
+            CreatedBy: userEmail,
             recurringLicenseType: recurring,
           }),
         });

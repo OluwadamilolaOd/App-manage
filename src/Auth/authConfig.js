@@ -14,7 +14,8 @@ export const msalConfig = {
     auth: {
   //      clientId: '66ffb285-220a-42ae-9277-20f7e3af6284', // This is the ONLY mandatory field that you need to supply.
         clientId:'66ffb285-220a-42ae-9277-20f7e3af6284',
-        authority: 'https://blossomhearthospital.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
+      //  authority: 'https://blossomhearthospital.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
+        authority: 'https://login.microsoftonline.com/4f270365-128d-440c-876a-fa42897a7439', // Replace the placeholder with your tenant subdomain
         redirectUri: '/', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
         postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
         // End point URL for Power BI API
