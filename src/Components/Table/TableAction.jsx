@@ -11,7 +11,7 @@ export default function TableAction({ headers,loading, data, deleteItem}) {
         {loading ? (
           <Loader />
         ) : (
-          <table>
+          <table className="table-action">
             <thead>
               <tr>
                 {headers.map((header, id) => (
