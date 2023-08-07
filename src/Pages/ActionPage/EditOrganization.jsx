@@ -75,7 +75,7 @@ const EditOrganization = () => {
     setEmailAddress("");
     setLocation("");
     setPhoneNumber("");
-    notifySuccess("");
+    //notifySuccess("");
     // notifyError("")
 
     if (
