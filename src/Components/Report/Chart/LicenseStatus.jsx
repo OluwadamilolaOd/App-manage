@@ -7,7 +7,7 @@ const LicenseStatus = () => {
     series:[
       {
         name: "Licenses",
-        data: [11, 2],
+        data: [13, 7],
       },
     ],
     options: {

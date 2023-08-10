@@ -25,7 +25,8 @@ export const msalConfig = {
         //workspaceId:"820adcae-4672-437b-a5b2-856ebc9b9717",
         workspaceId:"075f0f9e-2933-4824-b22f-824ff873fa1f",
         // Id of the report to be embedded
-        reportId: "c0887636-84df-4d33-882c-a2c61e7d7cff",
+        //reportId: "c0887636-84df-4d33-882c-a2c61e7d7cff",
+        reportId: "395dc4c9-2382-499d-9024-55036d9e0433",
 
     },
     cache: {

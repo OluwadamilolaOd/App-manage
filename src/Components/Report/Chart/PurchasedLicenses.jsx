@@ -1,13 +1,45 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Chart from "react-apexcharts";
+import { baseUrl } from '../../../Hook/baseurl';
 
 
 const PurchasedLicenses = () => {
+  const [catigories, setCatigories] = useState([]);
+  const [series, setSeries] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { 
+    const fetchData = async () => {
+      try {
+      const response = await fetch(`${baseUrl}/Report/barchat`);
+        const data = await response.json();
+        setData(data.result);
+        setLoading(!loading);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+
+    console.log(data)
+
+    const licenseNames = [];
+    const licenseCount = [];
+
+    for (const item of data) {
+      licenseNames.push(item.licenseName);
+      licenseCount.push(item.licenseCount);
+    }
+    console.log(licenseNames);
+    console.log(licenseCount);
   const barData = {
     series: [
       {
         name: "Licenses",
-        data: [8, 3, 1],
+        data: licenseCount,
       },
     ],
     options: {
@@ -21,7 +53,7 @@ const PurchasedLicenses = () => {
       },
       colors: ["#000066"],
       xaxis: {
-        categories: ["STAAS Desktop", "KwikAlert", "(Blank)"],
+        categories: licenseNames,
       },
       title: {
         text: "Purchased Licenses",
