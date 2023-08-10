@@ -27,7 +27,7 @@ export const sideLinks = [
         path: "/organizations",
         icon: MdOutlineDataThresholding,
         // iconW: organizationW,
-        display: "Organizations",
+        display: "Organization",
         cName: 'nav-text',
     },
 
@@ -35,7 +35,7 @@ export const sideLinks = [
         path: "/powerbi",
         icon: MdOutlineDataThresholding,
         // iconW: organizationW,
-        display: "PowerBI",
+        display: "Power BI",
         cName: 'nav-text',
     }
 
