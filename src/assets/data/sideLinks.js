@@ -7,6 +7,7 @@ import organizationW from '../images/organization-white.svg'
 import {GrHomeRounded} from "react-icons/gr";
 import {MdOutlineDataThresholding} from "react-icons/md"
 import {HiOutlineChartBar, HiOutlineHome} from "react-icons/hi"
+import {HiDocumentChartBar} from "react-icons/hi2"
 
 export const sideLinks = [
     {
@@ -33,9 +34,9 @@ export const sideLinks = [
 
     {
         path: "/powerbi",
-        icon: MdOutlineDataThresholding,
+        icon: HiDocumentChartBar,
         // iconW: organizationW,
-        display: "Power BI",
+        display: "Report",
         cName: 'nav-text',
     }
 

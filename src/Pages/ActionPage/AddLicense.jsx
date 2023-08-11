@@ -87,7 +87,7 @@ const AddLicense = () => {
 
   return (
     <div>
-      <Banner title={"Add New License"} />
+      <Banner title={"Add New Product"} />
 
       <form className="add_container formPage">
         <ArrowBack handleBackArrow={handleBackArrow} />

@@ -27,8 +27,8 @@ const EditLicense = () => {
   console.log(userEmail)
 
   const options = [
-    { value: "newLicenseType", label: "New License Type" },
-    { value: "recurringLicenseType", label: "Recurring License Type" },
+    { value: "newLicenseType", label: "New License" },
+    { value: "recurringLicenseType", label: "Recurring License" },
   ];
 
   // react-toastify
@@ -65,7 +65,7 @@ const EditLicense = () => {
     if (selectedOption.value === "newLicenseType") {
       recurring = "";
     } else {
-      recurring = "Recurring License Type";
+      recurring = "Recurring License";
     }
     try {
       const response = await fetch(url, {

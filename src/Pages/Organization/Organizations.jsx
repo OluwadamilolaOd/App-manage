@@ -16,7 +16,7 @@ const Organizations = () => {
   const [isFilteredData, setIsFilteredData] = useState(false);
 
   const url = `${baseUrl}/Organizations`
-  const headers = ["Company Name", "Email Address", "Phone Number", "Location"]
+  const headers = ["Company Name", "Email Address", "Phone Number", "Location", "Product Count"]
   const navigate = useNavigate();
 
   useEffect(() => {

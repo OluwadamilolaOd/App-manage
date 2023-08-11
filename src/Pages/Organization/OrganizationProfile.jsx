@@ -31,7 +31,7 @@ const OrganizationProfile = ({}) => {
     "Band Type",
     "Max. User",
     "Part Number",
-    "Period",
+    "Duration",
     "Start Date",
     "Exp. Date",
     "Action",
@@ -183,7 +183,7 @@ const OrganizationProfile = ({}) => {
           <div className="genInfo">
             <h3>General Information</h3>
             <div className="info">
-              <div className="dataInfo">
+              <div className="dataInfo emailInfo">
                 <div>
                   <p className="text">Email Address</p>
                 </div>
@@ -191,7 +191,7 @@ const OrganizationProfile = ({}) => {
                   <p className="textB">{data.email}</p>
                 </div>
               </div>
-              <div className="dataInfo">
+              <div className="dataInfo locationInfo">
                 <div>
                   <p className="text">Location</p>
                 </div>
