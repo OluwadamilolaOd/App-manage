@@ -11,8 +11,8 @@ const AddLicenseBand = () => {
   const paramsValue = useLocation();
   const navigate = useNavigate();
   const options = [
-    { value: "newLicenseType", label: "New License Type" },
-    { value: "recurringLicenseType", label: "Recurring License Type" },
+    { value: "newLicenseType", label: "New License" },
+    { value: "recurringLicenseType", label: "Recurring License" },
   ];
   const [description, setDescription] = useState("");
   const [bandType, setBandType] = useState("");

@@ -43,13 +43,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 30%;
+  width: 50%;
   margin-top: 1rem;
   color: var(--black-color);
 }
 .datainfo {
   display: flex;
   align-items: center;
+}
+.emailInfo{
+  width: 35%;
+}
+.locationInfo {
+  width: 60%;
 }
 .text {
   font-size: 16px;
