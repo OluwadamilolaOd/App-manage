@@ -122,7 +122,7 @@ const OrganizationProfile = ({}) => {
         if (response.ok) {
           navigate(`/organizations/organizationProfile/${paramsValue}`);
           // Update the state by removing the deleted item
-          setFilteredData(tableData.filter((item) => item.id !== itemId));
+          setTableData(tableData.filter((item) => item.id !== itemId));
           notifySuccess();
         } else {
           // Handle error if the item deletion was unsuccessful
