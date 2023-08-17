@@ -2,14 +2,14 @@ import React from "react";
 import Banner from "../../Components/Banner";
 import Search from "../../Components/Search";
 import Pagination from "../../Components/Pagination";
-import TableAction from "../../Components/Table/TableAction"
+import TableSheet from "../../Components/Table/TableSheet";
 
 const ActiveLicReport = () => {
   return (
     <div>
       <Banner title={"Active License"} />
       <Search placeholder="Search for Active License" />
-      {/* <TableAction/> */}
+      {/* <TableSheet /> */}
       <Pagination />
     </div>
   );

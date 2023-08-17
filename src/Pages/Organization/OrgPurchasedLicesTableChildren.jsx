@@ -4,8 +4,7 @@ import Modal from "../../Components/Modal/Modal";
 import archiveIcon from '../../assets/images/archive_red.png'
 import DownloadModal from "../ActionPage/Download/DownloadModal";
 import DowngradeModal from "../../Components/Modal/DowngradeModal";
-
-
+import archiveIconS from '../../assets/images/Archive_icon.png'
 const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -104,6 +103,7 @@ else { diffDays = diffDays + " days" }
                     setOpenModal={setOpenModal}
                     header={"Archive License"}
                     image={archiveIcon}
+                    imageIcon={archiveIconS}
                     btnAction={"Archive"}
                     title= {obj.licenseBand}
                    description= { "Are you sure you want to archive?"}   

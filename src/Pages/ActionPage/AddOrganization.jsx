@@ -11,9 +11,16 @@ const AddOrganization = () => {
   const [companyName, setCompanyName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [location, setLocation] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [contactPerson, setContactPerson] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
+  const [accountManger, setAccountManger] = useState("")
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+
+
+
   const [error, setError] = useState(false);
   //get token from local storage and set it to state
   const token =localStorage.getItem("token")
@@ -24,6 +31,9 @@ const AddOrganization = () => {
     useState("");
   const [licenseTypeOptions, setLicenseTypeOptions] = useState([]);
   const [licenseBandOptions, setLicenseBandOptions] = useState([]);
+  const [selectedReminderSetOption, setSelectedReminderSetOption] = useState([]);
+  const [reminderSetOptions, setReminderSetOptions] = useState([]);
+
 
   const startDateInputRef = useRef(null);
   const endDateInputRef = useRef(null);
@@ -136,9 +146,13 @@ const AddOrganization = () => {
       emailAddress.length === 0 ||
       location.length === 0 ||
       phoneNumber.length === 0 ||
+      contactEmail.length === 0||
+      contactPerson.length === 0 ||
+      contactPhone.length === 0 ||
       selectedLicenseTypeOption.length === 0 ||
       startDate.length === 0 ||
       selectedLicenseBandOption.length === 0 ||
+      selectedReminderSetOption.length === 0 ||
       endDate.length === 0
     ) {
       setError(true);
@@ -181,10 +195,14 @@ const AddOrganization = () => {
           setEmailAddress("");
           setPhoneNumber("");
           setLocation("");
+          setContactEmail("");
+          setContactPerson("");
+          setContactPhone("");
           setStartDate("");
           setEndDate("");
           setSelectedLicenseBandOption("");
           setSelectedLicenseTypeOption("");
+          setSelectedReminderSetOption("");
           notifySuccess("");
         });
     } catch (err) {
@@ -206,6 +224,7 @@ const AddOrganization = () => {
             <div className="section-form">
               <label htmlFor="company-name">Company Name:</label>
               <input
+              className="companyName"
                 type="text"
                 id="company-name"
                 value={companyName}
@@ -236,6 +255,7 @@ const AddOrganization = () => {
             <div className="section-form">
               <label htmlFor="location">Location:</label>
               <input
+              className="location"
                 type="text"
                 id="location"
                 value={location}
@@ -262,6 +282,66 @@ const AddOrganization = () => {
               )}
             </div>
           </div>
+          <div className="section">
+            <div className="section-form">
+              <label htmlFor="contact-person">Contact Person:</label>
+              <input
+                type="text"
+                id="contact-person"
+                value={contactPerson}
+                onChange={(event) => setContactPerson(event.target.value)}
+              />
+              {error && contactPerson.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+            <div  className="section-form">
+              <label htmlFor="contact-email">Contact Person Email Address:</label>
+              <input
+                type="email"
+                id="contact-email"
+                value={contactEmail}
+                onChange={(event) => setContactEmail(event.target.value)}
+              />
+              {error && contactEmail.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className="section">
+            <div className="section-form">
+              <label htmlFor="contact-phone">Contact Person Phone Number:</label>
+              <input
+                type="tel"
+                id="contact-phone"
+                value={contactPhone}
+                onChange={(event) => setContactPhone(event.target.value)}
+              />
+              {error && contactPhone.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+            <div  className="section-form">
+              <label htmlFor="account-manger">Account Manager:</label>
+              <input
+                type="text"
+                id="account-manager"
+                value={accountManger}
+                onChange={(event) => setAccountManger(event.target.value)}
+              />
+              {error && accountManger.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
         </div>
         <div className="title-head section-title">
           <h2>License Details</h2>
@@ -269,7 +349,7 @@ const AddOrganization = () => {
         <div className="forminput">
           <div className="section">
             <div className="section-form">
-              <label htmlFor="company-name">License Name:</label>
+              <label htmlFor="license-name">License Name:</label>
               <Select
                 className="select"
                 options={licenseTypeOptions}
@@ -323,6 +403,22 @@ const AddOrganization = () => {
                 ref={endDateInputRef}
               />
               {error && endDate.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className="section">
+            <div className="section-form">
+              <label htmlFor="reminder">Set Reminder:</label>
+              <Select
+                className="select"
+                options={reminderSetOptions}
+                value={selectedReminderSetOption}
+                onChange={setSelectedReminderSetOption}
+              />
+              {error && selectedReminderSetOption.length <= 0 ? (
                 <label className="error">This field is required.</label>
               ) : (
                 ""
