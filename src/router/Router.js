@@ -23,6 +23,7 @@ import PurchasedLicReport from "../Pages/ActionPage/PurchasedLicReport";
 import ExpiredLicReport from "../Pages/ActionPage/ExpiredLicReport";
 import ArchiveLicReport from "../Pages/ActionPage/ArchiveLicReport";
 import ActiveLicReport from "../Pages/ActionPage/ActiveLicReport";
+import ViewAllOrgProfile from "../Pages/ActionPage/ViewAllOrgProfile";
 
 const Router = () => {
   return (
@@ -76,6 +77,7 @@ const Router = () => {
       <Route path="expiredLicReport" element={<ExpiredLicReport />} />
       <Route path="archiveLicReport" element={<ArchiveLicReport />} />
       <Route path="activeLicReport" element={<ActiveLicReport />} />
+      <Route path="viewAll" element={<ViewAllOrgProfile/>}/>
     </Routes>
   );
 };

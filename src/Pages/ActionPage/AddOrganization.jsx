@@ -5,7 +5,7 @@ import { baseUrl } from "../../Hook/baseurl";
 import { generateProductKey } from "../../Components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
-import "../Styles/license.css"
+import "../Styles/license.css";
 
 const AddOrganization = () => {
   const [companyName, setCompanyName] = useState("");
@@ -15,15 +15,13 @@ const AddOrganization = () => {
   const [contactPerson, setContactPerson] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
-  const [accountManger, setAccountManger] = useState("")
+  const [accountManger, setAccountManger] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-
-
   const [error, setError] = useState(false);
   //get token from local storage and set it to state
-  const token =localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
   const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
     useState("");
@@ -31,9 +29,10 @@ const AddOrganization = () => {
     useState("");
   const [licenseTypeOptions, setLicenseTypeOptions] = useState([]);
   const [licenseBandOptions, setLicenseBandOptions] = useState([]);
-  const [selectedReminderSetOption, setSelectedReminderSetOption] = useState([]);
+  const [selectedReminderSetOption, setSelectedReminderSetOption] = useState(
+    []
+  );
   const [reminderSetOptions, setReminderSetOptions] = useState([]);
-
 
   const startDateInputRef = useRef(null);
   const endDateInputRef = useRef(null);
@@ -51,8 +50,6 @@ const AddOrganization = () => {
   const CompanyLicenseUrl = `${baseUrl}/PurchasedLicense`;
   //get user email from local storage
   const userEmail = JSON.parse(localStorage.getItem("user")).mail;
-
-
 
   // react-toastify
   const notifySuccess = () =>
@@ -90,11 +87,11 @@ const AddOrganization = () => {
     const fetchData = async () => {
       try {
         await fetch(url, {
-          method:"GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         })
           .then((response) => response.json())
           .then((data) => {
@@ -115,8 +112,8 @@ const AddOrganization = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(url2,{
-          method:"GET",
+        await fetch(url2, {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -134,7 +131,7 @@ const AddOrganization = () => {
       }
     };
     fetchData();
-  }, [url2,token]);
+  }, [url2, token]);
 
   //Submit Company details and License Details
 
@@ -146,7 +143,7 @@ const AddOrganization = () => {
       emailAddress.length === 0 ||
       location.length === 0 ||
       phoneNumber.length === 0 ||
-      contactEmail.length === 0||
+      contactEmail.length === 0 ||
       contactPerson.length === 0 ||
       contactPhone.length === 0 ||
       selectedLicenseTypeOption.length === 0 ||
@@ -157,60 +154,61 @@ const AddOrganization = () => {
     ) {
       setError(true);
       return;
-    } 
-    else {
-      setError(false)
+    } else {
+      setError(false);
       try {
-      await fetch(CompanyDetailsUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-       },
-        body: JSON.stringify({
-          organizationName: companyName,
-          email: emailAddress,
-          phoneNumber: phoneNumber,
-          address: location,
-          CreatedBy: userEmail,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          let companyId = data.id;
-          fetch(CompanyLicenseUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json",
+        await fetch(CompanyDetailsUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-            body: JSON.stringify({
-              purchasedDate: startDate,
-              expirationDate: endDate,
-              organizationId: companyId,
-              licenseTypeId: selectedLicenseBandOption.id,
-              licenseKey: productKey,
-              CreatedBy: userEmail,
-            }),
+          body: JSON.stringify({
+            organizationName: companyName,
+            email: emailAddress,
+            phoneNumber: phoneNumber,
+            address: location,
+            CreatedBy: userEmail,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            let companyId = data.id;
+            fetch(CompanyLicenseUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                purchasedDate: startDate,
+                expirationDate: endDate,
+                organizationId: companyId,
+                licenseTypeId: selectedLicenseBandOption.id,
+                licenseKey: productKey,
+                CreatedBy: userEmail,
+              }),
+            });
+            setCompanyName("");
+            setEmailAddress("");
+            setPhoneNumber("");
+            setLocation("");
+            setContactEmail("");
+            setContactPerson("");
+            setContactPhone("");
+            setStartDate("");
+            setEndDate("");
+            setSelectedLicenseBandOption("");
+            setSelectedLicenseTypeOption("");
+            setSelectedReminderSetOption("");
+            notifySuccess("");
           });
-          setCompanyName("");
-          setEmailAddress("");
-          setPhoneNumber("");
-          setLocation("");
-          setContactEmail("");
-          setContactPerson("");
-          setContactPhone("");
-          setStartDate("");
-          setEndDate("");
-          setSelectedLicenseBandOption("");
-          setSelectedLicenseTypeOption("");
-          setSelectedReminderSetOption("");
-          notifySuccess("");
-        });
-    } catch (err) {
-       console.log(err);
-      notifyError.log(err.message);
+      } catch (err) {
+        console.log(err);
+        notifyError.log(err.message);
+      }
     }
   };
-};
 
   return (
     <div>
@@ -224,7 +222,7 @@ const AddOrganization = () => {
             <div className="section-form">
               <label htmlFor="company-name">Company Name:</label>
               <input
-              className="companyName"
+                className="companyName"
                 type="text"
                 id="company-name"
                 value={companyName}
@@ -236,7 +234,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div  className="section-form">
+            <div className="section-form">
               <label htmlFor="email-address">Email Address:</label>
               <input
                 type="email"
@@ -250,39 +248,6 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-          </div>
-          <div className="section">
-            <div className="section-form">
-              <label htmlFor="location">Location:</label>
-              <input
-              className="location"
-                type="text"
-                id="location"
-                value={location}
-                onChange={(event) => setLocation(event.target.value)}
-              />
-              {error && location.length <= 0 ? (
-                <label className="error">This field is required.</label>
-              ) : (
-                ""
-              )}
-            </div>
-            <div  className="section-form">
-              <label htmlFor="phone-number">Phone Number:</label>
-              <input
-                type="tel"
-                id="phone-number"
-                value={phoneNumber}
-                onChange={(event) => setPhoneNumber(event.target.value)}
-              />
-              {error && phoneNumber.length <= 0 ? (
-                <label className="error">This field is required.</label>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-          <div className="section">
             <div className="section-form">
               <label htmlFor="contact-person">Contact Person:</label>
               <input
@@ -297,8 +262,10 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div  className="section-form">
-              <label htmlFor="contact-email">Contact Person Email Address:</label>
+            <div className="section-form">
+              <label htmlFor="contact-email">
+                Contact Person Email Address:
+              </label>
               <input
                 type="email"
                 id="contact-email"
@@ -314,7 +281,38 @@ const AddOrganization = () => {
           </div>
           <div className="section">
             <div className="section-form">
-              <label htmlFor="contact-phone">Contact Person Phone Number:</label>
+              <label htmlFor="location">Location:</label>
+              <input
+                className="location"
+                type="text"
+                id="location"
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+              />
+              {error && location.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="section-form">
+              <label htmlFor="phone-number">Phone Number:</label>
+              <input
+                type="tel"
+                id="phone-number"
+                value={phoneNumber}
+                onChange={(event) => setPhoneNumber(event.target.value)}
+              />
+              {error && phoneNumber.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="section-form">
+              <label htmlFor="contact-phone">
+                Contact Person Phone Number:
+              </label>
               <input
                 type="tel"
                 id="contact-phone"
@@ -327,7 +325,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div  className="section-form">
+            <div className="section-form">
               <label htmlFor="account-manger">Account Manager:</label>
               <input
                 type="text"
@@ -362,7 +360,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div  className="section-form">
+            <div className="section-form">
               <label htmlFor="start-date">Start Date:</label>
               <input
                 type="date"
@@ -393,7 +391,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-            <div  className="section-form">
+            <div className="section-form">
               <label htmlFor="end-date">Expiration Date:</label>
               <input
                 type="date"
@@ -427,9 +425,9 @@ const AddOrganization = () => {
           </div>
         </div>
         <div className="btnRight">
-        <button onClick={handleSubmit} type="submit">
-          Submit
-        </button>
+          <button onClick={handleSubmit} type="submit">
+            Submit
+          </button>
         </div>
         {/* <div className="message">{message ? <p>{message}</p> : null}</div> */}
       </form>

@@ -15,10 +15,13 @@ const OrgLicense = () => {
     useState("");
   const [selectedLicenseTypeOption, setSelectedLicenseTypeOption] =
     useState("");
+    const [selectedReminderSetOption, setSelectedReminderSetOption] =
+    useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [licenseTypeOptions, setLicenseTypeOptions] = useState([]);
   const [licenseBandOptions, setLicenseBandOptions] = useState([]);
+  const [reminderSetOptions, setReminderSetOptions] = useState([]);
   const [error, setError] = useState(false);
   const startDateInputRef = useRef(null);
   const endDateInputRef = useRef(null);
@@ -130,6 +133,7 @@ const OrgLicense = () => {
       selectedLicenseTypeOption.length === 0 ||
       startDate.length === 0 ||
       selectedLicenseBandOption.length === 0 ||
+      selectedReminderSetOption.length === 0 ||
       endDate.length === 0
     ) {
       setError(true);
@@ -157,6 +161,7 @@ const OrgLicense = () => {
         setEndDate("");
         setSelectedLicenseBandOption("");
         setSelectedLicenseTypeOption("");
+        setSelectedReminderSetOption("");
         notifySuccess("");
       } catch (err) {
         notifyError.log(err);
@@ -226,6 +231,22 @@ const OrgLicense = () => {
                 ref={endDateInputRef}
               />
               {error && endDate.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className="section">
+            <div className="section-form">
+              <label htmlFor="reminder">Set Reminder:</label>
+              <Select
+                className="select"
+                options={reminderSetOptions}
+                value={selectedReminderSetOption}
+                onChange={setSelectedReminderSetOption}
+              />
+              {error && selectedReminderSetOption.length <= 0 ? (
                 <label className="error">This field is required.</label>
               ) : (
                 ""

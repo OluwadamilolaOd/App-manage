@@ -102,6 +102,9 @@
   .section-form {
     /* margin-bottom: 0.7rem; */
   }
+  .section-view {
+    margin-bottom: 0.7rem;
+  }
   .formPage {
     background-color: var(--white-color);
     margin: auto;
