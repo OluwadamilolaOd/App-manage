@@ -1,0 +1,12 @@
+Dashboard,
+Get all meal for the week,
+Import buck users from excel,
+
+
+Setting Up Shift management.
+Auto Refresh.
+Edit and delete department.
+Picking Food Of the day.
+
+
+dataGridView1_cellFormatting(object)
