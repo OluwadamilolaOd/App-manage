@@ -82,3 +82,13 @@
   height: 150px;
   color: var(--white-color);
 }
+.blueBackg:hover, .blueBackg:active  {
+  background-color: var(--blue-color);
+  border: none;
+  color:  var(--white-color);
+}
+.redBackg:hover, .redBackg:active {
+  background-color: var(--red-color);
+  border: none;
+  color:  var(--white-color);
+}

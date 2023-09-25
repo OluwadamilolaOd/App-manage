@@ -31,6 +31,7 @@
     color: var(--black-color);
     width: 100%;
     box-sizing: border-box;
+    caret-color: var(--blue-color);
   }
   textarea {
     border: 1px solid var(--stroke-color);
@@ -99,6 +100,9 @@
     margin-top: 0.5rem;
   }
   .section-form {
+    /* margin-bottom: 0.7rem; */
+  }
+  .section-view {
     margin-bottom: 0.7rem;
   }
   .formPage {

@@ -7,6 +7,7 @@ import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
 import "./../../Pages/Styles/organization.css";
 import Pagination from "../../Components/Pagination";
 import { MdOutlineEdit} from "react-icons/md";
+import {ImProfile} from "react-icons/im";
 import Button from "../../Components/Button";
 import Search from "../../Components/Search";
 import { ToastContainer, toast } from "react-toastify";
@@ -174,6 +175,10 @@ const OrganizationProfile = ({}) => {
               <h1 className="profileName">{data.organizationName}</h1>
             </div>
             <div className="profile-icon ">
+            <div className="profile-action" onClick={handleEditOrg}>
+                <ImProfile/>
+                <span>View All</span>
+              </div>
               <div className="profile-action" onClick={handleEditOrg}>
                 <MdOutlineEdit />
                 <span>Edit</span>

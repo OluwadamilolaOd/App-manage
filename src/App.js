@@ -6,6 +6,7 @@ import Modal from "./Components/Modal/Modal";
 import logoutImg from "./assets/images/logout_red.png";
 import LandingPage from "./Pages/LandingPage";
 import { ToastContainer } from "react-toastify";
+import LogoutS from "./assets/images/log-out_icon.png"
 
 const MainContent = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -55,6 +56,7 @@ const MainContent = () => {
               header={"Log Out"}
               image={logoutImg}
               btnAction={"Log out"}
+              imageIcon={LogoutS}
               title={<h3>Log out</h3>}
               description={"Are you sure you want to Log out?"}
               handleOnclickEvent={handleLogout}
