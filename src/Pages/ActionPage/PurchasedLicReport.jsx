@@ -5,12 +5,17 @@ import TableSheet from "../../Components/Table/TableSheet";
 import Pagination from "../../Components/Pagination";
 
 const PurchasedLicReport = () => {
-
+  const headers = [
+    "License Name",
+    "Band Type",
+    "Max. User",
+    "Organization",
+  ];
   return (
     <div>
       <Banner title={"Purchased License"} />
       <Search placeholder="Search for Purchased License" />
-      {/* <TableSheet /> */}
+      <TableSheet headers={headers} />
       <Pagination />
     </div>
   );

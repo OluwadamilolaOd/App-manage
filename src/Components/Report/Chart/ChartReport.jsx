@@ -19,10 +19,10 @@ const ChartReport = () => {
         <LicenseStatus/>
         <AvailableAppLicense />
       </div>
-      <div className="report_chart">
+      {/* <div className="report_chart">
         <RangeLicense/>
         <ExpiredLicRange/>
-      </div>
+      </div> */}
     </div>
   );
 };

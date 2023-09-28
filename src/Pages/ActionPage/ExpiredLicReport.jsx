@@ -5,11 +5,19 @@ import Pagination from "../../Components/Pagination";
 import TableSheet from "../../Components/Table/TableSheet";
 
 const ExpiredLicReport = () => {
+  const headers = [
+    "Organization",
+    "License Name",
+    "Band Type",
+    "Max. User",
+    "Start Date",
+    "Exp. Date",
+  ];
   return (
     <div>
       <Banner title={"Expired License"} />
       <Search placeholder="Search for Expired License" />
-      {/* <TableSheet /> */}
+      <TableSheet headers={headers} />
       <Pagination />
     </div>
   )

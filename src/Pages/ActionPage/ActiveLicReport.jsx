@@ -5,11 +5,20 @@ import Pagination from "../../Components/Pagination";
 import TableSheet from "../../Components/Table/TableSheet";
 
 const ActiveLicReport = () => {
+  const headers = [
+    "Organization",
+    "License Name",
+    "Band Type",
+    "Max. User",
+    "Duration",
+    "Start Date",
+    "Exp. Date",
+  ];
   return (
     <div>
       <Banner title={"Active License"} />
       <Search placeholder="Search for Active License" />
-      {/* <TableSheet /> */}
+      <TableSheet headers={headers} />
       <Pagination />
     </div>
   );
