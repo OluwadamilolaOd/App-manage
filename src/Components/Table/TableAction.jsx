@@ -20,7 +20,7 @@ export default function TableAction({ headers,loading, data, deleteItem}) {
               </tr>
             </thead>
             <tbody>
-              {data.map((obj) => (
+              {data && data.map((obj) => (
                 <TableActionChildren key={obj.id} obj={obj} deleteItem = {deleteItem}/>
               ))}
             </tbody>

@@ -18,7 +18,7 @@ export default function TableSheet({ headers, data, loading }) {
               </tr>
             </thead>
             <tbody>
-              {data.map((obj) => (
+              {data &&  data.map((obj) => (
                 <TableSheetChildren obj={obj} key={obj.id} />
               ))}
             </tbody>
