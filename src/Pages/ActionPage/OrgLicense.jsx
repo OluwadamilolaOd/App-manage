@@ -5,9 +5,6 @@ import Select from "react-select";
 import { generateProductKey } from "../../Components/GenKey";
 import { useNavigate, useLocation } from "react-router";
 import { baseUrl } from "../../Hook/baseurl";
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../Auth/authConfig";
-import { callMsGraph } from "../../Auth/graph";
 import { ToastContainer, toast } from "react-toastify";
 
 const OrgLicense = () => {

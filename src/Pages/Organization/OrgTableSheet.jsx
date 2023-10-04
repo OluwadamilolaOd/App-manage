@@ -30,7 +30,7 @@ export default function OrgTableSheet({ headers, items, loading }) {
                   <td>{obj.email}</td>
                   <td>{obj.phoneNumber}</td>
                   <td>{obj.address}</td>
-                  <td>{obj.noProduct}</td>
+                  <td>{obj.porductCount}</td>
                 </tr>
               ))}
             </tbody>
