@@ -4,8 +4,6 @@ import { baseUrl } from '../../../Hook/baseurl';
 
 
 const PurchasedLicenses = () => {
-  const [catigories, setCatigories] = useState([]);
-  const [series, setSeries] = useState([]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,9 +21,6 @@ const PurchasedLicenses = () => {
     fetchData();
   }, []);
 
-
-    console.log(data)
-
     const licenseNames = [];
     const licenseCount = [];
 
@@ -33,8 +28,7 @@ const PurchasedLicenses = () => {
       licenseNames.push(item.licenseName);
       licenseCount.push(item.licenseCount);
     }
-    console.log(licenseNames);
-    console.log(licenseCount);
+
   const barData = {
     series: [
       {

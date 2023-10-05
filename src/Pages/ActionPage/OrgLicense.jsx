@@ -234,7 +234,7 @@ const OrgLicense = () => {
               )}
             </div>
           </div>
-          <div className="section">
+          {/* <div className="section">
             <div className="section-form">
               <label htmlFor="reminder">Set Reminder:</label>
               <Select
@@ -249,7 +249,7 @@ const OrgLicense = () => {
                 ""
               )}
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="btnRight">
           <button onClick={handleSubmit} type="submit">

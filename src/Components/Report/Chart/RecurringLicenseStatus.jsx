@@ -1,15 +1,36 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import Chart from "react-apexcharts";
+import { baseUrl } from '../../../Hook/baseurl';
 
 const RecurringLicenseStatus = () => {
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { 
+    const fetchData = async () => {
+      try {
+      const response = await fetch(`${baseUrl}/Report/LicenseStatusCount`);
+        const data = await response.json();
+        setData(data);
+        setLoading(!loading);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(data)
+
   const donutData =[ 
     {
       name: 'New License', 
-      y: 100
+      y: data.activeLicense
     },
     {
       name: 'Recurring License', 
-      y: 55
+      y: data.expiredLicense
     },
   ];
   const options = {
@@ -33,19 +54,6 @@ const RecurringLicenseStatus = () => {
         type="donut"
         height={350}
       />
-    {/* <Chart
-      type="donut"
-      width={600}
-      height={400}
-      series={[44, 55]}
-      options={{
-        labels: ["New License", "Recurring License"],
-        title: {
-          text: "Recurring License Status",
-        },
-        colors: ["#000066", "#DA2929"],
-      }}
-    ></Chart> */}
   </div>
   )
 }

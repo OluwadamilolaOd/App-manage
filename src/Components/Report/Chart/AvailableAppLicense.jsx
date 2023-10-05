@@ -1,12 +1,39 @@
-import React from "react";
+import {useState, useEffect} from "react";
 import Chart from "react-apexcharts";
+import { baseUrl } from '../../../Hook/baseurl';
 
 const AvailableAppLicense = () => {
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { 
+    const fetchData = async () => {
+      try {
+      const response = await fetch(`${baseUrl}/Report/availablelicense`);
+        const data = await response.json();
+        setData(data.result);
+        setLoading(!loading);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const licenseNames = [];
+  const licenseCount = [];
+
+  for (const item of data) {
+    licenseNames.push(item.licenseName);
+    licenseCount.push(item.licenseCount);
+  }
+
   const barData = {
     series: [
       {
         name: "App Licenses",
-        data: [3, 1, 1, 1, 1, 1],
+        data: licenseCount,
       },
     ],
     options: {
@@ -20,14 +47,7 @@ const AvailableAppLicense = () => {
       },
       colors: ["#000066"],
       xaxis: {
-        categories: [
-          "MyPayCheq",
-          "All Friday",
-          "KwikAlert",
-          "STAAS Desktop",
-          "Test License",
-          "Vlogin",
-        ],
+        categories: licenseNames,
       },
       title: {
         text: "Available App Licenses",

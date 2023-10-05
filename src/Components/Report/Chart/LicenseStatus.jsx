@@ -1,13 +1,33 @@
-import React from 'react'
+import {useState, useEffect}from 'react'
 import Chart from "react-apexcharts";
+import { baseUrl } from '../../../Hook/baseurl';
 
 
 const LicenseStatus = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { 
+    const fetchData = async () => {
+      try {
+      const response = await fetch(`${baseUrl}/Report/LicenseStatus`);
+        const data = await response.json();
+        setData(data);
+        setLoading(!loading);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+ //console.log(data)
+
   const barData = {
     series:[
       {
         name: "Licenses",
-        data: [13, 7],
+        data: [data.activeLicense, data.expiredLicense],
       },
     ],
     options: {
