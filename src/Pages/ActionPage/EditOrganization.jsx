@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { baseUrl } from "../../Hook/baseurl";
@@ -9,11 +9,15 @@ import { baseUrl } from "../../Hook/baseurl";
 const EditOrganization = () => {
   const locations = useLocation();
   const data = locations.state.data;
-  console.log(data)
+  console.log(data);
   const [companyName, setCompanyName] = useState(data.organizationName);
   const [emailAddress, setEmailAddress] = useState(data.email);
   const [location, setLocation] = useState(data.address);
   const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber);
+  const [contactPerson, setContactPerson] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
+  const [accountManger, setAccountManger] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const url = `${baseUrl}/Organizations?id=${data.id}`;
@@ -21,7 +25,8 @@ const EditOrganization = () => {
   //get user email from local storage
   const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
-  const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.id}`);
+  const handleBackArrow = () =>
+    navigate(`/organizations/organizationprofile/${data.id}`);
 
   // react-toastify
   const notifySuccess = () =>
@@ -53,12 +58,16 @@ const EditOrganization = () => {
       companyName.length == 0 ||
       emailAddress.length == 0 ||
       location.length == 0 ||
-      phoneNumber.length == 0
+      phoneNumber.length == 0 ||
+      contactEmail.length === 0 ||
+      contactPerson.length === 0 ||
+      contactPhone.length === 0 ||
+      accountManger.length === 0 
     ) {
       setError(true);
     } else {
       try {
-        const response = await fetch (url, {
+        const response = await fetch(url, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -78,16 +87,18 @@ const EditOrganization = () => {
         } else {
           notifyError("");
         }
-  
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
       setCompanyName("");
       setEmailAddress("");
       setLocation("");
       setPhoneNumber("");
+      setContactEmail("");
+      setContactPerson("");
+      setContactPhone("");
+      setAccountManger("");
     }
-   
   };
 
   return (
@@ -151,6 +162,70 @@ const EditOrganization = () => {
                 onChange={(event) => setPhoneNumber(event.target.value)}
               />
               {error && phoneNumber.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className="section">
+            <div className="input">
+              <label htmlFor="contact-person">Contact Person:</label>
+              <input
+                type="text"
+                id="contact-person"
+                value={contactPerson}
+                onChange={(event) => setContactPerson(event.target.value)}
+              />
+              {error && contactPerson.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="input">
+              <label htmlFor="contact-email">
+                Contact Person Email Address:
+              </label>
+              <input
+                type="email"
+                id="contact-email"
+                value={contactEmail}
+                onChange={(event) => setContactEmail(event.target.value)}
+              />
+              {error && contactEmail.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className="section">
+            <div className="input">
+              <label htmlFor="contact-phone">
+                Contact Person Phone Number:
+              </label>
+              <input
+                type="tel"
+                id="contact-phone"
+                value={contactPhone}
+                onChange={(event) => setContactPhone(event.target.value)}
+              />
+              {error && contactPhone.length <= 0 ? (
+                <label className="error">This field is required.</label>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="input">
+              <label htmlFor="account-manger">Account Manager:</label>
+              <input
+                type="text"
+                id="account-manager"
+                value={accountManger}
+                onChange={(event) => setAccountManger(event.target.value)}
+              />
+              {error && accountManger.length <= 0 ? (
                 <label className="error">This field is required.</label>
               ) : (
                 ""
