@@ -153,6 +153,7 @@ const AddOrganization = () => {
       contactEmail.length === 0 ||
       contactPerson.length === 0 ||
       contactPhone.length === 0 ||
+      accountManger.length === 0 ||
       selectedLicenseTypeOption.length === 0 ||
       startDate.length === 0 ||
       // selectedLicenseBandOption.length === 0 ||
@@ -207,6 +208,7 @@ const AddOrganization = () => {
             setContactEmail("");
             setContactPerson("");
             setContactPhone("");
+            setAccountManger("");
             setStartDate("");
             setEndDate("");
             setSelectedLicenseBandOption("");

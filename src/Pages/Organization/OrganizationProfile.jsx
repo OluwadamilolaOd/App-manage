@@ -6,20 +6,18 @@ import { baseUrl } from "../../Hook/baseurl";
 import OrgPurchasedLicsTableSheet from "./OrgPurchasedLicsTableSheet";
 import "./../../Pages/Styles/organization.css";
 import Pagination from "../../Components/Pagination";
-import { MdOutlineEdit} from "react-icons/md";
-import {ImProfile} from "react-icons/im";
+import { MdOutlineEdit } from "react-icons/md";
+import { ImProfile } from "react-icons/im";
 import Button from "../../Components/Button";
 import Search from "../../Components/Search";
 import { ToastContainer, toast } from "react-toastify";
-
-
 
 const OrganizationProfile = ({}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isFilteredData, setIsFilteredData] = useState(false);
   const navigate = useNavigate();
   const userParams = useParams();
@@ -146,6 +144,9 @@ const OrganizationProfile = ({}) => {
   const handleEditOrg = () => {
     navigate("editorganization", { state: { data: data } });
   };
+  const handleViewOrg = () => {
+    navigate("viewAll", { state: { data: data } });
+  };
 
   //Handle search event
   const handleSearch = (e) => {
@@ -154,11 +155,12 @@ const OrganizationProfile = ({}) => {
     if (searchTerm === "") {
       setFilteredData(tableData);
     } else if (tableData) {
-      const filteredData = tableData.filter((value) =>
-        value.licenseName.toLowerCase().includes(searchTerm.toLowerCase())
-        || value.licenseBand.toLowerCase().includes(searchTerm.toLowerCase())
-        || value.maximumUser == searchTerm
-        || value.partNumber.toLowerCase().includes(searchTerm.toLowerCase())
+      const filteredData = tableData.filter(
+        (value) =>
+          value.licenseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          value.licenseBand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          value.maximumUser == searchTerm ||
+          value.partNumber.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredData(filteredData);
       setIsFilteredData(true);
@@ -175,8 +177,8 @@ const OrganizationProfile = ({}) => {
               <h1 className="profileName">{data.organizationName}</h1>
             </div>
             <div className="profile-icon ">
-            <div className="profile-action" onClick={handleEditOrg}>
-                <ImProfile/>
+              <div className="profile-action" onClick={handleViewOrg}>
+                <ImProfile />
                 <span>View All</span>
               </div>
               <div className="profile-action" onClick={handleEditOrg}>
@@ -217,19 +219,25 @@ const OrganizationProfile = ({}) => {
             />
           </div>
 
-          <Search handleSearch={handleSearch} value={searchTerm} placeholder="Search for Purchased License"  />
+          <Search
+            handleSearch={handleSearch}
+            value={searchTerm}
+            placeholder="Search for Purchased License"
+          />
         </div>
 
         <OrgPurchasedLicsTableSheet
-          data={isFilteredData? filteredData: tableData}
+          data={isFilteredData ? filteredData : tableData}
           headers={headers}
           loading={loading}
           deleteItem={deleteItem}
         />
       </div>
-      <Pagination url={orgLicense} setData={isFilteredData ? setFilteredData : setTableData} />
+      <Pagination
+        url={orgLicense}
+        setData={isFilteredData ? setFilteredData : setTableData}
+      />
       <ToastContainer />
-
     </div>
   );
 };
