@@ -15,6 +15,7 @@
     "apexcharts": "^3.41.0",
     "buffer": "^6.0.3",
     "chart.js": "^4.3.0",
+    "multiselect-react-dropdown": "^2.0.25",
     "powerbi-client": "^2.22.3",
     "powerbi-client-react": "^1.4.0",
     "react": "^18.2.0",

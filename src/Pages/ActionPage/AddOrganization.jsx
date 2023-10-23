@@ -6,8 +6,10 @@ import { generateProductKey } from "../../Components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import "../Styles/license.css";
+//import Multiselect from "multiselect-react-dropdown";
 
 const AddOrganization = () => {
+
   const [companyName, setCompanyName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [location, setLocation] = useState("");
@@ -19,6 +21,15 @@ const AddOrganization = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+
+  // const reminder = [
+  //   {day: "90 days", id: 1},
+  //   {day: "60 days", id: 2},
+  //   {day: "30 days", id: 3},
+  //   {day: "7 days", id: 4},
+  // ];
+
+ // const [options] = useState(reminder);
   const [error, setError] = useState(false);
   //get token from local storage and set it to state
   const token = localStorage.getItem("token");
@@ -29,10 +40,6 @@ const AddOrganization = () => {
     useState("");
   const [licenseTypeOptions, setLicenseTypeOptions] = useState([]);
   const [licenseBandOptions, setLicenseBandOptions] = useState([]);
-  const [selectedReminderSetOption, setSelectedReminderSetOption] = useState(
-    []
-  );
-  const [reminderSetOptions, setReminderSetOptions] = useState([]);
 
   const startDateInputRef = useRef(null);
   const endDateInputRef = useRef(null);
@@ -148,8 +155,8 @@ const AddOrganization = () => {
       contactPhone.length === 0 ||
       selectedLicenseTypeOption.length === 0 ||
       startDate.length === 0 ||
-      selectedLicenseBandOption.length === 0 ||
-      selectedReminderSetOption.length === 0 ||
+      // selectedLicenseBandOption.length === 0 ||
+      // selectedReminderSetOption.length === 0 ||
       endDate.length === 0
     ) {
       setError(true);
@@ -168,6 +175,10 @@ const AddOrganization = () => {
             email: emailAddress,
             phoneNumber: phoneNumber,
             address: location,
+            contactPerson: contactPerson,
+            ContactPersonEmail: contactEmail,
+            contactPhone: contactPhone,
+            accountManager: accountManger,
             CreatedBy: userEmail,
           }),
         })
@@ -200,7 +211,7 @@ const AddOrganization = () => {
             setEndDate("");
             setSelectedLicenseBandOption("");
             setSelectedLicenseTypeOption("");
-            setSelectedReminderSetOption("");
+           // setSelectedReminderSetOption("");
             notifySuccess("");
           });
       } catch (err) {
@@ -407,14 +418,13 @@ const AddOrganization = () => {
               )}
             </div>
           </div>
-          <div className="section">
+          {/* <div className="section">
             <div className="section-form">
               <label htmlFor="reminder">Set Reminder:</label>
-              <Select
+              <Multiselect
                 className="select"
-                options={reminderSetOptions}
-                value={selectedReminderSetOption}
-                onChange={setSelectedReminderSetOption}
+                options={options}
+                displayValue="day"
               />
               {error && selectedReminderSetOption.length <= 0 ? (
                 <label className="error">This field is required.</label>
@@ -422,7 +432,7 @@ const AddOrganization = () => {
                 ""
               )}
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="btnRight">
           <button onClick={handleSubmit} type="submit">

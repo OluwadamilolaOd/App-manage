@@ -124,13 +124,14 @@ const OrgLicense = () => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
+
+
     const productKey = generateProductKey(keyLength);
 
     if (
       selectedLicenseTypeOption.length === 0 ||
       startDate.length === 0 ||
       selectedLicenseBandOption.length === 0 ||
-      selectedReminderSetOption.length === 0 ||
       endDate.length === 0
     ) {
       setError(true);
