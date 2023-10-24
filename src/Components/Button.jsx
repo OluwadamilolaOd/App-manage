@@ -6,7 +6,7 @@ const Button = ({ className, title, btnEventHandler }) => {
   return (
     <div onClick={btnEventHandler} className={className}>
         <MdAddCircleOutline className="wrapper-icon" />
-        <span >
+        <span>
           {title}
         </span>
     </div>
