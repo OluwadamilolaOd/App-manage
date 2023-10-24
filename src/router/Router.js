@@ -77,7 +77,7 @@ const Router = () => {
       <Route path="expiredLicReport" element={<ExpiredLicReport />} />
       <Route path="archiveLicReport" element={<ArchiveLicReport />} />
       <Route path="activeLicReport" element={<ActiveLicReport />} />
-      <Route path="viewAll" element={<ViewAllOrgProfile/>}/>
+      <Route path="organizations/organizationProfile/:id/viewAll" element={<ViewAllOrgProfile/>}/>
     </Routes>
   );
 };
