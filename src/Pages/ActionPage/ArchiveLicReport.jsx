@@ -21,6 +21,8 @@ const ArchiveLicReport = () => {
     "Band Type",
     "Max. User",
     "Organization",
+    "Start Date",
+    "Exp.Date",
     "Action",
   ];
 
