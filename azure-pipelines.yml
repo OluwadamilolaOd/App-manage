@@ -28,7 +28,7 @@ jobs:
     - script: |
         pushd $(uiSource)
         npm install
-        npm run build
+        npm run ci --legacy-peer-deps
         popd
       displayName: 'npm install and build'
 
