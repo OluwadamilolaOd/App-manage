@@ -1,0 +1,39 @@
+.banner {
+  padding: 20px;
+  background-color: var(--blue-color);
+  border-radius: 10px;
+  color: var(--white-color);
+  /* position: sticky; */
+  top: 7rem;
+  margin-bottom: 1rem;
+}
+.wrapper {
+  display: flex;
+  height: 5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.maincontent {
+  display: flex;
+  margin: 1.5rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .banner {
+    padding: 10px;
+  }
+  .maincontent h1 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+}
+@media screen and (max-width: 768px) {
+  .banner {
+    padding: 5px;
+  }
+  .maincontent h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "265fed17-fbc5-4be4-ea03-08db8e874ad2",
+    "purchasedDate": "2023-07-27",
+    "expirationDate": "2024-08-27",
+    "organizationName": "Test Limited",
+    "purchasedLicenseKey": "7HHYMUKXH365ZFSM1PWH",
+    "address": "Lagos Nigeria",
+    "phoneNumber": "+234313141",
+    "email": "test@mail.com",
+    "licenseName": "STAAS",
+    "licenseBand": "Band A",
+    "maximumUser": 100,
+    "partNumber": "HAV-BA100AA"
+  }
+]

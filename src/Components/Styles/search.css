@@ -1,0 +1,17 @@
+.searchWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 1rem 0 0 0; 
+    border: none;
+}
+
+.searchInput {
+    height: 40px;
+    width: 20%;
+    border-radius: 10px;
+    padding-left: 1%;
+    padding-right: 1%;
+    border: none;
+    caret-color: var(--blue-color);
+}

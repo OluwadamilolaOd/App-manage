@@ -1,0 +1,76 @@
+.error_Section {
+  height: calc(100% - 80px);
+  margin-top: 1.5rem;
+  align-items: center;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+}
+.error-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--red-color);
+  margin: 10rem;
+}
+.errortext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--blue-color);
+  width: 45%;
+  margin: 10rem;
+}
+.text-error {
+  margin-bottom: 2rem;
+}
+.error-icon-red {
+  width: 8rem;
+  height: 8rem;
+  color: var(--red-color);
+}
+.errorSection {
+  height: calc(100% - 80px);
+  margin-top: 1.5rem;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  background-color: red;
+}
+.errorPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--txtblack-color);
+}
+.text-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.error-icon {
+  width: 8rem;
+  height: 8rem;
+  color: var(--blue-color);
+}
+.bigtxt-error {
+  font-size: 2rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  color: var(--txtblack-color);
+}
+.smalltxt-error {
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  word-spacing: 1px;
+  color: var(--txtblack-color);
+}
+.picError {
+  margin-left: 5rem;
+}
+

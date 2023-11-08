@@ -1,0 +1,11 @@
+Query the SqlLite to get the part number needed,
+
+after getting that pass it to the license method and it returns the expecetd number of user, after which i use that to compaire the total number of user in the dataBase.
+
+SQLiteDatabaseManager
+SettingsSchemaQuery
+
+s
+Shift name
+expected time out
+Expeted time in
