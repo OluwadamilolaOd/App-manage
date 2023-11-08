@@ -32,9 +32,10 @@ jobs:
         popd
       displayName: 'npm install and build'
 
+    
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: build
+        rootFolderOrFile: $(Build.BinariesDirectory)
         includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
