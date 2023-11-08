@@ -9,7 +9,7 @@ trigger:
       - PowerBiInclusive
 variables:
   uiSource : 'src'
-  uiBuild : '$(uiSource)/build'
+  uiBuild : '$(uiSouce)/build'
 
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
     - task: ArchiveFiles@2
       displayName: Archive Build
       inputs:
-        rootFolderOrFile: build
+        rootFolderOrFile: '$(uiBuild)'
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(TargetFolder)'
       inputs:
