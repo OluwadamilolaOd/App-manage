@@ -137,7 +137,6 @@ const OrganizationProfile = ({}) => {
         // console.error("Error:", error);
       });
   };
-
   const handleEventClick = () => {
     navigate("/addorganizationLicense", { state: { data: data } });
   };

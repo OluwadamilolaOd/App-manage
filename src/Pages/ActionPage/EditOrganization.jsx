@@ -9,15 +9,14 @@ import { baseUrl } from "../../Hook/baseurl";
 const EditOrganization = () => {
   const locations = useLocation();
   const data = locations.state.data;
-  console.log(data);
   const [companyName, setCompanyName] = useState(data.organizationName);
   const [emailAddress, setEmailAddress] = useState(data.email);
   const [location, setLocation] = useState(data.address);
   const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber);
-  const [contactPerson, setContactPerson] = useState("");
-  const [contactEmail, setContactEmail] = useState("");
-  const [contactPhone, setContactPhone] = useState("");
-  const [accountManger, setAccountManger] = useState("");
+  const [contactPerson, setContactPerson] = useState(data.contactPerson);
+  const [contactEmail, setContactEmail] = useState(data.contactPersonEmail);
+  const [contactPhone, setContactPhone] = useState(data.contactPhone);
+  const [accountManger, setAccountManger] = useState(data.accountManager);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const url = `${baseUrl}/Organizations?id=${data.id}`;
@@ -78,6 +77,10 @@ const EditOrganization = () => {
             email: emailAddress,
             address: location,
             phoneNumber: phoneNumber,
+            contactPerson: contactPerson,
+            contactPersonEmail: contactEmail,
+            contactPhone: contactPhone,
+            accountManager: accountManger,
             createdBy: userEmail,
           }),
         });
