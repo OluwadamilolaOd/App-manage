@@ -34,15 +34,17 @@ jobs:
 
     
     - task: ArchiveFiles@2
+      displayName: Archive Build
       inputs:
-        rootFolderOrFile: '$(uiBuild)'
-        includeRootFolder: false
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-        replaceExistingArchive: true
-    
+        rootFolderOrFile: build
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(TargetFolder)'
+      inputs:
+        SourceFolder: build
+        Contents: $(Build.BuildId).zip
+        TargetFolder: $(Build.ArtifactStagingDirectory)\StagingArtifactsToBePublished
     - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
+        PathtoPublish: build
+        TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
