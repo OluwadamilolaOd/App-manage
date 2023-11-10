@@ -1,0 +1,162 @@
+.landingPage {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+.img-page {
+  display: flex;
+  height: 50%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--white-color);
+}
+.picture {
+  height: 100%;
+  width: 70%;
+  /* height: auto;
+  width: auto; */
+}
+.text-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+  padding: 5rem;
+  background-color: var(--blue-color);
+}
+.container-one {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70%;
+  width: 100%;
+  color: var(--white-color);
+  font-size: 32px;
+}
+.big-title {
+  font-size: 60px;
+  color: var(--white-color);
+  line-height: 1.4;
+}
+.text-bottom {
+  display: flex;
+  flex-direction: column;
+  color: var(--white-color);
+  height: 30%;
+  gap: 0.2rem;
+  font-size: 18px;
+  margin-top: 5rem;
+}
+.text-link {
+  text-decoration: underline;
+  font-size: 20px;
+}
+.text-link:hover {
+  cursor: pointer;
+  color: var(--white-color);
+  text-decoration: none;
+}
+.btn-white-btn {
+  background-color: var(--white-color);
+  color:  var(--blue-color);
+  text-decoration: none;
+  border: 2px solid transparent;
+  font-weight: bold;
+  font-size: 20px;
+
+  padding: 15px 100px;
+  border-radius: 7px;
+  transition: 0.4s;
+}
+.btn {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  text-decoration: none;
+  border: 2px solid transparent;
+  font-weight: bold;
+  padding: 15px 60px;
+  border-radius: 7px;
+  transition: 0.4s;
+}
+.btnRed {
+  background-color: var(--red-color);
+  color: var(--white-color);
+  text-decoration: none;
+  border: 2px solid transparent;
+  font-weight: bold;
+  padding: 15px 60px;
+  border-radius: 7px;
+  transition: 0.4s;
+}
+.btn:hover {
+  background-color: transparent;
+  border: 2px solid var(--blue-color);
+  color: var(--blue-color);
+  cursor: pointer;
+}
+.btn-white-btn:hover {
+  background-color: transparent;
+  border: 2px solid var(--white-color);
+  color: var(--white-color);
+  cursor: pointer;
+}
+.btnRed:hover {
+  background-color: transparent;
+  border: 2px solid var(--red-color);
+  color: var(--red-color);
+  cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+  .landingPage {
+    width: 100%;
+    display: flex;
+  }
+  .picture {
+    height: auto;
+    width: 100%;
+  }
+  .container-one{
+    font-size: 25px;
+  }
+  .big-title{
+    font-size: 40px;
+  }
+  .text-bottom {
+   margin-top: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .landingPage {
+    width: 100%;
+    display: flex;
+  }
+  .text-page-container{
+    padding: 2.5rem;
+  }
+  .picture {
+    height: auto;
+    width: 100%;
+  }
+  .container-one{
+    font-size: 15px;
+  }
+  .big-title{
+    font-size: 28px;
+  }
+  .text-bottom {
+    font-size: 15px;
+   margin-top: 3.5rem;
+  }
+  .text-link {
+    font-size: 18px;
+  }
+}

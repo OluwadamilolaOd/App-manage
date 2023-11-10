@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --body-bg: #f4f5f7;
+  --blue-color: #000066;
+  --green-color: #2eb086;
+  --red-color: #da2929;
+  --text-color: #343f42;
+  --white-color: #ffffff;
+  --stroke-color: #c4c4c4;
+  --black-color: #323232;
+  --txtblack-color: #000000;
+  --light-blue: #f1f6ff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--body-bg) !important;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+.main_layout {
+  margin-left: 260px;
+}
+.content {
+  padding: 2rem;
+}
+
+/* .PBiEmbed-container{
+  height: 600px;
+  width: 800px;
+} */
+
+/*PowerBi Style */
+#reportContainer {
+  background: #eaeaea;
+  color: #6e6e6e;
+  font: Lighter 40px Segoe UI;
+  height: calc(0.5625 * 75vw); /* 16:9 aspect ratio */
+  min-width: 800px;
+  text-align: center;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1333.33px) {
+  #reportContainer {
+    height: calc(0.5625 * 870px); /* 16:9 aspect ratio */
+  }
+}
+
+iframe {
+  border: none;
+}
+
+.error {
+  color: var(--red-color);
+}
+
+@media screen and (max-width: 1200px) {
+  .main_layout {
+    margin-left: 100px;
+    /* background-color: aqua; */
+  }
+}
+@media screen and (max-width: 768px) {
+  .main_layout {
+    margin-left: 0;
+    width: 100%;
+    /* background-color: rgb(68, 130, 5); */
+  }
+}
+/* styling scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px var(--stroke-color);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue-color);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--blue-color);
+}
