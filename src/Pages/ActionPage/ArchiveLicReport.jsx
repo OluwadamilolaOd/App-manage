@@ -17,11 +17,12 @@ const ArchiveLicReport = () => {
   const url = `${baseUrl}/purchasedLicense/AllArchivedLicenses`;
 
   const headers = [
+    "Organization",
     "License Name",
     "Band Type",
     "Max. User",
-    "Organization",
-    "Action",
+    "Start Date",
+    "Exp. Date",
   ];
 
   useEffect(() => {
