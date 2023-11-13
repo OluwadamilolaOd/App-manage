@@ -16,8 +16,8 @@
   line-height: 70px;
 }
 .logo {
-    font-size: 25px;
-    font-weight: bold;
+  width: 60px;
+  height: 60px;
 }
 .sidebar_content {
   display: flex;
@@ -46,6 +46,7 @@
 }
 .sidebar_menu:hover {
   cursor: pointer;
+  color: var(--blue-color);
 }
 .menu .sidebar_menu:last-child {
   position: absolute;
@@ -65,6 +66,8 @@
   column-gap: 5px;
   cursor: pointer;
   transition: 0.3s;
+  padding: 15px 2px;
+  width: 100%;
 }
 .sidebar_bottom:hover {
   /* color: var(--white-color); */
@@ -82,21 +85,24 @@
   margin-left: 2rem;
 }
 
-
 @media screen and (max-width: 1200px) {
-  .sidebar{
+  .sidebar {
     width: 100px;
   }
   .sidebar_menu span {
     display: none;
   }
-  .sidebar_active{
+  .sidebar_active {
     width: 100%;
+  }
+  .logo {
+    width: 40px;
+    height: 40px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .sidebar{
+  .sidebar {
     display: none;
   }
 }
