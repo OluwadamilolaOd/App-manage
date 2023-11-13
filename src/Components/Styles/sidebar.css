@@ -46,6 +46,7 @@
 }
 .sidebar_menu:hover {
   cursor: pointer;
+  color: var(--blue-color);
 }
 .menu .sidebar_menu:last-child {
   position: absolute;
@@ -65,6 +66,8 @@
   column-gap: 5px;
   cursor: pointer;
   transition: 0.3s;
+  padding: 15px 2px;
+  width: 100%;
 }
 .sidebar_bottom:hover {
   /* color: var(--white-color); */
