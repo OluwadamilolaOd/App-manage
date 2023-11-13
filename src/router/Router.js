@@ -73,10 +73,10 @@ const Router = () => {
       <Route path="addorganizationLicense" element={<OrgLicense />} />
       <Route path="error404" element={<Error404 />} />
       <Route path="error500" element={<Error500 />} />
-      <Route path="purchsedLicReport" element={<PurchasedLicReport />} />
-      <Route path="expiredLicReport" element={<ExpiredLicReport />} />
-      <Route path="archiveLicReport" element={<ArchiveLicReport />} />
-      <Route path="activeLicReport" element={<ActiveLicReport />} />
+      <Route path="home/purchsedLicReport" element={<PurchasedLicReport />} />
+      <Route path="/home/expiredLicReport" element={<ExpiredLicReport />} />
+      <Route path="/home/archiveLicReport" element={<ArchiveLicReport />} />
+      <Route path="/home/activeLicReport" element={<ActiveLicReport />} />
       <Route path="organizations/organizationProfile/:id/viewAll" element={<ViewAllOrgProfile/>}/>
     </Routes>
   );

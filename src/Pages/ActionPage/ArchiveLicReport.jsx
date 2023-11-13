@@ -73,7 +73,7 @@ const ArchiveLicReport = () => {
   return (
     <div>
       <Banner title={"Archive License"} />
-      <Search placeholder="Search for Archive License" />
+      <Search handleSearch = {handleSearch} value={searchTerm} placeholder="Search for Archive License" />
       {error ? <Error500 /> :<ReportTableSheet headers={headers} data={isFilteredData? filteredData: data} loading={loading}/>}
       <Pagination url={url} setData={isFilteredData ? setFilteredData : setData} />
     </div>

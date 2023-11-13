@@ -65,6 +65,8 @@
   column-gap: 5px;
   cursor: pointer;
   transition: 0.3s;
+  padding: 15px 2px;
+  width: 100%;
 }
 .sidebar_bottom:hover {
   /* color: var(--white-color); */
