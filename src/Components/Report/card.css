@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Sets the column sizes */
   grid-template-rows: auto auto; /* Sets the row sizes */
   gap: 10px; /* Adds a gap between the grid cells */
+  cursor: pointer;
 }
 
 .card-container h2 {
@@ -25,34 +26,6 @@
   height: 150px;
   color: var(--blue-color);
 }
-
-.greenBackg {
-  display: flex;
-  justify-content: center !important;
-  align-items: center !important;
-  flex-direction: column !important;
-  background: linear-gradient(269.72deg, #2bbc8e 0.21%, #35f5b8 156.95%);
-  box-shadow: 0px 4px 21px rgba(1, 14, 35, 0.15);
-  border-radius: 10px;
-  padding: 10px;
-  margin: 20px 5px 0px 5px;
-  height: 150px;
-  color: var(--white-color);
-}
-
-.orangeBackg {
-  display: flex;
-  justify-content: center !important;
-  align-items: center !important;
-  flex-direction: column !important;
-  background: linear-gradient(269.72deg, #962a11 0.21%, #f25f3e 156.95%);
-  border-radius: 10px;
-  padding: 10px;
-  margin: 20px 5px 0px 5px;
-  height: 150px;
-  color: var(--white-color);
-}
-
 .redBackg {
   display: flex;
   justify-content: center !important;
@@ -69,19 +42,6 @@
   color: var(--red-color);
 }
 
-.yellowBackg {
-  display: flex;
-  justify-content: center !important;
-  align-items: center !important;
-  flex-direction: column !important;
-  background: linear-gradient(269.72deg, #a68821 0.21%, #facf3f 156.95%);
-  box-shadow: 0px 4px 21px rgba(1, 14, 35, 0.15);
-  border-radius: 10px;
-  padding: 10px;
-  margin: 20px 5px 0px 5px;
-  height: 150px;
-  color: var(--white-color);
-}
 .blueBackg:hover, .blueBackg:active  {
   background-color: var(--blue-color);
   border: none;

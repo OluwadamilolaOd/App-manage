@@ -29,19 +29,19 @@ const CardList = () => {
   };
 
   const handlePurTable = () => {
-    navigate("/purchsedLicReport");
+    navigate("/home/purchsedLicReport");
   };
 
   const handleExpTable = () => {
-    navigate("/expiredLicReport");
+    navigate("/home/expiredLicReport");
   };
 
   const handleArcTable = () => {
-    navigate("/archiveLicReport");
+    navigate("/home/archiveLicReport");
   };
 
   const handleActTable = () => {
-    navigate("/activeLicReport");
+    navigate("/home/activeLicReport");
   };
 
   return (

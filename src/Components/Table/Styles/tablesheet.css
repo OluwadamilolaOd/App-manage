@@ -17,8 +17,8 @@ table {
   background-color: var(--white-color);
   border-radius: 10px;
   margin-bottom: 1rem;
-  table-layout: fixed;
-  /* table-layout: auto; */
+  /* table-layout: fixed; */
+  table-layout: auto;
 }
 .table-action {
   width: 100%;
@@ -75,6 +75,19 @@ tbody tr:hover {
 .action {
   position: absolute;
   right: 7%;
+  margin-top: 45px;
+  background-color: var(--white-color);
+  color: #323232;
+  border-radius: 10px;
+  padding: 10px 0;
+  width: 130px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.action-Org{
+  position: absolute;
+  /* right: 17%; */
   margin-top: 45px;
   background-color: var(--white-color);
   color: #323232;

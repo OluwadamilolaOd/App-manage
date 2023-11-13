@@ -17,13 +17,12 @@ const ArchiveLicReport = () => {
   const url = `${baseUrl}/purchasedLicense/AllArchivedLicenses`;
 
   const headers = [
+    "Organization",
     "License Name",
     "Band Type",
     "Max. User",
-    "Organization",
     "Start Date",
-    "Exp.Date",
-    "Action",
+    "Exp. Date",
   ];
 
   useEffect(() => {
@@ -51,12 +50,32 @@ const ArchiveLicReport = () => {
     fetchData();
   }, [url]);
 
+  //Handle search event
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+    setSearchTerm(searchTerm);
+    if (searchTerm === "") {
+      setFilteredData(data);
+    } else if (data) {
+      const filteredData = data.filter(
+        (value) =>
+          value.organizationName
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          value.licenseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          value.licenseBand.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(filteredData);
+      setIsFilteredData(true);
+    }
+  };
+
   return (
     <div>
       <Banner title={"Archive License"} />
-      <Search placeholder="Search for Archive License" />
+      <Search handleSearch = {handleSearch} value={searchTerm} placeholder="Search for Archive License" />
       {error ? <Error500 /> :<ReportTableSheet headers={headers} data={isFilteredData? filteredData: data} loading={loading}/>}
-      <Pagination />
+      <Pagination url={url} setData={isFilteredData ? setFilteredData : setData} />
     </div>
   );
 };
