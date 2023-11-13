@@ -3,8 +3,7 @@ import "./Styles/tablesheet.css";
 import Loader from "../Loader";
 import TableActionChildren from "./TableActionChildren";
 
-export default function TableAction({ headers,loading, data, deleteItem}) {
-
+export default function TableAction({ headers, loading, data, deleteItem }) {
   return (
     <>
       <div className="tableData">
@@ -20,9 +19,14 @@ export default function TableAction({ headers,loading, data, deleteItem}) {
               </tr>
             </thead>
             <tbody>
-              {data && data.map((obj) => (
-                <TableActionChildren key={obj.id} obj={obj} deleteItem = {deleteItem}/>
-              ))}
+              {data &&
+                data.map((obj) => (
+                  <TableActionChildren
+                    key={obj.id}
+                    obj={obj}
+                    deleteItem={deleteItem}
+                  />
+                ))}
             </tbody>
           </table>
         )}
