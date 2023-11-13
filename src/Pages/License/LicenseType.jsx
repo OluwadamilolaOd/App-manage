@@ -125,11 +125,12 @@ const LicenseType = () => {
     if (searchTerm === "") {
       setFilteredData(completeData);
     } else if (completeData) {
-      const filteredData = completeData.filter((value) =>
-        value.licenseBand.toLowerCase().includes(searchTerm.toLowerCase())
-        || value.maximumUser == searchTerm.toLowerCase()
-        || value.partNumber.toLowerCase().includes(searchTerm.toLowerCase())
-        || value.status.toLowerCase().includes(searchTerm.toLowerCase())
+      const filteredData = completeData.filter(
+        (value) =>
+          value.licenseBand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          value.maximumUser == searchTerm.toLowerCase() ||
+          value.partNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          value.status.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredData(filteredData);
       setIsFilteredData(true);
@@ -151,14 +152,21 @@ const LicenseType = () => {
         btntitle={"Add License Band"}
         btnEventHandler={handleEventClick}
       />
-      <Search handleSearch={handleSearch} value={searchTerm} placeholder="Search for License Band"  />
+      <Search
+        handleSearch={handleSearch}
+        value={searchTerm}
+        placeholder="Search for License Band"
+      />
       <TableAction
         headers={headers}
-        data={isFilteredData? filteredData: completeData}
+        data={isFilteredData ? filteredData : completeData}
         loading={loading}
         deleteItem={deleteItem}
       />
-      <Pagination url={url} setData={isFilteredData ? setFilteredData : setcompleteData} />
+      <Pagination
+        url={url}
+        setData={isFilteredData ? setFilteredData : setcompleteData}
+      />
       <ToastContainer />
     </div>
   );

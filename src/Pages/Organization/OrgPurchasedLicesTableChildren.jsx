@@ -12,9 +12,10 @@ const OrgPurchasedLicesTableChildren = ({ obj, deleteItem }) => {
   const [downgradeLicense, setDowngradeLicense] = useState(false)
   const navigate = useNavigate();
 
-  const handleDropdownToggle = () => {
-    setShowDropdown(!showDropdown);
-  };
+  // Just commit 13/11/23
+  // const handleDropdownToggle = () => {
+  //   setShowDropdown(!showDropdown);
+  // };
 
   //All Event handlers
 
@@ -71,7 +72,8 @@ else { diffDays = diffDays + " days" }
         <td>{obj.purchasedDate}</td>
         <td>{obj.expirationDate}</td>
         
-        <td className="actionbtn" onClick={handleDropdownToggle}>
+        {/* <td className="actionbtn" onClick={handleDropdownToggle}> */}
+        <td className="actionbtn" onClick={() => setShowDropdown(!showDropdown)}>
           ...
         </td> 
         {showDropdown && (
