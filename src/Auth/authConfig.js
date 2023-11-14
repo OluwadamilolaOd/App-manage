@@ -13,20 +13,20 @@ import { LogLevel } from "@azure/msal-browser";
 export const msalConfig = {
     auth: {
   //      clientId: '66ffb285-220a-42ae-9277-20f7e3af6284', // This is the ONLY mandatory field that you need to supply.
-        clientId:'66ffb285-220a-42ae-9277-20f7e3af6284',
+        clientId:`${process.env.REACT_APP_PUBLIC_CLIENT_ID}`,
       //  authority: 'https://blossomhearthospital.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
-        authority: 'https://login.microsoftonline.com/4f270365-128d-440c-876a-fa42897a7439', // Replace the placeholder with your tenant subdomain
-        redirectUri: '/', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
-        postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
+        authority: `${process.env.REACT_APP_PUBLIC_AUTHORITY}/${process.env.REACT_APP_PUBLIC_TENANT_ID}`, // Replace the placeholder with your tenant subdomain
+        redirectUri: `${process.env.REACT_APP_PUBLIC_REDIRECT_URI}`, // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+        postLogoutRedirectUri: `${process.env.REACT_APP_PUBLIC_POST_LOGOUT_REDIRECT_URI}`, // Indicates the page to navigate after logout.
         // End point URL for Power BI API
         powerBiApiUrl: "https://api.powerbi.com/",
 
         // Id of the workspace where the report is hosted
         //workspaceId:"820adcae-4672-437b-a5b2-856ebc9b9717",
-        workspaceId:"075f0f9e-2933-4824-b22f-824ff873fa1f",
+        workspaceId:`${process.env.REACT_APP_PUBLIC_WORKSPACEID}`,
         // Id of the report to be embedded
         //reportId: "c0887636-84df-4d33-882c-a2c61e7d7cff",
-        reportId: "395dc4c9-2382-499d-9024-55036d9e0433",
+        reportId: `${process.env.REACT_APP_PUBLIC_REPORTID}`,
 
     },
     cache: {
@@ -72,8 +72,8 @@ export const protectedResources = {
     toDoListAPI: {
         endpoint: 'https://localhost:44351/api/todolist',
         scopes: {
-            read: ['api://b5bd40ab-fa0e-4cf0-b59b-10b8884a0372/ToDoList.Read'],
-            write: ['api://b5bd40ab-fa0e-4cf0-b59b-10b8884a0372/ToDoList.ReadWrite'],
+            read: [`${process.env.REACT_APP_PUBLIC_SCOPES_READ}`],
+            write: [`${process.env.REACT_APP_PUBLIC_SCOPES_WRITE}`],
         },
     },
 };
