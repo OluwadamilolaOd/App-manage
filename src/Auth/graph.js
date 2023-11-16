@@ -31,7 +31,6 @@ export async function callMsGraph(accessToken) {
         }
 
  //Image 
-
  export async function callMsGraphImg(accessToken) {
     const headers = new Headers();
     const bearer = `Bearer ${accessToken}`;
@@ -49,3 +48,20 @@ export async function callMsGraph(accessToken) {
         .then(response => response)
         .catch(error => console.log(error));
  }
+
+ //GET USERS IN A GROUP
+    export async function callMsGraphGroupMembers(accessToken) {
+        const headers = new Headers();
+        const bearer = `Bearer ${accessToken}`;
+    
+        headers.append("Authorization", bearer);
+    
+        const options = {
+            method: "GET",
+            headers: headers
+        };
+    
+        return fetch(graphConfig.graphGroupMemberEndpoint, options)
+            .then(response => response.json())
+            .catch(error => console.log(error));
+    }

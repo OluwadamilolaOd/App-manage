@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useMsal } from "@azure/msal-react";
+import { callMsGraphGroupMembers} from "../../Auth/graph";
 import ArrowBack from "../../Components/ArrowBack";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
@@ -8,6 +10,10 @@ import { useNavigate } from "react-router";
 import "../Styles/license.css";
 //import Multiselect from "multiselect-react-dropdown";
 
+/**
+ * Renders a form to add organization details and license details.
+ * @returns {JSX.Element} AddOrganization component
+ */
 const AddOrganization = () => {
 
   const [companyName, setCompanyName] = useState("");
@@ -20,7 +26,6 @@ const AddOrganization = () => {
   const [accountManger, setAccountManger] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
 
   // const reminder = [
   //   {day: "90 days", id: 1},
@@ -45,7 +50,32 @@ const AddOrganization = () => {
   const endDateInputRef = useRef(null);
   const navigate = useNavigate();
 
-  //URLS
+//Get List of user in a group on azure AD
+const {instance, accounts} = useMsal();
+const [groupUsers, setGroupUsers] = useState([]);
+
+try { 
+
+  const groupUsersData = [];
+useEffect(() => {
+  instance.acquireTokenSilent({
+    scopes: ["User.Read"],
+    account: accounts[0],
+  }).then((response) => {
+    callMsGraphGroupMembers(response.accessToken).then((response) => {
+      var newArray = response.value.map(function(obj) {
+      return {label:obj.displayName}
+  });
+      setGroupUsers(newArray);
+  
+    });
+  });
+}, []);
+
+} catch (error) {
+  console.log(error);
+  notifyError.log(error.message);
+}
 
   //get license Type url
   const url = `${baseUrl}/AppLicense`;
@@ -340,11 +370,11 @@ const AddOrganization = () => {
             </div>
             <div className="section-form">
               <label htmlFor="account-manger">Account Manager:</label>
-              <input
-                type="text"
-                id="account-manager"
+              <Select
+                className="select"
+                options={ groupUsers}
                 value={accountManger}
-                onChange={(event) => setAccountManger(event.target.value)}
+                onChange={setAccountManger}
               />
               {error && accountManger.length <= 0 ? (
                 <label className="error">This field is required.</label>
@@ -420,21 +450,6 @@ const AddOrganization = () => {
               )}
             </div>
           </div>
-          {/* <div className="section">
-            <div className="section-form">
-              <label htmlFor="reminder">Set Reminder:</label>
-              <Multiselect
-                className="select"
-                options={options}
-                displayValue="day"
-              />
-              {error && selectedReminderSetOption.length <= 0 ? (
-                <label className="error">This field is required.</label>
-              ) : (
-                ""
-              )}
-            </div>
-          </div> */}
         </div>
         <div className="btnRight">
           <button onClick={handleSubmit} type="submit">
