@@ -66,14 +66,14 @@ const CardList = () => {
         btnCardHandler={handleExpTable}
       />
       <Card
-        title={" Active License"}
+        title={" Active Licenses"}
         value={data.activeLicense}
         className={"blueBackg"}
         btnCardHandler={handleActTable}
       />
       {/* <Card title={"Number of New License"} value={data.application} className = {"blueBackg"} /> */}
       <Card
-        title={"Archive License"}
+        title={"Archive Licenses"}
         value={data.archiveLicense}
         className={"blueBackg"}
         btnCardHandler={handleArcTable}

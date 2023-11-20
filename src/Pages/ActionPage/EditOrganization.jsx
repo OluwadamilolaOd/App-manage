@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
+import { useMsal } from "@azure/msal-react";
+import { callMsGraphGroupMembers} from "../../Auth/graph";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { baseUrl } from "../../Hook/baseurl";
+import Select from "react-select";
 
 const EditOrganization = () => {
   const locations = useLocation();
@@ -23,6 +26,34 @@ const EditOrganization = () => {
   const token = localStorage.getItem("token");
   //get user email from local storage
   const userEmail = JSON.parse(localStorage.getItem("user")).mail;
+
+
+  //Get List of user in a group on azure AD
+const {instance, accounts} = useMsal();
+const [groupUsers, setGroupUsers] = useState([]);
+
+try { 
+
+useEffect(() => {
+  instance.acquireTokenSilent({
+    scopes: ["User.Read"],
+    account: accounts[0],
+  }).then((response) => {
+    callMsGraphGroupMembers(response.accessToken).then((response) => {
+      var newArray = response.value.map(function(obj) {
+      return {value:obj.displayName, label:obj.displayName, accountMangerMail:obj.mail}
+  });
+      setGroupUsers(newArray);
+  
+    });
+  });
+}, []);
+
+
+} catch (error) {
+  console.log(error);
+  notifyError.log(error.message);
+}
 
   const handleBackArrow = () =>
     navigate(`/organizations/organizationprofile/${data.id}`);
@@ -51,6 +82,7 @@ const EditOrganization = () => {
       theme: "light",
     });
 
+    console.log(accountManger);
   const handleSubmitEditOrg = async (event) => {
     event.preventDefault();
     if (
@@ -80,7 +112,8 @@ const EditOrganization = () => {
             contactPerson: contactPerson,
             contactPersonEmail: contactEmail,
             contactPhone: contactPhone,
-            accountManager: accountManger,
+            accountManager: accountManger.value,
+            accountManagerEmail: accountManger.accountMangerMail,
             createdBy: userEmail,
           }),
         });
@@ -220,13 +253,14 @@ const EditOrganization = () => {
                 ""
               )}
             </div>
+
             <div className="input">
               <label htmlFor="account-manger">Account Manager:</label>
-              <input
-                type="text"
-                id="account-manager"
+              <Select
+                className="select"
+                options={ groupUsers}
                 value={accountManger}
-                onChange={(event) => setAccountManger(event.target.value)}
+                onChange={setAccountManger}
               />
               {error && accountManger.length <= 0 ? (
                 <label className="error">This field is required.</label>

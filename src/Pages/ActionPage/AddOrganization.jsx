@@ -8,7 +8,6 @@ import { generateProductKey } from "../../Components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import "../Styles/license.css";
-//import Multiselect from "multiselect-react-dropdown";
 
 /**
  * Renders a form to add organization details and license details.
@@ -23,16 +22,9 @@ const AddOrganization = () => {
   const [contactPerson, setContactPerson] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
-  const [accountManger, setAccountManger] = useState("");
+  const [accountManger, setAccountManger] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
-  // const reminder = [
-  //   {day: "90 days", id: 1},
-  //   {day: "60 days", id: 2},
-  //   {day: "30 days", id: 3},
-  //   {day: "7 days", id: 4},
-  // ];
 
  // const [options] = useState(reminder);
   const [error, setError] = useState(false);
@@ -56,7 +48,6 @@ const [groupUsers, setGroupUsers] = useState([]);
 
 try { 
 
-  const groupUsersData = [];
 useEffect(() => {
   instance.acquireTokenSilent({
     scopes: ["User.Read"],
@@ -64,7 +55,7 @@ useEffect(() => {
   }).then((response) => {
     callMsGraphGroupMembers(response.accessToken).then((response) => {
       var newArray = response.value.map(function(obj) {
-      return {label:obj.displayName}
+      return {value:obj.displayName, label:obj.displayName, accountMangerMail:obj.mail}
   });
       setGroupUsers(newArray);
   
@@ -72,11 +63,11 @@ useEffect(() => {
   });
 }, []);
 
+
 } catch (error) {
   console.log(error);
   notifyError.log(error.message);
 }
-
   //get license Type url
   const url = `${baseUrl}/AppLicense`;
   //get license Band url
@@ -174,6 +165,8 @@ useEffect(() => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(accountManger);
     const productKey = generateProductKey(keyLength);
     if (
       companyName.length === 0 ||
@@ -201,6 +194,7 @@ useEffect(() => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+          
           body: JSON.stringify({
             organizationName: companyName,
             email: emailAddress,
@@ -209,7 +203,8 @@ useEffect(() => {
             contactPerson: contactPerson,
             ContactPersonEmail: contactEmail,
             contactPhone: contactPhone,
-            accountManager: accountManger,
+            accountManager: accountManger.value,
+            accountManagerEmail: accountManger.accountMangerMail,
             CreatedBy: userEmail,
           }),
         })
