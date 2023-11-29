@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { baseUrl } from "../../Hook/baseurl";
 import { useNavigate } from "react-router-dom";
+import archiveIco from '../../assets/images/Archive_icon.png'
 import "./Styles/tablesheet.css";
 import Modal from "../Modal/Modal";
 import archiveIcon from '../../assets/images/archive_red.png'
@@ -53,6 +54,7 @@ const TableActionChildren = ({ obj, deleteItem}) => {
                     setOpenModal={setOpenModal}
                     header={"Archive License"}
                     image={archiveIcon}
+                    imageIcon={archiveIco}
                     btnAction={"Archive"}
                     title= {obj.licenseBand} 
                     description={"Are you sure you want to archive?"}
