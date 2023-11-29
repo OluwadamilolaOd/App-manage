@@ -8,6 +8,8 @@ import { generateProductKey } from "../../Components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import "../Styles/license.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotate } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Renders a form to add organization details and license details.
@@ -25,6 +27,7 @@ const AddOrganization = () => {
   const [accountManger, setAccountManger] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [loading, setLoading] = useState(false);
 
  // const [options] = useState(reminder);
   const [error, setError] = useState(false);
@@ -188,6 +191,7 @@ useEffect(() => {
     } else {
       setError(false);
       try {
+        setLoading(true);
         await fetch(CompanyDetailsUrl, {
           method: "POST",
           headers: {
@@ -240,6 +244,7 @@ useEffect(() => {
             setSelectedLicenseTypeOption("");
            // setSelectedReminderSetOption("");
             notifySuccess("");
+            setLoading(false);
           });
       } catch (err) {
         console.log(err);
@@ -448,6 +453,7 @@ useEffect(() => {
         </div>
         <div className="btnRight">
           <button onClick={handleSubmit} type="submit">
+          {loading&&<FontAwesomeIcon icon={faRotate} spin />}
             Submit
           </button>
         </div>
