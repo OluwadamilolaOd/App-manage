@@ -39,7 +39,8 @@ th {
   font-weight: bold;
 }
 thead th {
-  text-align: center;
+  /* text-align: center; */
+  text-align: left;
   color: var(--black-color);
 }
 td{
@@ -58,7 +59,8 @@ td:last-child {
 }
 tbody tr {
   background-color: var(--body-bg);
-  text-align: center;
+  /* text-align: center; */
+  text-align: left;
 }
 tbody tr:hover {
   background-color: var(--blue-color);
