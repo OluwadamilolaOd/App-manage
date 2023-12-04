@@ -15,7 +15,7 @@ export default function OrgTableSheet({ headers, items, loading }) {
         {loading ? (
           <Loader />
         ) : (
-          <table>
+          <table className="table-action">
             <thead>
               <tr>
                 {headers.map((header, id) => (
@@ -30,7 +30,7 @@ export default function OrgTableSheet({ headers, items, loading }) {
                   <td>{obj.email}</td>
                   <td>{obj.phoneNumber}</td>
                   <td>{obj.address}</td>
-                  <td>{obj.porductCount}</td>
+                  <td className="txt-align">{obj.porductCount}</td>
                 </tr>
               ))}
             </tbody>

@@ -7,7 +7,7 @@ const OrgPurchasedLicsTableSheet = ({ data, headers, loading, deleteItem }) => {
       {loading ? (
         <Loader />
       ) : (
-        <table>
+        <table className="table-action">
           <thead>
             <tr>
               {headers.map((header, id) => (
