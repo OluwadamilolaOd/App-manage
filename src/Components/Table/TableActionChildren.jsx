@@ -31,7 +31,7 @@ const TableActionChildren = ({ obj, deleteItem}) => {
     <>
     <tr key={obj.id}>
       <td>{obj.licenseBand}</td>
-      <td>{obj.maximumUser}</td>
+      <td className="max-number-license">{obj.maximumUser}</td>
       <td>{obj.partNumber}</td>
       <td>{obj.status}</td>
       <td className="actionbtn" onClick={() => setOpenOptions(!openOptions)}>

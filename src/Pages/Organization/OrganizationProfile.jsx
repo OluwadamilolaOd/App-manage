@@ -12,7 +12,7 @@ import Button from "../../Components/Button";
 import Search from "../../Components/Search";
 import { ToastContainer, toast } from "react-toastify";
 
-const OrganizationProfile = ({}) => {
+const OrganizationProfile = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);

@@ -120,3 +120,15 @@ tbody tr:hover {
 }
 
 
+/* Special Styling */
+.max-number {
+  align-items: center;
+  text-align: center;
+}
+
+.max-number-license {
+  padding-left: 4rem;
+}
+
+
+

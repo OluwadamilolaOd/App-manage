@@ -66,7 +66,7 @@ else { diffDays = diffDays + " days" }
       <tr key={obj.id} style={{color:diffDays === "Expired" && "red"}}>
         <td>{obj.licenseName}</td>
         <td>{obj.licenseBand}</td>
-        <td>{obj.maximumUser}</td>
+        <td className="max-number">{obj.maximumUser}</td>
         <td>{obj.partNumber}</td>
         <td>{diffDays}</td>
         <td>{obj.purchasedDate}</td>
