@@ -122,8 +122,7 @@ tbody tr:hover {
 
 /* Special Styling */
 .max-number {
-  align-items: center;
-  text-align: center;
+  padding-left: 2.5rem;
 }
 
 .max-number-license {
