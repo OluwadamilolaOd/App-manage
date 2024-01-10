@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Havis AppManage
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> This is a solution for managing software application's licenses, which caters fro adding customers and the license information to performing other actions on the application. the application also enables users interfacing with the application to view the activation and expiration of licenses and the upgrading and downgrading of customers' licenses based on their license plans while notifying cutomers when the license purchased is closed to expiration.  
 
-## Available Scripts
 
-In the project directory, you can run:
+![screenshot](App-Preview.png)SCREENSHOT OF THE APPLICATION )
 
-### `npm start`
+## Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React Js
+- CSS
+- Git and Github
+- Technologies used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Live Demo
 
-### `npm test`
+[Live Demo Link](https:///)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Instructions on how to access my project locally.**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ To Access my project locally please follow either of the two steps listed below ;
 
-### `npm run eject`
+STEP 1
+1. Enter this url:  https://github.com/zemola/MY-PORTFOLIO in your web browser.
+2. Once opened navigate to the top left level of the project a green code download button will be visible on the righthand side.
+3. click on the green button with name "Code", Select download Zip option from drop down menu.
+4. Once the download is extract the zip file into any folder of your choice on your system.
+5. you will be able to access my project locally.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+STEP 2
+1. Open command prompt
+2. go to the designated folder where you want to clone the repository to.
+3. enter  git clone https://github.com/zemola/MY-PORTFOLIO.git
+4. open your designated folder.
+5. you will be able to access my project locally.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Prerequisites
+- You should have basic knowledge of React Js
+- You should have basic knowledge of CSS
+- Also, a basic knowledge of git and github
+- A code editor: I used VScode for this project but you can use any code editor of your choice
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Setup
+- follow steps on this link to set up VScode code editor: [setup vscode](https://www.freecodecamp.org/news/how-to-set-up-vs-code-for-web-development/)
 
-## Learn More
+### Install
+[download](https://code.visualstudio.com/download) VScode.
+[Watch this video](https://www.youtube.com/watch?v=MlIzFUI1QGA) on how to install VScode on windows
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Author
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+👤 **Ha-shem Limited**
 
-### Code Splitting
+## 🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Contributions, issues, and feature requests are welcome!
 
-### Analyzing the Bundle Size
+Feel free to check the [issues page](../../issues/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📝 License
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is [MIT](./MIT.md) licensed.
