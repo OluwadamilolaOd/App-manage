@@ -19,21 +19,20 @@
 
 
 
-**Instructions on how to access my project locally.**
+**Instructions on how to access the project locally.**
 
  To Access my project locally please follow either of the two steps listed below ;
 
 STEP 1
-1. Enter this url:  https://github.com/zemola/MY-PORTFOLIO in your web browser.
-2. Once opened navigate to the top left level of the project a green code download button will be visible on the righthand side.
-3. click on the green button with name "Code", Select download Zip option from drop down menu.
-4. Once the download is extract the zip file into any folder of your choice on your system.
-5. you will be able to access my project locally.
+1. Enter this url:  to the git Repository in your web browser.
+2. Once opened navigate to the top left level of the project a button Clone will be visible on the righthand side.
+3. click on the  button with name "Clone", and copy the url.
+4. you will be able to access my project locally.
 
 STEP 2
 1. Open command prompt
 2. go to the designated folder where you want to clone the repository to.
-3. enter  git clone https://github.com/zemola/MY-PORTFOLIO.git
+3. enter  git clone with the clone Url
 4. open your designated folder.
 5. you will be able to access my project locally.
 
