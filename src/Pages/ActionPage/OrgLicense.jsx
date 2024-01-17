@@ -5,7 +5,8 @@ import Select from "react-select";
 import { generateProductKey } from "../../Components/GenKey";
 import { useNavigate, useLocation } from "react-router";
 import { baseUrl } from "../../Hook/baseurl";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 
 const OrgLicense = () => {
   const [selectedLicenseBandOption, setSelectedLicenseBandOption] =
@@ -42,30 +43,6 @@ const OrgLicense = () => {
   const handleBackArrow = () => {
     navigate("/organizations");
   };
-
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("Organization license successfully created.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyError = () =>
-    toast.error("Some error occurred", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   //Get Product Key
   const keyLength = 20;
@@ -114,7 +91,7 @@ const OrgLicense = () => {
             setLicenseBandOptions(bandType);
           });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        notifyError(error.message);
       }
     };
     fetchData();
@@ -160,9 +137,9 @@ const OrgLicense = () => {
         setSelectedLicenseBandOption("");
         setSelectedLicenseTypeOption("");
         setSelectedReminderSetOption("");
-        notifySuccess("");
+        notifySuccess("Organization license successfully created.");
       } catch (err) {
-        notifyError.log(err);
+        notifyError(err);
       }
     }
     
@@ -235,22 +212,6 @@ const OrgLicense = () => {
               )}
             </div>
           </div>
-          {/* <div className="section">
-            <div className="section-form">
-              <label htmlFor="reminder">Set Reminder:</label>
-              <Select
-                className="select"
-                options={reminderSetOptions}
-                value={selectedReminderSetOption}
-                onChange={setSelectedReminderSetOption}
-              />
-              {error && selectedReminderSetOption.length <= 0 ? (
-                <label className="error">This field is required.</label>
-              ) : (
-                ""
-              )}
-            </div>
-          </div> */}
         </div>
         <div className="btnRight">
           <button onClick={handleSubmit} type="submit">

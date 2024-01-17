@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 import { useLocation,  useNavigate } from "react-router-dom";
 import Select from "react-select";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,30 +25,6 @@ const DowngradeLicense = () => {
   const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
    const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.organizationId}`);
-  
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("License successfully downgrade.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyError = () =>
-    toast.error(error, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
     useEffect(() => {
       const fetchData = async () => {
@@ -97,14 +74,14 @@ const DowngradeLicense = () => {
       if (response.status === 200) {
         setExpirationDate("");
         setSelectedLicenseBandOption(null);
-        notifySuccess("");
+        notifySuccess("License successfully downgrade.");
       } else {
-        notifyError("");
+        notifyError("something went wrong.");
       }
       } catch (err) {
         // Handle fetch error
        setError(err.message);
-        notifyError("");
+        notifyError(err.message);
       }
     }
 

@@ -5,6 +5,8 @@ import Search from "../../Components/Search";
 import ReportTableSheet from "../../Components/Table/ReportTableSheet";
 import Pagination from "../../Components/Pagination";
 import Error500 from "../../Components/Error/Error500";
+import { ToastContainer } from "react-toastify";
+import { notifyError } from "../../Components/ReactToastify";
 
 const ActiveLicReport = () => {
   const [data, setData] = useState([]);
@@ -41,7 +43,7 @@ const ActiveLicReport = () => {
             setLoading(!loading)
           });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        notifyError(error.message);
         setError(true);
       }
     };
@@ -73,6 +75,7 @@ const ActiveLicReport = () => {
       <Search handleSearch = {handleSearch} value={searchTerm} placeholder="Search for Active License" />
       {error ? <Error500 /> :<ReportTableSheet headers={headers} data={isFilteredData? filteredData: data} loading={loading}/>}
       <Pagination url={url} setData={isFilteredData ? setFilteredData : setData}/>
+      <ToastContainer />
     </div>
   );
 };

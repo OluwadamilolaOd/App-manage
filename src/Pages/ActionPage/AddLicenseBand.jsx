@@ -4,7 +4,8 @@ import { baseUrl } from "../../Hook/baseurl";
 import { useLocation, useNavigate } from "react-router-dom";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { notifySuccess, notifyError } from "../../Components/ReactToastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddLicenseBand = () => {
@@ -28,30 +29,6 @@ const AddLicenseBand = () => {
   const handleBackArrow = () => {
     navigate("/license");
   };
-
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("License band successfully created.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyError = () =>
-    toast.error("Some error occurred.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const licenseId = paramsValue.state.paramsValue[0];
   let url = baseUrl + "/licensetype";
@@ -100,9 +77,9 @@ const AddLicenseBand = () => {
           setMaximumUser("");
           setBandType("");
           setSelectedOption(null);
-          notifySuccess("");
+          notifySuccess("License band successfully created.");
         } else {
-          notifyError("");
+          notifyError("Some error occurred.");
         }
       } catch (err) {
         notifyError(err.message);

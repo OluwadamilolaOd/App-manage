@@ -4,7 +4,8 @@ import Banner from "../../Components/Banner";
 import { baseUrl } from "../../Hook/baseurl";
 import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
+import { notifySuccess, notifyError } from "../../Components/ReactToastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddLicense = () => {
@@ -16,31 +17,6 @@ const AddLicense = () => {
   const token =localStorage.getItem("token")
   //get user email from local storage
   const userEmail = JSON.parse(localStorage.getItem("user")).mail;
-
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("License successfully created.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
-  const notifyError = () =>
-    toast.error("something went wrong", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
 
   const handleBackArrow = () => {
@@ -75,7 +51,7 @@ const AddLicense = () => {
           setDescription("");
           notifySuccess("License successfully created.");
         } else {
-          notifyError("something went wrong.");
+          notifyError("something went wrong");
         }
       } catch (err) {
         notifyError(err.message);

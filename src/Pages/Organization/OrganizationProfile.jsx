@@ -10,7 +10,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import Button from "../../Components/Button";
 import Search from "../../Components/Search";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 
 const OrganizationProfile = () => {
   const [data, setData] = useState([]);
@@ -38,31 +39,6 @@ const OrganizationProfile = () => {
   const handleBackArrow = () => {
     navigate("/organizations");
   };
-
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("License Achived Successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
-  const notifyError = () =>
-    toast.error("something went wrong", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -121,17 +97,14 @@ const OrganizationProfile = () => {
           navigate(`/organizations/organizationProfile/${paramsValue}`);
           // Update the state by removing the deleted item
           setTableData(tableData.filter((item) => item.id !== itemId));
-          notifySuccess();
+          notifySuccess("License deleted successfully");
         } else {
           // Handle error if the item deletion was unsuccessful
-          notifyError();
+          notifyError("something went wrong.");
 
-          // console.error("Error deleting item");
         }
       })
       .catch((error) => {
-        // Handle network or other errors
-        console.log(error);
         notifyError(error.message);
         // console.error("Error:", error);
       });

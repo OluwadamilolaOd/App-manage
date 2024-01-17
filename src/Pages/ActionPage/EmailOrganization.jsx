@@ -3,8 +3,8 @@ import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate, useLocation } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer} from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 import Button from "../../Components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotate } from '@fortawesome/free-solid-svg-icons'
@@ -20,30 +20,6 @@ const EmailOrganization = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("Email Sent successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyError = () =>
-    toast.error("Some error occurred", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
 
   const handleSubmit = async (e) => {
@@ -74,7 +50,7 @@ const EmailOrganization = () => {
         body: formDataObj,
       });
       if (response.ok) {
-        notifySuccess("");
+        notifySuccess("Email Sent successfully");
         setCcEmail("");
         setFile(null);
         setLoading(false);

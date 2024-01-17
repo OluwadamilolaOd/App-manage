@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer} from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 import { baseUrl } from "../../Hook/baseurl";
 import { useNavigate } from "react-router-dom";
 
@@ -24,34 +24,8 @@ const LicRenewal = () => {
 //navigate Back
   const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.organizationId}`);
 
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("License Renewed Successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyError = () =>
-    toast.error("Some error occurred", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
   const handleSubmitRenewal = async (event) => {
     event.preventDefault();
-    console.log(expirationDate);
-    console.log(data);
     try {
       const response = await fetch(Updateurl, {
         method: "PUT",
@@ -72,13 +46,12 @@ const LicRenewal = () => {
       await response.json();
       if (response.status === 200) {
         setExpirationDate("");
-        notifySuccess("");
+        notifySuccess("License Renewed Successfully");
       } else {
-        notifyError("");
+        notifyError("Some error occurred");
       }
     } catch (err) {
-      // Handle fetch error
-      console.log(err);
+      notifyError(err.message);
     }
   };
 

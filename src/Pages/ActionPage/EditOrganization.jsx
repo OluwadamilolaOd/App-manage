@@ -4,8 +4,8 @@ import { callMsGraphGroupMembers} from "../../Auth/graph";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 import { baseUrl } from "../../Hook/baseurl";
 import Select from "react-select";
 
@@ -51,36 +51,11 @@ useEffect(() => {
 
 
 } catch (error) {
-  console.log(error);
   notifyError.log(error.message);
 }
 
   const handleBackArrow = () =>
     navigate(`/organizations/organizationprofile/${data.id}`);
-
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("Organization successfully edited.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyError = () =>
-    toast.error("Some error occurred.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
     console.log(accountManger);
   const handleSubmitEditOrg = async (event) => {
@@ -119,12 +94,12 @@ useEffect(() => {
         });
         await response.json();
         if (response.status === 200) {
-          notifySuccess("");
+          notifySuccess("Organization successfully edited.");
         } else {
-          notifyError("");
+          notifyError("Some error occurred.");
         }
       } catch (error) {
-        console.log(error);
+        notifyError(error.message);
       }
       setCompanyName("");
       setEmailAddress("");

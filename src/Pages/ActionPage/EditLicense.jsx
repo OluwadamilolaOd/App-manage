@@ -5,7 +5,8 @@ import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../Hook/baseurl";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 
 const EditLicense = () => {
   const location = useLocation();
@@ -24,37 +25,10 @@ const EditLicense = () => {
   //get logged in user email from local storage
   const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
-  console.log(userEmail)
-
   const options = [
     { value: "newLicenseType", label: "New License" },
     { value: "recurringLicenseType", label: "Recurring License" },
   ];
-
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("License successfully Edited", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  // const notifyError = () => toast("Some error occurred");
-  const notifyError = () =>
-    toast.error("Some error occurred", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const handleBackArrow = () => {
     navigate(`/license`);
@@ -85,11 +59,11 @@ const EditLicense = () => {
       });
       await response.json();
       if (response.status === 200) {
-        notifySuccess("");
+        notifySuccess("License successfully Edited");
 
         
       } else {
-        notifyError("");
+        notifyError("Some error occurred");
       }
 
       if (
@@ -111,7 +85,7 @@ const EditLicense = () => {
       }
     } catch (err) {
       // Handle fetch error
-      notifyError.log(err);
+      notifyError(err);
     }
   };
 

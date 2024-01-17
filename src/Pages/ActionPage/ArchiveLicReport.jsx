@@ -5,6 +5,8 @@ import Search from "../../Components/Search";
 import ReportTableSheet from "../../Components/Table/ReportTableSheet";
 import Pagination from "../../Components/Pagination";
 import Error500 from "../../Components/Error/Error500";
+import { ToastContainer } from "react-toastify";
+import { notifyError } from "../../Components/ReactToastify";
 
 const ArchiveLicReport = () => {
 
@@ -42,7 +44,7 @@ const ArchiveLicReport = () => {
             setLoading(!loading)
           });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        notifyError(error.message);
         setError(true);
       }
     };
@@ -76,6 +78,7 @@ const ArchiveLicReport = () => {
       <Search handleSearch = {handleSearch} value={searchTerm} placeholder="Search for Archive License" />
       {error ? <Error500 /> :<ReportTableSheet headers={headers} data={isFilteredData? filteredData: data} loading={loading}/>}
       <Pagination url={url} setData={isFilteredData ? setFilteredData : setData} />
+      <ToastContainer />
     </div>
   );
 };

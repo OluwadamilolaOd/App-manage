@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import Banner from "../../Components/Banner";
 import ArrowBack from "../../Components/ArrowBack";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
@@ -27,30 +27,6 @@ const UpgradeLicense = () => {
 
 //navigate back
     const handleBackArrow = () => navigate(`/organizations/organizationprofile/${data.organizationId}`);
-
-    // react-toastify
-  const notifySuccess = () =>
-    toast.success("License successfully updated.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyError = () =>
-    toast.error(error, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
     useEffect(() => {
       const fetchData = async () => {
@@ -100,14 +76,14 @@ const UpgradeLicense = () => {
         if (response.status === 200) {
           setExpirationDate("");
           setSelectedLicenseBandOption(null);
-          notifySuccess("");
+          notifySuccess("License successfully updated.");
         } else {
           notifyError("");
         }
         } catch (err) {
           // Handle fetch error
          setError(err.message);
-          notifyError("");
+          notifyError("something went wrong.");
         }
     }
 

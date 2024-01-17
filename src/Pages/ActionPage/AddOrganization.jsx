@@ -5,16 +5,14 @@ import ArrowBack from "../../Components/ArrowBack";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
 import { generateProductKey } from "../../Components/GenKey";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
+import {notifySuccess, notifyError} from "../../Components/ReactToastify";
 import { useNavigate } from "react-router";
 import "../Styles/license.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 
-/**
- * Renders a form to add organization details and license details.
- * @returns {JSX.Element} AddOrganization component
- */
+
 const AddOrganization = () => {
 
   const [companyName, setCompanyName] = useState("");
@@ -28,8 +26,6 @@ const AddOrganization = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(false);
-
- // const [options] = useState(reminder);
   const [error, setError] = useState(false);
   //get token from local storage and set it to state
   const token = localStorage.getItem("token");
@@ -68,7 +64,6 @@ useEffect(() => {
 
 
 } catch (error) {
-  console.log(error);
   notifyError.log(error.message);
 }
   //get license Type url
@@ -82,29 +77,7 @@ useEffect(() => {
   //get user email from local storage
   const userEmail = JSON.parse(localStorage.getItem("user")).mail;
 
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("Organization successfully  created.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyError = () =>
-    toast.error("Some error occurred.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+
 
   //Navigate back to the previous page
   const handleBackArrow = () => navigate("/organizations");
@@ -132,7 +105,7 @@ useEffect(() => {
             setLicenseTypeOptions(licenseName);
           });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        notifyError(error.message);
       }
     };
     fetchData();
@@ -158,7 +131,7 @@ useEffect(() => {
             setLicenseBandOptions(bandType);
           });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        
       }
     };
     fetchData();
@@ -243,12 +216,12 @@ useEffect(() => {
             setSelectedLicenseBandOption("");
             setSelectedLicenseTypeOption("");
            // setSelectedReminderSetOption("");
-            notifySuccess("");
+            notifySuccess("Organization successfully  created.");
             setLoading(false);
           });
       } catch (err) {
         console.log(err);
-        notifyError.log(err.message);
+        notifyError(err.message);
       }
     }
   };

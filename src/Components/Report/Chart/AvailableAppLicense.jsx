@@ -1,6 +1,9 @@
 import {useState, useEffect} from "react";
 import Chart from "react-apexcharts";
 import { baseUrl } from '../../../Hook/baseurl';
+import { ToastContainer} from 'react-toastify';
+import { notifyError } from '../../ReactToastify';
+
 
 const AvailableAppLicense = () => {
 
@@ -14,7 +17,7 @@ const AvailableAppLicense = () => {
       setData(data.result);
       setLoading(!loading);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      notifyError(error.message);
     }
   };
   useEffect(() => { 
@@ -65,6 +68,7 @@ const AvailableAppLicense = () => {
         type="bar"
         height={350}
       />
+      <ToastContainer />
     </div>
   );
 };

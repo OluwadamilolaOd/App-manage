@@ -24,12 +24,6 @@ const OrgPurchasedLicsTableSheet = ({ data, headers, loading, deleteItem }) => {
                   obj={obj}
                 />
               ))}
-            {/* {data.map((obj) => (
-              <OrgPurchasedLicesTableChildren 
-              deleteItem = {deleteItem}            
-              key={obj.id}
-              obj={obj} />
-            ))} */}
           </tbody>
         </table>
       )}

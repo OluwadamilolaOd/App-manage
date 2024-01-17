@@ -3,7 +3,8 @@ import Banner from "../../Components/Banner";
 import { baseUrl } from "../../Hook/baseurl";
 import { useNavigate, useParams } from "react-router-dom";
 import TableAction from "../../Components/Table/TableAction";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
+import { notifyError, notifySuccess } from "../../Components/ReactToastify";
 import "react-toastify/dist/ReactToastify.css";
 import Pagination from "../../Components/Pagination";
 import Search from "../../Components/Search";
@@ -27,32 +28,6 @@ const LicenseType = () => {
     "Action",
   ];
   const mainUrl = `${baseUrl}/applicense/${paramsValue}`;
-
-  // react-toastify
-  const notifySuccess = () =>
-    toast.success("License Achived successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
-  const notifyError = () =>
-    toast.error("something went wrong", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
   useEffect(() => {
     fetchData();
   }, [mainUrl, url]);
@@ -102,17 +77,14 @@ const LicenseType = () => {
         if (response.ok) {
           // Update the state by removing the deleted item
           setcompleteData(completeData.filter((item) => item.id !== itemId));
-          notifySuccess();
+          notifySuccess("License Band deleted successfully");
         } else {
           // Handle error if the item deletion was unsuccessful
           notifySuccess();
-
-          // console.error('Error deleting item');
         }
       })
       .catch((error) => {
         // Handle network or other errors
-        console.log(error);
         notifyError(error.message);
         // console.error('Error:', error);
       });

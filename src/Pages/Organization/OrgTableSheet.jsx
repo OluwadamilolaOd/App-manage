@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function OrgTableSheet({ headers, items, loading }) {
   const navigate = useNavigate();
-
-  // const handleClick = (id) => navigate(`organizationProfile/:${id}`)
   const handleRowDoubleClick = (itemId) =>
     navigate(`organizationProfile/${itemId}`);
 
