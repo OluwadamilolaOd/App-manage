@@ -105,7 +105,7 @@ const AddLicenseBand = () => {
           notifyError("");
         }
       } catch (err) {
-        notifyError("");
+        notifyError(err.message);
       }
     }
   };

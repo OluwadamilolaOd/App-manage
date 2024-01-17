@@ -78,7 +78,6 @@ const AddLicense = () => {
           notifyError("something went wrong.");
         }
       } catch (err) {
-        console.log(err);
         notifyError(err.message);
       }
     }

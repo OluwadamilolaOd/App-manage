@@ -1,6 +1,4 @@
-import {useState, useEffect } from 'react';
 import './card.css';
-import { baseUrl } from '../../Hook/baseurl';
 
 const Card = ({title,value, className, btnCardHandler}) => {
   return (

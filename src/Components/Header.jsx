@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useMsal } from "@azure/msal-react";
-import { callMsGraph, callMsGraphImg, callMsGraphRoles } from "../Auth/graph";
+import { callMsGraph, callMsGraphImg} from "../Auth/graph";
 import "./Styles/header.css";
 import { FaBars, FaWindowClose } from "react-icons/fa";
 import Sidebar from "./Sidebar";
@@ -11,44 +11,27 @@ const Header = () => {
   const [graphImage, setGraphImage] = useState(null);
   const [showSidebar, setShowSidebar] = useState(false);
 
-  //fetch user data to get loging profile details
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        scopes: ["User.Read"],
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraph(response.accessToken).then((response) => {
-          setGraphData(response);
-          //save to local storage
-          localStorage.setItem("user", JSON.stringify(response));
-        });
-      });
-  }, []);
+  const msalInstance = instance.acquireTokenSilent({
+    scopes: ["User.Read"],
+    account: accounts[0],
+  });
 
-  // fetch user role
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        scopes: ["User.Read"],
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraphRoles(response.accessToken).then((response) => {
-          //setGraphRole(response);
-          console.log(response);
-        });
-      });
-  }, [instance, accounts]);
+//fetch user data to get loging profile details
+  const getUserData = async () => {
 
-  // fetch profile picture
-  useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        scopes: ["User.Read"],
-        account: accounts[0],
-      })
+    msalInstance
+    .then((response) => {
+      callMsGraph(response.accessToken).then((response) => {
+        setGraphData(response);
+        //save to local storage
+        localStorage.setItem("user", JSON.stringify(response));
+      });
+    });
+  };
+
+//fetch user picture
+  const getUserPicture = async () => {
+      msalInstance
       .then(async (response) => {
         callMsGraphImg(response.accessToken).then(async (r) => {
           //get the final buffer of the image
@@ -59,12 +42,12 @@ const Header = () => {
           setGraphImage(URL.createObjectURL(blob));
         });
       });
-  }, []);
+  };
 
-  // state = { clicked: false };
-  // handleClick = () => {
-  //   this.setState({ clicked: !this.state.clicked });
-  // };
+  useEffect(() => {
+    getUserData();
+    getUserPicture();
+  }, []);
 
   return (
     <div className="header">

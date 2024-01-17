@@ -1,16 +1,13 @@
-// ----------------------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-// ----------------------------------------------------------------------------
-
-import { AuthenticationResult, InteractionType, EventMessage, EventType, AuthError } from "@azure/msal-browser";
+import {  InteractionType, EventType} from "@azure/msal-browser";
 import { MsalContext } from "@azure/msal-react";
 import React from "react";
-import { service, factories, models, IEmbedConfiguration } from "powerbi-client";
-//import "./App.css";
+import { service, factories, models} from "powerbi-client";
 import { msalConfig } from "../Auth/authConfig";
 import { scopeBase } from './../Auth/authConfig';
-import { useEffect } from 'react';
+
+
+
+
 
 const powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
 
@@ -20,11 +17,7 @@ let reportContainer;
 let reportRef;
 let loading;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface AppProps { };
-interface AppState { accessToken: string; embedUrl: string; error: string[] };
-
-class PowerBi extends React.Component<AppProps, AppState> {
+class PowerBi extends React.Component {
     static contextType = MsalContext;
 
     constructor(props) {
@@ -64,12 +57,6 @@ class PowerBi extends React.Component<AppProps, AppState> {
                 accessToken,
                 embedUrl,
                 id: msalConfig.auth.reportId,
-                /*
-                // Enable this setting to remove gray shoulders from embedded report
-                settings: {
-                    background: models.BackgroundType.Transparent
-                }
-                */
             };
 
             const report = powerbi.embed(reportContainer, embedConfiguration);
