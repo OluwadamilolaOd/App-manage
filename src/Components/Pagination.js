@@ -1,41 +1,48 @@
-import React from "react";
-import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import "./Styles/pagination.css";
 
-export default function Pagination(props) {
-  const {data} = props;
+const Pagination = ({ url, setData }) => {
 
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6;
+  //get token from local storage and set it to state
+  const token =localStorage.getItem("token")
+  
+  //Pagination//
+  const fetchCurrentPage = async (currentPage) => {
+    const res = await fetch(`${url}?pageNumber=${currentPage}`,{
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+    );
+    const data = await res.json();
+    return data;
+  };
 
-  // Simulate fetching items from another resources.
-  // (This could be items from props; or items loaded in a local state
-  // from an API endpoint with useEffect and useState)
-  const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = data.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+  const handlePageChange = async (e) => {
+    let currentPage = e.selected + 1;
+    const dataFromApi = await fetchCurrentPage(currentPage);
 
-  // Invoke when user click to request another page.
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
-    setItemOffset(newOffset);
+    console.log(dataFromApi);
+    setData(dataFromApi);
   };
 
   return (
-    <>
-      <Items currentItems={currentItems} />
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
-    </>
+    <div>
+    <ReactPaginate
+      pageCount={4}
+      onPageChange={handlePageChange}
+      containerClassName="pagination-container"
+      pageClassName="pagination-link"
+      activeClassName="pagination-active"
+      previousClassName="previous"
+      nextClassName="next"
+      previousLabel={"<"}
+      nextLabel={">"}
+    />
+    </div>
   );
-}
+};
 
-
+export default Pagination;
