@@ -1,0 +1,72 @@
+[
+  {
+    "company name": "Quamba",
+    "product": "Home Ing",
+    "product type": "0.7.9",
+    "start date": "3/19/2023",
+    "end date": "10/2/2022"
+  },
+  {
+    "company name": "Photospace",
+    "product": "It",
+    "product type": "7.0.3",
+    "start date": "11/21/2022",
+    "end date": "8/13/2023"
+  },
+  {
+    "company name": "Meemm",
+    "product": "Redhold",
+    "product type": "5.7.9",
+    "start date": "12/1/2022",
+    "end date": "3/6/2023"
+  },
+  {
+    "company name": "Flipopia",
+    "product": "Home Ing",
+    "product type": "0.23",
+    "start date": "2/15/2023",
+    "end date": "5/20/2023"
+  },
+  {
+    "company name": "Oyoba",
+    "product": "Alpha",
+    "product type": "3.04",
+    "start date": "4/15/2023",
+    "end date": "10/30/2022"
+  },
+  {
+    "company name": "Quinu",
+    "product": "Flexidy",
+    "product type": "1.5.4",
+    "start date": "4/1/2023",
+    "end date": "6/3/2023"
+  },
+  {
+    "company name": "Oyoba",
+    "product": "Fix San",
+    "product type": "3.25",
+    "start date": "6/9/2023",
+    "end date": "4/15/2023"
+  },
+  {
+    "company name": "Eadel",
+    "product": "Zoolab",
+    "product type": "7.36",
+    "start date": "8/5/2023",
+    "end date": "7/25/2023"
+  },
+  {
+    "company name": "DabZ",
+    "product": "Biodex",
+    "product type": "4.8.6",
+    "start date": "8/13/2023",
+    "end date": "8/11/2023"
+  },
+  {
+    "company name": "Rhynyx",
+    "product": "Otcom",
+    "product type": "8.0.6",
+    "start date": "7/27/2023",
+    "end date": "1/13/2023"
+  }
+]
