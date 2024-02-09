@@ -17,7 +17,6 @@ table {
   background-color: var(--white-color);
   border-radius: 10px;
   margin-bottom: 1rem;
-  /* table-layout: fixed; */
   table-layout: auto;
 }
 .table-action {
@@ -30,7 +29,6 @@ table {
   background-color: var(--white-color);
   border-radius: 10px;
   margin-bottom: 1rem;
-  /* table-layout: fixed; */
   table-layout: auto;
 }
 th {
@@ -39,7 +37,7 @@ th {
   font-weight: bold;
 }
 thead th {
-  text-align: center;
+  text-align: left;
   color: var(--black-color);
 }
 td{
@@ -56,9 +54,11 @@ td:last-child {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+
 tbody tr {
   background-color: var(--body-bg);
-  text-align: center;
+  /* text-align: center; */
+  text-align: left;
 }
 tbody tr:hover {
   background-color: var(--blue-color);
@@ -68,8 +68,15 @@ tbody tr:hover {
 .actionbtn {
   cursor: pointer;
   font-weight: 900;
-  /* font-size: 30px; */
-  align-items: center;
+}
+.table-action thead th:last-child {
+  text-align: center;
+}
+.actionbtn:last-child {
+  text-align: center;
+}
+.txt-align:last-child {
+  text-align: center;
 }
 
 .action {
@@ -83,6 +90,7 @@ tbody tr:hover {
   width: 130px;
   cursor: pointer;
   z-index: 1;
+  text-align: center;
 }
 
 .action-Org{
@@ -110,5 +118,16 @@ tbody tr:hover {
   color: var(--white-color);
   width: 100%;
 }
+
+
+/* Special Styling */
+.max-number {
+  padding-left: 2.5rem;
+}
+
+.max-number-license {
+  padding-left: 4rem;
+}
+
 
 

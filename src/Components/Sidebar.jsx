@@ -1,14 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { sideLinks } from "../assets/data/sideLinks";
 import "./Styles/sidebar.css";
-import { useState } from "react";
 import { HiOutlineLogout } from "react-icons/hi";
-import AppManageLogo from "../assets/images/AppManage_Logo_(1).png"
+import AppManageLogo from "../assets/images/AppManage_Logo_(1).png";
 
-
-const Sidebar = ({ setOpenModal }) => { 
-  const [switchIcon, setSwitchIcon] = useState(false);
-
+const Sidebar = ({ setOpenModal }) => {
   return (
     <div className="sidebar">
       <div className="nav-logo">
@@ -33,12 +29,12 @@ const Sidebar = ({ setOpenModal }) => {
           ))}
 
           {/* Logout */}
-          <div className="sidebar_menu sidebar_bottom" onClick={() => setOpenModal(true)}>
+          <div
+            className="sidebar_menu sidebar_bottom"
+            onClick={() => setOpenModal(true)}
+          >
             <HiOutlineLogout className="icon" />
-            <span
-            >
-              Logout
-            </span>
+            <span>Logout</span>
           </div>
         </div>
       </div>

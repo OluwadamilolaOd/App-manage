@@ -12,7 +12,7 @@ import Button from "../../Components/Button";
 import Search from "../../Components/Search";
 import { ToastContainer, toast } from "react-toastify";
 
-const OrganizationProfile = ({}) => {
+const OrganizationProfile = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
@@ -88,7 +88,6 @@ const OrganizationProfile = ({}) => {
         const data2 = await response2.json();
         setTableData(data2);
         setFilteredData(data2);
-        console.log(data2);
         setLoading(!loading);
         await fetch(orgProfileUrl, {
           method: "GET",

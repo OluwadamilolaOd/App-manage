@@ -1,4 +1,0 @@
-Dashboard,
-Get all meal for the week,
-Import buck users from excel,
-Edit and delete department.

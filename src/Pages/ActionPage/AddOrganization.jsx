@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useMsal } from "@azure/msal-react";
+import { callMsGraphGroupMembers} from "../../Auth/graph";
 import ArrowBack from "../../Components/ArrowBack";
 import Select from "react-select";
 import { baseUrl } from "../../Hook/baseurl";
@@ -6,8 +8,13 @@ import { generateProductKey } from "../../Components/GenKey";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import "../Styles/license.css";
-//import Multiselect from "multiselect-react-dropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotate } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Renders a form to add organization details and license details.
+ * @returns {JSX.Element} AddOrganization component
+ */
 const AddOrganization = () => {
 
   const [companyName, setCompanyName] = useState("");
@@ -17,17 +24,10 @@ const AddOrganization = () => {
   const [contactPerson, setContactPerson] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
-  const [accountManger, setAccountManger] = useState("");
+  const [accountManger, setAccountManger] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
-
-  // const reminder = [
-  //   {day: "90 days", id: 1},
-  //   {day: "60 days", id: 2},
-  //   {day: "30 days", id: 3},
-  //   {day: "7 days", id: 4},
-  // ];
+  const [loading, setLoading] = useState(false);
 
  // const [options] = useState(reminder);
   const [error, setError] = useState(false);
@@ -45,8 +45,32 @@ const AddOrganization = () => {
   const endDateInputRef = useRef(null);
   const navigate = useNavigate();
 
-  //URLS
+//Get List of user in a group on azure AD
+const {instance, accounts} = useMsal();
+const [groupUsers, setGroupUsers] = useState([]);
 
+try { 
+
+useEffect(() => {
+  instance.acquireTokenSilent({
+    scopes: ["User.Read"],
+    account: accounts[0],
+  }).then((response) => {
+    callMsGraphGroupMembers(response.accessToken).then((response) => {
+      var newArray = response.value.map(function(obj) {
+      return {value:obj.displayName, label:obj.displayName, accountMangerMail:obj.mail}
+  });
+      setGroupUsers(newArray);
+  
+    });
+  });
+}, []);
+
+
+} catch (error) {
+  console.log(error);
+  notifyError.log(error.message);
+}
   //get license Type url
   const url = `${baseUrl}/AppLicense`;
   //get license Band url
@@ -144,6 +168,8 @@ const AddOrganization = () => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(accountManger);
     const productKey = generateProductKey(keyLength);
     if (
       companyName.length === 0 ||
@@ -165,12 +191,14 @@ const AddOrganization = () => {
     } else {
       setError(false);
       try {
+        setLoading(true);
         await fetch(CompanyDetailsUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+          
           body: JSON.stringify({
             organizationName: companyName,
             email: emailAddress,
@@ -179,7 +207,8 @@ const AddOrganization = () => {
             contactPerson: contactPerson,
             ContactPersonEmail: contactEmail,
             contactPhone: contactPhone,
-            accountManager: accountManger,
+            accountManager: accountManger.value,
+            accountManagerEmail: accountManger.accountMangerMail,
             CreatedBy: userEmail,
           }),
         })
@@ -215,6 +244,7 @@ const AddOrganization = () => {
             setSelectedLicenseTypeOption("");
            // setSelectedReminderSetOption("");
             notifySuccess("");
+            setLoading(false);
           });
       } catch (err) {
         console.log(err);
@@ -340,11 +370,11 @@ const AddOrganization = () => {
             </div>
             <div className="section-form">
               <label htmlFor="account-manger">Account Manager:</label>
-              <input
-                type="text"
-                id="account-manager"
+              <Select
+                className="select"
+                options={ groupUsers}
                 value={accountManger}
-                onChange={(event) => setAccountManger(event.target.value)}
+                onChange={setAccountManger}
               />
               {error && accountManger.length <= 0 ? (
                 <label className="error">This field is required.</label>
@@ -420,24 +450,10 @@ const AddOrganization = () => {
               )}
             </div>
           </div>
-          {/* <div className="section">
-            <div className="section-form">
-              <label htmlFor="reminder">Set Reminder:</label>
-              <Multiselect
-                className="select"
-                options={options}
-                displayValue="day"
-              />
-              {error && selectedReminderSetOption.length <= 0 ? (
-                <label className="error">This field is required.</label>
-              ) : (
-                ""
-              )}
-            </div>
-          </div> */}
         </div>
         <div className="btnRight">
           <button onClick={handleSubmit} type="submit">
+          {loading&&<FontAwesomeIcon icon={faRotate} spin />}
             Submit
           </button>
         </div>

@@ -86,6 +86,8 @@ const EditLicense = () => {
       await response.json();
       if (response.status === 200) {
         notifySuccess("");
+
+        
       } else {
         notifyError("");
       }
