@@ -98,6 +98,7 @@ export const graphConfig = {
     graphImageEndpoint: "https://graph.microsoft.com/v1.0/me/photo/$value",
     graphRoleEndpoint: "https://graph.microsoft.com/v1.0/me/memberOf",
     graphGroupMemberEndpoint: `https://graph.microsoft.com/v1.0/groups/${process.env.REACT_APP_PUBLIC_HA_GROUP_ID}/members?$select=displayName,mail,userPrincipalName`,
+   //graphGroupMemberEndpoint: `https://graph.microsoft.com/v1.0/groups/${process.env.REACT_APP_PUBLIC_HA_GROUP_ID}/members/microsoft.graph.user?$orderby=displayName&$select=displayName,id`,
 };
 
 
