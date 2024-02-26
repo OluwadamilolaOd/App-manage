@@ -21,10 +21,10 @@ let reportRef;
 let loading;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface AppProps { };
-interface AppState { accessToken: string; embedUrl: string; error: string[] };
+//interface AppProps { };
+//interface AppState { accessToken: string; embedUrl: string; error: string[] };
 
-class PowerBi extends React.Component<AppProps, AppState> {
+class PowerBi extends React.Component {
     static contextType = MsalContext;
 
     constructor(props) {
@@ -266,3 +266,167 @@ class PowerBi extends React.Component<AppProps, AppState> {
 }
 
 export default PowerBi;
+
+
+
+// import React, { useEffect, useRef, useState } from 'react';
+// import { MsalContext } from '@azure/msal-react';
+// import { service, factories, models } from 'powerbi-client';
+// import { AuthenticationResult, EventType, InteractionType } from '@azure/msal-browser';
+// import { msalConfig } from '../Auth/authConfig';
+// import { scopeBase } from '../Auth/authConfig';
+
+// const powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
+
+// const PowerBi = () => {
+//     const { instance, accounts, inProgress } = React.useContext(MsalContext);
+//     const reportRef = useRef();
+//     const [accessToken, setAccessToken] = useState('');
+//     const [embedUrl, setEmbedUrl] = useState('');
+//     const [error, setError] = useState([]);
+
+//     useEffect(() => {
+//         const reportContainer = reportRef.current;
+
+//         if (!msalConfig.auth.workspaceId || !msalConfig.auth.reportId) {
+//             setError(['Please assign values to workspace Id and report Id in Config.ts file']);
+//             return;
+//         }
+
+//         authenticate();
+
+//         return () => {
+//             powerbi.reset(reportContainer);
+//         };
+//     }, [accounts, inProgress, accessToken, embedUrl, error]);
+
+//     const setUsername = (username) => {
+//         const welcome = document.getElementById('welcome');
+//         if (welcome !== null) welcome.innerText = `Welcome, ${username}`;
+//     };
+
+//     const tryRefreshUserPermissions = () => {
+//         fetch(`${msalConfig.auth.powerBiApiUrl}v1.0/myorg/RefreshUserPermissions`, {
+//             headers: {
+//                 Authorization: `Bearer ${accessToken}`,
+//             },
+//             method: 'POST',
+//         })
+//             .then((response) => {
+//                 if (response.ok) {
+//                     console.log('User permissions refreshed successfully.');
+//                 } else {
+//                     if (response.status === 429) {
+//                         console.error('Permissions refresh will be available in up to an hour.');
+//                     } else {
+//                         console.error(response);
+//                     }
+//                 }
+//             })
+//             .catch((error) => {
+//                 console.error(`Failure in making API call.${error}`);
+//             });
+//     };
+
+//     const getEmbedUrl = () => {
+//         fetch(
+//             `${msalConfig.auth.powerBiApiUrl}v1.0/myorg/groups/${msalConfig.auth.workspaceId}/reports/${msalConfig.auth.reportId}`,
+//             {
+//                 headers: {
+//                     Authorization: `Bearer ${accessToken}`,
+//                 },
+//                 method: 'GET',
+//             }
+//         )
+//             .then((response) => {
+//                 const errorMessage = [`Error occurred while fetching the embed URL of the report`, `Request Id: ${response.headers.get('requestId')}`];
+
+//                 response
+//                     .json()
+//                     .then((body) => {
+//                         if (response.ok) {
+//                             setEmbedUrl(body['embedUrl']);
+//                             setAccessToken(accessToken);
+//                         } else {
+//                             errorMessage.push(`Error ${response.status}: ${body.error.code}`);
+//                             setError(errorMessage);
+//                         }
+//                     })
+//                     .catch(() => {
+//                         errorMessage.push(`Error ${response.status}: An error has occurred`);
+//                         setError(errorMessage);
+//                     });
+//             })
+//             .catch((error) => {
+//                 setError([error]);
+//             });
+//     };
+
+//     const authenticate = () => {
+//         const isAuthenticated = accounts.length > 0;
+
+//         if (error.length > 0) {
+//             return;
+//         }
+
+//         const eventCallback = instance.addEventCallback((message) => {
+//             if (message.eventType === EventType.LOGIN_SUCCESS && !accessToken) {
+//                 const payload = message.payload;
+//                 const name = payload.account?.name ? payload.account?.name : '';
+
+//                 setAccessToken(payload.accessToken);
+//                 setUsername(name);
+//                 tryRefreshUserPermissions();
+//             }
+//         });
+
+//         const loginRequest = {
+//             scopes: scopeBase,
+//             account: accounts[0],
+//         };
+
+//         if (!isAuthenticated && inProgress === InteractionType.None) {
+//             instance.loginRedirect(loginRequest);
+//         } else if (isAuthenticated && accessToken && !embedUrl) {
+//             getEmbedUrl();
+//             instance.removeEventCallback(eventCallback);
+//         } else if (isAuthenticated && !accessToken && !embedUrl && inProgress === InteractionType.None) {
+//             setUsername(accounts[0].name);
+
+//             instance
+//                 .acquireTokenSilent(loginRequest)
+//                 .then((response) => {
+//                     setAccessToken(response.accessToken);
+//                     getEmbedUrl();
+//                 })
+//                 .catch((error) => {
+//                     if (
+//                         error.errorCode === 'consent_required' ||
+//                         error.errorCode === 'interaction_required' ||
+//                         error.errorCode === 'login_required'
+//                     ) {
+//                         instance.acquireTokenRedirect(loginRequest);
+//                     } else if (error.errorCode === '429') {
+//                         setError(['Our Service Token Server (STS) is overloaded, please try again in sometime']);
+//                     } else {
+//                         setError([`There was some problem fetching the access token${error.toString()}`]);
+//                     }
+//                 });
+//         }
+//     };
+
+//     return (
+//         <div id="reportContainer" ref={reportRef}>
+//             {error.length
+//                 ? error.map((line, index) => (
+//                       <React.Fragment key={index}>
+//                           {index > 0 && <br />}
+//                           {line}
+//                       </React.Fragment>
+//                   ))
+//                 : 'Loading the report...'}
+//         </div>
+//     );
+// };
+
+// export default PowerBi;
