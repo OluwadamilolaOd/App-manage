@@ -23,10 +23,10 @@ export const msalConfig = {
 
         // Id of the workspace where the report is hosted
         //workspaceId:"820adcae-4672-437b-a5b2-856ebc9b9717",
-        workspaceId:`${process.env.REACT_APP_PUBLIC_DEV_WORKSPACEID}`,
+        workspaceId:`${process.env.REACT_APP_PUBLIC_HA_WORKSPACEID}`,
         // Id of the report to be embedded
         //reportId: "c0887636-84df-4d33-882c-a2c61e7d7cff",
-        reportId: `${process.env.REACT_APP_PUBLIC_DEV_REPORTID}`,
+        reportId: `${process.env.REACT_APP_PUBLIC_HA_REPORTID}`,
 
     },
     cache: {
@@ -98,6 +98,7 @@ export const graphConfig = {
     graphImageEndpoint: "https://graph.microsoft.com/v1.0/me/photo/$value",
     graphRoleEndpoint: "https://graph.microsoft.com/v1.0/me/memberOf",
     graphGroupMemberEndpoint: `https://graph.microsoft.com/v1.0/groups/${process.env.REACT_APP_PUBLIC_HA_GROUP_ID}/members?$select=displayName,mail,userPrincipalName`,
+   //graphGroupMemberEndpoint: `https://graph.microsoft.com/v1.0/groups/${process.env.REACT_APP_PUBLIC_HA_GROUP_ID}/members/microsoft.graph.user?$orderby=displayName&$select=displayName,id`,
 };
 
 

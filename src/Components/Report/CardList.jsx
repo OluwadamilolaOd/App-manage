@@ -58,17 +58,17 @@ const CardList = () => {
         className={"blueBackg"}
         btnCardHandler={handlePurTable}
       />
+        <Card
+          title={" Active Licenses"}
+          value={data.activeLicense}
+          className={"blueBackg"}
+          btnCardHandler={handleActTable}
+        />
       <Card
         title={" Expired Licenses"}
         value={data.expiredlicense}
         className={"redBackg"}
         btnCardHandler={handleExpTable}
-      />
-      <Card
-        title={" Active Licenses"}
-        value={data.activeLicense}
-        className={"blueBackg"}
-        btnCardHandler={handleActTable}
       />
       <Card
         title={"Archive Licenses"}

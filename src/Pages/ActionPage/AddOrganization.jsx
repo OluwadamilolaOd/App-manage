@@ -57,6 +57,7 @@ useEffect(() => {
     account: accounts[0],
   }).then((response) => {
     callMsGraphGroupMembers(response.accessToken).then((response) => {
+      console.log(response);
       var newArray = response.value.map(function(obj) {
       return {value:obj.displayName, label:obj.displayName, accountMangerMail:obj.mail}
   });
