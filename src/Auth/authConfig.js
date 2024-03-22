@@ -13,11 +13,11 @@ import { LogLevel } from "@azure/msal-browser";
 export const msalConfig = {
     auth: {
   //      clientId: '66ffb285-220a-42ae-9277-20f7e3af6284', // This is the ONLY mandatory field that you need to supply.
-        clientId:`${process.env.REACT_APP_PUBLIC_HA_CLIENT_ID}`,
+        clientId:`${process.env.REACT_APP_PUBLIC_DEV_CLIENT_ID}`,
       //  authority: 'https://blossomhearthospital.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
-        authority: `${process.env.REACT_APP_PUBLIC_HA_AUTHORITY}/${process.env.REACT_APP_PUBLIC_HA_TENANT_ID}`, // Replace the placeholder with your tenant subdomain
-        redirectUri: `${process.env.REACT_APP_PUBLIC_HA_REDIRECT_URI}`, // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
-        postLogoutRedirectUri: `${process.env.REACT_APP_PUBLIC_HA_POST_LOGOUT_REDIRECT_URI}`, // Indicates the page to navigate after logout.
+        authority: `${process.env.REACT_APP_PUBLIC_DEV_AUTHORITY}/${process.env.REACT_APP_PUBLIC_DEV_TENANT_ID}`, // Replace the placeholder with your tenant subdomain
+        redirectUri: `${process.env.REACT_APP_PUBLIC_DEV_REDIRECT_URI}`, // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+        postLogoutRedirectUri: `${process.env.REACT_APP_PUBLIC_DEV_POST_LOGOUT_REDIRECT_URI}`, // Indicates the page to navigate after logout.
         // End point URL for Power BI API
         powerBiApiUrl: "https://api.powerbi.com/",
 
@@ -97,7 +97,7 @@ export const graphConfig = {
     graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
     graphImageEndpoint: "https://graph.microsoft.com/v1.0/me/photo/$value",
     graphRoleEndpoint: "https://graph.microsoft.com/v1.0/me/memberOf",
-    graphGroupMemberEndpoint: `https://graph.microsoft.com/v1.0/groups/${process.env.REACT_APP_PUBLIC_HA_GROUP_ID}/members?$select=displayName,mail,userPrincipalName`,
+    graphGroupMemberEndpoint: `https://graph.microsoft.com/v1.0/groups/${process.env.REACT_APP_PUBLIC_DEV_GROUP_ID}/members?$select=displayName,mail,userPrincipalName`,
    //graphGroupMemberEndpoint: `https://graph.microsoft.com/v1.0/groups/${process.env.REACT_APP_PUBLIC_HA_GROUP_ID}/members/microsoft.graph.user?$orderby=displayName&$select=displayName,id`,
 };
 
