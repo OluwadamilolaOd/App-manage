@@ -83,7 +83,6 @@ const Header = () => {
         </div>
       </div>
       {showSidebar && <Sidebar setOpenModal={() => setShowSidebar(false)} />}
-      <h1>testing no remove</h1>
     </div>
   );
 };
