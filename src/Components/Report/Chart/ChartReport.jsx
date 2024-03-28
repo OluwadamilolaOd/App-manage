@@ -13,8 +13,6 @@ const ChartReport = () => {
       <div className="report_chart">
         <PurchasedLicenses />
         <RecurringLicenseStatus/>
-      </div>
-      <div className="report_chart">
         <LicenseStatus/>
         <AvailableAppLicense />
       </div>

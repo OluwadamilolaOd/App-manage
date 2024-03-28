@@ -16,6 +16,7 @@ const Header = () => {
     instance
       .acquireTokenSilent({
         scopes: ["User.Read"],
+
         account: accounts[0],
       })
       .then((response) => {
@@ -69,12 +70,20 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header_menu">
-        <div className="hamburger" onClick={() => setShowSidebar(true)}>
-          < FaBars className="menu-icon" />
+        <div onClick={ () => setShowSidebar(!showSidebar)}>
+        { showSidebar ? (
+        <div className="hamburger">
+        <FaWindowClose className="menu-icon" />
+      </div>   
+          )  : (
+        <div className="hamburger">
+         < FaBars className="menu-icon" />
+       </div>
+          )
+      }
         </div>
-        <div className="close-icon" onClick={() => setShowSidebar(false)}>
-          <FaWindowClose className="menu-icon-icon" />
-        </div>
+       
+       
         <div className="header_right">
           {graphData ? <p>{graphData.givenName}</p> : <p>Loading...</p>}
           <div className="profile">
@@ -82,7 +91,8 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {showSidebar && <Sidebar setOpenModal={() => setShowSidebar(false)} />}
+      {/* {showSidebar && <Sidebar showSidebar={showSidebar} />} */}
+      {showSidebar && <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />}
     </div>
   );
 };

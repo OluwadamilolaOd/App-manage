@@ -83,6 +83,7 @@
   }
   .hamburger {
     display: block;
+    position: inherit;
     align-items: center;
     padding-top: 1rem;
   }
@@ -95,9 +96,6 @@
     display: flex;
     align-items: center;
     padding-bottom: 1rem;
-  }
-  .menu-icon:hover {
-    color: red;
   }
 
  

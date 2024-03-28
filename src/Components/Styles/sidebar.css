@@ -53,9 +53,10 @@
 .sidebar_active {
   background: var(--blue-color);
   color: var(--white-color);
-  padding: 15px 2px;
   margin-left: 0;
   width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .sidebar_link {
   display: flex;
@@ -63,7 +64,6 @@
   column-gap: 5px;
   cursor: pointer;
   transition: 0.3s;
-  padding: 15px 2px;
   width: 100%;
 }
 .sidebar_bottom:hover {
@@ -98,6 +98,12 @@
 
 @media screen and (max-width: 768px) {
   .sidebar {
+   display: none;
+  }
+  .sidebar.open {
+    display: block;
+  }
+  .logo {
     display: none;
   }
 }

@@ -3,7 +3,8 @@
 }
 .report_chart{
     padding-top: 1.5rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
     gap: 20px;
     height: 30rem; 
@@ -20,7 +21,36 @@
         flex-direction: column;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .container_chart h1 {
+        text-align: center;
+    }
+    .report_chart {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+  }
   
   @media screen and (max-width: 768px) {
-    
+    .container_chart h1 {
+        text-align: center;
+    }
+    .report_chart {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .container_chart h1 {
+        text-align: center;
+    }
+    .report_chart {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
   }

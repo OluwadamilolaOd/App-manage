@@ -119,6 +119,14 @@
     width: 100%;
     display: flex;
   }
+  .img-page {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   .picture {
     height: auto;
     width: 100%;
@@ -137,17 +145,22 @@
 @media screen and (max-width: 768px) {
   .landingPage {
     width: 100%;
+    height: 100vh;
     display: flex;
+    overflow: hidden;
   }
+  /* .img-page {
+    height: auto;
+  } */
   .text-page-container{
     padding: 2.5rem;
   }
-  .picture {
-    height: auto;
-    width: 100%;
-  }
   .container-one{
     font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
   .big-title{
     font-size: 28px;
@@ -155,8 +168,15 @@
   .text-bottom {
     font-size: 15px;
    margin-top: 3.5rem;
+   align-items: center;
   }
   .text-link {
     font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .text-bottom {
+    align-items: normal;
   }
 }
